@@ -1,0 +1,55 @@
+# ------------------------------------------------------------------
+# Credentials — never commit any of these. Apple's private keys are
+# .p8 files; some people also use .pem/.p12. Personal access tokens
+# sometimes leak into .env files. Be paranoid.
+# ------------------------------------------------------------------
+*.p8
+AuthKey_*
+AuthKey_*.p8
+*.pem
+*.p12
+*.pfx
+*.key
+id_rsa*
+
+# App Store Connect account registry — contains key-file paths
+# only (no secrets), but we still gitignore it to prevent any
+# per-developer state from leaking into the repo.
+accounts.json
+.app-store-connect-mcp/
+
+# Generic secret holders
+credentials/
+keys/
+secrets/
+.env
+.env.*
+!.env.example
+
+# ------------------------------------------------------------------
+# Build artefacts
+# ------------------------------------------------------------------
+dist/
+node_modules/
+*.tsbuildinfo
+coverage/
+
+# ------------------------------------------------------------------
+# Spec zips (we commit the extracted JSON but not the zip)
+# ------------------------------------------------------------------
+spec/*.zip
+spec/*.tar.gz
+
+# ------------------------------------------------------------------
+# Internal working documents — not shipped, not committed
+# ------------------------------------------------------------------
+docs/CHECKLIST.md
+
+# ------------------------------------------------------------------
+# Editor / OS
+# ------------------------------------------------------------------
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.log

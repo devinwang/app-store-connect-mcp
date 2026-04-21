@@ -1,0 +1,16 @@
+src/
+scripts/
+spec/
+docs/CHECKLIST.md
+.github/
+.gitignore
+.editorconfig
+tsconfig.json
+tsconfig.*.json
+node_modules/
+*.tsbuildinfo
+coverage/
+.DS_Store
+.idea/
+.vscode/
+*.log

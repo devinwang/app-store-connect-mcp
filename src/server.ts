@@ -9,7 +9,7 @@ export function createServer(): Server {
   const server = new Server(
     {
       name: "app-store-connect-mcp",
-      version: "0.1.0",
+      version: "0.1.1",
     },
     {
       capabilities: {

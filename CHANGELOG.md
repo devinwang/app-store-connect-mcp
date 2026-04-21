@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] — 2026-04-21
+
+Bug fixes. Two codegen defects shipped in 0.1.0 that made tool schemas
+unusable from Claude-family MCP clients.
+
+### Fixed
+
+- **Anthropic tool-schema regex rejected bracketed property keys.** The previous codegen emitted Apple's JSON:API query-param names verbatim as zod object keys (`filter[name]`, `fields[apps]`, `limit[appStoreVersions]`, `filter[appStoreVersions.appStoreState]`). Anthropic's API requires tool property names to match `^[a-zA-Z0-9_.-]{1,64}$`, so every request that included one of these tools returned `400 invalid_request_error`. Codegen now maps to a bracket-free safe form at schema time and remaps back to Apple's original when building the outgoing query:
+  - `filter[name]` → `filter_name`
+  - `fields[apps]` → `fields_apps`
+  - `limit[appStoreVersions]` → `limit_appStoreVersions`
+  - `filter[appStoreVersions.appStoreState]` → `filter_appStoreVersions_appStoreState`
+  The sales/finance report helpers in `overrides.ts` got the same rename.
+- **Path parameters at the path-item level were dropped.** OpenAPI 3.x permits a shared `parameters` array on a path item that every operation inherits. Apple declares `id` (and similar single-resource path params) exclusively at that level. The previous codegen only read `op.parameters`, so every single-resource `_get_instance` / `_update_instance` / `_delete_instance` / relationship tool was missing `id` from its schema — 1020 of 1221 tools. From the LLM's perspective these endpoints appeared to "not support path IDs." Codegen now merges path-item `parameters` with op-level `parameters` (de-duped by `in` + `name`, op-level wins on duplicates per OpenAPI semantics).
+
+### Verified
+
+- `list_tools` over stdio: all 1221 tools now pass the Anthropic property-name regex.
+- 1020 / 1221 tools now correctly declare `id` as a required path parameter (the remainder are collection / report / action endpoints that genuinely don't need one).
+
 ## [0.1.0] — 2026-04-21
 
 First public release.

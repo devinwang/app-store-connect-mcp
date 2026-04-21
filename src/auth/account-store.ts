@@ -15,7 +15,7 @@
  *         "name": "kairis",
  *         "keyId": "AB12CD34EF",
  *         "issuerId": "69a6de70-...",
- *         "keyFile": "/Users/you/.config/app-store-connect-mcp/AuthKey_AB12CD34EF.p8",
+ *         "keyFile": "/Users/you/.config/app-store-connect-mcp/AuthKey_<KEYID>.p8",
  *         "description": "Main company App Store Connect",
  *         "scope": ["GET /v1/apps", ...]
  *       }

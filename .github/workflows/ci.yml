@@ -23,7 +23,10 @@ jobs:
       - run: npm run build
       - name: Verify no credentials in build output
         run: |
-          if grep -rE "BEGIN (EC |RSA )?PRIVATE KEY|AuthKey_[A-Z0-9]+" dist/ 2>/dev/null; then
+          # Real ASC key IDs are exactly 10 upper-case alphanumeric chars.
+          # The {10} quantifier avoids false positives on placeholders
+          # like `AuthKey_<KEYID>.p8` or `AuthKey_XXX.p8` in docs.
+          if grep -rE "BEGIN (EC |RSA )?PRIVATE KEY|AuthKey_[A-Z0-9]{10}\.p8" dist/ 2>/dev/null; then
             echo "::error::Private key material found in dist/"
             exit 1
           fi

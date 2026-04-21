@@ -34,12 +34,13 @@ export const gameCenterAchievementLocalizationsTools: Tool[] = [
     fields_gameCenterAchievementLocalizations: z.union([z.array(z.enum(["locale", "name", "beforeEarnedDescription", "afterEarnedDescription", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementLocalizations").optional(),
     fields_gameCenterAchievementImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementImages").optional(),
     include: z.union([z.array(z.enum(["version", "image"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterAchievementLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievementLocalizations]": args["fields_gameCenterAchievementLocalizations"],
       "fields[gameCenterAchievementImages]": args["fields_gameCenterAchievementImages"],
@@ -54,13 +55,14 @@ export const gameCenterAchievementLocalizationsTools: Tool[] = [
     name: "game_center_achievement_localizations_v2_update_instance",
     description: "PATCH /v2/gameCenterAchievementLocalizations/{id} (PATCH /v2/gameCenterAchievementLocalizations/{id}) Body shape: see OpenAPI components.schemas.GameCenterAchievementLocalizationV2UpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterAchievementLocalizationV2UpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v2/gameCenterAchievementLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -70,12 +72,14 @@ export const gameCenterAchievementLocalizationsTools: Tool[] = [
   defineTool({
     name: "game_center_achievement_localizations_v2_delete_instance",
     description: "DELETE /v2/gameCenterAchievementLocalizations/{id} (DELETE /v2/gameCenterAchievementLocalizations/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v2/gameCenterAchievementLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -107,12 +111,13 @@ export const gameCenterAchievementLocalizationsTools: Tool[] = [
     fields_gameCenterAchievements: z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "points", "showBeforeEarned", "repeatable", "archived", "activityProperties", "gameCenterDetail", "gameCenterGroup", "groupAchievement", "localizations", "releases", "activity"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievements").optional(),
     fields_gameCenterAchievementImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterAchievementLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementImages").optional(),
     include: z.union([z.array(z.enum(["gameCenterAchievement", "gameCenterAchievementImage"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAchievementLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievementLocalizations]": args["fields_gameCenterAchievementLocalizations"],
       "fields[gameCenterAchievements]": args["fields_gameCenterAchievements"],
@@ -128,13 +133,14 @@ export const gameCenterAchievementLocalizationsTools: Tool[] = [
     name: "game_center_achievement_localizations_update_instance",
     description: "[DEPRECATED] PATCH /v1/gameCenterAchievementLocalizations/{id} (PATCH /v1/gameCenterAchievementLocalizations/{id}) Body shape: see OpenAPI components.schemas.GameCenterAchievementLocalizationUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterAchievementLocalizationUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterAchievementLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -144,12 +150,14 @@ export const gameCenterAchievementLocalizationsTools: Tool[] = [
   defineTool({
     name: "game_center_achievement_localizations_delete_instance",
     description: "[DEPRECATED] DELETE /v1/gameCenterAchievementLocalizations/{id} (DELETE /v1/gameCenterAchievementLocalizations/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterAchievementLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -159,12 +167,14 @@ export const gameCenterAchievementLocalizationsTools: Tool[] = [
   defineTool({
     name: "game_center_achievement_localizations_v2_image_get_to_one_relationship",
     description: "GET /v2/gameCenterAchievementLocalizations/{id}/relationships/image (GET /v2/gameCenterAchievementLocalizations/{id}/relationships/image)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterAchievementLocalizations/{id}/relationships/image",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -178,12 +188,13 @@ export const gameCenterAchievementLocalizationsTools: Tool[] = [
     fields_gameCenterAchievementImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementImages").optional(),
     fields_gameCenterAchievementLocalizations: z.union([z.array(z.enum(["locale", "name", "beforeEarnedDescription", "afterEarnedDescription", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementLocalizations").optional(),
     include: z.union([z.array(z.enum(["localization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterAchievementLocalizations/{id}/image",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievementImages]": args["fields_gameCenterAchievementImages"],
       "fields[gameCenterAchievementLocalizations]": args["fields_gameCenterAchievementLocalizations"],
@@ -197,12 +208,14 @@ export const gameCenterAchievementLocalizationsTools: Tool[] = [
   defineTool({
     name: "game_center_achievement_localizations_game_center_achievement_get_to_one_relationship",
     description: "[DEPRECATED] GET /v1/gameCenterAchievementLocalizations/{id}/relationships/gameCenterAchievement (GET /v1/gameCenterAchievementLocalizations/{id}/relationships/gameCenterAchievement)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAchievementLocalizations/{id}/relationships/gameCenterAchievement",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -222,12 +235,13 @@ export const gameCenterAchievementLocalizationsTools: Tool[] = [
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterGroup", "groupAchievement", "localizations", "releases", "activity"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
     limit_releases: z.coerce.number().int().describe("maximum number of related releases returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAchievementLocalizations/{id}/gameCenterAchievement",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievements]": args["fields_gameCenterAchievements"],
       "fields[gameCenterDetails]": args["fields_gameCenterDetails"],
@@ -247,12 +261,14 @@ export const gameCenterAchievementLocalizationsTools: Tool[] = [
   defineTool({
     name: "game_center_achievement_localizations_game_center_achievement_image_get_to_one_relationship",
     description: "[DEPRECATED] GET /v1/gameCenterAchievementLocalizations/{id}/relationships/gameCenterAchievementImage (GET /v1/gameCenterAchievementLocalizations/{id}/relationships/gameCenterAchievementImage)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAchievementLocalizations/{id}/relationships/gameCenterAchievementImage",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -266,12 +282,13 @@ export const gameCenterAchievementLocalizationsTools: Tool[] = [
     fields_gameCenterAchievementImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterAchievementLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementImages").optional(),
     fields_gameCenterAchievementLocalizations: z.union([z.array(z.enum(["locale", "name", "beforeEarnedDescription", "afterEarnedDescription", "gameCenterAchievement", "gameCenterAchievementImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementLocalizations").optional(),
     include: z.union([z.array(z.enum(["gameCenterAchievementLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAchievementLocalizations/{id}/gameCenterAchievementImage",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievementImages]": args["fields_gameCenterAchievementImages"],
       "fields[gameCenterAchievementLocalizations]": args["fields_gameCenterAchievementLocalizations"],

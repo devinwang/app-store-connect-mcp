@@ -35,12 +35,13 @@ export const gameCenterAppVersionsTools: Tool[] = [
     fields_appStoreVersions: z.union([z.array(z.enum(["platform", "versionString", "appStoreState", "appVersionState", "copyright", "reviewType", "releaseType", "earliestReleaseDate", "usesIdfa", "downloadable", "createdDate", "app", "appStoreVersionLocalizations", "build", "appStoreVersionPhasedRelease", "gameCenterAppVersion", "routingAppCoverage", "appStoreReviewDetail", "appStoreVersionSubmission", "appClipDefaultExperience", "appStoreVersionExperiments", "appStoreVersionExperimentsV2", "customerReviews", "alternativeDistributionPackage"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersions").optional(),
     include: z.union([z.array(z.enum(["compatibilityVersions", "appStoreVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_compatibilityVersions: z.coerce.number().int().describe("maximum number of related compatibilityVersions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAppVersions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAppVersions]": args["fields_gameCenterAppVersions"],
       "fields[appStoreVersions]": args["fields_appStoreVersions"],
@@ -56,13 +57,14 @@ export const gameCenterAppVersionsTools: Tool[] = [
     name: "game_center_app_versions_update_instance",
     description: "PATCH /v1/gameCenterAppVersions/{id} (PATCH /v1/gameCenterAppVersions/{id}) Body shape: see OpenAPI components.schemas.GameCenterAppVersionUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterAppVersionUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterAppVersions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -72,12 +74,14 @@ export const gameCenterAppVersionsTools: Tool[] = [
   defineTool({
     name: "game_center_app_versions_app_store_version_get_to_one_relationship",
     description: "GET /v1/gameCenterAppVersions/{id}/relationships/appStoreVersion (GET /v1/gameCenterAppVersions/{id}/relationships/appStoreVersion)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAppVersions/{id}/relationships/appStoreVersion",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -104,12 +108,13 @@ export const gameCenterAppVersionsTools: Tool[] = [
     limit_appStoreVersionLocalizations: z.coerce.number().int().describe("maximum number of related appStoreVersionLocalizations returned (when they are included)").optional(),
     limit_appStoreVersionExperiments: z.coerce.number().int().describe("maximum number of related appStoreVersionExperiments returned (when they are included)").optional(),
     limit_appStoreVersionExperimentsV2: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentsV2 returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAppVersions/{id}/appStoreVersion",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appStoreVersions]": args["fields_appStoreVersions"],
       "fields[apps]": args["fields_apps"],
@@ -138,12 +143,13 @@ export const gameCenterAppVersionsTools: Tool[] = [
     description: "GET /v1/gameCenterAppVersions/{id}/relationships/compatibilityVersions (GET /v1/gameCenterAppVersions/{id}/relationships/compatibilityVersions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAppVersions/{id}/relationships/compatibilityVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -156,13 +162,14 @@ export const gameCenterAppVersionsTools: Tool[] = [
     name: "game_center_app_versions_compatibility_versions_create_to_many_relationship",
     description: "POST /v1/gameCenterAppVersions/{id}/relationships/compatibilityVersions (POST /v1/gameCenterAppVersions/{id}/relationships/compatibilityVersions) Body shape: see OpenAPI components.schemas.GameCenterAppVersionCompatibilityVersionsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterAppVersionCompatibilityVersionsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "POST",
       path: "/v1/gameCenterAppVersions/{id}/relationships/compatibilityVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -173,13 +180,14 @@ export const gameCenterAppVersionsTools: Tool[] = [
     name: "game_center_app_versions_compatibility_versions_delete_to_many_relationship",
     description: "DELETE /v1/gameCenterAppVersions/{id}/relationships/compatibilityVersions (DELETE /v1/gameCenterAppVersions/{id}/relationships/compatibilityVersions) Body shape: see OpenAPI components.schemas.GameCenterAppVersionCompatibilityVersionsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterAppVersionCompatibilityVersionsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterAppVersions/{id}/relationships/compatibilityVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -196,12 +204,13 @@ export const gameCenterAppVersionsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["compatibilityVersions", "appStoreVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_compatibilityVersions: z.coerce.number().int().describe("maximum number of related compatibilityVersions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAppVersions/{id}/compatibilityVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[enabled]": args["filter_enabled"],
       "fields[gameCenterAppVersions]": args["fields_gameCenterAppVersions"],

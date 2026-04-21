@@ -35,12 +35,13 @@ export const appPreviewSetsTools: Tool[] = [
     fields_appPreviews: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "previewFrameTimeCode", "mimeType", "videoUrl", "previewFrameImage", "previewImage", "uploadOperations", "assetDeliveryState", "videoDeliveryState", "appPreviewSet"])), z.string()]).describe("the fields to include for returned resources of type appPreviews").optional(),
     include: z.union([z.array(z.enum(["appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appPreviews"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appPreviews: z.coerce.number().int().describe("maximum number of related appPreviews returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appPreviewSets/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appPreviewSets]": args["fields_appPreviewSets"],
       "fields[appPreviews]": args["fields_appPreviews"],
@@ -55,12 +56,14 @@ export const appPreviewSetsTools: Tool[] = [
   defineTool({
     name: "app_preview_sets_delete_instance",
     description: "DELETE /v1/appPreviewSets/{id} (DELETE /v1/appPreviewSets/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appPreviewSets/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -72,12 +75,13 @@ export const appPreviewSetsTools: Tool[] = [
     description: "GET /v1/appPreviewSets/{id}/relationships/appPreviews (GET /v1/appPreviewSets/{id}/relationships/appPreviews)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appPreviewSets/{id}/relationships/appPreviews",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -90,13 +94,14 @@ export const appPreviewSetsTools: Tool[] = [
     name: "app_preview_sets_app_previews_replace_to_many_relationship",
     description: "PATCH /v1/appPreviewSets/{id}/relationships/appPreviews (PATCH /v1/appPreviewSets/{id}/relationships/appPreviews) Body shape: see OpenAPI components.schemas.AppPreviewSetAppPreviewsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppPreviewSetAppPreviewsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appPreviewSets/{id}/relationships/appPreviews",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -111,12 +116,13 @@ export const appPreviewSetsTools: Tool[] = [
     fields_appPreviewSets: z.union([z.array(z.enum(["previewType", "appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appPreviews"])), z.string()]).describe("the fields to include for returned resources of type appPreviewSets").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appPreviewSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appPreviewSets/{id}/appPreviews",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appPreviews]": args["fields_appPreviews"],
       "fields[appPreviewSets]": args["fields_appPreviewSets"],

@@ -36,12 +36,13 @@ export const appStoreVersionExperimentsTools: Tool[] = [
     include: z.union([z.array(z.enum(["app", "latestControlVersion", "controlVersions", "appStoreVersionExperimentTreatments"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appStoreVersionExperimentTreatments: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentTreatments returned (when they are included)").optional(),
     limit_controlVersions: z.coerce.number().int().describe("maximum number of related controlVersions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/appStoreVersionExperiments/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appStoreVersionExperiments]": args["fields_appStoreVersionExperiments"],
       "fields[appStoreVersionExperimentTreatments]": args["fields_appStoreVersionExperimentTreatments"],
@@ -58,13 +59,14 @@ export const appStoreVersionExperimentsTools: Tool[] = [
     name: "app_store_version_experiments_v2_update_instance",
     description: "PATCH /v2/appStoreVersionExperiments/{id} (PATCH /v2/appStoreVersionExperiments/{id}) Body shape: see OpenAPI components.schemas.AppStoreVersionExperimentV2UpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppStoreVersionExperimentV2UpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v2/appStoreVersionExperiments/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -74,12 +76,14 @@ export const appStoreVersionExperimentsTools: Tool[] = [
   defineTool({
     name: "app_store_version_experiments_v2_delete_instance",
     description: "DELETE /v2/appStoreVersionExperiments/{id} (DELETE /v2/appStoreVersionExperiments/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v2/appStoreVersionExperiments/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -111,12 +115,13 @@ export const appStoreVersionExperimentsTools: Tool[] = [
     fields_appStoreVersionExperimentTreatments: z.union([z.array(z.enum(["name", "appIcon", "appIconName", "promotedDate", "appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatments").optional(),
     include: z.union([z.array(z.enum(["appStoreVersion", "appStoreVersionExperimentTreatments"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appStoreVersionExperimentTreatments: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentTreatments returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersionExperiments/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appStoreVersionExperiments]": args["fields_appStoreVersionExperiments"],
       "fields[appStoreVersionExperimentTreatments]": args["fields_appStoreVersionExperimentTreatments"],
@@ -132,13 +137,14 @@ export const appStoreVersionExperimentsTools: Tool[] = [
     name: "app_store_version_experiments_update_instance",
     description: "[DEPRECATED] PATCH /v1/appStoreVersionExperiments/{id} (PATCH /v1/appStoreVersionExperiments/{id}) Body shape: see OpenAPI components.schemas.AppStoreVersionExperimentUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppStoreVersionExperimentUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appStoreVersionExperiments/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -148,12 +154,14 @@ export const appStoreVersionExperimentsTools: Tool[] = [
   defineTool({
     name: "app_store_version_experiments_delete_instance",
     description: "[DEPRECATED] DELETE /v1/appStoreVersionExperiments/{id} (DELETE /v1/appStoreVersionExperiments/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appStoreVersionExperiments/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -165,12 +173,13 @@ export const appStoreVersionExperimentsTools: Tool[] = [
     description: "GET /v2/appStoreVersionExperiments/{id}/relationships/appStoreVersionExperimentTreatments (GET /v2/appStoreVersionExperiments/{id}/relationships/appStoreVersionExperimentTreatments)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/appStoreVersionExperiments/{id}/relationships/appStoreVersionExperimentTreatments",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -189,12 +198,13 @@ export const appStoreVersionExperimentsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appStoreVersionExperimentTreatmentLocalizations: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/appStoreVersionExperiments/{id}/appStoreVersionExperimentTreatments",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appStoreVersionExperimentTreatments]": args["fields_appStoreVersionExperimentTreatments"],
       "fields[appStoreVersionExperiments]": args["fields_appStoreVersionExperiments"],
@@ -213,12 +223,13 @@ export const appStoreVersionExperimentsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/appStoreVersionExperiments/{id}/relationships/appStoreVersionExperimentTreatments (GET /v1/appStoreVersionExperiments/{id}/relationships/appStoreVersionExperimentTreatments)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersionExperiments/{id}/relationships/appStoreVersionExperimentTreatments",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -237,12 +248,13 @@ export const appStoreVersionExperimentsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appStoreVersionExperimentTreatmentLocalizations: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersionExperiments/{id}/appStoreVersionExperimentTreatments",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appStoreVersionExperimentTreatments]": args["fields_appStoreVersionExperimentTreatments"],
       "fields[appStoreVersionExperiments]": args["fields_appStoreVersionExperiments"],

@@ -15,12 +15,13 @@ export const alternativeDistributionPackageVariantsTools: Tool[] = [
     description: "GET /v1/alternativeDistributionPackageVariants/{id} (GET /v1/alternativeDistributionPackageVariants/{id})",
     input: z.object({
     fields_alternativeDistributionPackageVariants: z.union([z.array(z.enum(["url", "urlExpirationDate", "alternativeDistributionKeyBlob", "fileChecksum"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackageVariants").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/alternativeDistributionPackageVariants/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[alternativeDistributionPackageVariants]": args["fields_alternativeDistributionPackageVariants"],
     },

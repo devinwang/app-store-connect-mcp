@@ -33,12 +33,13 @@ export const subscriptionGroupLocalizationsTools: Tool[] = [
     input: z.object({
     fields_subscriptionGroupLocalizations: z.union([z.array(z.enum(["name", "customAppName", "locale", "state", "subscriptionGroup"])), z.string()]).describe("the fields to include for returned resources of type subscriptionGroupLocalizations").optional(),
     include: z.union([z.array(z.enum(["subscriptionGroup"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionGroupLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[subscriptionGroupLocalizations]": args["fields_subscriptionGroupLocalizations"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const subscriptionGroupLocalizationsTools: Tool[] = [
     name: "subscription_group_localizations_update_instance",
     description: "PATCH /v1/subscriptionGroupLocalizations/{id} (PATCH /v1/subscriptionGroupLocalizations/{id}) Body shape: see OpenAPI components.schemas.SubscriptionGroupLocalizationUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.SubscriptionGroupLocalizationUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/subscriptionGroupLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -68,12 +70,14 @@ export const subscriptionGroupLocalizationsTools: Tool[] = [
   defineTool({
     name: "subscription_group_localizations_delete_instance",
     description: "DELETE /v1/subscriptionGroupLocalizations/{id} (DELETE /v1/subscriptionGroupLocalizations/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/subscriptionGroupLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

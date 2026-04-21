@@ -15,12 +15,13 @@ export const inAppPurchasePricePointsTools: Tool[] = [
     description: "GET /v1/inAppPurchasePricePoints/{id}/relationships/equalizations (GET /v1/inAppPurchasePricePoints/{id}/relationships/equalizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/inAppPurchasePricePoints/{id}/relationships/equalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -39,12 +40,13 @@ export const inAppPurchasePricePointsTools: Tool[] = [
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["territory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/inAppPurchasePricePoints/{id}/equalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[territory]": args["filter_territory"],
       "filter[inAppPurchaseV2]": args["filter_inAppPurchaseV2"],

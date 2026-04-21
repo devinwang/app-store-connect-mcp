@@ -37,12 +37,13 @@ export const subscriptionGroupsTools: Tool[] = [
     include: z.union([z.array(z.enum(["subscriptions", "subscriptionGroupLocalizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_subscriptionGroupLocalizations: z.coerce.number().int().describe("maximum number of related subscriptionGroupLocalizations returned (when they are included)").optional(),
     limit_subscriptions: z.coerce.number().int().describe("maximum number of related subscriptions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionGroups/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[subscriptionGroups]": args["fields_subscriptionGroups"],
       "fields[subscriptions]": args["fields_subscriptions"],
@@ -60,13 +61,14 @@ export const subscriptionGroupsTools: Tool[] = [
     name: "subscription_groups_update_instance",
     description: "PATCH /v1/subscriptionGroups/{id} (PATCH /v1/subscriptionGroups/{id}) Body shape: see OpenAPI components.schemas.SubscriptionGroupUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.SubscriptionGroupUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/subscriptionGroups/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -76,12 +78,14 @@ export const subscriptionGroupsTools: Tool[] = [
   defineTool({
     name: "subscription_groups_delete_instance",
     description: "DELETE /v1/subscriptionGroups/{id} (DELETE /v1/subscriptionGroups/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/subscriptionGroups/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -93,12 +97,13 @@ export const subscriptionGroupsTools: Tool[] = [
     description: "GET /v1/subscriptionGroups/{id}/relationships/subscriptionGroupLocalizations (GET /v1/subscriptionGroups/{id}/relationships/subscriptionGroupLocalizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionGroups/{id}/relationships/subscriptionGroupLocalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -115,12 +120,13 @@ export const subscriptionGroupsTools: Tool[] = [
     fields_subscriptionGroups: z.union([z.array(z.enum(["referenceName", "subscriptions", "subscriptionGroupLocalizations"])), z.string()]).describe("the fields to include for returned resources of type subscriptionGroups").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["subscriptionGroup"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionGroups/{id}/subscriptionGroupLocalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[subscriptionGroupLocalizations]": args["fields_subscriptionGroupLocalizations"],
       "fields[subscriptionGroups]": args["fields_subscriptionGroups"],
@@ -137,12 +143,13 @@ export const subscriptionGroupsTools: Tool[] = [
     description: "GET /v1/subscriptionGroups/{id}/relationships/subscriptions (GET /v1/subscriptionGroups/{id}/relationships/subscriptions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionGroups/{id}/relationships/subscriptions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -180,12 +187,13 @@ export const subscriptionGroupsTools: Tool[] = [
     limit_prices: z.coerce.number().int().describe("maximum number of related prices returned (when they are included)").optional(),
     limit_winBackOffers: z.coerce.number().int().describe("maximum number of related winBackOffers returned (when they are included)").optional(),
     limit_images: z.coerce.number().int().describe("maximum number of related images returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionGroups/{id}/subscriptions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[productId]": args["filter_productId"],
       "filter[name]": args["filter_name"],

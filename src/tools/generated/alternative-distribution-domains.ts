@@ -53,12 +53,13 @@ export const alternativeDistributionDomainsTools: Tool[] = [
     description: "GET /v1/alternativeDistributionDomains/{id} (GET /v1/alternativeDistributionDomains/{id})",
     input: z.object({
     fields_alternativeDistributionDomains: z.union([z.array(z.enum(["domain", "referenceName", "createdDate"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionDomains").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/alternativeDistributionDomains/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[alternativeDistributionDomains]": args["fields_alternativeDistributionDomains"],
     },
@@ -70,12 +71,14 @@ export const alternativeDistributionDomainsTools: Tool[] = [
   defineTool({
     name: "alternative_distribution_domains_delete_instance",
     description: "DELETE /v1/alternativeDistributionDomains/{id} (DELETE /v1/alternativeDistributionDomains/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/alternativeDistributionDomains/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

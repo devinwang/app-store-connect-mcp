@@ -33,12 +33,13 @@ export const appInfoLocalizationsTools: Tool[] = [
     input: z.object({
     fields_appInfoLocalizations: z.union([z.array(z.enum(["locale", "name", "subtitle", "privacyPolicyUrl", "privacyChoicesUrl", "privacyPolicyText", "appInfo"])), z.string()]).describe("the fields to include for returned resources of type appInfoLocalizations").optional(),
     include: z.union([z.array(z.enum(["appInfo"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfoLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appInfoLocalizations]": args["fields_appInfoLocalizations"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const appInfoLocalizationsTools: Tool[] = [
     name: "app_info_localizations_update_instance",
     description: "PATCH /v1/appInfoLocalizations/{id} (PATCH /v1/appInfoLocalizations/{id}) Body shape: see OpenAPI components.schemas.AppInfoLocalizationUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppInfoLocalizationUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appInfoLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -68,12 +70,14 @@ export const appInfoLocalizationsTools: Tool[] = [
   defineTool({
     name: "app_info_localizations_delete_instance",
     description: "DELETE /v1/appInfoLocalizations/{id} (DELETE /v1/appInfoLocalizations/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appInfoLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

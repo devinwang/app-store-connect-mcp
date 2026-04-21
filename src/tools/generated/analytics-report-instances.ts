@@ -15,12 +15,13 @@ export const analyticsReportInstancesTools: Tool[] = [
     description: "GET /v1/analyticsReportInstances/{id} (GET /v1/analyticsReportInstances/{id})",
     input: z.object({
     fields_analyticsReportInstances: z.union([z.array(z.enum(["granularity", "processingDate", "segments"])), z.string()]).describe("the fields to include for returned resources of type analyticsReportInstances").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/analyticsReportInstances/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[analyticsReportInstances]": args["fields_analyticsReportInstances"],
     },
@@ -34,12 +35,13 @@ export const analyticsReportInstancesTools: Tool[] = [
     description: "GET /v1/analyticsReportInstances/{id}/relationships/segments (GET /v1/analyticsReportInstances/{id}/relationships/segments)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/analyticsReportInstances/{id}/relationships/segments",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -54,12 +56,13 @@ export const analyticsReportInstancesTools: Tool[] = [
     input: z.object({
     fields_analyticsReportSegments: z.union([z.array(z.enum(["checksum", "sizeInBytes", "url"])), z.string()]).describe("the fields to include for returned resources of type analyticsReportSegments").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/analyticsReportInstances/{id}/segments",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[analyticsReportSegments]": args["fields_analyticsReportSegments"],
       "limit": args["limit"],

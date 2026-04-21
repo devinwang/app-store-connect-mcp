@@ -13,12 +13,14 @@ export const appStoreVersionSubmissionsTools: Tool[] = [
   defineTool({
     name: "app_store_version_submissions_delete_instance",
     description: "[DEPRECATED] DELETE /v1/appStoreVersionSubmissions/{id} (DELETE /v1/appStoreVersionSubmissions/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appStoreVersionSubmissions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

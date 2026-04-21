@@ -31,13 +31,14 @@ export const betaRecruitmentCriteriaTools: Tool[] = [
     name: "beta_recruitment_criteria_update_instance",
     description: "PATCH /v1/betaRecruitmentCriteria/{id} (PATCH /v1/betaRecruitmentCriteria/{id}) Body shape: see OpenAPI components.schemas.BetaRecruitmentCriterionUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.BetaRecruitmentCriterionUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/betaRecruitmentCriteria/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -47,12 +48,14 @@ export const betaRecruitmentCriteriaTools: Tool[] = [
   defineTool({
     name: "beta_recruitment_criteria_delete_instance",
     description: "DELETE /v1/betaRecruitmentCriteria/{id} (DELETE /v1/betaRecruitmentCriteria/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/betaRecruitmentCriteria/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

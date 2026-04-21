@@ -15,12 +15,13 @@ export const analyticsReportSegmentsTools: Tool[] = [
     description: "GET /v1/analyticsReportSegments/{id} (GET /v1/analyticsReportSegments/{id})",
     input: z.object({
     fields_analyticsReportSegments: z.union([z.array(z.enum(["checksum", "sizeInBytes", "url"])), z.string()]).describe("the fields to include for returned resources of type analyticsReportSegments").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/analyticsReportSegments/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[analyticsReportSegments]": args["fields_analyticsReportSegments"],
     },

@@ -32,12 +32,13 @@ export const androidToIosAppMappingDetailsTools: Tool[] = [
     description: "GET /v1/androidToIosAppMappingDetails/{id} (GET /v1/androidToIosAppMappingDetails/{id})",
     input: z.object({
     fields_androidToIosAppMappingDetails: z.union([z.array(z.enum(["packageName", "appSigningKeyPublicCertificateSha256Fingerprints"])), z.string()]).describe("the fields to include for returned resources of type androidToIosAppMappingDetails").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/androidToIosAppMappingDetails/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[androidToIosAppMappingDetails]": args["fields_androidToIosAppMappingDetails"],
     },
@@ -50,13 +51,14 @@ export const androidToIosAppMappingDetailsTools: Tool[] = [
     name: "android_to_ios_app_mapping_details_update_instance",
     description: "PATCH /v1/androidToIosAppMappingDetails/{id} (PATCH /v1/androidToIosAppMappingDetails/{id}) Body shape: see OpenAPI components.schemas.AndroidToIosAppMappingDetailUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AndroidToIosAppMappingDetailUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/androidToIosAppMappingDetails/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -66,12 +68,14 @@ export const androidToIosAppMappingDetailsTools: Tool[] = [
   defineTool({
     name: "android_to_ios_app_mapping_details_delete_instance",
     description: "DELETE /v1/androidToIosAppMappingDetails/{id} (DELETE /v1/androidToIosAppMappingDetails/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/androidToIosAppMappingDetails/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

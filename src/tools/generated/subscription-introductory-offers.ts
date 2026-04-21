@@ -31,13 +31,14 @@ export const subscriptionIntroductoryOffersTools: Tool[] = [
     name: "subscription_introductory_offers_update_instance",
     description: "PATCH /v1/subscriptionIntroductoryOffers/{id} (PATCH /v1/subscriptionIntroductoryOffers/{id}) Body shape: see OpenAPI components.schemas.SubscriptionIntroductoryOfferUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.SubscriptionIntroductoryOfferUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/subscriptionIntroductoryOffers/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -47,12 +48,14 @@ export const subscriptionIntroductoryOffersTools: Tool[] = [
   defineTool({
     name: "subscription_introductory_offers_delete_instance",
     description: "DELETE /v1/subscriptionIntroductoryOffers/{id} (DELETE /v1/subscriptionIntroductoryOffers/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/subscriptionIntroductoryOffers/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

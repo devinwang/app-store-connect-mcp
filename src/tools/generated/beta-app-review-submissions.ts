@@ -63,12 +63,13 @@ export const betaAppReviewSubmissionsTools: Tool[] = [
     fields_betaAppReviewSubmissions: z.union([z.array(z.enum(["betaReviewState", "submittedDate", "build"])), z.string()]).describe("the fields to include for returned resources of type betaAppReviewSubmissions").optional(),
     fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
     include: z.union([z.array(z.enum(["build"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/betaAppReviewSubmissions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[betaAppReviewSubmissions]": args["fields_betaAppReviewSubmissions"],
       "fields[builds]": args["fields_builds"],
@@ -82,12 +83,14 @@ export const betaAppReviewSubmissionsTools: Tool[] = [
   defineTool({
     name: "beta_app_review_submissions_build_get_to_one_relationship",
     description: "GET /v1/betaAppReviewSubmissions/{id}/relationships/build (GET /v1/betaAppReviewSubmissions/{id}/relationships/build)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/betaAppReviewSubmissions/{id}/relationships/build",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -99,12 +102,13 @@ export const betaAppReviewSubmissionsTools: Tool[] = [
     description: "GET /v1/betaAppReviewSubmissions/{id}/build (GET /v1/betaAppReviewSubmissions/{id}/build)",
     input: z.object({
     fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/betaAppReviewSubmissions/{id}/build",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[builds]": args["fields_builds"],
     },

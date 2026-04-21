@@ -52,13 +52,14 @@ export const marketplaceWebhooksTools: Tool[] = [
     name: "marketplace_webhooks_update_instance",
     description: "[DEPRECATED] PATCH /v1/marketplaceWebhooks/{id} (PATCH /v1/marketplaceWebhooks/{id}) Body shape: see OpenAPI components.schemas.MarketplaceWebhookUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.MarketplaceWebhookUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/marketplaceWebhooks/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -68,12 +69,14 @@ export const marketplaceWebhooksTools: Tool[] = [
   defineTool({
     name: "marketplace_webhooks_delete_instance",
     description: "[DEPRECATED] DELETE /v1/marketplaceWebhooks/{id} (DELETE /v1/marketplaceWebhooks/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/marketplaceWebhooks/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

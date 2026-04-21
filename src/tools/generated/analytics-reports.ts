@@ -15,12 +15,13 @@ export const analyticsReportsTools: Tool[] = [
     description: "GET /v1/analyticsReports/{id} (GET /v1/analyticsReports/{id})",
     input: z.object({
     fields_analyticsReports: z.union([z.array(z.enum(["name", "category", "instances"])), z.string()]).describe("the fields to include for returned resources of type analyticsReports").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/analyticsReports/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[analyticsReports]": args["fields_analyticsReports"],
     },
@@ -34,12 +35,13 @@ export const analyticsReportsTools: Tool[] = [
     description: "GET /v1/analyticsReports/{id}/relationships/instances (GET /v1/analyticsReports/{id}/relationships/instances)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/analyticsReports/{id}/relationships/instances",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -56,12 +58,13 @@ export const analyticsReportsTools: Tool[] = [
     filter_processingDate: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'processingDate'").optional(),
     fields_analyticsReportInstances: z.union([z.array(z.enum(["granularity", "processingDate", "segments"])), z.string()]).describe("the fields to include for returned resources of type analyticsReportInstances").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/analyticsReports/{id}/instances",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[granularity]": args["filter_granularity"],
       "filter[processingDate]": args["filter_processingDate"],

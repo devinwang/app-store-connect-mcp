@@ -37,12 +37,13 @@ export const gameCenterChallengeVersionsTools: Tool[] = [
     include: z.union([z.array(z.enum(["challenge", "localizations", "releases", "defaultImage"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
     limit_releases: z.coerce.number().int().describe("maximum number of related releases returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterChallengeVersions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterChallengeVersions]": args["fields_gameCenterChallengeVersions"],
       "fields[gameCenterChallengeLocalizations]": args["fields_gameCenterChallengeLocalizations"],
@@ -59,12 +60,14 @@ export const gameCenterChallengeVersionsTools: Tool[] = [
   defineTool({
     name: "game_center_challenge_versions_default_image_get_to_one_relationship",
     description: "GET /v1/gameCenterChallengeVersions/{id}/relationships/defaultImage (GET /v1/gameCenterChallengeVersions/{id}/relationships/defaultImage)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterChallengeVersions/{id}/relationships/defaultImage",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -76,12 +79,13 @@ export const gameCenterChallengeVersionsTools: Tool[] = [
     description: "GET /v1/gameCenterChallengeVersions/{id}/defaultImage (GET /v1/gameCenterChallengeVersions/{id}/defaultImage)",
     input: z.object({
     fields_gameCenterChallengeImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeImages").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterChallengeVersions/{id}/defaultImage",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterChallengeImages]": args["fields_gameCenterChallengeImages"],
     },
@@ -95,12 +99,13 @@ export const gameCenterChallengeVersionsTools: Tool[] = [
     description: "GET /v1/gameCenterChallengeVersions/{id}/relationships/localizations (GET /v1/gameCenterChallengeVersions/{id}/relationships/localizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterChallengeVersions/{id}/relationships/localizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -118,12 +123,13 @@ export const gameCenterChallengeVersionsTools: Tool[] = [
     fields_gameCenterChallengeImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeImages").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["version", "image"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterChallengeVersions/{id}/localizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterChallengeLocalizations]": args["fields_gameCenterChallengeLocalizations"],
       "fields[gameCenterChallengeVersions]": args["fields_gameCenterChallengeVersions"],

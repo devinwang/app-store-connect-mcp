@@ -15,12 +15,13 @@ export const ciArtifactsTools: Tool[] = [
     description: "GET /v1/ciArtifacts/{id} (GET /v1/ciArtifacts/{id})",
     input: z.object({
     fields_ciArtifacts: z.union([z.array(z.enum(["fileType", "fileName", "fileSize", "downloadUrl"])), z.string()]).describe("the fields to include for returned resources of type ciArtifacts").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciArtifacts/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[ciArtifacts]": args["fields_ciArtifacts"],
     },

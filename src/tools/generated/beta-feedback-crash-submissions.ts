@@ -16,12 +16,13 @@ export const betaFeedbackCrashSubmissionsTools: Tool[] = [
     input: z.object({
     fields_betaFeedbackCrashSubmissions: z.union([z.array(z.enum(["createdDate", "comment", "email", "deviceModel", "osVersion", "locale", "timeZone", "architecture", "connectionType", "pairedAppleWatch", "appUptimeInMilliseconds", "diskBytesAvailable", "diskBytesTotal", "batteryPercentage", "screenWidthInPoints", "screenHeightInPoints", "appPlatform", "devicePlatform", "deviceFamily", "buildBundleId", "crashLog", "build", "tester"])), z.string()]).describe("the fields to include for returned resources of type betaFeedbackCrashSubmissions").optional(),
     include: z.union([z.array(z.enum(["build", "tester"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/betaFeedbackCrashSubmissions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[betaFeedbackCrashSubmissions]": args["fields_betaFeedbackCrashSubmissions"],
       "include": args["include"],
@@ -34,12 +35,14 @@ export const betaFeedbackCrashSubmissionsTools: Tool[] = [
   defineTool({
     name: "beta_feedback_crash_submissions_delete_instance",
     description: "DELETE /v1/betaFeedbackCrashSubmissions/{id} (DELETE /v1/betaFeedbackCrashSubmissions/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/betaFeedbackCrashSubmissions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -49,12 +52,14 @@ export const betaFeedbackCrashSubmissionsTools: Tool[] = [
   defineTool({
     name: "beta_feedback_crash_submissions_crash_log_get_to_one_relationship",
     description: "GET /v1/betaFeedbackCrashSubmissions/{id}/relationships/crashLog (GET /v1/betaFeedbackCrashSubmissions/{id}/relationships/crashLog)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/betaFeedbackCrashSubmissions/{id}/relationships/crashLog",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -66,12 +71,13 @@ export const betaFeedbackCrashSubmissionsTools: Tool[] = [
     description: "GET /v1/betaFeedbackCrashSubmissions/{id}/crashLog (GET /v1/betaFeedbackCrashSubmissions/{id}/crashLog)",
     input: z.object({
     fields_betaCrashLogs: z.union([z.array(z.enum(["logText"])), z.string()]).describe("the fields to include for returned resources of type betaCrashLogs").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/betaFeedbackCrashSubmissions/{id}/crashLog",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[betaCrashLogs]": args["fields_betaCrashLogs"],
     },

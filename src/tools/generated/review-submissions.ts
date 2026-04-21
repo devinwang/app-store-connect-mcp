@@ -68,12 +68,13 @@ export const reviewSubmissionsTools: Tool[] = [
     fields_reviewSubmissionItems: z.union([z.array(z.enum(["state", "appStoreVersion", "appCustomProductPageVersion", "appStoreVersionExperiment", "appStoreVersionExperimentV2", "appEvent", "backgroundAssetVersion", "gameCenterAchievementVersion", "gameCenterActivityVersion", "gameCenterChallengeVersion", "gameCenterLeaderboardSetVersion", "gameCenterLeaderboardVersion"])), z.string()]).describe("the fields to include for returned resources of type reviewSubmissionItems").optional(),
     include: z.union([z.array(z.enum(["app", "items", "appStoreVersionForReview", "submittedByActor", "lastUpdatedByActor"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_items: z.coerce.number().int().describe("maximum number of related items returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/reviewSubmissions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[reviewSubmissions]": args["fields_reviewSubmissions"],
       "fields[reviewSubmissionItems]": args["fields_reviewSubmissionItems"],
@@ -89,13 +90,14 @@ export const reviewSubmissionsTools: Tool[] = [
     name: "review_submissions_update_instance",
     description: "PATCH /v1/reviewSubmissions/{id} (PATCH /v1/reviewSubmissions/{id}) Body shape: see OpenAPI components.schemas.ReviewSubmissionUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.ReviewSubmissionUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/reviewSubmissions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -107,12 +109,13 @@ export const reviewSubmissionsTools: Tool[] = [
     description: "GET /v1/reviewSubmissions/{id}/relationships/items (GET /v1/reviewSubmissions/{id}/relationships/items)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/reviewSubmissions/{id}/relationships/items",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -138,12 +141,13 @@ export const reviewSubmissionsTools: Tool[] = [
     fields_gameCenterLeaderboardVersions: z.union([z.array(z.enum(["version", "state", "leaderboard", "localizations"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardVersions").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appStoreVersion", "appCustomProductPageVersion", "appStoreVersionExperiment", "appStoreVersionExperimentV2", "appEvent", "backgroundAssetVersion", "gameCenterAchievementVersion", "gameCenterActivityVersion", "gameCenterChallengeVersion", "gameCenterLeaderboardSetVersion", "gameCenterLeaderboardVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/reviewSubmissions/{id}/items",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[reviewSubmissionItems]": args["fields_reviewSubmissionItems"],
       "fields[appStoreVersions]": args["fields_appStoreVersions"],

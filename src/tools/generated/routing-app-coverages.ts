@@ -33,12 +33,13 @@ export const routingAppCoveragesTools: Tool[] = [
     input: z.object({
     fields_routingAppCoverages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "uploadOperations", "assetDeliveryState", "appStoreVersion"])), z.string()]).describe("the fields to include for returned resources of type routingAppCoverages").optional(),
     include: z.union([z.array(z.enum(["appStoreVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/routingAppCoverages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[routingAppCoverages]": args["fields_routingAppCoverages"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const routingAppCoveragesTools: Tool[] = [
     name: "routing_app_coverages_update_instance",
     description: "PATCH /v1/routingAppCoverages/{id} (PATCH /v1/routingAppCoverages/{id}) Body shape: see OpenAPI components.schemas.RoutingAppCoverageUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.RoutingAppCoverageUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/routingAppCoverages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -68,12 +70,14 @@ export const routingAppCoveragesTools: Tool[] = [
   defineTool({
     name: "routing_app_coverages_delete_instance",
     description: "DELETE /v1/routingAppCoverages/{id} (DELETE /v1/routingAppCoverages/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/routingAppCoverages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

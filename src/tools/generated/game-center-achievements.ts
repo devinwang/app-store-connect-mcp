@@ -35,12 +35,13 @@ export const gameCenterAchievementsTools: Tool[] = [
     fields_gameCenterAchievementVersions: z.union([z.array(z.enum(["version", "state", "achievement", "localizations"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementVersions").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterGroup", "activity", "versions"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_versions: z.coerce.number().int().describe("maximum number of related versions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterAchievements/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievements]": args["fields_gameCenterAchievements"],
       "fields[gameCenterAchievementVersions]": args["fields_gameCenterAchievementVersions"],
@@ -56,13 +57,14 @@ export const gameCenterAchievementsTools: Tool[] = [
     name: "game_center_achievements_v2_update_instance",
     description: "PATCH /v2/gameCenterAchievements/{id} (PATCH /v2/gameCenterAchievements/{id}) Body shape: see OpenAPI components.schemas.GameCenterAchievementV2UpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterAchievementV2UpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v2/gameCenterAchievements/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -72,12 +74,14 @@ export const gameCenterAchievementsTools: Tool[] = [
   defineTool({
     name: "game_center_achievements_v2_delete_instance",
     description: "DELETE /v2/gameCenterAchievements/{id} (DELETE /v2/gameCenterAchievements/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v2/gameCenterAchievements/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -111,12 +115,13 @@ export const gameCenterAchievementsTools: Tool[] = [
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterGroup", "groupAchievement", "localizations", "releases", "activity"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
     limit_releases: z.coerce.number().int().describe("maximum number of related releases returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAchievements/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievements]": args["fields_gameCenterAchievements"],
       "fields[gameCenterAchievementLocalizations]": args["fields_gameCenterAchievementLocalizations"],
@@ -134,13 +139,14 @@ export const gameCenterAchievementsTools: Tool[] = [
     name: "game_center_achievements_update_instance",
     description: "[DEPRECATED] PATCH /v1/gameCenterAchievements/{id} (PATCH /v1/gameCenterAchievements/{id}) Body shape: see OpenAPI components.schemas.GameCenterAchievementUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterAchievementUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterAchievements/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -150,12 +156,14 @@ export const gameCenterAchievementsTools: Tool[] = [
   defineTool({
     name: "game_center_achievements_delete_instance",
     description: "[DEPRECATED] DELETE /v1/gameCenterAchievements/{id} (DELETE /v1/gameCenterAchievements/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterAchievements/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -166,13 +174,14 @@ export const gameCenterAchievementsTools: Tool[] = [
     name: "game_center_achievements_v2_activity_update_to_one_relationship",
     description: "PATCH /v2/gameCenterAchievements/{id}/relationships/activity (PATCH /v2/gameCenterAchievements/{id}/relationships/activity) Body shape: see OpenAPI components.schemas.GameCenterAchievementV2ActivityLinkageRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterAchievementV2ActivityLinkageRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v2/gameCenterAchievements/{id}/relationships/activity",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -184,12 +193,13 @@ export const gameCenterAchievementsTools: Tool[] = [
     description: "GET /v2/gameCenterAchievements/{id}/relationships/versions (GET /v2/gameCenterAchievements/{id}/relationships/versions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterAchievements/{id}/relationships/versions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -208,12 +218,13 @@ export const gameCenterAchievementsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["achievement", "localizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterAchievements/{id}/versions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievementVersions]": args["fields_gameCenterAchievementVersions"],
       "fields[gameCenterAchievements]": args["fields_gameCenterAchievements"],
@@ -231,13 +242,14 @@ export const gameCenterAchievementsTools: Tool[] = [
     name: "game_center_achievements_activity_update_to_one_relationship",
     description: "[DEPRECATED] PATCH /v1/gameCenterAchievements/{id}/relationships/activity (PATCH /v1/gameCenterAchievements/{id}/relationships/activity) Body shape: see OpenAPI components.schemas.GameCenterAchievementActivityLinkageRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterAchievementActivityLinkageRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterAchievements/{id}/relationships/activity",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -247,12 +259,14 @@ export const gameCenterAchievementsTools: Tool[] = [
   defineTool({
     name: "game_center_achievements_group_achievement_get_to_one_relationship",
     description: "[DEPRECATED] GET /v1/gameCenterAchievements/{id}/relationships/groupAchievement (GET /v1/gameCenterAchievements/{id}/relationships/groupAchievement)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAchievements/{id}/relationships/groupAchievement",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -263,13 +277,14 @@ export const gameCenterAchievementsTools: Tool[] = [
     name: "game_center_achievements_group_achievement_update_to_one_relationship",
     description: "[DEPRECATED] PATCH /v1/gameCenterAchievements/{id}/relationships/groupAchievement (PATCH /v1/gameCenterAchievements/{id}/relationships/groupAchievement) Body shape: see OpenAPI components.schemas.GameCenterAchievementGroupAchievementLinkageRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterAchievementGroupAchievementLinkageRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterAchievements/{id}/relationships/groupAchievement",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -289,12 +304,13 @@ export const gameCenterAchievementsTools: Tool[] = [
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterGroup", "groupAchievement", "localizations", "releases", "activity"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
     limit_releases: z.coerce.number().int().describe("maximum number of related releases returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAchievements/{id}/groupAchievement",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievements]": args["fields_gameCenterAchievements"],
       "fields[gameCenterDetails]": args["fields_gameCenterDetails"],
@@ -316,12 +332,13 @@ export const gameCenterAchievementsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterAchievements/{id}/relationships/localizations (GET /v1/gameCenterAchievements/{id}/relationships/localizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAchievements/{id}/relationships/localizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -339,12 +356,13 @@ export const gameCenterAchievementsTools: Tool[] = [
     fields_gameCenterAchievementImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterAchievementLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementImages").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["gameCenterAchievement", "gameCenterAchievementImage"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAchievements/{id}/localizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievementLocalizations]": args["fields_gameCenterAchievementLocalizations"],
       "fields[gameCenterAchievements]": args["fields_gameCenterAchievements"],
@@ -362,12 +380,13 @@ export const gameCenterAchievementsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterAchievements/{id}/relationships/releases (GET /v1/gameCenterAchievements/{id}/relationships/releases)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAchievements/{id}/relationships/releases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -387,12 +406,13 @@ export const gameCenterAchievementsTools: Tool[] = [
     fields_gameCenterAchievements: z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "points", "showBeforeEarned", "repeatable", "archived", "activityProperties", "gameCenterDetail", "gameCenterGroup", "groupAchievement", "localizations", "releases", "activity"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievements").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterAchievement"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAchievements/{id}/releases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[live]": args["filter_live"],
       "filter[gameCenterDetail]": args["filter_gameCenterDetail"],

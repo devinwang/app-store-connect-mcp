@@ -35,12 +35,13 @@ export const winBackOffersTools: Tool[] = [
     fields_winBackOfferPrices: z.union([z.array(z.enum(["territory", "subscriptionPricePoint"])), z.string()]).describe("the fields to include for returned resources of type winBackOfferPrices").optional(),
     include: z.union([z.array(z.enum(["prices"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_prices: z.coerce.number().int().describe("maximum number of related prices returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/winBackOffers/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[winBackOffers]": args["fields_winBackOffers"],
       "fields[winBackOfferPrices]": args["fields_winBackOfferPrices"],
@@ -56,13 +57,14 @@ export const winBackOffersTools: Tool[] = [
     name: "win_back_offers_update_instance",
     description: "PATCH /v1/winBackOffers/{id} (PATCH /v1/winBackOffers/{id}) Body shape: see OpenAPI components.schemas.WinBackOfferUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.WinBackOfferUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/winBackOffers/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -72,12 +74,14 @@ export const winBackOffersTools: Tool[] = [
   defineTool({
     name: "win_back_offers_delete_instance",
     description: "DELETE /v1/winBackOffers/{id} (DELETE /v1/winBackOffers/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/winBackOffers/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -89,12 +93,13 @@ export const winBackOffersTools: Tool[] = [
     description: "GET /v1/winBackOffers/{id}/relationships/prices (GET /v1/winBackOffers/{id}/relationships/prices)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/winBackOffers/{id}/relationships/prices",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -113,12 +118,13 @@ export const winBackOffersTools: Tool[] = [
     fields_subscriptionPricePoints: z.union([z.array(z.enum(["customerPrice", "proceeds", "proceedsYear2", "territory", "equalizations"])), z.string()]).describe("the fields to include for returned resources of type subscriptionPricePoints").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["territory", "subscriptionPricePoint"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/winBackOffers/{id}/prices",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[territory]": args["filter_territory"],
       "fields[winBackOfferPrices]": args["fields_winBackOfferPrices"],

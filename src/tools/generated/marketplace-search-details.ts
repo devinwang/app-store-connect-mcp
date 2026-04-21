@@ -31,13 +31,14 @@ export const marketplaceSearchDetailsTools: Tool[] = [
     name: "marketplace_search_details_update_instance",
     description: "PATCH /v1/marketplaceSearchDetails/{id} (PATCH /v1/marketplaceSearchDetails/{id}) Body shape: see OpenAPI components.schemas.MarketplaceSearchDetailUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.MarketplaceSearchDetailUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/marketplaceSearchDetails/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -47,12 +48,14 @@ export const marketplaceSearchDetailsTools: Tool[] = [
   defineTool({
     name: "marketplace_search_details_delete_instance",
     description: "DELETE /v1/marketplaceSearchDetails/{id} (DELETE /v1/marketplaceSearchDetails/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/marketplaceSearchDetails/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

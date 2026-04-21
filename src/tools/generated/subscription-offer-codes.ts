@@ -39,12 +39,13 @@ export const subscriptionOfferCodesTools: Tool[] = [
     limit_customCodes: z.coerce.number().int().describe("maximum number of related customCodes returned (when they are included)").optional(),
     limit_oneTimeUseCodes: z.coerce.number().int().describe("maximum number of related oneTimeUseCodes returned (when they are included)").optional(),
     limit_prices: z.coerce.number().int().describe("maximum number of related prices returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionOfferCodes/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[subscriptionOfferCodes]": args["fields_subscriptionOfferCodes"],
       "fields[subscriptionOfferCodeOneTimeUseCodes]": args["fields_subscriptionOfferCodeOneTimeUseCodes"],
@@ -64,13 +65,14 @@ export const subscriptionOfferCodesTools: Tool[] = [
     name: "subscription_offer_codes_update_instance",
     description: "PATCH /v1/subscriptionOfferCodes/{id} (PATCH /v1/subscriptionOfferCodes/{id}) Body shape: see OpenAPI components.schemas.SubscriptionOfferCodeUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.SubscriptionOfferCodeUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/subscriptionOfferCodes/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -82,12 +84,13 @@ export const subscriptionOfferCodesTools: Tool[] = [
     description: "GET /v1/subscriptionOfferCodes/{id}/relationships/customCodes (GET /v1/subscriptionOfferCodes/{id}/relationships/customCodes)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionOfferCodes/{id}/relationships/customCodes",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -104,12 +107,13 @@ export const subscriptionOfferCodesTools: Tool[] = [
     fields_subscriptionOfferCodes: z.union([z.array(z.enum(["name", "customerEligibilities", "offerEligibility", "duration", "offerMode", "numberOfPeriods", "totalNumberOfCodes", "productionCodeCount", "sandboxCodeCount", "active", "autoRenewEnabled", "subscription", "oneTimeUseCodes", "customCodes", "prices"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodes").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["offerCode"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionOfferCodes/{id}/customCodes",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[subscriptionOfferCodeCustomCodes]": args["fields_subscriptionOfferCodeCustomCodes"],
       "fields[subscriptionOfferCodes]": args["fields_subscriptionOfferCodes"],
@@ -126,12 +130,13 @@ export const subscriptionOfferCodesTools: Tool[] = [
     description: "GET /v1/subscriptionOfferCodes/{id}/relationships/oneTimeUseCodes (GET /v1/subscriptionOfferCodes/{id}/relationships/oneTimeUseCodes)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionOfferCodes/{id}/relationships/oneTimeUseCodes",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -148,12 +153,13 @@ export const subscriptionOfferCodesTools: Tool[] = [
     fields_subscriptionOfferCodes: z.union([z.array(z.enum(["name", "customerEligibilities", "offerEligibility", "duration", "offerMode", "numberOfPeriods", "totalNumberOfCodes", "productionCodeCount", "sandboxCodeCount", "active", "autoRenewEnabled", "subscription", "oneTimeUseCodes", "customCodes", "prices"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodes").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["offerCode"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionOfferCodes/{id}/oneTimeUseCodes",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[subscriptionOfferCodeOneTimeUseCodes]": args["fields_subscriptionOfferCodeOneTimeUseCodes"],
       "fields[subscriptionOfferCodes]": args["fields_subscriptionOfferCodes"],
@@ -170,12 +176,13 @@ export const subscriptionOfferCodesTools: Tool[] = [
     description: "GET /v1/subscriptionOfferCodes/{id}/relationships/prices (GET /v1/subscriptionOfferCodes/{id}/relationships/prices)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionOfferCodes/{id}/relationships/prices",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -194,12 +201,13 @@ export const subscriptionOfferCodesTools: Tool[] = [
     fields_subscriptionPricePoints: z.union([z.array(z.enum(["customerPrice", "proceeds", "proceedsYear2", "territory", "equalizations"])), z.string()]).describe("the fields to include for returned resources of type subscriptionPricePoints").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["territory", "subscriptionPricePoint"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionOfferCodes/{id}/prices",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[territory]": args["filter_territory"],
       "fields[subscriptionOfferCodePrices]": args["fields_subscriptionOfferCodePrices"],

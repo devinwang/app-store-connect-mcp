@@ -16,12 +16,13 @@ export const appPricePointsTools: Tool[] = [
     input: z.object({
     fields_appPricePoints: z.union([z.array(z.enum(["customerPrice", "proceeds", "app", "equalizations", "territory"])), z.string()]).describe("the fields to include for returned resources of type appPricePoints").optional(),
     include: z.union([z.array(z.enum(["app", "territory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v3/appPricePoints/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appPricePoints]": args["fields_appPricePoints"],
       "include": args["include"],
@@ -36,12 +37,13 @@ export const appPricePointsTools: Tool[] = [
     description: "GET /v3/appPricePoints/{id}/relationships/equalizations (GET /v3/appPricePoints/{id}/relationships/equalizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v3/appPricePoints/{id}/relationships/equalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -60,12 +62,13 @@ export const appPricePointsTools: Tool[] = [
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["app", "territory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v3/appPricePoints/{id}/equalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[territory]": args["filter_territory"],
       "fields[appPricePoints]": args["fields_appPricePoints"],

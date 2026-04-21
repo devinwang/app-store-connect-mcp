@@ -41,12 +41,13 @@ export const scmRepositoriesTools: Tool[] = [
     input: z.object({
     fields_scmRepositories: z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
     include: z.union([z.array(z.enum(["scmProvider", "defaultBranch"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/scmRepositories/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[scmRepositories]": args["fields_scmRepositories"],
       "include": args["include"],
@@ -61,12 +62,13 @@ export const scmRepositoriesTools: Tool[] = [
     description: "GET /v1/scmRepositories/{id}/relationships/gitReferences (GET /v1/scmRepositories/{id}/relationships/gitReferences)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/scmRepositories/{id}/relationships/gitReferences",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -83,12 +85,13 @@ export const scmRepositoriesTools: Tool[] = [
     fields_scmRepositories: z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["repository"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/scmRepositories/{id}/gitReferences",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[scmGitReferences]": args["fields_scmGitReferences"],
       "fields[scmRepositories]": args["fields_scmRepositories"],
@@ -105,12 +108,13 @@ export const scmRepositoriesTools: Tool[] = [
     description: "GET /v1/scmRepositories/{id}/relationships/pullRequests (GET /v1/scmRepositories/{id}/relationships/pullRequests)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/scmRepositories/{id}/relationships/pullRequests",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -127,12 +131,13 @@ export const scmRepositoriesTools: Tool[] = [
     fields_scmRepositories: z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["repository"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/scmRepositories/{id}/pullRequests",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[scmPullRequests]": args["fields_scmPullRequests"],
       "fields[scmRepositories]": args["fields_scmRepositories"],

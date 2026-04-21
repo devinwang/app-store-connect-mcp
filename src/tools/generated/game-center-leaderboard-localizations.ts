@@ -34,12 +34,13 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
     fields_gameCenterLeaderboardLocalizations: z.union([z.array(z.enum(["locale", "name", "formatterOverride", "formatterSuffix", "formatterSuffixSingular", "description", "gameCenterLeaderboard", "gameCenterLeaderboardImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardLocalizations").optional(),
     fields_gameCenterLeaderboardImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterLeaderboardLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
     include: z.union([z.array(z.enum(["gameCenterLeaderboard", "gameCenterLeaderboardImage"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterLeaderboardLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardLocalizations]": args["fields_gameCenterLeaderboardLocalizations"],
       "fields[gameCenterLeaderboardImages]": args["fields_gameCenterLeaderboardImages"],
@@ -54,13 +55,14 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
     name: "game_center_leaderboard_localizations_update_instance",
     description: "[DEPRECATED] PATCH /v1/gameCenterLeaderboardLocalizations/{id} (PATCH /v1/gameCenterLeaderboardLocalizations/{id}) Body shape: see OpenAPI components.schemas.GameCenterLeaderboardLocalizationUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterLeaderboardLocalizationUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterLeaderboardLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -70,12 +72,14 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
   defineTool({
     name: "game_center_leaderboard_localizations_delete_instance",
     description: "[DEPRECATED] DELETE /v1/gameCenterLeaderboardLocalizations/{id} (DELETE /v1/gameCenterLeaderboardLocalizations/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterLeaderboardLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -106,12 +110,13 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
     fields_gameCenterLeaderboardLocalizations: z.union([z.array(z.enum(["locale", "name", "formatterOverride", "formatterSuffix", "formatterSuffixSingular", "description", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardLocalizations").optional(),
     fields_gameCenterLeaderboardImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
     include: z.union([z.array(z.enum(["version", "image"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterLeaderboardLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardLocalizations]": args["fields_gameCenterLeaderboardLocalizations"],
       "fields[gameCenterLeaderboardImages]": args["fields_gameCenterLeaderboardImages"],
@@ -126,13 +131,14 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
     name: "game_center_leaderboard_localizations_v2_update_instance",
     description: "PATCH /v2/gameCenterLeaderboardLocalizations/{id} (PATCH /v2/gameCenterLeaderboardLocalizations/{id}) Body shape: see OpenAPI components.schemas.GameCenterLeaderboardLocalizationV2UpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterLeaderboardLocalizationV2UpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v2/gameCenterLeaderboardLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -142,12 +148,14 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
   defineTool({
     name: "game_center_leaderboard_localizations_v2_delete_instance",
     description: "DELETE /v2/gameCenterLeaderboardLocalizations/{id} (DELETE /v2/gameCenterLeaderboardLocalizations/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v2/gameCenterLeaderboardLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -157,12 +165,14 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
   defineTool({
     name: "game_center_leaderboard_localizations_game_center_leaderboard_image_get_to_one_relationship",
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboardLocalizations/{id}/relationships/gameCenterLeaderboardImage (GET /v1/gameCenterLeaderboardLocalizations/{id}/relationships/gameCenterLeaderboardImage)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterLeaderboardLocalizations/{id}/relationships/gameCenterLeaderboardImage",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -176,12 +186,13 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
     fields_gameCenterLeaderboardImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterLeaderboardLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
     fields_gameCenterLeaderboardLocalizations: z.union([z.array(z.enum(["locale", "name", "formatterOverride", "formatterSuffix", "formatterSuffixSingular", "description", "gameCenterLeaderboard", "gameCenterLeaderboardImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardLocalizations").optional(),
     include: z.union([z.array(z.enum(["gameCenterLeaderboardLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterLeaderboardLocalizations/{id}/gameCenterLeaderboardImage",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardImages]": args["fields_gameCenterLeaderboardImages"],
       "fields[gameCenterLeaderboardLocalizations]": args["fields_gameCenterLeaderboardLocalizations"],
@@ -195,12 +206,14 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
   defineTool({
     name: "game_center_leaderboard_localizations_v2_image_get_to_one_relationship",
     description: "GET /v2/gameCenterLeaderboardLocalizations/{id}/relationships/image (GET /v2/gameCenterLeaderboardLocalizations/{id}/relationships/image)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterLeaderboardLocalizations/{id}/relationships/image",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -214,12 +227,13 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
     fields_gameCenterLeaderboardImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
     fields_gameCenterLeaderboardLocalizations: z.union([z.array(z.enum(["locale", "name", "formatterOverride", "formatterSuffix", "formatterSuffixSingular", "description", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardLocalizations").optional(),
     include: z.union([z.array(z.enum(["localization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterLeaderboardLocalizations/{id}/image",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardImages]": args["fields_gameCenterLeaderboardImages"],
       "fields[gameCenterLeaderboardLocalizations]": args["fields_gameCenterLeaderboardLocalizations"],

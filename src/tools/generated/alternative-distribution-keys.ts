@@ -55,12 +55,13 @@ export const alternativeDistributionKeysTools: Tool[] = [
     description: "GET /v1/alternativeDistributionKeys/{id} (GET /v1/alternativeDistributionKeys/{id})",
     input: z.object({
     fields_alternativeDistributionKeys: z.union([z.array(z.enum(["publicKey"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionKeys").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/alternativeDistributionKeys/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[alternativeDistributionKeys]": args["fields_alternativeDistributionKeys"],
     },
@@ -72,12 +73,14 @@ export const alternativeDistributionKeysTools: Tool[] = [
   defineTool({
     name: "alternative_distribution_keys_delete_instance",
     description: "DELETE /v1/alternativeDistributionKeys/{id} (DELETE /v1/alternativeDistributionKeys/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/alternativeDistributionKeys/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

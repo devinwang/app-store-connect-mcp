@@ -15,12 +15,13 @@ export const ciIssuesTools: Tool[] = [
     description: "GET /v1/ciIssues/{id} (GET /v1/ciIssues/{id})",
     input: z.object({
     fields_ciIssues: z.union([z.array(z.enum(["issueType", "message", "fileSource", "category"])), z.string()]).describe("the fields to include for returned resources of type ciIssues").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciIssues/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[ciIssues]": args["fields_ciIssues"],
     },

@@ -33,12 +33,13 @@ export const subscriptionImagesTools: Tool[] = [
     input: z.object({
     fields_subscriptionImages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "assetToken", "imageAsset", "uploadOperations", "state", "subscription"])), z.string()]).describe("the fields to include for returned resources of type subscriptionImages").optional(),
     include: z.union([z.array(z.enum(["subscription"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[subscriptionImages]": args["fields_subscriptionImages"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const subscriptionImagesTools: Tool[] = [
     name: "subscription_images_update_instance",
     description: "PATCH /v1/subscriptionImages/{id} (PATCH /v1/subscriptionImages/{id}) Body shape: see OpenAPI components.schemas.SubscriptionImageUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.SubscriptionImageUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/subscriptionImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -68,12 +70,14 @@ export const subscriptionImagesTools: Tool[] = [
   defineTool({
     name: "subscription_images_delete_instance",
     description: "DELETE /v1/subscriptionImages/{id} (DELETE /v1/subscriptionImages/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/subscriptionImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

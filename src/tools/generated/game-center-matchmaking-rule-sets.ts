@@ -74,12 +74,13 @@ export const gameCenterMatchmakingRuleSetsTools: Tool[] = [
     limit_matchmakingQueues: z.coerce.number().int().describe("maximum number of related matchmakingQueues returned (when they are included)").optional(),
     limit_rules: z.coerce.number().int().describe("maximum number of related rules returned (when they are included)").optional(),
     limit_teams: z.coerce.number().int().describe("maximum number of related teams returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterMatchmakingRuleSets/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterMatchmakingRuleSets]": args["fields_gameCenterMatchmakingRuleSets"],
       "fields[gameCenterMatchmakingTeams]": args["fields_gameCenterMatchmakingTeams"],
@@ -99,13 +100,14 @@ export const gameCenterMatchmakingRuleSetsTools: Tool[] = [
     name: "game_center_matchmaking_rule_sets_update_instance",
     description: "PATCH /v1/gameCenterMatchmakingRuleSets/{id} (PATCH /v1/gameCenterMatchmakingRuleSets/{id}) Body shape: see OpenAPI components.schemas.GameCenterMatchmakingRuleSetUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterMatchmakingRuleSetUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterMatchmakingRuleSets/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -115,12 +117,14 @@ export const gameCenterMatchmakingRuleSetsTools: Tool[] = [
   defineTool({
     name: "game_center_matchmaking_rule_sets_delete_instance",
     description: "DELETE /v1/gameCenterMatchmakingRuleSets/{id} (DELETE /v1/gameCenterMatchmakingRuleSets/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterMatchmakingRuleSets/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -132,12 +136,13 @@ export const gameCenterMatchmakingRuleSetsTools: Tool[] = [
     description: "GET /v1/gameCenterMatchmakingRuleSets/{id}/relationships/matchmakingQueues (GET /v1/gameCenterMatchmakingRuleSets/{id}/relationships/matchmakingQueues)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterMatchmakingRuleSets/{id}/relationships/matchmakingQueues",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -154,12 +159,13 @@ export const gameCenterMatchmakingRuleSetsTools: Tool[] = [
     fields_gameCenterMatchmakingRuleSets: z.union([z.array(z.enum(["referenceName", "ruleLanguageVersion", "minPlayers", "maxPlayers", "teams", "rules", "matchmakingQueues"])), z.string()]).describe("the fields to include for returned resources of type gameCenterMatchmakingRuleSets").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["ruleSet", "experimentRuleSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterMatchmakingRuleSets/{id}/matchmakingQueues",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterMatchmakingQueues]": args["fields_gameCenterMatchmakingQueues"],
       "fields[gameCenterMatchmakingRuleSets]": args["fields_gameCenterMatchmakingRuleSets"],
@@ -176,12 +182,13 @@ export const gameCenterMatchmakingRuleSetsTools: Tool[] = [
     description: "GET /v1/gameCenterMatchmakingRuleSets/{id}/relationships/rules (GET /v1/gameCenterMatchmakingRuleSets/{id}/relationships/rules)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterMatchmakingRuleSets/{id}/relationships/rules",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -196,12 +203,13 @@ export const gameCenterMatchmakingRuleSetsTools: Tool[] = [
     input: z.object({
     fields_gameCenterMatchmakingRules: z.union([z.array(z.enum(["referenceName", "description", "type", "expression", "weight"])), z.string()]).describe("the fields to include for returned resources of type gameCenterMatchmakingRules").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterMatchmakingRuleSets/{id}/rules",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterMatchmakingRules]": args["fields_gameCenterMatchmakingRules"],
       "limit": args["limit"],
@@ -216,12 +224,13 @@ export const gameCenterMatchmakingRuleSetsTools: Tool[] = [
     description: "GET /v1/gameCenterMatchmakingRuleSets/{id}/relationships/teams (GET /v1/gameCenterMatchmakingRuleSets/{id}/relationships/teams)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterMatchmakingRuleSets/{id}/relationships/teams",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -236,12 +245,13 @@ export const gameCenterMatchmakingRuleSetsTools: Tool[] = [
     input: z.object({
     fields_gameCenterMatchmakingTeams: z.union([z.array(z.enum(["referenceName", "minPlayers", "maxPlayers"])), z.string()]).describe("the fields to include for returned resources of type gameCenterMatchmakingTeams").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterMatchmakingRuleSets/{id}/teams",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterMatchmakingTeams]": args["fields_gameCenterMatchmakingTeams"],
       "limit": args["limit"],

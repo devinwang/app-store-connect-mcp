@@ -33,12 +33,13 @@ export const backgroundAssetsTools: Tool[] = [
     input: z.object({
     fields_backgroundAssets: z.union([z.array(z.enum(["archived", "assetPackIdentifier", "createdDate", "usedBytes", "app", "versions", "appStoreVersion", "internalBetaVersion", "externalBetaVersion"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssets").optional(),
     include: z.union([z.array(z.enum(["app", "appStoreVersion", "internalBetaVersion", "externalBetaVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/backgroundAssets/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[backgroundAssets]": args["fields_backgroundAssets"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const backgroundAssetsTools: Tool[] = [
     name: "background_assets_update_instance",
     description: "PATCH /v1/backgroundAssets/{id} (PATCH /v1/backgroundAssets/{id}) Body shape: see OpenAPI components.schemas.BackgroundAssetUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.BackgroundAssetUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/backgroundAssets/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -70,12 +72,13 @@ export const backgroundAssetsTools: Tool[] = [
     description: "GET /v1/backgroundAssets/{id}/relationships/versions (GET /v1/backgroundAssets/{id}/relationships/versions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/backgroundAssets/{id}/relationships/versions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -103,12 +106,13 @@ export const backgroundAssetsTools: Tool[] = [
     fields_backgroundAssetUploadFiles: z.union([z.array(z.enum(["assetDeliveryState", "assetToken", "assetType", "fileName", "fileSize", "sourceFileChecksum", "sourceFileChecksums", "uploadOperations"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetUploadFiles").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["backgroundAsset", "internalBetaRelease", "externalBetaRelease", "appStoreRelease", "assetFile", "manifestFile"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/backgroundAssets/{id}/versions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[platforms]": args["filter_platforms"],
       "filter[state]": args["filter_state"],

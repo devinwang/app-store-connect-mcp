@@ -35,12 +35,13 @@ export const inAppPurchaseAvailabilitiesTools: Tool[] = [
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     include: z.union([z.array(z.enum(["availableTerritories"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_availableTerritories: z.coerce.number().int().describe("maximum number of related availableTerritories returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/inAppPurchaseAvailabilities/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[inAppPurchaseAvailabilities]": args["fields_inAppPurchaseAvailabilities"],
       "fields[territories]": args["fields_territories"],
@@ -57,12 +58,13 @@ export const inAppPurchaseAvailabilitiesTools: Tool[] = [
     description: "GET /v1/inAppPurchaseAvailabilities/{id}/relationships/availableTerritories (GET /v1/inAppPurchaseAvailabilities/{id}/relationships/availableTerritories)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/inAppPurchaseAvailabilities/{id}/relationships/availableTerritories",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -77,12 +79,13 @@ export const inAppPurchaseAvailabilitiesTools: Tool[] = [
     input: z.object({
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/inAppPurchaseAvailabilities/{id}/availableTerritories",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[territories]": args["fields_territories"],
       "limit": args["limit"],

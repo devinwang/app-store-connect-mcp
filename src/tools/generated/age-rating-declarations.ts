@@ -14,13 +14,14 @@ export const ageRatingDeclarationsTools: Tool[] = [
     name: "age_rating_declarations_update_instance",
     description: "PATCH /v1/ageRatingDeclarations/{id} (PATCH /v1/ageRatingDeclarations/{id}) Body shape: see OpenAPI components.schemas.AgeRatingDeclarationUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AgeRatingDeclarationUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/ageRatingDeclarations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });

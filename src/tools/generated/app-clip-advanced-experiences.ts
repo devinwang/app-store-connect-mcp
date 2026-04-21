@@ -34,12 +34,13 @@ export const appClipAdvancedExperiencesTools: Tool[] = [
     fields_appClipAdvancedExperiences: z.union([z.array(z.enum(["link", "version", "status", "action", "isPoweredBy", "place", "placeStatus", "businessCategory", "defaultLanguage", "appClip", "headerImage", "localizations"])), z.string()]).describe("the fields to include for returned resources of type appClipAdvancedExperiences").optional(),
     include: z.union([z.array(z.enum(["appClip", "headerImage", "localizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appClipAdvancedExperiences/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appClipAdvancedExperiences]": args["fields_appClipAdvancedExperiences"],
       "include": args["include"],
@@ -54,13 +55,14 @@ export const appClipAdvancedExperiencesTools: Tool[] = [
     name: "app_clip_advanced_experiences_update_instance",
     description: "PATCH /v1/appClipAdvancedExperiences/{id} (PATCH /v1/appClipAdvancedExperiences/{id}) Body shape: see OpenAPI components.schemas.AppClipAdvancedExperienceUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppClipAdvancedExperienceUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appClipAdvancedExperiences/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });

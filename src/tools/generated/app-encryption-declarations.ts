@@ -71,12 +71,13 @@ export const appEncryptionDeclarationsTools: Tool[] = [
     fields_appEncryptionDeclarationDocuments: z.union([z.array(z.enum(["fileSize", "fileName", "assetToken", "downloadUrl", "sourceFileChecksum", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type appEncryptionDeclarationDocuments").optional(),
     include: z.union([z.array(z.enum(["app", "builds", "appEncryptionDeclarationDocument"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_builds: z.coerce.number().int().describe("maximum number of related builds returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appEncryptionDeclarations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appEncryptionDeclarations]": args["fields_appEncryptionDeclarations"],
       "fields[apps]": args["fields_apps"],
@@ -92,12 +93,14 @@ export const appEncryptionDeclarationsTools: Tool[] = [
   defineTool({
     name: "app_encryption_declarations_app_get_to_one_relationship",
     description: "[DEPRECATED] GET /v1/appEncryptionDeclarations/{id}/relationships/app (GET /v1/appEncryptionDeclarations/{id}/relationships/app)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appEncryptionDeclarations/{id}/relationships/app",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -109,12 +112,13 @@ export const appEncryptionDeclarationsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/appEncryptionDeclarations/{id}/app (GET /v1/appEncryptionDeclarations/{id}/app)",
     input: z.object({
     fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appEncryptionDeclarations/{id}/app",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[apps]": args["fields_apps"],
     },
@@ -126,12 +130,14 @@ export const appEncryptionDeclarationsTools: Tool[] = [
   defineTool({
     name: "app_encryption_declarations_app_encryption_declaration_document_get_to_one_relationship",
     description: "GET /v1/appEncryptionDeclarations/{id}/relationships/appEncryptionDeclarationDocument (GET /v1/appEncryptionDeclarations/{id}/relationships/appEncryptionDeclarationDocument)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appEncryptionDeclarations/{id}/relationships/appEncryptionDeclarationDocument",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -143,12 +149,13 @@ export const appEncryptionDeclarationsTools: Tool[] = [
     description: "GET /v1/appEncryptionDeclarations/{id}/appEncryptionDeclarationDocument (GET /v1/appEncryptionDeclarations/{id}/appEncryptionDeclarationDocument)",
     input: z.object({
     fields_appEncryptionDeclarationDocuments: z.union([z.array(z.enum(["fileSize", "fileName", "assetToken", "downloadUrl", "sourceFileChecksum", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type appEncryptionDeclarationDocuments").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appEncryptionDeclarations/{id}/appEncryptionDeclarationDocument",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appEncryptionDeclarationDocuments]": args["fields_appEncryptionDeclarationDocuments"],
     },
@@ -161,13 +168,14 @@ export const appEncryptionDeclarationsTools: Tool[] = [
     name: "app_encryption_declarations_builds_create_to_many_relationship",
     description: "[DEPRECATED] POST /v1/appEncryptionDeclarations/{id}/relationships/builds (POST /v1/appEncryptionDeclarations/{id}/relationships/builds) Body shape: see OpenAPI components.schemas.AppEncryptionDeclarationBuildsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppEncryptionDeclarationBuildsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "POST",
       path: "/v1/appEncryptionDeclarations/{id}/relationships/builds",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });

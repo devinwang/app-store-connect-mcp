@@ -14,13 +14,14 @@ export const appTagsTools: Tool[] = [
     name: "app_tags_update_instance",
     description: "PATCH /v1/appTags/{id} (PATCH /v1/appTags/{id}) Body shape: see OpenAPI components.schemas.AppTagUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppTagUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appTags/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -32,12 +33,13 @@ export const appTagsTools: Tool[] = [
     description: "GET /v1/appTags/{id}/relationships/territories (GET /v1/appTags/{id}/relationships/territories)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appTags/{id}/relationships/territories",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -52,12 +54,13 @@ export const appTagsTools: Tool[] = [
     input: z.object({
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appTags/{id}/territories",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[territories]": args["fields_territories"],
       "limit": args["limit"],

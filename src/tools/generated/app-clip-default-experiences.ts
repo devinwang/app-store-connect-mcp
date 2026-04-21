@@ -37,12 +37,13 @@ export const appClipDefaultExperiencesTools: Tool[] = [
     fields_appClipAppStoreReviewDetails: z.union([z.array(z.enum(["invocationUrls", "appClipDefaultExperience"])), z.string()]).describe("the fields to include for returned resources of type appClipAppStoreReviewDetails").optional(),
     include: z.union([z.array(z.enum(["appClip", "releaseWithAppStoreVersion", "appClipDefaultExperienceLocalizations", "appClipAppStoreReviewDetail"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appClipDefaultExperienceLocalizations: z.coerce.number().int().describe("maximum number of related appClipDefaultExperienceLocalizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appClipDefaultExperiences/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appClipDefaultExperiences]": args["fields_appClipDefaultExperiences"],
       "fields[appStoreVersions]": args["fields_appStoreVersions"],
@@ -60,13 +61,14 @@ export const appClipDefaultExperiencesTools: Tool[] = [
     name: "app_clip_default_experiences_update_instance",
     description: "PATCH /v1/appClipDefaultExperiences/{id} (PATCH /v1/appClipDefaultExperiences/{id}) Body shape: see OpenAPI components.schemas.AppClipDefaultExperienceUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppClipDefaultExperienceUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appClipDefaultExperiences/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -76,12 +78,14 @@ export const appClipDefaultExperiencesTools: Tool[] = [
   defineTool({
     name: "app_clip_default_experiences_delete_instance",
     description: "DELETE /v1/appClipDefaultExperiences/{id} (DELETE /v1/appClipDefaultExperiences/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appClipDefaultExperiences/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -91,12 +95,14 @@ export const appClipDefaultExperiencesTools: Tool[] = [
   defineTool({
     name: "app_clip_default_experiences_app_clip_app_store_review_detail_get_to_one_relationship",
     description: "GET /v1/appClipDefaultExperiences/{id}/relationships/appClipAppStoreReviewDetail (GET /v1/appClipDefaultExperiences/{id}/relationships/appClipAppStoreReviewDetail)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appClipDefaultExperiences/{id}/relationships/appClipAppStoreReviewDetail",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -110,12 +116,13 @@ export const appClipDefaultExperiencesTools: Tool[] = [
     fields_appClipAppStoreReviewDetails: z.union([z.array(z.enum(["invocationUrls", "appClipDefaultExperience"])), z.string()]).describe("the fields to include for returned resources of type appClipAppStoreReviewDetails").optional(),
     fields_appClipDefaultExperiences: z.union([z.array(z.enum(["action", "appClip", "releaseWithAppStoreVersion", "appClipDefaultExperienceLocalizations", "appClipAppStoreReviewDetail"])), z.string()]).describe("the fields to include for returned resources of type appClipDefaultExperiences").optional(),
     include: z.union([z.array(z.enum(["appClipDefaultExperience"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appClipDefaultExperiences/{id}/appClipAppStoreReviewDetail",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appClipAppStoreReviewDetails]": args["fields_appClipAppStoreReviewDetails"],
       "fields[appClipDefaultExperiences]": args["fields_appClipDefaultExperiences"],
@@ -131,12 +138,13 @@ export const appClipDefaultExperiencesTools: Tool[] = [
     description: "GET /v1/appClipDefaultExperiences/{id}/relationships/appClipDefaultExperienceLocalizations (GET /v1/appClipDefaultExperiences/{id}/relationships/appClipDefaultExperienceLocalizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appClipDefaultExperiences/{id}/relationships/appClipDefaultExperienceLocalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -155,12 +163,13 @@ export const appClipDefaultExperiencesTools: Tool[] = [
     fields_appClipHeaderImages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "uploadOperations", "assetDeliveryState", "appClipDefaultExperienceLocalization"])), z.string()]).describe("the fields to include for returned resources of type appClipHeaderImages").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appClipDefaultExperience", "appClipHeaderImage"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appClipDefaultExperiences/{id}/appClipDefaultExperienceLocalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[locale]": args["filter_locale"],
       "fields[appClipDefaultExperienceLocalizations]": args["fields_appClipDefaultExperienceLocalizations"],
@@ -177,12 +186,14 @@ export const appClipDefaultExperiencesTools: Tool[] = [
   defineTool({
     name: "app_clip_default_experiences_release_with_app_store_version_get_to_one_relationship",
     description: "GET /v1/appClipDefaultExperiences/{id}/relationships/releaseWithAppStoreVersion (GET /v1/appClipDefaultExperiences/{id}/relationships/releaseWithAppStoreVersion)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appClipDefaultExperiences/{id}/relationships/releaseWithAppStoreVersion",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -193,13 +204,14 @@ export const appClipDefaultExperiencesTools: Tool[] = [
     name: "app_clip_default_experiences_release_with_app_store_version_update_to_one_relationship",
     description: "PATCH /v1/appClipDefaultExperiences/{id}/relationships/releaseWithAppStoreVersion (PATCH /v1/appClipDefaultExperiences/{id}/relationships/releaseWithAppStoreVersion) Body shape: see OpenAPI components.schemas.AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppClipDefaultExperienceReleaseWithAppStoreVersionLinkageRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appClipDefaultExperiences/{id}/relationships/releaseWithAppStoreVersion",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -226,12 +238,13 @@ export const appClipDefaultExperiencesTools: Tool[] = [
     limit_appStoreVersionLocalizations: z.coerce.number().int().describe("maximum number of related appStoreVersionLocalizations returned (when they are included)").optional(),
     limit_appStoreVersionExperiments: z.coerce.number().int().describe("maximum number of related appStoreVersionExperiments returned (when they are included)").optional(),
     limit_appStoreVersionExperimentsV2: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentsV2 returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appClipDefaultExperiences/{id}/releaseWithAppStoreVersion",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appStoreVersions]": args["fields_appStoreVersions"],
       "fields[apps]": args["fields_apps"],

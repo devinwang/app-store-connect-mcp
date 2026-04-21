@@ -46,12 +46,13 @@ export const appStoreVersionsTools: Tool[] = [
     limit_appStoreVersionExperiments: z.coerce.number().int().describe("maximum number of related appStoreVersionExperiments returned (when they are included)").optional(),
     limit_appStoreVersionExperimentsV2: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentsV2 returned (when they are included)").optional(),
     limit_appStoreVersionLocalizations: z.coerce.number().int().describe("maximum number of related appStoreVersionLocalizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appStoreVersions]": args["fields_appStoreVersions"],
       "fields[appStoreVersionLocalizations]": args["fields_appStoreVersionLocalizations"],
@@ -78,13 +79,14 @@ export const appStoreVersionsTools: Tool[] = [
     name: "app_store_versions_update_instance",
     description: "PATCH /v1/appStoreVersions/{id} (PATCH /v1/appStoreVersions/{id}) Body shape: see OpenAPI components.schemas.AppStoreVersionUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppStoreVersionUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appStoreVersions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -94,12 +96,14 @@ export const appStoreVersionsTools: Tool[] = [
   defineTool({
     name: "app_store_versions_delete_instance",
     description: "DELETE /v1/appStoreVersions/{id} (DELETE /v1/appStoreVersions/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appStoreVersions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -109,12 +113,14 @@ export const appStoreVersionsTools: Tool[] = [
   defineTool({
     name: "app_store_versions_alternative_distribution_package_get_to_one_relationship",
     description: "GET /v1/appStoreVersions/{id}/relationships/alternativeDistributionPackage (GET /v1/appStoreVersions/{id}/relationships/alternativeDistributionPackage)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/relationships/alternativeDistributionPackage",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -129,12 +135,13 @@ export const appStoreVersionsTools: Tool[] = [
     fields_alternativeDistributionPackageVersions: z.union([z.array(z.enum(["url", "urlExpirationDate", "version", "fileChecksum", "state", "variants", "deltas", "alternativeDistributionPackage"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackageVersions").optional(),
     include: z.union([z.array(z.enum(["versions"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_versions: z.coerce.number().int().describe("maximum number of related versions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/alternativeDistributionPackage",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[alternativeDistributionPackages]": args["fields_alternativeDistributionPackages"],
       "fields[alternativeDistributionPackageVersions]": args["fields_alternativeDistributionPackageVersions"],
@@ -149,12 +156,14 @@ export const appStoreVersionsTools: Tool[] = [
   defineTool({
     name: "app_store_versions_app_clip_default_experience_get_to_one_relationship",
     description: "GET /v1/appStoreVersions/{id}/relationships/appClipDefaultExperience (GET /v1/appStoreVersions/{id}/relationships/appClipDefaultExperience)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/relationships/appClipDefaultExperience",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -165,13 +174,14 @@ export const appStoreVersionsTools: Tool[] = [
     name: "app_store_versions_app_clip_default_experience_update_to_one_relationship",
     description: "PATCH /v1/appStoreVersions/{id}/relationships/appClipDefaultExperience (PATCH /v1/appStoreVersions/{id}/relationships/appClipDefaultExperience) Body shape: see OpenAPI components.schemas.AppStoreVersionAppClipDefaultExperienceLinkageRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppStoreVersionAppClipDefaultExperienceLinkageRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appStoreVersions/{id}/relationships/appClipDefaultExperience",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -189,12 +199,13 @@ export const appStoreVersionsTools: Tool[] = [
     fields_appClipAppStoreReviewDetails: z.union([z.array(z.enum(["invocationUrls", "appClipDefaultExperience"])), z.string()]).describe("the fields to include for returned resources of type appClipAppStoreReviewDetails").optional(),
     include: z.union([z.array(z.enum(["appClip", "releaseWithAppStoreVersion", "appClipDefaultExperienceLocalizations", "appClipAppStoreReviewDetail"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appClipDefaultExperienceLocalizations: z.coerce.number().int().describe("maximum number of related appClipDefaultExperienceLocalizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/appClipDefaultExperience",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appClipDefaultExperiences]": args["fields_appClipDefaultExperiences"],
       "fields[appClips]": args["fields_appClips"],
@@ -212,12 +223,14 @@ export const appStoreVersionsTools: Tool[] = [
   defineTool({
     name: "app_store_versions_app_store_review_detail_get_to_one_relationship",
     description: "GET /v1/appStoreVersions/{id}/relationships/appStoreReviewDetail (GET /v1/appStoreVersions/{id}/relationships/appStoreReviewDetail)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/relationships/appStoreReviewDetail",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -233,12 +246,13 @@ export const appStoreVersionsTools: Tool[] = [
     fields_appStoreReviewAttachments: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "uploadOperations", "assetDeliveryState", "appStoreReviewDetail"])), z.string()]).describe("the fields to include for returned resources of type appStoreReviewAttachments").optional(),
     include: z.union([z.array(z.enum(["appStoreVersion", "appStoreReviewAttachments"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appStoreReviewAttachments: z.coerce.number().int().describe("maximum number of related appStoreReviewAttachments returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/appStoreReviewDetail",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appStoreReviewDetails]": args["fields_appStoreReviewDetails"],
       "fields[appStoreVersions]": args["fields_appStoreVersions"],
@@ -256,12 +270,13 @@ export const appStoreVersionsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/appStoreVersions/{id}/relationships/appStoreVersionExperiments (GET /v1/appStoreVersions/{id}/relationships/appStoreVersionExperiments)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/relationships/appStoreVersionExperiments",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -281,12 +296,13 @@ export const appStoreVersionsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appStoreVersion", "appStoreVersionExperimentTreatments"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appStoreVersionExperimentTreatments: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentTreatments returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/appStoreVersionExperiments",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[state]": args["filter_state"],
       "fields[appStoreVersionExperiments]": args["fields_appStoreVersionExperiments"],
@@ -306,12 +322,13 @@ export const appStoreVersionsTools: Tool[] = [
     description: "GET /v1/appStoreVersions/{id}/relationships/appStoreVersionExperimentsV2 (GET /v1/appStoreVersions/{id}/relationships/appStoreVersionExperimentsV2)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/relationships/appStoreVersionExperimentsV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -333,12 +350,13 @@ export const appStoreVersionsTools: Tool[] = [
     include: z.union([z.array(z.enum(["app", "latestControlVersion", "controlVersions", "appStoreVersionExperimentTreatments"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_controlVersions: z.coerce.number().int().describe("maximum number of related controlVersions returned (when they are included)").optional(),
     limit_appStoreVersionExperimentTreatments: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentTreatments returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/appStoreVersionExperimentsV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[state]": args["filter_state"],
       "fields[appStoreVersionExperiments]": args["fields_appStoreVersionExperiments"],
@@ -360,12 +378,13 @@ export const appStoreVersionsTools: Tool[] = [
     description: "GET /v1/appStoreVersions/{id}/relationships/appStoreVersionLocalizations (GET /v1/appStoreVersions/{id}/relationships/appStoreVersionLocalizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/relationships/appStoreVersionLocalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -389,12 +408,13 @@ export const appStoreVersionsTools: Tool[] = [
     limit_appScreenshotSets: z.coerce.number().int().describe("maximum number of related appScreenshotSets returned (when they are included)").optional(),
     limit_appPreviewSets: z.coerce.number().int().describe("maximum number of related appPreviewSets returned (when they are included)").optional(),
     limit_searchKeywords: z.coerce.number().int().describe("maximum number of related searchKeywords returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/appStoreVersionLocalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[locale]": args["filter_locale"],
       "fields[appStoreVersionLocalizations]": args["fields_appStoreVersionLocalizations"],
@@ -416,12 +436,14 @@ export const appStoreVersionsTools: Tool[] = [
   defineTool({
     name: "app_store_versions_app_store_version_phased_release_get_to_one_relationship",
     description: "GET /v1/appStoreVersions/{id}/relationships/appStoreVersionPhasedRelease (GET /v1/appStoreVersions/{id}/relationships/appStoreVersionPhasedRelease)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/relationships/appStoreVersionPhasedRelease",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -433,12 +455,13 @@ export const appStoreVersionsTools: Tool[] = [
     description: "GET /v1/appStoreVersions/{id}/appStoreVersionPhasedRelease (GET /v1/appStoreVersions/{id}/appStoreVersionPhasedRelease)",
     input: z.object({
     fields_appStoreVersionPhasedReleases: z.union([z.array(z.enum(["phasedReleaseState", "startDate", "totalPauseDuration", "currentDayNumber"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionPhasedReleases").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/appStoreVersionPhasedRelease",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appStoreVersionPhasedReleases]": args["fields_appStoreVersionPhasedReleases"],
     },
@@ -450,12 +473,14 @@ export const appStoreVersionsTools: Tool[] = [
   defineTool({
     name: "app_store_versions_app_store_version_submission_get_to_one_relationship",
     description: "[DEPRECATED] GET /v1/appStoreVersions/{id}/relationships/appStoreVersionSubmission (GET /v1/appStoreVersions/{id}/relationships/appStoreVersionSubmission)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/relationships/appStoreVersionSubmission",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -469,12 +494,13 @@ export const appStoreVersionsTools: Tool[] = [
     fields_appStoreVersionSubmissions: z.union([z.array(z.enum(["appStoreVersion"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionSubmissions").optional(),
     fields_appStoreVersions: z.union([z.array(z.enum(["platform", "versionString", "appStoreState", "appVersionState", "copyright", "reviewType", "releaseType", "earliestReleaseDate", "usesIdfa", "downloadable", "createdDate", "app", "appStoreVersionLocalizations", "build", "appStoreVersionPhasedRelease", "gameCenterAppVersion", "routingAppCoverage", "appStoreReviewDetail", "appStoreVersionSubmission", "appClipDefaultExperience", "appStoreVersionExperiments", "appStoreVersionExperimentsV2", "customerReviews", "alternativeDistributionPackage"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersions").optional(),
     include: z.union([z.array(z.enum(["appStoreVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/appStoreVersionSubmission",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appStoreVersionSubmissions]": args["fields_appStoreVersionSubmissions"],
       "fields[appStoreVersions]": args["fields_appStoreVersions"],
@@ -488,12 +514,14 @@ export const appStoreVersionsTools: Tool[] = [
   defineTool({
     name: "app_store_versions_build_get_to_one_relationship",
     description: "GET /v1/appStoreVersions/{id}/relationships/build (GET /v1/appStoreVersions/{id}/relationships/build)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/relationships/build",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -504,13 +532,14 @@ export const appStoreVersionsTools: Tool[] = [
     name: "app_store_versions_build_update_to_one_relationship",
     description: "PATCH /v1/appStoreVersions/{id}/relationships/build (PATCH /v1/appStoreVersions/{id}/relationships/build) Body shape: see OpenAPI components.schemas.AppStoreVersionBuildLinkageRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppStoreVersionBuildLinkageRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appStoreVersions/{id}/relationships/build",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -522,12 +551,13 @@ export const appStoreVersionsTools: Tool[] = [
     description: "GET /v1/appStoreVersions/{id}/build (GET /v1/appStoreVersions/{id}/build)",
     input: z.object({
     fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/build",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[builds]": args["fields_builds"],
     },
@@ -541,12 +571,13 @@ export const appStoreVersionsTools: Tool[] = [
     description: "GET /v1/appStoreVersions/{id}/relationships/customerReviews (GET /v1/appStoreVersions/{id}/relationships/customerReviews)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/relationships/customerReviews",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -567,12 +598,13 @@ export const appStoreVersionsTools: Tool[] = [
     fields_customerReviewResponses: z.union([z.array(z.enum(["responseBody", "lastModifiedDate", "state", "review"])), z.string()]).describe("the fields to include for returned resources of type customerReviewResponses").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["response"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/customerReviews",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[territory]": args["filter_territory"],
       "filter[rating]": args["filter_rating"],
@@ -591,12 +623,14 @@ export const appStoreVersionsTools: Tool[] = [
   defineTool({
     name: "app_store_versions_game_center_app_version_get_to_one_relationship",
     description: "GET /v1/appStoreVersions/{id}/relationships/gameCenterAppVersion (GET /v1/appStoreVersions/{id}/relationships/gameCenterAppVersion)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/relationships/gameCenterAppVersion",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -611,12 +645,13 @@ export const appStoreVersionsTools: Tool[] = [
     fields_appStoreVersions: z.union([z.array(z.enum(["platform", "versionString", "appStoreState", "appVersionState", "copyright", "reviewType", "releaseType", "earliestReleaseDate", "usesIdfa", "downloadable", "createdDate", "app", "appStoreVersionLocalizations", "build", "appStoreVersionPhasedRelease", "gameCenterAppVersion", "routingAppCoverage", "appStoreReviewDetail", "appStoreVersionSubmission", "appClipDefaultExperience", "appStoreVersionExperiments", "appStoreVersionExperimentsV2", "customerReviews", "alternativeDistributionPackage"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersions").optional(),
     include: z.union([z.array(z.enum(["compatibilityVersions", "appStoreVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_compatibilityVersions: z.coerce.number().int().describe("maximum number of related compatibilityVersions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/gameCenterAppVersion",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAppVersions]": args["fields_gameCenterAppVersions"],
       "fields[appStoreVersions]": args["fields_appStoreVersions"],
@@ -631,12 +666,14 @@ export const appStoreVersionsTools: Tool[] = [
   defineTool({
     name: "app_store_versions_routing_app_coverage_get_to_one_relationship",
     description: "GET /v1/appStoreVersions/{id}/relationships/routingAppCoverage (GET /v1/appStoreVersions/{id}/relationships/routingAppCoverage)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/relationships/routingAppCoverage",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -650,12 +687,13 @@ export const appStoreVersionsTools: Tool[] = [
     fields_routingAppCoverages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "uploadOperations", "assetDeliveryState", "appStoreVersion"])), z.string()]).describe("the fields to include for returned resources of type routingAppCoverages").optional(),
     fields_appStoreVersions: z.union([z.array(z.enum(["platform", "versionString", "appStoreState", "appVersionState", "copyright", "reviewType", "releaseType", "earliestReleaseDate", "usesIdfa", "downloadable", "createdDate", "app", "appStoreVersionLocalizations", "build", "appStoreVersionPhasedRelease", "gameCenterAppVersion", "routingAppCoverage", "appStoreReviewDetail", "appStoreVersionSubmission", "appClipDefaultExperience", "appStoreVersionExperiments", "appStoreVersionExperimentsV2", "customerReviews", "alternativeDistributionPackage"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersions").optional(),
     include: z.union([z.array(z.enum(["appStoreVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersions/{id}/routingAppCoverage",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[routingAppCoverages]": args["fields_routingAppCoverages"],
       "fields[appStoreVersions]": args["fields_appStoreVersions"],

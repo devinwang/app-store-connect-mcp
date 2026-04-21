@@ -35,12 +35,13 @@ export const gameCenterLeaderboardSetVersionsTools: Tool[] = [
     fields_gameCenterLeaderboardSetLocalizations: z.union([z.array(z.enum(["locale", "name", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations").optional(),
     include: z.union([z.array(z.enum(["leaderboardSet", "localizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterLeaderboardSetVersions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardSetVersions]": args["fields_gameCenterLeaderboardSetVersions"],
       "fields[gameCenterLeaderboardSetLocalizations]": args["fields_gameCenterLeaderboardSetLocalizations"],
@@ -57,12 +58,13 @@ export const gameCenterLeaderboardSetVersionsTools: Tool[] = [
     description: "GET /v2/gameCenterLeaderboardSetVersions/{id}/relationships/localizations (GET /v2/gameCenterLeaderboardSetVersions/{id}/relationships/localizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterLeaderboardSetVersions/{id}/relationships/localizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -80,12 +82,13 @@ export const gameCenterLeaderboardSetVersionsTools: Tool[] = [
     fields_gameCenterLeaderboardSetImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetImages").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["version", "image"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterLeaderboardSetVersions/{id}/localizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardSetLocalizations]": args["fields_gameCenterLeaderboardSetLocalizations"],
       "fields[gameCenterLeaderboardSetVersions]": args["fields_gameCenterLeaderboardSetVersions"],

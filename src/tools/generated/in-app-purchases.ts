@@ -17,12 +17,13 @@ export const inAppPurchasesTools: Tool[] = [
     fields_inAppPurchases: z.union([z.array(z.enum(["referenceName", "productId", "inAppPurchaseType", "state", "apps"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchases").optional(),
     include: z.union([z.array(z.enum(["apps"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_apps: z.coerce.number().int().describe("maximum number of related apps returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/inAppPurchases/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[inAppPurchases]": args["fields_inAppPurchases"],
       "include": args["include"],
@@ -69,12 +70,13 @@ export const inAppPurchasesTools: Tool[] = [
     limit_inAppPurchaseLocalizations: z.coerce.number().int().describe("maximum number of related inAppPurchaseLocalizations returned (when they are included)").optional(),
     limit_offerCodes: z.coerce.number().int().describe("maximum number of related offerCodes returned (when they are included)").optional(),
     limit_pricePoints: z.coerce.number().int().describe("maximum number of related pricePoints returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[inAppPurchases]": args["fields_inAppPurchases"],
       "fields[inAppPurchaseLocalizations]": args["fields_inAppPurchaseLocalizations"],
@@ -101,13 +103,14 @@ export const inAppPurchasesTools: Tool[] = [
     name: "in_app_purchases_v2_update_instance",
     description: "PATCH /v2/inAppPurchases/{id} (PATCH /v2/inAppPurchases/{id}) Body shape: see OpenAPI components.schemas.InAppPurchaseV2UpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.InAppPurchaseV2UpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v2/inAppPurchases/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -117,12 +120,14 @@ export const inAppPurchasesTools: Tool[] = [
   defineTool({
     name: "in_app_purchases_v2_delete_instance",
     description: "DELETE /v2/inAppPurchases/{id} (DELETE /v2/inAppPurchases/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v2/inAppPurchases/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -132,12 +137,14 @@ export const inAppPurchasesTools: Tool[] = [
   defineTool({
     name: "in_app_purchases_v2_app_store_review_screenshot_get_to_one_relationship",
     description: "GET /v2/inAppPurchases/{id}/relationships/appStoreReviewScreenshot (GET /v2/inAppPurchases/{id}/relationships/appStoreReviewScreenshot)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/relationships/appStoreReviewScreenshot",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -151,12 +158,13 @@ export const inAppPurchasesTools: Tool[] = [
     fields_inAppPurchaseAppStoreReviewScreenshots: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "assetToken", "assetType", "uploadOperations", "assetDeliveryState", "inAppPurchaseV2"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchaseAppStoreReviewScreenshots").optional(),
     fields_inAppPurchases: z.union([z.array(z.enum(["name", "productId", "inAppPurchaseType", "state", "reviewNote", "familySharable", "contentHosting", "inAppPurchaseLocalizations", "pricePoints", "content", "appStoreReviewScreenshot", "promotedPurchase", "iapPriceSchedule", "inAppPurchaseAvailability", "images", "offerCodes"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchases").optional(),
     include: z.union([z.array(z.enum(["inAppPurchaseV2"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/appStoreReviewScreenshot",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[inAppPurchaseAppStoreReviewScreenshots]": args["fields_inAppPurchaseAppStoreReviewScreenshots"],
       "fields[inAppPurchases]": args["fields_inAppPurchases"],
@@ -170,12 +178,14 @@ export const inAppPurchasesTools: Tool[] = [
   defineTool({
     name: "in_app_purchases_v2_content_get_to_one_relationship",
     description: "GET /v2/inAppPurchases/{id}/relationships/content (GET /v2/inAppPurchases/{id}/relationships/content)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/relationships/content",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -189,12 +199,13 @@ export const inAppPurchasesTools: Tool[] = [
     fields_inAppPurchaseContents: z.union([z.array(z.enum(["fileName", "fileSize", "url", "lastModifiedDate", "inAppPurchaseV2"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchaseContents").optional(),
     fields_inAppPurchases: z.union([z.array(z.enum(["name", "productId", "inAppPurchaseType", "state", "reviewNote", "familySharable", "contentHosting", "inAppPurchaseLocalizations", "pricePoints", "content", "appStoreReviewScreenshot", "promotedPurchase", "iapPriceSchedule", "inAppPurchaseAvailability", "images", "offerCodes"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchases").optional(),
     include: z.union([z.array(z.enum(["inAppPurchaseV2"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/content",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[inAppPurchaseContents]": args["fields_inAppPurchaseContents"],
       "fields[inAppPurchases]": args["fields_inAppPurchases"],
@@ -208,12 +219,14 @@ export const inAppPurchasesTools: Tool[] = [
   defineTool({
     name: "in_app_purchases_v2_iap_price_schedule_get_to_one_relationship",
     description: "GET /v2/inAppPurchases/{id}/relationships/iapPriceSchedule (GET /v2/inAppPurchases/{id}/relationships/iapPriceSchedule)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/relationships/iapPriceSchedule",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -230,12 +243,13 @@ export const inAppPurchasesTools: Tool[] = [
     include: z.union([z.array(z.enum(["baseTerritory", "manualPrices", "automaticPrices"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_manualPrices: z.coerce.number().int().describe("maximum number of related manualPrices returned (when they are included)").optional(),
     limit_automaticPrices: z.coerce.number().int().describe("maximum number of related automaticPrices returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/iapPriceSchedule",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[inAppPurchasePriceSchedules]": args["fields_inAppPurchasePriceSchedules"],
       "fields[territories]": args["fields_territories"],
@@ -254,12 +268,13 @@ export const inAppPurchasesTools: Tool[] = [
     description: "GET /v2/inAppPurchases/{id}/relationships/images (GET /v2/inAppPurchases/{id}/relationships/images)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/relationships/images",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -276,12 +291,13 @@ export const inAppPurchasesTools: Tool[] = [
     fields_inAppPurchases: z.union([z.array(z.enum(["name", "productId", "inAppPurchaseType", "state", "reviewNote", "familySharable", "contentHosting", "inAppPurchaseLocalizations", "pricePoints", "content", "appStoreReviewScreenshot", "promotedPurchase", "iapPriceSchedule", "inAppPurchaseAvailability", "images", "offerCodes"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchases").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["inAppPurchase"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/images",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[inAppPurchaseImages]": args["fields_inAppPurchaseImages"],
       "fields[inAppPurchases]": args["fields_inAppPurchases"],
@@ -296,12 +312,14 @@ export const inAppPurchasesTools: Tool[] = [
   defineTool({
     name: "in_app_purchases_v2_in_app_purchase_availability_get_to_one_relationship",
     description: "GET /v2/inAppPurchases/{id}/relationships/inAppPurchaseAvailability (GET /v2/inAppPurchases/{id}/relationships/inAppPurchaseAvailability)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/relationships/inAppPurchaseAvailability",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -316,12 +334,13 @@ export const inAppPurchasesTools: Tool[] = [
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     include: z.union([z.array(z.enum(["availableTerritories"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_availableTerritories: z.coerce.number().int().describe("maximum number of related availableTerritories returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/inAppPurchaseAvailability",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[inAppPurchaseAvailabilities]": args["fields_inAppPurchaseAvailabilities"],
       "fields[territories]": args["fields_territories"],
@@ -338,12 +357,13 @@ export const inAppPurchasesTools: Tool[] = [
     description: "GET /v2/inAppPurchases/{id}/relationships/inAppPurchaseLocalizations (GET /v2/inAppPurchases/{id}/relationships/inAppPurchaseLocalizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/relationships/inAppPurchaseLocalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -360,12 +380,13 @@ export const inAppPurchasesTools: Tool[] = [
     fields_inAppPurchases: z.union([z.array(z.enum(["name", "productId", "inAppPurchaseType", "state", "reviewNote", "familySharable", "contentHosting", "inAppPurchaseLocalizations", "pricePoints", "content", "appStoreReviewScreenshot", "promotedPurchase", "iapPriceSchedule", "inAppPurchaseAvailability", "images", "offerCodes"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchases").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["inAppPurchaseV2"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/inAppPurchaseLocalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[inAppPurchaseLocalizations]": args["fields_inAppPurchaseLocalizations"],
       "fields[inAppPurchases]": args["fields_inAppPurchases"],
@@ -382,12 +403,13 @@ export const inAppPurchasesTools: Tool[] = [
     description: "GET /v2/inAppPurchases/{id}/relationships/offerCodes (GET /v2/inAppPurchases/{id}/relationships/offerCodes)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/relationships/offerCodes",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -410,12 +432,13 @@ export const inAppPurchasesTools: Tool[] = [
     limit_oneTimeUseCodes: z.coerce.number().int().describe("maximum number of related oneTimeUseCodes returned (when they are included)").optional(),
     limit_customCodes: z.coerce.number().int().describe("maximum number of related customCodes returned (when they are included)").optional(),
     limit_prices: z.coerce.number().int().describe("maximum number of related prices returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/offerCodes",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[territory]": args["filter_territory"],
       "fields[inAppPurchaseOfferCodes]": args["fields_inAppPurchaseOfferCodes"],
@@ -438,12 +461,13 @@ export const inAppPurchasesTools: Tool[] = [
     description: "GET /v2/inAppPurchases/{id}/relationships/pricePoints (GET /v2/inAppPurchases/{id}/relationships/pricePoints)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/relationships/pricePoints",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -461,12 +485,13 @@ export const inAppPurchasesTools: Tool[] = [
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["territory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/pricePoints",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[territory]": args["filter_territory"],
       "fields[inAppPurchasePricePoints]": args["fields_inAppPurchasePricePoints"],
@@ -482,12 +507,14 @@ export const inAppPurchasesTools: Tool[] = [
   defineTool({
     name: "in_app_purchases_v2_promoted_purchase_get_to_one_relationship",
     description: "GET /v2/inAppPurchases/{id}/relationships/promotedPurchase (GET /v2/inAppPurchases/{id}/relationships/promotedPurchase)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/relationships/promotedPurchase",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -502,12 +529,13 @@ export const inAppPurchasesTools: Tool[] = [
     fields_inAppPurchases: z.union([z.array(z.enum(["name", "productId", "inAppPurchaseType", "state", "reviewNote", "familySharable", "contentHosting", "inAppPurchaseLocalizations", "pricePoints", "content", "appStoreReviewScreenshot", "promotedPurchase", "iapPriceSchedule", "inAppPurchaseAvailability", "images", "offerCodes"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchases").optional(),
     fields_subscriptions: z.union([z.array(z.enum(["name", "productId", "familySharable", "state", "subscriptionPeriod", "reviewNote", "groupLevel", "subscriptionLocalizations", "appStoreReviewScreenshot", "group", "introductoryOffers", "promotionalOffers", "offerCodes", "prices", "pricePoints", "promotedPurchase", "subscriptionAvailability", "winBackOffers", "images"])), z.string()]).describe("the fields to include for returned resources of type subscriptions").optional(),
     include: z.union([z.array(z.enum(["inAppPurchaseV2", "subscription"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/inAppPurchases/{id}/promotedPurchase",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[promotedPurchases]": args["fields_promotedPurchases"],
       "fields[inAppPurchases]": args["fields_inAppPurchases"],

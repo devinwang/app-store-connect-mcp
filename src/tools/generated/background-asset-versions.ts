@@ -33,12 +33,13 @@ export const backgroundAssetVersionsTools: Tool[] = [
     input: z.object({
     fields_backgroundAssetVersions: z.union([z.array(z.enum(["createdDate", "platforms", "state", "stateDetails", "version", "backgroundAsset", "internalBetaRelease", "externalBetaRelease", "appStoreRelease", "assetFile", "manifestFile", "backgroundAssetUploadFiles"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetVersions").optional(),
     include: z.union([z.array(z.enum(["backgroundAsset", "internalBetaRelease", "externalBetaRelease", "appStoreRelease", "assetFile", "manifestFile"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/backgroundAssetVersions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[backgroundAssetVersions]": args["fields_backgroundAssetVersions"],
       "include": args["include"],
@@ -53,12 +54,13 @@ export const backgroundAssetVersionsTools: Tool[] = [
     description: "GET /v1/backgroundAssetVersions/{id}/relationships/backgroundAssetUploadFiles (GET /v1/backgroundAssetVersions/{id}/relationships/backgroundAssetUploadFiles)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/backgroundAssetVersions/{id}/relationships/backgroundAssetUploadFiles",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -73,12 +75,13 @@ export const backgroundAssetVersionsTools: Tool[] = [
     input: z.object({
     fields_backgroundAssetUploadFiles: z.union([z.array(z.enum(["assetDeliveryState", "assetToken", "assetType", "fileName", "fileSize", "sourceFileChecksum", "sourceFileChecksums", "uploadOperations"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetUploadFiles").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/backgroundAssetVersions/{id}/backgroundAssetUploadFiles",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[backgroundAssetUploadFiles]": args["fields_backgroundAssetUploadFiles"],
       "limit": args["limit"],

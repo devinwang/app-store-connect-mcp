@@ -33,12 +33,13 @@ export const subscriptionAppStoreReviewScreenshotsTools: Tool[] = [
     input: z.object({
     fields_subscriptionAppStoreReviewScreenshots: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "assetToken", "assetType", "uploadOperations", "assetDeliveryState", "subscription"])), z.string()]).describe("the fields to include for returned resources of type subscriptionAppStoreReviewScreenshots").optional(),
     include: z.union([z.array(z.enum(["subscription"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionAppStoreReviewScreenshots/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[subscriptionAppStoreReviewScreenshots]": args["fields_subscriptionAppStoreReviewScreenshots"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const subscriptionAppStoreReviewScreenshotsTools: Tool[] = [
     name: "subscription_app_store_review_screenshots_update_instance",
     description: "PATCH /v1/subscriptionAppStoreReviewScreenshots/{id} (PATCH /v1/subscriptionAppStoreReviewScreenshots/{id}) Body shape: see OpenAPI components.schemas.SubscriptionAppStoreReviewScreenshotUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.SubscriptionAppStoreReviewScreenshotUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/subscriptionAppStoreReviewScreenshots/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -68,12 +70,14 @@ export const subscriptionAppStoreReviewScreenshotsTools: Tool[] = [
   defineTool({
     name: "subscription_app_store_review_screenshots_delete_instance",
     description: "DELETE /v1/subscriptionAppStoreReviewScreenshots/{id} (DELETE /v1/subscriptionAppStoreReviewScreenshots/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/subscriptionAppStoreReviewScreenshots/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

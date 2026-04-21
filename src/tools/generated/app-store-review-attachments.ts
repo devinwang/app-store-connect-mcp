@@ -33,12 +33,13 @@ export const appStoreReviewAttachmentsTools: Tool[] = [
     input: z.object({
     fields_appStoreReviewAttachments: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "uploadOperations", "assetDeliveryState", "appStoreReviewDetail"])), z.string()]).describe("the fields to include for returned resources of type appStoreReviewAttachments").optional(),
     include: z.union([z.array(z.enum(["appStoreReviewDetail"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreReviewAttachments/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appStoreReviewAttachments]": args["fields_appStoreReviewAttachments"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const appStoreReviewAttachmentsTools: Tool[] = [
     name: "app_store_review_attachments_update_instance",
     description: "PATCH /v1/appStoreReviewAttachments/{id} (PATCH /v1/appStoreReviewAttachments/{id}) Body shape: see OpenAPI components.schemas.AppStoreReviewAttachmentUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppStoreReviewAttachmentUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appStoreReviewAttachments/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -68,12 +70,14 @@ export const appStoreReviewAttachmentsTools: Tool[] = [
   defineTool({
     name: "app_store_review_attachments_delete_instance",
     description: "DELETE /v1/appStoreReviewAttachments/{id} (DELETE /v1/appStoreReviewAttachments/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appStoreReviewAttachments/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

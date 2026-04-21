@@ -35,13 +35,14 @@ export const sandboxTestersTools: Tool[] = [
     name: "sandbox_testers_v2_update_instance",
     description: "PATCH /v2/sandboxTesters/{id} (PATCH /v2/sandboxTesters/{id}) Body shape: see OpenAPI components.schemas.SandboxTesterV2UpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.SandboxTesterV2UpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v2/sandboxTesters/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });

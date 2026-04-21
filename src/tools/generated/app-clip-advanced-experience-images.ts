@@ -32,12 +32,13 @@ export const appClipAdvancedExperienceImagesTools: Tool[] = [
     description: "GET /v1/appClipAdvancedExperienceImages/{id} (GET /v1/appClipAdvancedExperienceImages/{id})",
     input: z.object({
     fields_appClipAdvancedExperienceImages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type appClipAdvancedExperienceImages").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appClipAdvancedExperienceImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appClipAdvancedExperienceImages]": args["fields_appClipAdvancedExperienceImages"],
     },
@@ -50,13 +51,14 @@ export const appClipAdvancedExperienceImagesTools: Tool[] = [
     name: "app_clip_advanced_experience_images_update_instance",
     description: "PATCH /v1/appClipAdvancedExperienceImages/{id} (PATCH /v1/appClipAdvancedExperienceImages/{id}) Body shape: see OpenAPI components.schemas.AppClipAdvancedExperienceImageUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppClipAdvancedExperienceImageUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appClipAdvancedExperienceImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });

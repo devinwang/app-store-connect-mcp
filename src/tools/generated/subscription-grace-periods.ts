@@ -15,12 +15,13 @@ export const subscriptionGracePeriodsTools: Tool[] = [
     description: "GET /v1/subscriptionGracePeriods/{id} (GET /v1/subscriptionGracePeriods/{id})",
     input: z.object({
     fields_subscriptionGracePeriods: z.union([z.array(z.enum(["optIn", "sandboxOptIn", "duration", "renewalType"])), z.string()]).describe("the fields to include for returned resources of type subscriptionGracePeriods").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionGracePeriods/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[subscriptionGracePeriods]": args["fields_subscriptionGracePeriods"],
     },
@@ -33,13 +34,14 @@ export const subscriptionGracePeriodsTools: Tool[] = [
     name: "subscription_grace_periods_update_instance",
     description: "PATCH /v1/subscriptionGracePeriods/{id} (PATCH /v1/subscriptionGracePeriods/{id}) Body shape: see OpenAPI components.schemas.SubscriptionGracePeriodUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.SubscriptionGracePeriodUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/subscriptionGracePeriods/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });

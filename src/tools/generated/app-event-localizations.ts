@@ -37,12 +37,13 @@ export const appEventLocalizationsTools: Tool[] = [
     include: z.union([z.array(z.enum(["appEvent", "appEventScreenshots", "appEventVideoClips"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appEventScreenshots: z.coerce.number().int().describe("maximum number of related appEventScreenshots returned (when they are included)").optional(),
     limit_appEventVideoClips: z.coerce.number().int().describe("maximum number of related appEventVideoClips returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appEventLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appEventLocalizations]": args["fields_appEventLocalizations"],
       "fields[appEventScreenshots]": args["fields_appEventScreenshots"],
@@ -60,13 +61,14 @@ export const appEventLocalizationsTools: Tool[] = [
     name: "app_event_localizations_update_instance",
     description: "PATCH /v1/appEventLocalizations/{id} (PATCH /v1/appEventLocalizations/{id}) Body shape: see OpenAPI components.schemas.AppEventLocalizationUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppEventLocalizationUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appEventLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -76,12 +78,14 @@ export const appEventLocalizationsTools: Tool[] = [
   defineTool({
     name: "app_event_localizations_delete_instance",
     description: "DELETE /v1/appEventLocalizations/{id} (DELETE /v1/appEventLocalizations/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appEventLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -93,12 +97,13 @@ export const appEventLocalizationsTools: Tool[] = [
     description: "GET /v1/appEventLocalizations/{id}/relationships/appEventScreenshots (GET /v1/appEventLocalizations/{id}/relationships/appEventScreenshots)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appEventLocalizations/{id}/relationships/appEventScreenshots",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -115,12 +120,13 @@ export const appEventLocalizationsTools: Tool[] = [
     fields_appEventLocalizations: z.union([z.array(z.enum(["locale", "name", "shortDescription", "longDescription", "appEvent", "appEventScreenshots", "appEventVideoClips"])), z.string()]).describe("the fields to include for returned resources of type appEventLocalizations").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appEventLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appEventLocalizations/{id}/appEventScreenshots",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appEventScreenshots]": args["fields_appEventScreenshots"],
       "fields[appEventLocalizations]": args["fields_appEventLocalizations"],
@@ -137,12 +143,13 @@ export const appEventLocalizationsTools: Tool[] = [
     description: "GET /v1/appEventLocalizations/{id}/relationships/appEventVideoClips (GET /v1/appEventLocalizations/{id}/relationships/appEventVideoClips)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appEventLocalizations/{id}/relationships/appEventVideoClips",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -159,12 +166,13 @@ export const appEventLocalizationsTools: Tool[] = [
     fields_appEventLocalizations: z.union([z.array(z.enum(["locale", "name", "shortDescription", "longDescription", "appEvent", "appEventScreenshots", "appEventVideoClips"])), z.string()]).describe("the fields to include for returned resources of type appEventLocalizations").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appEventLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appEventLocalizations/{id}/appEventVideoClips",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appEventVideoClips]": args["fields_appEventVideoClips"],
       "fields[appEventLocalizations]": args["fields_appEventLocalizations"],

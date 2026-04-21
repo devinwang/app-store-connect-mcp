@@ -16,12 +16,13 @@ export const scmGitReferencesTools: Tool[] = [
     input: z.object({
     fields_scmGitReferences: z.union([z.array(z.enum(["name", "canonicalName", "isDeleted", "kind", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmGitReferences").optional(),
     include: z.union([z.array(z.enum(["repository"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/scmGitReferences/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[scmGitReferences]": args["fields_scmGitReferences"],
       "include": args["include"],

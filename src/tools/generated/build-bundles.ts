@@ -13,12 +13,14 @@ export const buildBundlesTools: Tool[] = [
   defineTool({
     name: "build_bundles_app_clip_domain_cache_status_get_to_one_relationship",
     description: "GET /v1/buildBundles/{id}/relationships/appClipDomainCacheStatus (GET /v1/buildBundles/{id}/relationships/appClipDomainCacheStatus)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/buildBundles/{id}/relationships/appClipDomainCacheStatus",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -30,12 +32,13 @@ export const buildBundlesTools: Tool[] = [
     description: "GET /v1/buildBundles/{id}/appClipDomainCacheStatus (GET /v1/buildBundles/{id}/appClipDomainCacheStatus)",
     input: z.object({
     fields_appClipDomainStatuses: z.union([z.array(z.enum(["domains", "lastUpdatedDate"])), z.string()]).describe("the fields to include for returned resources of type appClipDomainStatuses").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/buildBundles/{id}/appClipDomainCacheStatus",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appClipDomainStatuses]": args["fields_appClipDomainStatuses"],
     },
@@ -47,12 +50,14 @@ export const buildBundlesTools: Tool[] = [
   defineTool({
     name: "build_bundles_app_clip_domain_debug_status_get_to_one_relationship",
     description: "GET /v1/buildBundles/{id}/relationships/appClipDomainDebugStatus (GET /v1/buildBundles/{id}/relationships/appClipDomainDebugStatus)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/buildBundles/{id}/relationships/appClipDomainDebugStatus",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -64,12 +69,13 @@ export const buildBundlesTools: Tool[] = [
     description: "GET /v1/buildBundles/{id}/appClipDomainDebugStatus (GET /v1/buildBundles/{id}/appClipDomainDebugStatus)",
     input: z.object({
     fields_appClipDomainStatuses: z.union([z.array(z.enum(["domains", "lastUpdatedDate"])), z.string()]).describe("the fields to include for returned resources of type appClipDomainStatuses").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/buildBundles/{id}/appClipDomainDebugStatus",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appClipDomainStatuses]": args["fields_appClipDomainStatuses"],
     },
@@ -83,12 +89,13 @@ export const buildBundlesTools: Tool[] = [
     description: "GET /v1/buildBundles/{id}/relationships/betaAppClipInvocations (GET /v1/buildBundles/{id}/relationships/betaAppClipInvocations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/buildBundles/{id}/relationships/betaAppClipInvocations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -106,12 +113,13 @@ export const buildBundlesTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["betaAppClipInvocationLocalizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_betaAppClipInvocationLocalizations: z.coerce.number().int().describe("maximum number of related betaAppClipInvocationLocalizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/buildBundles/{id}/betaAppClipInvocations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[betaAppClipInvocations]": args["fields_betaAppClipInvocations"],
       "fields[betaAppClipInvocationLocalizations]": args["fields_betaAppClipInvocationLocalizations"],
@@ -129,12 +137,13 @@ export const buildBundlesTools: Tool[] = [
     description: "GET /v1/buildBundles/{id}/relationships/buildBundleFileSizes (GET /v1/buildBundles/{id}/relationships/buildBundleFileSizes)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/buildBundles/{id}/relationships/buildBundleFileSizes",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -149,12 +158,13 @@ export const buildBundlesTools: Tool[] = [
     input: z.object({
     fields_buildBundleFileSizes: z.union([z.array(z.enum(["deviceModel", "osVersion", "downloadBytes", "installBytes"])), z.string()]).describe("the fields to include for returned resources of type buildBundleFileSizes").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/buildBundles/{id}/buildBundleFileSizes",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[buildBundleFileSizes]": args["fields_buildBundleFileSizes"],
       "limit": args["limit"],

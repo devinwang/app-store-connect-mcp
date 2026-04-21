@@ -33,12 +33,13 @@ export const webhooksTools: Tool[] = [
     input: z.object({
     fields_webhooks: z.union([z.array(z.enum(["enabled", "eventTypes", "name", "url", "app", "deliveries"])), z.string()]).describe("the fields to include for returned resources of type webhooks").optional(),
     include: z.union([z.array(z.enum(["app"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/webhooks/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[webhooks]": args["fields_webhooks"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const webhooksTools: Tool[] = [
     name: "webhooks_update_instance",
     description: "PATCH /v1/webhooks/{id} (PATCH /v1/webhooks/{id}) Body shape: see OpenAPI components.schemas.WebhookUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.WebhookUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/webhooks/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -68,12 +70,14 @@ export const webhooksTools: Tool[] = [
   defineTool({
     name: "webhooks_delete_instance",
     description: "DELETE /v1/webhooks/{id} (DELETE /v1/webhooks/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/webhooks/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -85,12 +89,13 @@ export const webhooksTools: Tool[] = [
     description: "GET /v1/webhooks/{id}/relationships/deliveries (GET /v1/webhooks/{id}/relationships/deliveries)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/webhooks/{id}/relationships/deliveries",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -110,12 +115,13 @@ export const webhooksTools: Tool[] = [
     fields_webhookEvents: z.union([z.array(z.enum(["eventType", "payload", "ping", "createdDate"])), z.string()]).describe("the fields to include for returned resources of type webhookEvents").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["event"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/webhooks/{id}/deliveries",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[deliveryState]": args["filter_deliveryState"],
       "filter[createdDateGreaterThanOrEqualTo]": args["filter_createdDateGreaterThanOrEqualTo"],

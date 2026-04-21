@@ -31,13 +31,14 @@ export const bundleIdCapabilitiesTools: Tool[] = [
     name: "bundle_id_capabilities_update_instance",
     description: "PATCH /v1/bundleIdCapabilities/{id} (PATCH /v1/bundleIdCapabilities/{id}) Body shape: see OpenAPI components.schemas.BundleIdCapabilityUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.BundleIdCapabilityUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/bundleIdCapabilities/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -47,12 +48,14 @@ export const bundleIdCapabilitiesTools: Tool[] = [
   defineTool({
     name: "bundle_id_capabilities_delete_instance",
     description: "DELETE /v1/bundleIdCapabilities/{id} (DELETE /v1/bundleIdCapabilities/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/bundleIdCapabilities/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

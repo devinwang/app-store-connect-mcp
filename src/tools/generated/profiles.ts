@@ -81,12 +81,13 @@ export const profilesTools: Tool[] = [
     include: z.union([z.array(z.enum(["bundleId", "devices", "certificates"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_certificates: z.coerce.number().int().describe("maximum number of related certificates returned (when they are included)").optional(),
     limit_devices: z.coerce.number().int().describe("maximum number of related devices returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/profiles/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[profiles]": args["fields_profiles"],
       "fields[bundleIds]": args["fields_bundleIds"],
@@ -104,12 +105,14 @@ export const profilesTools: Tool[] = [
   defineTool({
     name: "profiles_delete_instance",
     description: "DELETE /v1/profiles/{id} (DELETE /v1/profiles/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/profiles/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -119,12 +122,14 @@ export const profilesTools: Tool[] = [
   defineTool({
     name: "profiles_bundle_id_get_to_one_relationship",
     description: "GET /v1/profiles/{id}/relationships/bundleId (GET /v1/profiles/{id}/relationships/bundleId)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/profiles/{id}/relationships/bundleId",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -136,12 +141,13 @@ export const profilesTools: Tool[] = [
     description: "GET /v1/profiles/{id}/bundleId (GET /v1/profiles/{id}/bundleId)",
     input: z.object({
     fields_bundleIds: z.union([z.array(z.enum(["name", "platform", "identifier", "seedId", "profiles", "bundleIdCapabilities", "app"])), z.string()]).describe("the fields to include for returned resources of type bundleIds").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/profiles/{id}/bundleId",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[bundleIds]": args["fields_bundleIds"],
     },
@@ -155,12 +161,13 @@ export const profilesTools: Tool[] = [
     description: "GET /v1/profiles/{id}/relationships/certificates (GET /v1/profiles/{id}/relationships/certificates)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/profiles/{id}/relationships/certificates",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -175,12 +182,13 @@ export const profilesTools: Tool[] = [
     input: z.object({
     fields_certificates: z.union([z.array(z.enum(["name", "certificateType", "displayName", "serialNumber", "platform", "expirationDate", "certificateContent", "activated", "passTypeId"])), z.string()]).describe("the fields to include for returned resources of type certificates").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/profiles/{id}/certificates",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[certificates]": args["fields_certificates"],
       "limit": args["limit"],
@@ -195,12 +203,13 @@ export const profilesTools: Tool[] = [
     description: "GET /v1/profiles/{id}/relationships/devices (GET /v1/profiles/{id}/relationships/devices)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/profiles/{id}/relationships/devices",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -215,12 +224,13 @@ export const profilesTools: Tool[] = [
     input: z.object({
     fields_devices: z.union([z.array(z.enum(["name", "platform", "udid", "deviceClass", "status", "model", "addedDate"])), z.string()]).describe("the fields to include for returned resources of type devices").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/profiles/{id}/devices",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[devices]": args["fields_devices"],
       "limit": args["limit"],

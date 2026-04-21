@@ -35,12 +35,13 @@ export const ciBuildRunsTools: Tool[] = [
     fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
     include: z.union([z.array(z.enum(["builds", "workflow", "product", "sourceBranchOrTag", "destinationBranch", "pullRequest"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_builds: z.coerce.number().int().describe("maximum number of related builds returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciBuildRuns/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[ciBuildRuns]": args["fields_ciBuildRuns"],
       "fields[builds]": args["fields_builds"],
@@ -57,12 +58,13 @@ export const ciBuildRunsTools: Tool[] = [
     description: "GET /v1/ciBuildRuns/{id}/relationships/actions (GET /v1/ciBuildRuns/{id}/relationships/actions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciBuildRuns/{id}/relationships/actions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -79,12 +81,13 @@ export const ciBuildRunsTools: Tool[] = [
     fields_ciBuildRuns: z.union([z.array(z.enum(["number", "createdDate", "startedDate", "finishedDate", "sourceCommit", "destinationCommit", "isPullRequestBuild", "issueCounts", "executionProgress", "completionStatus", "startReason", "cancelReason", "builds", "workflow", "product", "sourceBranchOrTag", "destinationBranch", "actions", "pullRequest"])), z.string()]).describe("the fields to include for returned resources of type ciBuildRuns").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["buildRun"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciBuildRuns/{id}/actions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[ciBuildActions]": args["fields_ciBuildActions"],
       "fields[ciBuildRuns]": args["fields_ciBuildRuns"],
@@ -101,12 +104,13 @@ export const ciBuildRunsTools: Tool[] = [
     description: "GET /v1/ciBuildRuns/{id}/relationships/builds (GET /v1/ciBuildRuns/{id}/relationships/builds)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciBuildRuns/{id}/relationships/builds",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -154,12 +158,13 @@ export const ciBuildRunsTools: Tool[] = [
     limit_betaBuildLocalizations: z.coerce.number().int().describe("maximum number of related betaBuildLocalizations returned (when they are included)").optional(),
     limit_icons: z.coerce.number().int().describe("maximum number of related icons returned (when they are included)").optional(),
     limit_buildBundles: z.coerce.number().int().describe("maximum number of related buildBundles returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciBuildRuns/{id}/builds",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[version]": args["filter_version"],
       "filter[expired]": args["filter_expired"],

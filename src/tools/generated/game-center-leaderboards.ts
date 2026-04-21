@@ -38,12 +38,13 @@ export const gameCenterLeaderboardsTools: Tool[] = [
     limit_gameCenterLeaderboardSets: z.coerce.number().int().describe("maximum number of related gameCenterLeaderboardSets returned (when they are included)").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
     limit_releases: z.coerce.number().int().describe("maximum number of related releases returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterLeaderboards/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboards]": args["fields_gameCenterLeaderboards"],
       "fields[gameCenterLeaderboardLocalizations]": args["fields_gameCenterLeaderboardLocalizations"],
@@ -62,13 +63,14 @@ export const gameCenterLeaderboardsTools: Tool[] = [
     name: "game_center_leaderboards_update_instance",
     description: "[DEPRECATED] PATCH /v1/gameCenterLeaderboards/{id} (PATCH /v1/gameCenterLeaderboards/{id}) Body shape: see OpenAPI components.schemas.GameCenterLeaderboardUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterLeaderboardUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterLeaderboards/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -78,12 +80,14 @@ export const gameCenterLeaderboardsTools: Tool[] = [
   defineTool({
     name: "game_center_leaderboards_delete_instance",
     description: "[DEPRECATED] DELETE /v1/gameCenterLeaderboards/{id} (DELETE /v1/gameCenterLeaderboards/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterLeaderboards/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -116,12 +120,13 @@ export const gameCenterLeaderboardsTools: Tool[] = [
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterGroup", "gameCenterLeaderboardSets", "activity", "challenge", "versions"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_gameCenterLeaderboardSets: z.coerce.number().int().describe("maximum number of related gameCenterLeaderboardSets returned (when they are included)").optional(),
     limit_versions: z.coerce.number().int().describe("maximum number of related versions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterLeaderboards/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboards]": args["fields_gameCenterLeaderboards"],
       "fields[gameCenterLeaderboardVersions]": args["fields_gameCenterLeaderboardVersions"],
@@ -138,13 +143,14 @@ export const gameCenterLeaderboardsTools: Tool[] = [
     name: "game_center_leaderboards_v2_update_instance",
     description: "PATCH /v2/gameCenterLeaderboards/{id} (PATCH /v2/gameCenterLeaderboards/{id}) Body shape: see OpenAPI components.schemas.GameCenterLeaderboardV2UpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterLeaderboardV2UpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v2/gameCenterLeaderboards/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -154,12 +160,14 @@ export const gameCenterLeaderboardsTools: Tool[] = [
   defineTool({
     name: "game_center_leaderboards_v2_delete_instance",
     description: "DELETE /v2/gameCenterLeaderboards/{id} (DELETE /v2/gameCenterLeaderboards/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v2/gameCenterLeaderboards/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -170,13 +178,14 @@ export const gameCenterLeaderboardsTools: Tool[] = [
     name: "game_center_leaderboards_activity_update_to_one_relationship",
     description: "[DEPRECATED] PATCH /v1/gameCenterLeaderboards/{id}/relationships/activity (PATCH /v1/gameCenterLeaderboards/{id}/relationships/activity) Body shape: see OpenAPI components.schemas.GameCenterLeaderboardActivityLinkageRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterLeaderboardActivityLinkageRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterLeaderboards/{id}/relationships/activity",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -187,13 +196,14 @@ export const gameCenterLeaderboardsTools: Tool[] = [
     name: "game_center_leaderboards_challenge_update_to_one_relationship",
     description: "[DEPRECATED] PATCH /v1/gameCenterLeaderboards/{id}/relationships/challenge (PATCH /v1/gameCenterLeaderboards/{id}/relationships/challenge) Body shape: see OpenAPI components.schemas.GameCenterLeaderboardChallengeLinkageRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterLeaderboardChallengeLinkageRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterLeaderboards/{id}/relationships/challenge",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -203,12 +213,14 @@ export const gameCenterLeaderboardsTools: Tool[] = [
   defineTool({
     name: "game_center_leaderboards_group_leaderboard_get_to_one_relationship",
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboards/{id}/relationships/groupLeaderboard (GET /v1/gameCenterLeaderboards/{id}/relationships/groupLeaderboard)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterLeaderboards/{id}/relationships/groupLeaderboard",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -219,13 +231,14 @@ export const gameCenterLeaderboardsTools: Tool[] = [
     name: "game_center_leaderboards_group_leaderboard_update_to_one_relationship",
     description: "[DEPRECATED] PATCH /v1/gameCenterLeaderboards/{id}/relationships/groupLeaderboard (PATCH /v1/gameCenterLeaderboards/{id}/relationships/groupLeaderboard) Body shape: see OpenAPI components.schemas.GameCenterLeaderboardGroupLeaderboardLinkageRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterLeaderboardGroupLeaderboardLinkageRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterLeaderboards/{id}/relationships/groupLeaderboard",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -248,12 +261,13 @@ export const gameCenterLeaderboardsTools: Tool[] = [
     limit_gameCenterLeaderboardSets: z.coerce.number().int().describe("maximum number of related gameCenterLeaderboardSets returned (when they are included)").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
     limit_releases: z.coerce.number().int().describe("maximum number of related releases returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterLeaderboards/{id}/groupLeaderboard",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboards]": args["fields_gameCenterLeaderboards"],
       "fields[gameCenterDetails]": args["fields_gameCenterDetails"],
@@ -278,12 +292,13 @@ export const gameCenterLeaderboardsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboards/{id}/relationships/localizations (GET /v1/gameCenterLeaderboards/{id}/relationships/localizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterLeaderboards/{id}/relationships/localizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -301,12 +316,13 @@ export const gameCenterLeaderboardsTools: Tool[] = [
     fields_gameCenterLeaderboardImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterLeaderboardLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["gameCenterLeaderboard", "gameCenterLeaderboardImage"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterLeaderboards/{id}/localizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardLocalizations]": args["fields_gameCenterLeaderboardLocalizations"],
       "fields[gameCenterLeaderboards]": args["fields_gameCenterLeaderboards"],
@@ -324,12 +340,13 @@ export const gameCenterLeaderboardsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboards/{id}/relationships/releases (GET /v1/gameCenterLeaderboards/{id}/relationships/releases)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterLeaderboards/{id}/relationships/releases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -349,12 +366,13 @@ export const gameCenterLeaderboardsTools: Tool[] = [
     fields_gameCenterLeaderboards: z.union([z.array(z.enum(["defaultFormatter", "referenceName", "vendorIdentifier", "submissionType", "scoreSortType", "scoreRangeStart", "scoreRangeEnd", "recurrenceStartDate", "recurrenceDuration", "recurrenceRule", "archived", "activityProperties", "visibility", "gameCenterDetail", "gameCenterGroup", "groupLeaderboard", "gameCenterLeaderboardSets", "localizations", "releases", "activity", "challenge"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboards").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterLeaderboard"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterLeaderboards/{id}/releases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[live]": args["filter_live"],
       "filter[gameCenterDetail]": args["filter_gameCenterDetail"],
@@ -373,13 +391,14 @@ export const gameCenterLeaderboardsTools: Tool[] = [
     name: "game_center_leaderboards_v2_activity_update_to_one_relationship",
     description: "PATCH /v2/gameCenterLeaderboards/{id}/relationships/activity (PATCH /v2/gameCenterLeaderboards/{id}/relationships/activity) Body shape: see OpenAPI components.schemas.GameCenterLeaderboardV2ActivityLinkageRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterLeaderboardV2ActivityLinkageRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v2/gameCenterLeaderboards/{id}/relationships/activity",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -390,13 +409,14 @@ export const gameCenterLeaderboardsTools: Tool[] = [
     name: "game_center_leaderboards_v2_challenge_update_to_one_relationship",
     description: "PATCH /v2/gameCenterLeaderboards/{id}/relationships/challenge (PATCH /v2/gameCenterLeaderboards/{id}/relationships/challenge) Body shape: see OpenAPI components.schemas.GameCenterLeaderboardV2ChallengeLinkageRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterLeaderboardV2ChallengeLinkageRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v2/gameCenterLeaderboards/{id}/relationships/challenge",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -408,12 +428,13 @@ export const gameCenterLeaderboardsTools: Tool[] = [
     description: "GET /v2/gameCenterLeaderboards/{id}/relationships/versions (GET /v2/gameCenterLeaderboards/{id}/relationships/versions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterLeaderboards/{id}/relationships/versions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -432,12 +453,13 @@ export const gameCenterLeaderboardsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["leaderboard", "localizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterLeaderboards/{id}/versions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardVersions]": args["fields_gameCenterLeaderboardVersions"],
       "fields[gameCenterLeaderboards]": args["fields_gameCenterLeaderboards"],

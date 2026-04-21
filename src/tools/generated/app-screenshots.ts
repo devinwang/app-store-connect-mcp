@@ -33,12 +33,13 @@ export const appScreenshotsTools: Tool[] = [
     input: z.object({
     fields_appScreenshots: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "assetToken", "assetType", "uploadOperations", "assetDeliveryState", "appScreenshotSet"])), z.string()]).describe("the fields to include for returned resources of type appScreenshots").optional(),
     include: z.union([z.array(z.enum(["appScreenshotSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appScreenshots/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appScreenshots]": args["fields_appScreenshots"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const appScreenshotsTools: Tool[] = [
     name: "app_screenshots_update_instance",
     description: "PATCH /v1/appScreenshots/{id} (PATCH /v1/appScreenshots/{id}) Body shape: see OpenAPI components.schemas.AppScreenshotUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppScreenshotUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appScreenshots/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -68,12 +70,14 @@ export const appScreenshotsTools: Tool[] = [
   defineTool({
     name: "app_screenshots_delete_instance",
     description: "DELETE /v1/appScreenshots/{id} (DELETE /v1/appScreenshots/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appScreenshots/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

@@ -33,12 +33,13 @@ export const customerReviewResponsesTools: Tool[] = [
     input: z.object({
     fields_customerReviewResponses: z.union([z.array(z.enum(["responseBody", "lastModifiedDate", "state", "review"])), z.string()]).describe("the fields to include for returned resources of type customerReviewResponses").optional(),
     include: z.union([z.array(z.enum(["review"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/customerReviewResponses/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[customerReviewResponses]": args["fields_customerReviewResponses"],
       "include": args["include"],
@@ -51,12 +52,14 @@ export const customerReviewResponsesTools: Tool[] = [
   defineTool({
     name: "customer_review_responses_delete_instance",
     description: "DELETE /v1/customerReviewResponses/{id} (DELETE /v1/customerReviewResponses/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/customerReviewResponses/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

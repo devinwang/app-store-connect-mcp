@@ -62,13 +62,14 @@ export const gameCenterLeaderboardSetMemberLocalizationsTools: Tool[] = [
     name: "game_center_leaderboard_set_member_localizations_update_instance",
     description: "PATCH /v1/gameCenterLeaderboardSetMemberLocalizations/{id} (PATCH /v1/gameCenterLeaderboardSetMemberLocalizations/{id}) Body shape: see OpenAPI components.schemas.GameCenterLeaderboardSetMemberLocalizationUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterLeaderboardSetMemberLocalizationUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterLeaderboardSetMemberLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -78,12 +79,14 @@ export const gameCenterLeaderboardSetMemberLocalizationsTools: Tool[] = [
   defineTool({
     name: "game_center_leaderboard_set_member_localizations_delete_instance",
     description: "DELETE /v1/gameCenterLeaderboardSetMemberLocalizations/{id} (DELETE /v1/gameCenterLeaderboardSetMemberLocalizations/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterLeaderboardSetMemberLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -93,12 +96,14 @@ export const gameCenterLeaderboardSetMemberLocalizationsTools: Tool[] = [
   defineTool({
     name: "game_center_leaderboard_set_member_localizations_game_center_leaderboard_get_to_one_relationship",
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboardSetMemberLocalizations/{id}/relationships/gameCenterLeaderboard (GET /v1/gameCenterLeaderboardSetMemberLocalizations/{id}/relationships/gameCenterLeaderboard)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterLeaderboardSetMemberLocalizations/{id}/relationships/gameCenterLeaderboard",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -121,12 +126,13 @@ export const gameCenterLeaderboardSetMemberLocalizationsTools: Tool[] = [
     limit_gameCenterLeaderboardSets: z.coerce.number().int().describe("maximum number of related gameCenterLeaderboardSets returned (when they are included)").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
     limit_releases: z.coerce.number().int().describe("maximum number of related releases returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterLeaderboardSetMemberLocalizations/{id}/gameCenterLeaderboard",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboards]": args["fields_gameCenterLeaderboards"],
       "fields[gameCenterDetails]": args["fields_gameCenterDetails"],
@@ -149,12 +155,14 @@ export const gameCenterLeaderboardSetMemberLocalizationsTools: Tool[] = [
   defineTool({
     name: "game_center_leaderboard_set_member_localizations_game_center_leaderboard_set_get_to_one_relationship",
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboardSetMemberLocalizations/{id}/relationships/gameCenterLeaderboardSet (GET /v1/gameCenterLeaderboardSetMemberLocalizations/{id}/relationships/gameCenterLeaderboardSet)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterLeaderboardSetMemberLocalizations/{id}/relationships/gameCenterLeaderboardSet",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -175,12 +183,13 @@ export const gameCenterLeaderboardSetMemberLocalizationsTools: Tool[] = [
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
     limit_gameCenterLeaderboards: z.coerce.number().int().describe("maximum number of related gameCenterLeaderboards returned (when they are included)").optional(),
     limit_releases: z.coerce.number().int().describe("maximum number of related releases returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterLeaderboardSetMemberLocalizations/{id}/gameCenterLeaderboardSet",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardSets]": args["fields_gameCenterLeaderboardSets"],
       "fields[gameCenterDetails]": args["fields_gameCenterDetails"],

@@ -32,12 +32,13 @@ export const gameCenterChallengeImagesTools: Tool[] = [
     description: "GET /v1/gameCenterChallengeImages/{id} (GET /v1/gameCenterChallengeImages/{id})",
     input: z.object({
     fields_gameCenterChallengeImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeImages").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterChallengeImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterChallengeImages]": args["fields_gameCenterChallengeImages"],
     },
@@ -50,13 +51,14 @@ export const gameCenterChallengeImagesTools: Tool[] = [
     name: "game_center_challenge_images_update_instance",
     description: "PATCH /v1/gameCenterChallengeImages/{id} (PATCH /v1/gameCenterChallengeImages/{id}) Body shape: see OpenAPI components.schemas.GameCenterChallengeImageUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterChallengeImageUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterChallengeImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -66,12 +68,14 @@ export const gameCenterChallengeImagesTools: Tool[] = [
   defineTool({
     name: "game_center_challenge_images_delete_instance",
     description: "DELETE /v1/gameCenterChallengeImages/{id} (DELETE /v1/gameCenterChallengeImages/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterChallengeImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

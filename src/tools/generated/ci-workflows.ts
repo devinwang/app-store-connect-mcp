@@ -34,12 +34,13 @@ export const ciWorkflowsTools: Tool[] = [
     fields_ciWorkflows: z.union([z.array(z.enum(["name", "description", "branchStartCondition", "tagStartCondition", "pullRequestStartCondition", "scheduledStartCondition", "manualBranchStartCondition", "manualTagStartCondition", "manualPullRequestStartCondition", "actions", "isEnabled", "isLockedForEditing", "clean", "containerFilePath", "lastModifiedDate", "product", "repository", "xcodeVersion", "macOsVersion", "buildRuns"])), z.string()]).describe("the fields to include for returned resources of type ciWorkflows").optional(),
     fields_scmRepositories: z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
     include: z.union([z.array(z.enum(["product", "repository", "xcodeVersion", "macOsVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciWorkflows/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[ciWorkflows]": args["fields_ciWorkflows"],
       "fields[scmRepositories]": args["fields_scmRepositories"],
@@ -54,13 +55,14 @@ export const ciWorkflowsTools: Tool[] = [
     name: "ci_workflows_update_instance",
     description: "PATCH /v1/ciWorkflows/{id} (PATCH /v1/ciWorkflows/{id}) Body shape: see OpenAPI components.schemas.CiWorkflowUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.CiWorkflowUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/ciWorkflows/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -70,12 +72,14 @@ export const ciWorkflowsTools: Tool[] = [
   defineTool({
     name: "ci_workflows_delete_instance",
     description: "DELETE /v1/ciWorkflows/{id} (DELETE /v1/ciWorkflows/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/ciWorkflows/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -87,12 +91,13 @@ export const ciWorkflowsTools: Tool[] = [
     description: "GET /v1/ciWorkflows/{id}/relationships/buildRuns (GET /v1/ciWorkflows/{id}/relationships/buildRuns)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciWorkflows/{id}/relationships/buildRuns",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -116,12 +121,13 @@ export const ciWorkflowsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["builds", "workflow", "product", "sourceBranchOrTag", "destinationBranch", "pullRequest"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_builds: z.coerce.number().int().describe("maximum number of related builds returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciWorkflows/{id}/buildRuns",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[builds]": args["filter_builds"],
       "sort": args["sort"],
@@ -143,12 +149,14 @@ export const ciWorkflowsTools: Tool[] = [
   defineTool({
     name: "ci_workflows_repository_get_to_one_relationship",
     description: "GET /v1/ciWorkflows/{id}/relationships/repository (GET /v1/ciWorkflows/{id}/relationships/repository)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciWorkflows/{id}/relationships/repository",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -163,12 +171,13 @@ export const ciWorkflowsTools: Tool[] = [
     fields_scmProviders: z.union([z.array(z.enum(["scmProviderType", "url", "repositories"])), z.string()]).describe("the fields to include for returned resources of type scmProviders").optional(),
     fields_scmGitReferences: z.union([z.array(z.enum(["name", "canonicalName", "isDeleted", "kind", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmGitReferences").optional(),
     include: z.union([z.array(z.enum(["scmProvider", "defaultBranch"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciWorkflows/{id}/repository",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[scmRepositories]": args["fields_scmRepositories"],
       "fields[scmProviders]": args["fields_scmProviders"],

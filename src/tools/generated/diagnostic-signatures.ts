@@ -15,12 +15,13 @@ export const diagnosticSignaturesTools: Tool[] = [
     description: "GET /v1/diagnosticSignatures/{id}/logs (GET /v1/diagnosticSignatures/{id}/logs)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/diagnosticSignatures/{id}/logs",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },

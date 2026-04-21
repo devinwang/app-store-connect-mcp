@@ -18,12 +18,13 @@ export const appClipsTools: Tool[] = [
     fields_appClipDefaultExperiences: z.union([z.array(z.enum(["action", "appClip", "releaseWithAppStoreVersion", "appClipDefaultExperienceLocalizations", "appClipAppStoreReviewDetail"])), z.string()]).describe("the fields to include for returned resources of type appClipDefaultExperiences").optional(),
     include: z.union([z.array(z.enum(["app", "appClipDefaultExperiences"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appClipDefaultExperiences: z.coerce.number().int().describe("maximum number of related appClipDefaultExperiences returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appClips/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appClips]": args["fields_appClips"],
       "fields[appClipDefaultExperiences]": args["fields_appClipDefaultExperiences"],
@@ -40,12 +41,13 @@ export const appClipsTools: Tool[] = [
     description: "GET /v1/appClips/{id}/relationships/appClipAdvancedExperiences (GET /v1/appClips/{id}/relationships/appClipAdvancedExperiences)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appClips/{id}/relationships/appClipAdvancedExperiences",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -68,12 +70,13 @@ export const appClipsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appClip", "headerImage", "localizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appClips/{id}/appClipAdvancedExperiences",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[status]": args["filter_status"],
       "filter[placeStatus]": args["filter_placeStatus"],
@@ -96,12 +99,13 @@ export const appClipsTools: Tool[] = [
     description: "GET /v1/appClips/{id}/relationships/appClipDefaultExperiences (GET /v1/appClips/{id}/relationships/appClipDefaultExperiences)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appClips/{id}/relationships/appClipDefaultExperiences",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -123,12 +127,13 @@ export const appClipsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appClip", "releaseWithAppStoreVersion", "appClipDefaultExperienceLocalizations", "appClipAppStoreReviewDetail"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appClipDefaultExperienceLocalizations: z.coerce.number().int().describe("maximum number of related appClipDefaultExperienceLocalizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appClips/{id}/appClipDefaultExperiences",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "exists[releaseWithAppStoreVersion]": args["exists_releaseWithAppStoreVersion"],
       "fields[appClipDefaultExperiences]": args["fields_appClipDefaultExperiences"],

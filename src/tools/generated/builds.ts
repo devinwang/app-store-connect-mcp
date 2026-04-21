@@ -111,12 +111,13 @@ export const buildsTools: Tool[] = [
     limit_buildBundles: z.coerce.number().int().describe("maximum number of related buildBundles returned (when they are included)").optional(),
     limit_icons: z.coerce.number().int().describe("maximum number of related icons returned (when they are included)").optional(),
     limit_individualTesters: z.coerce.number().int().describe("maximum number of related individualTesters returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[builds]": args["fields_builds"],
       "fields[preReleaseVersions]": args["fields_preReleaseVersions"],
@@ -144,13 +145,14 @@ export const buildsTools: Tool[] = [
     name: "builds_update_instance",
     description: "PATCH /v1/builds/{id} (PATCH /v1/builds/{id}) Body shape: see OpenAPI components.schemas.BuildUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.BuildUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/builds/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -160,12 +162,14 @@ export const buildsTools: Tool[] = [
   defineTool({
     name: "builds_app_get_to_one_relationship",
     description: "GET /v1/builds/{id}/relationships/app (GET /v1/builds/{id}/relationships/app)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/relationships/app",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -177,12 +181,13 @@ export const buildsTools: Tool[] = [
     description: "GET /v1/builds/{id}/app (GET /v1/builds/{id}/app)",
     input: z.object({
     fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/app",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[apps]": args["fields_apps"],
     },
@@ -194,12 +199,14 @@ export const buildsTools: Tool[] = [
   defineTool({
     name: "builds_app_encryption_declaration_get_to_one_relationship",
     description: "GET /v1/builds/{id}/relationships/appEncryptionDeclaration (GET /v1/builds/{id}/relationships/appEncryptionDeclaration)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/relationships/appEncryptionDeclaration",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -210,13 +217,14 @@ export const buildsTools: Tool[] = [
     name: "builds_app_encryption_declaration_update_to_one_relationship",
     description: "PATCH /v1/builds/{id}/relationships/appEncryptionDeclaration (PATCH /v1/builds/{id}/relationships/appEncryptionDeclaration) Body shape: see OpenAPI components.schemas.BuildAppEncryptionDeclarationLinkageRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.BuildAppEncryptionDeclarationLinkageRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/builds/{id}/relationships/appEncryptionDeclaration",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -228,12 +236,13 @@ export const buildsTools: Tool[] = [
     description: "GET /v1/builds/{id}/appEncryptionDeclaration (GET /v1/builds/{id}/appEncryptionDeclaration)",
     input: z.object({
     fields_appEncryptionDeclarations: z.union([z.array(z.enum(["appDescription", "createdDate", "usesEncryption", "exempt", "containsProprietaryCryptography", "containsThirdPartyCryptography", "availableOnFrenchStore", "platform", "uploadedDate", "documentUrl", "documentName", "documentType", "appEncryptionDeclarationState", "codeValue", "app", "builds", "appEncryptionDeclarationDocument"])), z.string()]).describe("the fields to include for returned resources of type appEncryptionDeclarations").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/appEncryptionDeclaration",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appEncryptionDeclarations]": args["fields_appEncryptionDeclarations"],
     },
@@ -245,12 +254,14 @@ export const buildsTools: Tool[] = [
   defineTool({
     name: "builds_app_store_version_get_to_one_relationship",
     description: "GET /v1/builds/{id}/relationships/appStoreVersion (GET /v1/builds/{id}/relationships/appStoreVersion)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/relationships/appStoreVersion",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -277,12 +288,13 @@ export const buildsTools: Tool[] = [
     limit_appStoreVersionLocalizations: z.coerce.number().int().describe("maximum number of related appStoreVersionLocalizations returned (when they are included)").optional(),
     limit_appStoreVersionExperiments: z.coerce.number().int().describe("maximum number of related appStoreVersionExperiments returned (when they are included)").optional(),
     limit_appStoreVersionExperimentsV2: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentsV2 returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/appStoreVersion",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appStoreVersions]": args["fields_appStoreVersions"],
       "fields[apps]": args["fields_apps"],
@@ -309,12 +321,14 @@ export const buildsTools: Tool[] = [
   defineTool({
     name: "builds_beta_app_review_submission_get_to_one_relationship",
     description: "GET /v1/builds/{id}/relationships/betaAppReviewSubmission (GET /v1/builds/{id}/relationships/betaAppReviewSubmission)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/relationships/betaAppReviewSubmission",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -326,12 +340,13 @@ export const buildsTools: Tool[] = [
     description: "GET /v1/builds/{id}/betaAppReviewSubmission (GET /v1/builds/{id}/betaAppReviewSubmission)",
     input: z.object({
     fields_betaAppReviewSubmissions: z.union([z.array(z.enum(["betaReviewState", "submittedDate", "build"])), z.string()]).describe("the fields to include for returned resources of type betaAppReviewSubmissions").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/betaAppReviewSubmission",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[betaAppReviewSubmissions]": args["fields_betaAppReviewSubmissions"],
     },
@@ -345,12 +360,13 @@ export const buildsTools: Tool[] = [
     description: "GET /v1/builds/{id}/relationships/betaBuildLocalizations (GET /v1/builds/{id}/relationships/betaBuildLocalizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/relationships/betaBuildLocalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -365,12 +381,13 @@ export const buildsTools: Tool[] = [
     input: z.object({
     fields_betaBuildLocalizations: z.union([z.array(z.enum(["whatsNew", "locale", "build"])), z.string()]).describe("the fields to include for returned resources of type betaBuildLocalizations").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/betaBuildLocalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[betaBuildLocalizations]": args["fields_betaBuildLocalizations"],
       "limit": args["limit"],
@@ -384,13 +401,14 @@ export const buildsTools: Tool[] = [
     name: "builds_beta_groups_create_to_many_relationship",
     description: "POST /v1/builds/{id}/relationships/betaGroups (POST /v1/builds/{id}/relationships/betaGroups) Body shape: see OpenAPI components.schemas.BuildBetaGroupsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.BuildBetaGroupsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "POST",
       path: "/v1/builds/{id}/relationships/betaGroups",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -401,13 +419,14 @@ export const buildsTools: Tool[] = [
     name: "builds_beta_groups_delete_to_many_relationship",
     description: "DELETE /v1/builds/{id}/relationships/betaGroups (DELETE /v1/builds/{id}/relationships/betaGroups) Body shape: see OpenAPI components.schemas.BuildBetaGroupsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.BuildBetaGroupsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/builds/{id}/relationships/betaGroups",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -417,12 +436,14 @@ export const buildsTools: Tool[] = [
   defineTool({
     name: "builds_build_beta_detail_get_to_one_relationship",
     description: "GET /v1/builds/{id}/relationships/buildBetaDetail (GET /v1/builds/{id}/relationships/buildBetaDetail)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/relationships/buildBetaDetail",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -436,12 +457,13 @@ export const buildsTools: Tool[] = [
     fields_buildBetaDetails: z.union([z.array(z.enum(["autoNotifyEnabled", "internalBuildState", "externalBuildState", "build"])), z.string()]).describe("the fields to include for returned resources of type buildBetaDetails").optional(),
     fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
     include: z.union([z.array(z.enum(["build"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/buildBetaDetail",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[buildBetaDetails]": args["fields_buildBetaDetails"],
       "fields[builds]": args["fields_builds"],
@@ -457,12 +479,13 @@ export const buildsTools: Tool[] = [
     description: "GET /v1/builds/{id}/relationships/diagnosticSignatures (GET /v1/builds/{id}/relationships/diagnosticSignatures)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/relationships/diagnosticSignatures",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -478,12 +501,13 @@ export const buildsTools: Tool[] = [
     filter_diagnosticType: z.union([z.array(z.enum(["DISK_WRITES", "HANGS", "LAUNCHES"])), z.string()]).describe("filter by attribute 'diagnosticType'").optional(),
     fields_diagnosticSignatures: z.union([z.array(z.enum(["diagnosticType", "signature", "weight", "insight", "logs"])), z.string()]).describe("the fields to include for returned resources of type diagnosticSignatures").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/diagnosticSignatures",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[diagnosticType]": args["filter_diagnosticType"],
       "fields[diagnosticSignatures]": args["fields_diagnosticSignatures"],
@@ -499,12 +523,13 @@ export const buildsTools: Tool[] = [
     description: "GET /v1/builds/{id}/relationships/icons (GET /v1/builds/{id}/relationships/icons)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/relationships/icons",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -519,12 +544,13 @@ export const buildsTools: Tool[] = [
     input: z.object({
     fields_buildIcons: z.union([z.array(z.enum(["iconAsset", "iconType", "masked", "name"])), z.string()]).describe("the fields to include for returned resources of type buildIcons").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/icons",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[buildIcons]": args["fields_buildIcons"],
       "limit": args["limit"],
@@ -539,12 +565,13 @@ export const buildsTools: Tool[] = [
     description: "GET /v1/builds/{id}/relationships/individualTesters (GET /v1/builds/{id}/relationships/individualTesters)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/relationships/individualTesters",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -557,13 +584,14 @@ export const buildsTools: Tool[] = [
     name: "builds_individual_testers_create_to_many_relationship",
     description: "POST /v1/builds/{id}/relationships/individualTesters (POST /v1/builds/{id}/relationships/individualTesters) Body shape: see OpenAPI components.schemas.BuildIndividualTestersLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.BuildIndividualTestersLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "POST",
       path: "/v1/builds/{id}/relationships/individualTesters",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -574,13 +602,14 @@ export const buildsTools: Tool[] = [
     name: "builds_individual_testers_delete_to_many_relationship",
     description: "DELETE /v1/builds/{id}/relationships/individualTesters (DELETE /v1/builds/{id}/relationships/individualTesters) Body shape: see OpenAPI components.schemas.BuildIndividualTestersLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.BuildIndividualTestersLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/builds/{id}/relationships/individualTesters",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -593,12 +622,13 @@ export const buildsTools: Tool[] = [
     input: z.object({
     fields_betaTesters: z.union([z.array(z.enum(["firstName", "lastName", "email", "inviteType", "state", "appDevices", "apps", "betaGroups", "builds"])), z.string()]).describe("the fields to include for returned resources of type betaTesters").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/individualTesters",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[betaTesters]": args["fields_betaTesters"],
       "limit": args["limit"],
@@ -615,12 +645,13 @@ export const buildsTools: Tool[] = [
     filter_platform: z.union([z.array(z.enum(["IOS"])), z.string()]).describe("filter by attribute 'platform'").optional(),
     filter_metricType: z.union([z.array(z.enum(["DISK", "HANG", "BATTERY", "LAUNCH", "MEMORY", "ANIMATION", "TERMINATION"])), z.string()]).describe("filter by attribute 'metricType'").optional(),
     filter_deviceType: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'deviceType'").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/perfPowerMetrics",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[platform]": args["filter_platform"],
       "filter[metricType]": args["filter_metricType"],
@@ -634,12 +665,14 @@ export const buildsTools: Tool[] = [
   defineTool({
     name: "builds_pre_release_version_get_to_one_relationship",
     description: "GET /v1/builds/{id}/relationships/preReleaseVersion (GET /v1/builds/{id}/relationships/preReleaseVersion)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/relationships/preReleaseVersion",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -651,12 +684,13 @@ export const buildsTools: Tool[] = [
     description: "GET /v1/builds/{id}/preReleaseVersion (GET /v1/builds/{id}/preReleaseVersion)",
     input: z.object({
     fields_preReleaseVersions: z.union([z.array(z.enum(["version", "platform", "builds", "app"])), z.string()]).describe("the fields to include for returned resources of type preReleaseVersions").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/preReleaseVersion",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[preReleaseVersions]": args["fields_preReleaseVersions"],
     },
@@ -670,12 +704,13 @@ export const buildsTools: Tool[] = [
     description: "GET /v1/builds/{id}/metrics/betaBuildUsages (GET /v1/builds/{id}/metrics/betaBuildUsages)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/builds/{id}/metrics/betaBuildUsages",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },

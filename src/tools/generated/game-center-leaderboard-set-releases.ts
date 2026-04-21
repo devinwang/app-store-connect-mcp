@@ -33,12 +33,13 @@ export const gameCenterLeaderboardSetReleasesTools: Tool[] = [
     input: z.object({
     fields_gameCenterLeaderboardSetReleases: z.union([z.array(z.enum(["live", "gameCenterDetail", "gameCenterLeaderboardSet"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetReleases").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterLeaderboardSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterLeaderboardSetReleases/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardSetReleases]": args["fields_gameCenterLeaderboardSetReleases"],
       "include": args["include"],
@@ -51,12 +52,14 @@ export const gameCenterLeaderboardSetReleasesTools: Tool[] = [
   defineTool({
     name: "game_center_leaderboard_set_releases_delete_instance",
     description: "[DEPRECATED] DELETE /v1/gameCenterLeaderboardSetReleases/{id} (DELETE /v1/gameCenterLeaderboardSetReleases/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterLeaderboardSetReleases/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

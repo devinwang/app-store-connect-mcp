@@ -83,12 +83,13 @@ export const bundleIdsTools: Tool[] = [
     include: z.union([z.array(z.enum(["profiles", "bundleIdCapabilities", "app"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_bundleIdCapabilities: z.coerce.number().int().describe("maximum number of related bundleIdCapabilities returned (when they are included)").optional(),
     limit_profiles: z.coerce.number().int().describe("maximum number of related profiles returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/bundleIds/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[bundleIds]": args["fields_bundleIds"],
       "fields[profiles]": args["fields_profiles"],
@@ -107,13 +108,14 @@ export const bundleIdsTools: Tool[] = [
     name: "bundle_ids_update_instance",
     description: "PATCH /v1/bundleIds/{id} (PATCH /v1/bundleIds/{id}) Body shape: see OpenAPI components.schemas.BundleIdUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.BundleIdUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/bundleIds/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -123,12 +125,14 @@ export const bundleIdsTools: Tool[] = [
   defineTool({
     name: "bundle_ids_delete_instance",
     description: "DELETE /v1/bundleIds/{id} (DELETE /v1/bundleIds/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/bundleIds/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -138,12 +142,14 @@ export const bundleIdsTools: Tool[] = [
   defineTool({
     name: "bundle_ids_app_get_to_one_relationship",
     description: "GET /v1/bundleIds/{id}/relationships/app (GET /v1/bundleIds/{id}/relationships/app)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/bundleIds/{id}/relationships/app",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -155,12 +161,13 @@ export const bundleIdsTools: Tool[] = [
     description: "GET /v1/bundleIds/{id}/app (GET /v1/bundleIds/{id}/app)",
     input: z.object({
     fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/bundleIds/{id}/app",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[apps]": args["fields_apps"],
     },
@@ -174,12 +181,13 @@ export const bundleIdsTools: Tool[] = [
     description: "GET /v1/bundleIds/{id}/relationships/bundleIdCapabilities (GET /v1/bundleIds/{id}/relationships/bundleIdCapabilities)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/bundleIds/{id}/relationships/bundleIdCapabilities",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -194,12 +202,13 @@ export const bundleIdsTools: Tool[] = [
     input: z.object({
     fields_bundleIdCapabilities: z.union([z.array(z.enum(["capabilityType", "settings"])), z.string()]).describe("the fields to include for returned resources of type bundleIdCapabilities").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/bundleIds/{id}/bundleIdCapabilities",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[bundleIdCapabilities]": args["fields_bundleIdCapabilities"],
       "limit": args["limit"],
@@ -214,12 +223,13 @@ export const bundleIdsTools: Tool[] = [
     description: "GET /v1/bundleIds/{id}/relationships/profiles (GET /v1/bundleIds/{id}/relationships/profiles)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/bundleIds/{id}/relationships/profiles",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -234,12 +244,13 @@ export const bundleIdsTools: Tool[] = [
     input: z.object({
     fields_profiles: z.union([z.array(z.enum(["name", "platform", "profileType", "profileState", "profileContent", "uuid", "createdDate", "expirationDate", "bundleId", "devices", "certificates"])), z.string()]).describe("the fields to include for returned resources of type profiles").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/bundleIds/{id}/profiles",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[profiles]": args["fields_profiles"],
       "limit": args["limit"],

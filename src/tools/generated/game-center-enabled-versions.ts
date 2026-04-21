@@ -15,12 +15,13 @@ export const gameCenterEnabledVersionsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterEnabledVersions/{id}/relationships/compatibleVersions (GET /v1/gameCenterEnabledVersions/{id}/relationships/compatibleVersions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterEnabledVersions/{id}/relationships/compatibleVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -33,13 +34,14 @@ export const gameCenterEnabledVersionsTools: Tool[] = [
     name: "game_center_enabled_versions_compatible_versions_create_to_many_relationship",
     description: "[DEPRECATED] POST /v1/gameCenterEnabledVersions/{id}/relationships/compatibleVersions (POST /v1/gameCenterEnabledVersions/{id}/relationships/compatibleVersions) Body shape: see OpenAPI components.schemas.GameCenterEnabledVersionCompatibleVersionsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterEnabledVersionCompatibleVersionsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "POST",
       path: "/v1/gameCenterEnabledVersions/{id}/relationships/compatibleVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -50,13 +52,14 @@ export const gameCenterEnabledVersionsTools: Tool[] = [
     name: "game_center_enabled_versions_compatible_versions_replace_to_many_relationship",
     description: "[DEPRECATED] PATCH /v1/gameCenterEnabledVersions/{id}/relationships/compatibleVersions (PATCH /v1/gameCenterEnabledVersions/{id}/relationships/compatibleVersions) Body shape: see OpenAPI components.schemas.GameCenterEnabledVersionCompatibleVersionsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterEnabledVersionCompatibleVersionsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterEnabledVersions/{id}/relationships/compatibleVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -67,13 +70,14 @@ export const gameCenterEnabledVersionsTools: Tool[] = [
     name: "game_center_enabled_versions_compatible_versions_delete_to_many_relationship",
     description: "[DEPRECATED] DELETE /v1/gameCenterEnabledVersions/{id}/relationships/compatibleVersions (DELETE /v1/gameCenterEnabledVersions/{id}/relationships/compatibleVersions) Body shape: see OpenAPI components.schemas.GameCenterEnabledVersionCompatibleVersionsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterEnabledVersionCompatibleVersionsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterEnabledVersions/{id}/relationships/compatibleVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -94,12 +98,13 @@ export const gameCenterEnabledVersionsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["compatibleVersions", "app"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_compatibleVersions: z.coerce.number().int().describe("maximum number of related compatibleVersions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterEnabledVersions/{id}/compatibleVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[platform]": args["filter_platform"],
       "filter[versionString]": args["filter_versionString"],

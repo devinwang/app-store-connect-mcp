@@ -16,12 +16,13 @@ export const betaFeedbackScreenshotSubmissionsTools: Tool[] = [
     input: z.object({
     fields_betaFeedbackScreenshotSubmissions: z.union([z.array(z.enum(["createdDate", "comment", "email", "deviceModel", "osVersion", "locale", "timeZone", "architecture", "connectionType", "pairedAppleWatch", "appUptimeInMilliseconds", "diskBytesAvailable", "diskBytesTotal", "batteryPercentage", "screenWidthInPoints", "screenHeightInPoints", "appPlatform", "devicePlatform", "deviceFamily", "buildBundleId", "screenshots", "build", "tester"])), z.string()]).describe("the fields to include for returned resources of type betaFeedbackScreenshotSubmissions").optional(),
     include: z.union([z.array(z.enum(["build", "tester"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/betaFeedbackScreenshotSubmissions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[betaFeedbackScreenshotSubmissions]": args["fields_betaFeedbackScreenshotSubmissions"],
       "include": args["include"],
@@ -34,12 +35,14 @@ export const betaFeedbackScreenshotSubmissionsTools: Tool[] = [
   defineTool({
     name: "beta_feedback_screenshot_submissions_delete_instance",
     description: "DELETE /v1/betaFeedbackScreenshotSubmissions/{id} (DELETE /v1/betaFeedbackScreenshotSubmissions/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/betaFeedbackScreenshotSubmissions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

@@ -35,12 +35,13 @@ export const appStoreReviewDetailsTools: Tool[] = [
     fields_appStoreReviewAttachments: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "uploadOperations", "assetDeliveryState", "appStoreReviewDetail"])), z.string()]).describe("the fields to include for returned resources of type appStoreReviewAttachments").optional(),
     include: z.union([z.array(z.enum(["appStoreVersion", "appStoreReviewAttachments"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appStoreReviewAttachments: z.coerce.number().int().describe("maximum number of related appStoreReviewAttachments returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreReviewDetails/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appStoreReviewDetails]": args["fields_appStoreReviewDetails"],
       "fields[appStoreReviewAttachments]": args["fields_appStoreReviewAttachments"],
@@ -56,13 +57,14 @@ export const appStoreReviewDetailsTools: Tool[] = [
     name: "app_store_review_details_update_instance",
     description: "PATCH /v1/appStoreReviewDetails/{id} (PATCH /v1/appStoreReviewDetails/{id}) Body shape: see OpenAPI components.schemas.AppStoreReviewDetailUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppStoreReviewDetailUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appStoreReviewDetails/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -74,12 +76,13 @@ export const appStoreReviewDetailsTools: Tool[] = [
     description: "GET /v1/appStoreReviewDetails/{id}/relationships/appStoreReviewAttachments (GET /v1/appStoreReviewDetails/{id}/relationships/appStoreReviewAttachments)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreReviewDetails/{id}/relationships/appStoreReviewAttachments",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -96,12 +99,13 @@ export const appStoreReviewDetailsTools: Tool[] = [
     fields_appStoreReviewDetails: z.union([z.array(z.enum(["contactFirstName", "contactLastName", "contactPhone", "contactEmail", "demoAccountName", "demoAccountPassword", "demoAccountRequired", "notes", "appStoreVersion", "appStoreReviewAttachments"])), z.string()]).describe("the fields to include for returned resources of type appStoreReviewDetails").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appStoreReviewDetail"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreReviewDetails/{id}/appStoreReviewAttachments",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appStoreReviewAttachments]": args["fields_appStoreReviewAttachments"],
       "fields[appStoreReviewDetails]": args["fields_appStoreReviewDetails"],

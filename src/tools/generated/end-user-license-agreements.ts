@@ -35,12 +35,13 @@ export const endUserLicenseAgreementsTools: Tool[] = [
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     include: z.union([z.array(z.enum(["app", "territories"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_territories: z.coerce.number().int().describe("maximum number of related territories returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/endUserLicenseAgreements/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[endUserLicenseAgreements]": args["fields_endUserLicenseAgreements"],
       "fields[territories]": args["fields_territories"],
@@ -56,13 +57,14 @@ export const endUserLicenseAgreementsTools: Tool[] = [
     name: "end_user_license_agreements_update_instance",
     description: "PATCH /v1/endUserLicenseAgreements/{id} (PATCH /v1/endUserLicenseAgreements/{id}) Body shape: see OpenAPI components.schemas.EndUserLicenseAgreementUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.EndUserLicenseAgreementUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/endUserLicenseAgreements/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -72,12 +74,14 @@ export const endUserLicenseAgreementsTools: Tool[] = [
   defineTool({
     name: "end_user_license_agreements_delete_instance",
     description: "DELETE /v1/endUserLicenseAgreements/{id} (DELETE /v1/endUserLicenseAgreements/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/endUserLicenseAgreements/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -89,12 +93,13 @@ export const endUserLicenseAgreementsTools: Tool[] = [
     description: "GET /v1/endUserLicenseAgreements/{id}/relationships/territories (GET /v1/endUserLicenseAgreements/{id}/relationships/territories)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/endUserLicenseAgreements/{id}/relationships/territories",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -109,12 +114,13 @@ export const endUserLicenseAgreementsTools: Tool[] = [
     input: z.object({
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/endUserLicenseAgreements/{id}/territories",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[territories]": args["fields_territories"],
       "limit": args["limit"],

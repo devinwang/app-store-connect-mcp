@@ -34,12 +34,13 @@ export const betaAppClipInvocationsTools: Tool[] = [
     fields_betaAppClipInvocations: z.union([z.array(z.enum(["url", "betaAppClipInvocationLocalizations"])), z.string()]).describe("the fields to include for returned resources of type betaAppClipInvocations").optional(),
     include: z.union([z.array(z.enum(["betaAppClipInvocationLocalizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_betaAppClipInvocationLocalizations: z.coerce.number().int().describe("maximum number of related betaAppClipInvocationLocalizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/betaAppClipInvocations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[betaAppClipInvocations]": args["fields_betaAppClipInvocations"],
       "include": args["include"],
@@ -54,13 +55,14 @@ export const betaAppClipInvocationsTools: Tool[] = [
     name: "beta_app_clip_invocations_update_instance",
     description: "PATCH /v1/betaAppClipInvocations/{id} (PATCH /v1/betaAppClipInvocations/{id}) Body shape: see OpenAPI components.schemas.BetaAppClipInvocationUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.BetaAppClipInvocationUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/betaAppClipInvocations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -70,12 +72,14 @@ export const betaAppClipInvocationsTools: Tool[] = [
   defineTool({
     name: "beta_app_clip_invocations_delete_instance",
     description: "DELETE /v1/betaAppClipInvocations/{id} (DELETE /v1/betaAppClipInvocations/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/betaAppClipInvocations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

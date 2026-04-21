@@ -32,12 +32,13 @@ export const buildUploadFilesTools: Tool[] = [
     description: "GET /v1/buildUploadFiles/{id} (GET /v1/buildUploadFiles/{id})",
     input: z.object({
     fields_buildUploadFiles: z.union([z.array(z.enum(["assetDeliveryState", "assetToken", "assetType", "fileName", "fileSize", "sourceFileChecksums", "uploadOperations", "uti"])), z.string()]).describe("the fields to include for returned resources of type buildUploadFiles").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/buildUploadFiles/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[buildUploadFiles]": args["fields_buildUploadFiles"],
     },
@@ -50,13 +51,14 @@ export const buildUploadFilesTools: Tool[] = [
     name: "build_upload_files_update_instance",
     description: "PATCH /v1/buildUploadFiles/{id} (PATCH /v1/buildUploadFiles/{id}) Body shape: see OpenAPI components.schemas.BuildUploadFileUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.BuildUploadFileUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/buildUploadFiles/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });

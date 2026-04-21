@@ -16,12 +16,13 @@ export const backgroundAssetVersionInternalBetaReleasesTools: Tool[] = [
     input: z.object({
     fields_backgroundAssetVersionInternalBetaReleases: z.union([z.array(z.enum(["state", "backgroundAssetVersion"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetVersionInternalBetaReleases").optional(),
     include: z.union([z.array(z.enum(["backgroundAssetVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/backgroundAssetVersionInternalBetaReleases/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[backgroundAssetVersionInternalBetaReleases]": args["fields_backgroundAssetVersionInternalBetaReleases"],
       "include": args["include"],

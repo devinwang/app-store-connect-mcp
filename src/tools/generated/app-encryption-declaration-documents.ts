@@ -32,12 +32,13 @@ export const appEncryptionDeclarationDocumentsTools: Tool[] = [
     description: "GET /v1/appEncryptionDeclarationDocuments/{id} (GET /v1/appEncryptionDeclarationDocuments/{id})",
     input: z.object({
     fields_appEncryptionDeclarationDocuments: z.union([z.array(z.enum(["fileSize", "fileName", "assetToken", "downloadUrl", "sourceFileChecksum", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type appEncryptionDeclarationDocuments").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appEncryptionDeclarationDocuments/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appEncryptionDeclarationDocuments]": args["fields_appEncryptionDeclarationDocuments"],
     },
@@ -50,13 +51,14 @@ export const appEncryptionDeclarationDocumentsTools: Tool[] = [
     name: "app_encryption_declaration_documents_update_instance",
     description: "PATCH /v1/appEncryptionDeclarationDocuments/{id} (PATCH /v1/appEncryptionDeclarationDocuments/{id}) Body shape: see OpenAPI components.schemas.AppEncryptionDeclarationDocumentUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppEncryptionDeclarationDocumentUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appEncryptionDeclarationDocuments/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });

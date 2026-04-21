@@ -37,12 +37,13 @@ export const inAppPurchasePriceSchedulesTools: Tool[] = [
     include: z.union([z.array(z.enum(["baseTerritory", "manualPrices", "automaticPrices"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_automaticPrices: z.coerce.number().int().describe("maximum number of related automaticPrices returned (when they are included)").optional(),
     limit_manualPrices: z.coerce.number().int().describe("maximum number of related manualPrices returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/inAppPurchasePriceSchedules/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[inAppPurchasePriceSchedules]": args["fields_inAppPurchasePriceSchedules"],
       "fields[territories]": args["fields_territories"],
@@ -61,12 +62,13 @@ export const inAppPurchasePriceSchedulesTools: Tool[] = [
     description: "GET /v1/inAppPurchasePriceSchedules/{id}/relationships/automaticPrices (GET /v1/inAppPurchasePriceSchedules/{id}/relationships/automaticPrices)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/inAppPurchasePriceSchedules/{id}/relationships/automaticPrices",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -85,12 +87,13 @@ export const inAppPurchasePriceSchedulesTools: Tool[] = [
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["inAppPurchasePricePoint", "territory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/inAppPurchasePriceSchedules/{id}/automaticPrices",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[territory]": args["filter_territory"],
       "fields[inAppPurchasePrices]": args["fields_inAppPurchasePrices"],
@@ -107,12 +110,14 @@ export const inAppPurchasePriceSchedulesTools: Tool[] = [
   defineTool({
     name: "in_app_purchase_price_schedules_base_territory_get_to_one_relationship",
     description: "GET /v1/inAppPurchasePriceSchedules/{id}/relationships/baseTerritory (GET /v1/inAppPurchasePriceSchedules/{id}/relationships/baseTerritory)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/inAppPurchasePriceSchedules/{id}/relationships/baseTerritory",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -124,12 +129,13 @@ export const inAppPurchasePriceSchedulesTools: Tool[] = [
     description: "GET /v1/inAppPurchasePriceSchedules/{id}/baseTerritory (GET /v1/inAppPurchasePriceSchedules/{id}/baseTerritory)",
     input: z.object({
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/inAppPurchasePriceSchedules/{id}/baseTerritory",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[territories]": args["fields_territories"],
     },
@@ -143,12 +149,13 @@ export const inAppPurchasePriceSchedulesTools: Tool[] = [
     description: "GET /v1/inAppPurchasePriceSchedules/{id}/relationships/manualPrices (GET /v1/inAppPurchasePriceSchedules/{id}/relationships/manualPrices)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/inAppPurchasePriceSchedules/{id}/relationships/manualPrices",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -167,12 +174,13 @@ export const inAppPurchasePriceSchedulesTools: Tool[] = [
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["inAppPurchasePricePoint", "territory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/inAppPurchasePriceSchedules/{id}/manualPrices",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[territory]": args["filter_territory"],
       "fields[inAppPurchasePrices]": args["fields_inAppPurchasePrices"],

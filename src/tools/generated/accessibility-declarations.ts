@@ -32,12 +32,13 @@ export const accessibilityDeclarationsTools: Tool[] = [
     description: "GET /v1/accessibilityDeclarations/{id} (GET /v1/accessibilityDeclarations/{id})",
     input: z.object({
     fields_accessibilityDeclarations: z.union([z.array(z.enum(["deviceFamily", "state", "supportsAudioDescriptions", "supportsCaptions", "supportsDarkInterface", "supportsDifferentiateWithoutColorAlone", "supportsLargerText", "supportsReducedMotion", "supportsSufficientContrast", "supportsVoiceControl", "supportsVoiceover"])), z.string()]).describe("the fields to include for returned resources of type accessibilityDeclarations").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/accessibilityDeclarations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[accessibilityDeclarations]": args["fields_accessibilityDeclarations"],
     },
@@ -50,13 +51,14 @@ export const accessibilityDeclarationsTools: Tool[] = [
     name: "accessibility_declarations_update_instance",
     description: "PATCH /v1/accessibilityDeclarations/{id} (PATCH /v1/accessibilityDeclarations/{id}) Body shape: see OpenAPI components.schemas.AccessibilityDeclarationUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AccessibilityDeclarationUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/accessibilityDeclarations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -66,12 +68,14 @@ export const accessibilityDeclarationsTools: Tool[] = [
   defineTool({
     name: "accessibility_declarations_delete_instance",
     description: "DELETE /v1/accessibilityDeclarations/{id} (DELETE /v1/accessibilityDeclarations/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/accessibilityDeclarations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

@@ -17,12 +17,13 @@ export const ciBuildActionsTools: Tool[] = [
     fields_ciBuildActions: z.union([z.array(z.enum(["name", "actionType", "startedDate", "finishedDate", "issueCounts", "executionProgress", "completionStatus", "isRequiredToPass", "buildRun", "artifacts", "issues", "testResults"])), z.string()]).describe("the fields to include for returned resources of type ciBuildActions").optional(),
     fields_ciBuildRuns: z.union([z.array(z.enum(["number", "createdDate", "startedDate", "finishedDate", "sourceCommit", "destinationCommit", "isPullRequestBuild", "issueCounts", "executionProgress", "completionStatus", "startReason", "cancelReason", "builds", "workflow", "product", "sourceBranchOrTag", "destinationBranch", "actions", "pullRequest"])), z.string()]).describe("the fields to include for returned resources of type ciBuildRuns").optional(),
     include: z.union([z.array(z.enum(["buildRun"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciBuildActions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[ciBuildActions]": args["fields_ciBuildActions"],
       "fields[ciBuildRuns]": args["fields_ciBuildRuns"],
@@ -38,12 +39,13 @@ export const ciBuildActionsTools: Tool[] = [
     description: "GET /v1/ciBuildActions/{id}/relationships/artifacts (GET /v1/ciBuildActions/{id}/relationships/artifacts)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciBuildActions/{id}/relationships/artifacts",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -58,12 +60,13 @@ export const ciBuildActionsTools: Tool[] = [
     input: z.object({
     fields_ciArtifacts: z.union([z.array(z.enum(["fileType", "fileName", "fileSize", "downloadUrl"])), z.string()]).describe("the fields to include for returned resources of type ciArtifacts").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciBuildActions/{id}/artifacts",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[ciArtifacts]": args["fields_ciArtifacts"],
       "limit": args["limit"],
@@ -76,12 +79,14 @@ export const ciBuildActionsTools: Tool[] = [
   defineTool({
     name: "ci_build_actions_build_run_get_to_one_relationship",
     description: "GET /v1/ciBuildActions/{id}/relationships/buildRun (GET /v1/ciBuildActions/{id}/relationships/buildRun)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciBuildActions/{id}/relationships/buildRun",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -100,12 +105,13 @@ export const ciBuildActionsTools: Tool[] = [
     fields_scmPullRequests: z.union([z.array(z.enum(["title", "number", "webUrl", "sourceRepositoryOwner", "sourceRepositoryName", "sourceBranchName", "destinationRepositoryOwner", "destinationRepositoryName", "destinationBranchName", "isClosed", "isCrossRepository", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmPullRequests").optional(),
     include: z.union([z.array(z.enum(["builds", "workflow", "product", "sourceBranchOrTag", "destinationBranch", "pullRequest"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_builds: z.coerce.number().int().describe("maximum number of related builds returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciBuildActions/{id}/buildRun",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[ciBuildRuns]": args["fields_ciBuildRuns"],
       "fields[builds]": args["fields_builds"],
@@ -126,12 +132,13 @@ export const ciBuildActionsTools: Tool[] = [
     description: "GET /v1/ciBuildActions/{id}/relationships/issues (GET /v1/ciBuildActions/{id}/relationships/issues)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciBuildActions/{id}/relationships/issues",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -146,12 +153,13 @@ export const ciBuildActionsTools: Tool[] = [
     input: z.object({
     fields_ciIssues: z.union([z.array(z.enum(["issueType", "message", "fileSource", "category"])), z.string()]).describe("the fields to include for returned resources of type ciIssues").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciBuildActions/{id}/issues",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[ciIssues]": args["fields_ciIssues"],
       "limit": args["limit"],
@@ -166,12 +174,13 @@ export const ciBuildActionsTools: Tool[] = [
     description: "GET /v1/ciBuildActions/{id}/relationships/testResults (GET /v1/ciBuildActions/{id}/relationships/testResults)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciBuildActions/{id}/relationships/testResults",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -186,12 +195,13 @@ export const ciBuildActionsTools: Tool[] = [
     input: z.object({
     fields_ciTestResults: z.union([z.array(z.enum(["className", "name", "status", "fileSource", "message", "destinationTestResults"])), z.string()]).describe("the fields to include for returned resources of type ciTestResults").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciBuildActions/{id}/testResults",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[ciTestResults]": args["fields_ciTestResults"],
       "limit": args["limit"],

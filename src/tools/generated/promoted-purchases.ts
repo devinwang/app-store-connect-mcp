@@ -33,12 +33,13 @@ export const promotedPurchasesTools: Tool[] = [
     input: z.object({
     fields_promotedPurchases: z.union([z.array(z.enum(["visibleForAllUsers", "enabled", "state", "inAppPurchaseV2", "subscription"])), z.string()]).describe("the fields to include for returned resources of type promotedPurchases").optional(),
     include: z.union([z.array(z.enum(["inAppPurchaseV2", "subscription"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/promotedPurchases/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[promotedPurchases]": args["fields_promotedPurchases"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const promotedPurchasesTools: Tool[] = [
     name: "promoted_purchases_update_instance",
     description: "PATCH /v1/promotedPurchases/{id} (PATCH /v1/promotedPurchases/{id}) Body shape: see OpenAPI components.schemas.PromotedPurchaseUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.PromotedPurchaseUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/promotedPurchases/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -68,12 +70,14 @@ export const promotedPurchasesTools: Tool[] = [
   defineTool({
     name: "promoted_purchases_delete_instance",
     description: "DELETE /v1/promotedPurchases/{id} (DELETE /v1/promotedPurchases/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/promotedPurchases/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

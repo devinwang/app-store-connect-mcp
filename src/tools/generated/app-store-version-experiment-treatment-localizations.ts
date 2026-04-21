@@ -37,12 +37,13 @@ export const appStoreVersionExperimentTreatmentLocalizationsTools: Tool[] = [
     include: z.union([z.array(z.enum(["appStoreVersionExperimentTreatment", "appScreenshotSets", "appPreviewSets"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appPreviewSets: z.coerce.number().int().describe("maximum number of related appPreviewSets returned (when they are included)").optional(),
     limit_appScreenshotSets: z.coerce.number().int().describe("maximum number of related appScreenshotSets returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersionExperimentTreatmentLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appStoreVersionExperimentTreatmentLocalizations]": args["fields_appStoreVersionExperimentTreatmentLocalizations"],
       "fields[appScreenshotSets]": args["fields_appScreenshotSets"],
@@ -59,12 +60,14 @@ export const appStoreVersionExperimentTreatmentLocalizationsTools: Tool[] = [
   defineTool({
     name: "app_store_version_experiment_treatment_localizations_delete_instance",
     description: "DELETE /v1/appStoreVersionExperimentTreatmentLocalizations/{id} (DELETE /v1/appStoreVersionExperimentTreatmentLocalizations/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appStoreVersionExperimentTreatmentLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -76,12 +79,13 @@ export const appStoreVersionExperimentTreatmentLocalizationsTools: Tool[] = [
     description: "GET /v1/appStoreVersionExperimentTreatmentLocalizations/{id}/relationships/appPreviewSets (GET /v1/appStoreVersionExperimentTreatmentLocalizations/{id}/relationships/appPreviewSets)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersionExperimentTreatmentLocalizations/{id}/relationships/appPreviewSets",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -105,12 +109,13 @@ export const appStoreVersionExperimentTreatmentLocalizationsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appPreviews"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appPreviews: z.coerce.number().int().describe("maximum number of related appPreviews returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersionExperimentTreatmentLocalizations/{id}/appPreviewSets",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[previewType]": args["filter_previewType"],
       "filter[appStoreVersionLocalization]": args["filter_appStoreVersionLocalization"],
@@ -134,12 +139,13 @@ export const appStoreVersionExperimentTreatmentLocalizationsTools: Tool[] = [
     description: "GET /v1/appStoreVersionExperimentTreatmentLocalizations/{id}/relationships/appScreenshotSets (GET /v1/appStoreVersionExperimentTreatmentLocalizations/{id}/relationships/appScreenshotSets)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersionExperimentTreatmentLocalizations/{id}/relationships/appScreenshotSets",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -163,12 +169,13 @@ export const appStoreVersionExperimentTreatmentLocalizationsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appScreenshots"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appScreenshots: z.coerce.number().int().describe("maximum number of related appScreenshots returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appStoreVersionExperimentTreatmentLocalizations/{id}/appScreenshotSets",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[screenshotDisplayType]": args["filter_screenshotDisplayType"],
       "filter[appStoreVersionLocalization]": args["filter_appStoreVersionLocalization"],

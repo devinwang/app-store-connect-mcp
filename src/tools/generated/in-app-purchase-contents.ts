@@ -16,12 +16,13 @@ export const inAppPurchaseContentsTools: Tool[] = [
     input: z.object({
     fields_inAppPurchaseContents: z.union([z.array(z.enum(["fileName", "fileSize", "url", "lastModifiedDate", "inAppPurchaseV2"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchaseContents").optional(),
     include: z.union([z.array(z.enum(["inAppPurchaseV2"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/inAppPurchaseContents/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[inAppPurchaseContents]": args["fields_inAppPurchaseContents"],
       "include": args["include"],

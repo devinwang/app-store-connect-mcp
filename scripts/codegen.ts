@@ -33,8 +33,26 @@ type Any = any;
 
 interface OpenApiSpec {
   info: { title: string; version: string };
-  paths: Record<string, Record<string, Operation>>;
+  paths: Record<string, PathItem>;
   components?: { schemas?: Record<string, Any> };
+}
+
+/**
+ * An OpenAPI "path item" holds one entry per HTTP method PLUS an optional
+ * `parameters` array whose entries are inherited by every operation on
+ * that path. Apple exclusively uses this path-item-level slot to declare
+ * path parameters like `id`, so missing it was equivalent to dropping
+ * `id` (and friends) from every resource's schema.
+ */
+interface PathItem {
+  parameters?: Parameter[];
+  get?: Operation;
+  post?: Operation;
+  put?: Operation;
+  patch?: Operation;
+  delete?: Operation;
+  head?: Operation;
+  options?: Operation;
 }
 
 interface Operation {
@@ -346,10 +364,9 @@ async function main(): Promise<void> {
   const methods = ["get", "post", "put", "patch", "delete"] as const;
 
   for (const [urlPath, pathItem] of Object.entries(spec.paths)) {
+    const sharedParams = pathItem.parameters ?? [];
     for (const method of methods) {
-      const op = pathItem[method as keyof typeof pathItem] as
-        | Operation
-        | undefined;
+      const op = pathItem[method] as Operation | undefined;
       if (!op) continue;
       totalOps++;
       const opId = op.operationId;
@@ -367,12 +384,25 @@ async function main(): Promise<void> {
       }
       nameSeen.set(name, `${method.toUpperCase()} ${urlPath}`);
 
+      // Merge path-item-level parameters with operation-level ones.
+      // OpenAPI semantics: same (name, in) pair at the op level overrides
+      // the path-item version. We de-dupe by that key.
+      const seen = new Set<string>();
+      const mergedParams: Parameter[] = [];
+      for (const p of [...(op.parameters ?? []), ...sharedParams]) {
+        const k = `${p.in}:${p.name}`;
+        if (seen.has(k)) continue;
+        seen.add(k);
+        mergedParams.push(p);
+      }
+      const opMerged: Operation = { ...op, parameters: mergedParams };
+
       const tag = op.tags?.[0] ?? "_untagged";
       const tool: ToolSpec = {
         name,
-        description: buildDescription(op, method, urlPath),
-        inputSrc: buildZodObject(op),
-        handlerSrc: buildHandler(op, method, urlPath),
+        description: buildDescription(opMerged, method, urlPath),
+        inputSrc: buildZodObject(opMerged),
+        handlerSrc: buildHandler(opMerged, method, urlPath),
         deprecated: !!op.deprecated,
       };
       if (tool.deprecated) deprecatedCount++;

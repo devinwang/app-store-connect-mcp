@@ -37,12 +37,13 @@ export const gameCenterActivityVersionsTools: Tool[] = [
     include: z.union([z.array(z.enum(["activity", "localizations", "defaultImage", "releases"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
     limit_releases: z.coerce.number().int().describe("maximum number of related releases returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterActivityVersions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterActivityVersions]": args["fields_gameCenterActivityVersions"],
       "fields[gameCenterActivityLocalizations]": args["fields_gameCenterActivityLocalizations"],
@@ -60,13 +61,14 @@ export const gameCenterActivityVersionsTools: Tool[] = [
     name: "game_center_activity_versions_update_instance",
     description: "PATCH /v1/gameCenterActivityVersions/{id} (PATCH /v1/gameCenterActivityVersions/{id}) Body shape: see OpenAPI components.schemas.GameCenterActivityVersionUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterActivityVersionUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterActivityVersions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -76,12 +78,14 @@ export const gameCenterActivityVersionsTools: Tool[] = [
   defineTool({
     name: "game_center_activity_versions_default_image_get_to_one_relationship",
     description: "GET /v1/gameCenterActivityVersions/{id}/relationships/defaultImage (GET /v1/gameCenterActivityVersions/{id}/relationships/defaultImage)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterActivityVersions/{id}/relationships/defaultImage",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -93,12 +97,13 @@ export const gameCenterActivityVersionsTools: Tool[] = [
     description: "GET /v1/gameCenterActivityVersions/{id}/defaultImage (GET /v1/gameCenterActivityVersions/{id}/defaultImage)",
     input: z.object({
     fields_gameCenterActivityImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterActivityImages").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterActivityVersions/{id}/defaultImage",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterActivityImages]": args["fields_gameCenterActivityImages"],
     },
@@ -112,12 +117,13 @@ export const gameCenterActivityVersionsTools: Tool[] = [
     description: "GET /v1/gameCenterActivityVersions/{id}/relationships/localizations (GET /v1/gameCenterActivityVersions/{id}/relationships/localizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterActivityVersions/{id}/relationships/localizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -135,12 +141,13 @@ export const gameCenterActivityVersionsTools: Tool[] = [
     fields_gameCenterActivityImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterActivityImages").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["version", "image"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterActivityVersions/{id}/localizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterActivityLocalizations]": args["fields_gameCenterActivityLocalizations"],
       "fields[gameCenterActivityVersions]": args["fields_gameCenterActivityVersions"],

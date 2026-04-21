@@ -34,12 +34,13 @@ export const appClipDefaultExperienceLocalizationsTools: Tool[] = [
     fields_appClipDefaultExperienceLocalizations: z.union([z.array(z.enum(["locale", "subtitle", "appClipDefaultExperience", "appClipHeaderImage"])), z.string()]).describe("the fields to include for returned resources of type appClipDefaultExperienceLocalizations").optional(),
     fields_appClipHeaderImages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "uploadOperations", "assetDeliveryState", "appClipDefaultExperienceLocalization"])), z.string()]).describe("the fields to include for returned resources of type appClipHeaderImages").optional(),
     include: z.union([z.array(z.enum(["appClipDefaultExperience", "appClipHeaderImage"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appClipDefaultExperienceLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appClipDefaultExperienceLocalizations]": args["fields_appClipDefaultExperienceLocalizations"],
       "fields[appClipHeaderImages]": args["fields_appClipHeaderImages"],
@@ -54,13 +55,14 @@ export const appClipDefaultExperienceLocalizationsTools: Tool[] = [
     name: "app_clip_default_experience_localizations_update_instance",
     description: "PATCH /v1/appClipDefaultExperienceLocalizations/{id} (PATCH /v1/appClipDefaultExperienceLocalizations/{id}) Body shape: see OpenAPI components.schemas.AppClipDefaultExperienceLocalizationUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppClipDefaultExperienceLocalizationUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appClipDefaultExperienceLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -70,12 +72,14 @@ export const appClipDefaultExperienceLocalizationsTools: Tool[] = [
   defineTool({
     name: "app_clip_default_experience_localizations_delete_instance",
     description: "DELETE /v1/appClipDefaultExperienceLocalizations/{id} (DELETE /v1/appClipDefaultExperienceLocalizations/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appClipDefaultExperienceLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -85,12 +89,14 @@ export const appClipDefaultExperienceLocalizationsTools: Tool[] = [
   defineTool({
     name: "app_clip_default_experience_localizations_app_clip_header_image_get_to_one_relationship",
     description: "GET /v1/appClipDefaultExperienceLocalizations/{id}/relationships/appClipHeaderImage (GET /v1/appClipDefaultExperienceLocalizations/{id}/relationships/appClipHeaderImage)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appClipDefaultExperienceLocalizations/{id}/relationships/appClipHeaderImage",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -104,12 +110,13 @@ export const appClipDefaultExperienceLocalizationsTools: Tool[] = [
     fields_appClipHeaderImages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "uploadOperations", "assetDeliveryState", "appClipDefaultExperienceLocalization"])), z.string()]).describe("the fields to include for returned resources of type appClipHeaderImages").optional(),
     fields_appClipDefaultExperienceLocalizations: z.union([z.array(z.enum(["locale", "subtitle", "appClipDefaultExperience", "appClipHeaderImage"])), z.string()]).describe("the fields to include for returned resources of type appClipDefaultExperienceLocalizations").optional(),
     include: z.union([z.array(z.enum(["appClipDefaultExperienceLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appClipDefaultExperienceLocalizations/{id}/appClipHeaderImage",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appClipHeaderImages]": args["fields_appClipHeaderImages"],
       "fields[appClipDefaultExperienceLocalizations]": args["fields_appClipDefaultExperienceLocalizations"],

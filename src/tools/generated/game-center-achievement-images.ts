@@ -33,12 +33,13 @@ export const gameCenterAchievementImagesTools: Tool[] = [
     input: z.object({
     fields_gameCenterAchievementImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterAchievementLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementImages").optional(),
     include: z.union([z.array(z.enum(["gameCenterAchievementLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterAchievementImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievementImages]": args["fields_gameCenterAchievementImages"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const gameCenterAchievementImagesTools: Tool[] = [
     name: "game_center_achievement_images_update_instance",
     description: "[DEPRECATED] PATCH /v1/gameCenterAchievementImages/{id} (PATCH /v1/gameCenterAchievementImages/{id}) Body shape: see OpenAPI components.schemas.GameCenterAchievementImageUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterAchievementImageUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterAchievementImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -68,12 +70,14 @@ export const gameCenterAchievementImagesTools: Tool[] = [
   defineTool({
     name: "game_center_achievement_images_delete_instance",
     description: "[DEPRECATED] DELETE /v1/gameCenterAchievementImages/{id} (DELETE /v1/gameCenterAchievementImages/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterAchievementImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -103,12 +107,13 @@ export const gameCenterAchievementImagesTools: Tool[] = [
     input: z.object({
     fields_gameCenterAchievementImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementImages").optional(),
     include: z.union([z.array(z.enum(["localization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterAchievementImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievementImages]": args["fields_gameCenterAchievementImages"],
       "include": args["include"],
@@ -122,13 +127,14 @@ export const gameCenterAchievementImagesTools: Tool[] = [
     name: "game_center_achievement_images_v2_update_instance",
     description: "PATCH /v2/gameCenterAchievementImages/{id} (PATCH /v2/gameCenterAchievementImages/{id}) Body shape: see OpenAPI components.schemas.GameCenterAchievementImageV2UpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterAchievementImageV2UpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v2/gameCenterAchievementImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -138,12 +144,14 @@ export const gameCenterAchievementImagesTools: Tool[] = [
   defineTool({
     name: "game_center_achievement_images_v2_delete_instance",
     description: "DELETE /v2/gameCenterAchievementImages/{id} (DELETE /v2/gameCenterAchievementImages/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v2/gameCenterAchievementImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

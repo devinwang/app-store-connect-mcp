@@ -35,12 +35,13 @@ export const gameCenterChallengesTools: Tool[] = [
     fields_gameCenterChallengeVersions: z.union([z.array(z.enum(["version", "state", "challenge", "localizations", "releases", "defaultImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeVersions").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterGroup", "versions", "leaderboard", "leaderboardV2"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_versions: z.coerce.number().int().describe("maximum number of related versions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterChallenges/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterChallenges]": args["fields_gameCenterChallenges"],
       "fields[gameCenterChallengeVersions]": args["fields_gameCenterChallengeVersions"],
@@ -56,13 +57,14 @@ export const gameCenterChallengesTools: Tool[] = [
     name: "game_center_challenges_update_instance",
     description: "PATCH /v1/gameCenterChallenges/{id} (PATCH /v1/gameCenterChallenges/{id}) Body shape: see OpenAPI components.schemas.GameCenterChallengeUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterChallengeUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterChallenges/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -72,12 +74,14 @@ export const gameCenterChallengesTools: Tool[] = [
   defineTool({
     name: "game_center_challenges_delete_instance",
     description: "DELETE /v1/gameCenterChallenges/{id} (DELETE /v1/gameCenterChallenges/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterChallenges/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -88,13 +92,14 @@ export const gameCenterChallengesTools: Tool[] = [
     name: "game_center_challenges_leaderboard_update_to_one_relationship",
     description: "[DEPRECATED] PATCH /v1/gameCenterChallenges/{id}/relationships/leaderboard (PATCH /v1/gameCenterChallenges/{id}/relationships/leaderboard) Body shape: see OpenAPI components.schemas.GameCenterChallengeLeaderboardLinkageRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterChallengeLeaderboardLinkageRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterChallenges/{id}/relationships/leaderboard",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -105,13 +110,14 @@ export const gameCenterChallengesTools: Tool[] = [
     name: "game_center_challenges_leaderboard_v2_update_to_one_relationship",
     description: "PATCH /v1/gameCenterChallenges/{id}/relationships/leaderboardV2 (PATCH /v1/gameCenterChallenges/{id}/relationships/leaderboardV2) Body shape: see OpenAPI components.schemas.GameCenterChallengeLeaderboardV2LinkageRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterChallengeLeaderboardV2LinkageRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterChallenges/{id}/relationships/leaderboardV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -123,12 +129,13 @@ export const gameCenterChallengesTools: Tool[] = [
     description: "GET /v1/gameCenterChallenges/{id}/relationships/versions (GET /v1/gameCenterChallenges/{id}/relationships/versions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterChallenges/{id}/relationships/versions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -150,12 +157,13 @@ export const gameCenterChallengesTools: Tool[] = [
     include: z.union([z.array(z.enum(["challenge", "localizations", "releases", "defaultImage"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
     limit_releases: z.coerce.number().int().describe("maximum number of related releases returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterChallenges/{id}/versions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterChallengeVersions]": args["fields_gameCenterChallengeVersions"],
       "fields[gameCenterChallenges]": args["fields_gameCenterChallenges"],

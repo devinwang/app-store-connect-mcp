@@ -45,12 +45,13 @@ export const ciXcodeVersionsTools: Tool[] = [
     fields_ciMacOsVersions: z.union([z.array(z.enum(["version", "name", "xcodeVersions"])), z.string()]).describe("the fields to include for returned resources of type ciMacOsVersions").optional(),
     include: z.union([z.array(z.enum(["macOsVersions"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_macOsVersions: z.coerce.number().int().describe("maximum number of related macOsVersions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciXcodeVersions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[ciXcodeVersions]": args["fields_ciXcodeVersions"],
       "fields[ciMacOsVersions]": args["fields_ciMacOsVersions"],
@@ -67,12 +68,13 @@ export const ciXcodeVersionsTools: Tool[] = [
     description: "GET /v1/ciXcodeVersions/{id}/relationships/macOsVersions (GET /v1/ciXcodeVersions/{id}/relationships/macOsVersions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciXcodeVersions/{id}/relationships/macOsVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -90,12 +92,13 @@ export const ciXcodeVersionsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["xcodeVersions"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_xcodeVersions: z.coerce.number().int().describe("maximum number of related xcodeVersions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciXcodeVersions/{id}/macOsVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[ciMacOsVersions]": args["fields_ciMacOsVersions"],
       "fields[ciXcodeVersions]": args["fields_ciXcodeVersions"],

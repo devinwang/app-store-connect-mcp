@@ -33,12 +33,13 @@ export const appPreviewsTools: Tool[] = [
     input: z.object({
     fields_appPreviews: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "previewFrameTimeCode", "mimeType", "videoUrl", "previewFrameImage", "previewImage", "uploadOperations", "assetDeliveryState", "videoDeliveryState", "appPreviewSet"])), z.string()]).describe("the fields to include for returned resources of type appPreviews").optional(),
     include: z.union([z.array(z.enum(["appPreviewSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appPreviews/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appPreviews]": args["fields_appPreviews"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const appPreviewsTools: Tool[] = [
     name: "app_previews_update_instance",
     description: "PATCH /v1/appPreviews/{id} (PATCH /v1/appPreviews/{id}) Body shape: see OpenAPI components.schemas.AppPreviewUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppPreviewUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appPreviews/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -68,12 +70,14 @@ export const appPreviewsTools: Tool[] = [
   defineTool({
     name: "app_previews_delete_instance",
     description: "DELETE /v1/appPreviews/{id} (DELETE /v1/appPreviews/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appPreviews/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

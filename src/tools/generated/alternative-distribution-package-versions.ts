@@ -20,12 +20,13 @@ export const alternativeDistributionPackageVersionsTools: Tool[] = [
     include: z.union([z.array(z.enum(["variants", "deltas", "alternativeDistributionPackage"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_deltas: z.coerce.number().int().describe("maximum number of related deltas returned (when they are included)").optional(),
     limit_variants: z.coerce.number().int().describe("maximum number of related variants returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/alternativeDistributionPackageVersions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[alternativeDistributionPackageVersions]": args["fields_alternativeDistributionPackageVersions"],
       "fields[alternativeDistributionPackageVariants]": args["fields_alternativeDistributionPackageVariants"],
@@ -44,12 +45,13 @@ export const alternativeDistributionPackageVersionsTools: Tool[] = [
     description: "GET /v1/alternativeDistributionPackageVersions/{id}/relationships/deltas (GET /v1/alternativeDistributionPackageVersions/{id}/relationships/deltas)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/alternativeDistributionPackageVersions/{id}/relationships/deltas",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -64,12 +66,13 @@ export const alternativeDistributionPackageVersionsTools: Tool[] = [
     input: z.object({
     fields_alternativeDistributionPackageDeltas: z.union([z.array(z.enum(["url", "urlExpirationDate", "alternativeDistributionKeyBlob", "fileChecksum"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackageDeltas").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/alternativeDistributionPackageVersions/{id}/deltas",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[alternativeDistributionPackageDeltas]": args["fields_alternativeDistributionPackageDeltas"],
       "limit": args["limit"],
@@ -84,12 +87,13 @@ export const alternativeDistributionPackageVersionsTools: Tool[] = [
     description: "GET /v1/alternativeDistributionPackageVersions/{id}/relationships/variants (GET /v1/alternativeDistributionPackageVersions/{id}/relationships/variants)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/alternativeDistributionPackageVersions/{id}/relationships/variants",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -104,12 +108,13 @@ export const alternativeDistributionPackageVersionsTools: Tool[] = [
     input: z.object({
     fields_alternativeDistributionPackageVariants: z.union([z.array(z.enum(["url", "urlExpirationDate", "alternativeDistributionKeyBlob", "fileChecksum"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackageVariants").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/alternativeDistributionPackageVersions/{id}/variants",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[alternativeDistributionPackageVariants]": args["fields_alternativeDistributionPackageVariants"],
       "limit": args["limit"],

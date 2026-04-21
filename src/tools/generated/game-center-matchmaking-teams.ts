@@ -31,13 +31,14 @@ export const gameCenterMatchmakingTeamsTools: Tool[] = [
     name: "game_center_matchmaking_teams_update_instance",
     description: "PATCH /v1/gameCenterMatchmakingTeams/{id} (PATCH /v1/gameCenterMatchmakingTeams/{id}) Body shape: see OpenAPI components.schemas.GameCenterMatchmakingTeamUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterMatchmakingTeamUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterMatchmakingTeams/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -47,12 +48,14 @@ export const gameCenterMatchmakingTeamsTools: Tool[] = [
   defineTool({
     name: "game_center_matchmaking_teams_delete_instance",
     description: "DELETE /v1/gameCenterMatchmakingTeams/{id} (DELETE /v1/gameCenterMatchmakingTeams/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterMatchmakingTeams/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

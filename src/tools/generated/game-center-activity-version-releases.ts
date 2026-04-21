@@ -33,12 +33,13 @@ export const gameCenterActivityVersionReleasesTools: Tool[] = [
     input: z.object({
     fields_gameCenterActivityVersionReleases: z.union([z.array(z.enum(["version"])), z.string()]).describe("the fields to include for returned resources of type gameCenterActivityVersionReleases").optional(),
     include: z.union([z.array(z.enum(["version"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterActivityVersionReleases/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterActivityVersionReleases]": args["fields_gameCenterActivityVersionReleases"],
       "include": args["include"],
@@ -51,12 +52,14 @@ export const gameCenterActivityVersionReleasesTools: Tool[] = [
   defineTool({
     name: "game_center_activity_version_releases_delete_instance",
     description: "[DEPRECATED] DELETE /v1/gameCenterActivityVersionReleases/{id} (DELETE /v1/gameCenterActivityVersionReleases/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterActivityVersionReleases/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

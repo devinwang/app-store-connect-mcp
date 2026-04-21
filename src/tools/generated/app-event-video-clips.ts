@@ -33,12 +33,13 @@ export const appEventVideoClipsTools: Tool[] = [
     input: z.object({
     fields_appEventVideoClips: z.union([z.array(z.enum(["fileSize", "fileName", "previewFrameTimeCode", "videoUrl", "previewFrameImage", "previewImage", "uploadOperations", "assetDeliveryState", "videoDeliveryState", "appEventAssetType", "appEventLocalization"])), z.string()]).describe("the fields to include for returned resources of type appEventVideoClips").optional(),
     include: z.union([z.array(z.enum(["appEventLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appEventVideoClips/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appEventVideoClips]": args["fields_appEventVideoClips"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const appEventVideoClipsTools: Tool[] = [
     name: "app_event_video_clips_update_instance",
     description: "PATCH /v1/appEventVideoClips/{id} (PATCH /v1/appEventVideoClips/{id}) Body shape: see OpenAPI components.schemas.AppEventVideoClipUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppEventVideoClipUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appEventVideoClips/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -68,12 +70,14 @@ export const appEventVideoClipsTools: Tool[] = [
   defineTool({
     name: "app_event_video_clips_delete_instance",
     description: "DELETE /v1/appEventVideoClips/{id} (DELETE /v1/appEventVideoClips/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appEventVideoClips/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

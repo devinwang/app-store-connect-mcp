@@ -39,12 +39,13 @@ export const gameCenterActivitiesTools: Tool[] = [
     limit_leaderboards: z.coerce.number().int().describe("maximum number of related leaderboards returned (when they are included)").optional(),
     limit_leaderboardsV2: z.coerce.number().int().describe("maximum number of related leaderboardsV2 returned (when they are included)").optional(),
     limit_versions: z.coerce.number().int().describe("maximum number of related versions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterActivities/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterActivities]": args["fields_gameCenterActivities"],
       "fields[gameCenterActivityVersions]": args["fields_gameCenterActivityVersions"],
@@ -64,13 +65,14 @@ export const gameCenterActivitiesTools: Tool[] = [
     name: "game_center_activities_update_instance",
     description: "PATCH /v1/gameCenterActivities/{id} (PATCH /v1/gameCenterActivities/{id}) Body shape: see OpenAPI components.schemas.GameCenterActivityUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterActivityUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterActivities/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -80,12 +82,14 @@ export const gameCenterActivitiesTools: Tool[] = [
   defineTool({
     name: "game_center_activities_delete_instance",
     description: "DELETE /v1/gameCenterActivities/{id} (DELETE /v1/gameCenterActivities/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterActivities/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -96,13 +100,14 @@ export const gameCenterActivitiesTools: Tool[] = [
     name: "game_center_activities_achievements_create_to_many_relationship",
     description: "[DEPRECATED] POST /v1/gameCenterActivities/{id}/relationships/achievements (POST /v1/gameCenterActivities/{id}/relationships/achievements) Body shape: see OpenAPI components.schemas.GameCenterActivityAchievementsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterActivityAchievementsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "POST",
       path: "/v1/gameCenterActivities/{id}/relationships/achievements",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -113,13 +118,14 @@ export const gameCenterActivitiesTools: Tool[] = [
     name: "game_center_activities_achievements_delete_to_many_relationship",
     description: "[DEPRECATED] DELETE /v1/gameCenterActivities/{id}/relationships/achievements (DELETE /v1/gameCenterActivities/{id}/relationships/achievements) Body shape: see OpenAPI components.schemas.GameCenterActivityAchievementsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterActivityAchievementsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterActivities/{id}/relationships/achievements",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -130,13 +136,14 @@ export const gameCenterActivitiesTools: Tool[] = [
     name: "game_center_activities_achievements_v2_create_to_many_relationship",
     description: "POST /v1/gameCenterActivities/{id}/relationships/achievementsV2 (POST /v1/gameCenterActivities/{id}/relationships/achievementsV2) Body shape: see OpenAPI components.schemas.GameCenterActivityAchievementsV2LinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterActivityAchievementsV2LinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "POST",
       path: "/v1/gameCenterActivities/{id}/relationships/achievementsV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -147,13 +154,14 @@ export const gameCenterActivitiesTools: Tool[] = [
     name: "game_center_activities_achievements_v2_delete_to_many_relationship",
     description: "DELETE /v1/gameCenterActivities/{id}/relationships/achievementsV2 (DELETE /v1/gameCenterActivities/{id}/relationships/achievementsV2) Body shape: see OpenAPI components.schemas.GameCenterActivityAchievementsV2LinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterActivityAchievementsV2LinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterActivities/{id}/relationships/achievementsV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -164,13 +172,14 @@ export const gameCenterActivitiesTools: Tool[] = [
     name: "game_center_activities_leaderboards_create_to_many_relationship",
     description: "[DEPRECATED] POST /v1/gameCenterActivities/{id}/relationships/leaderboards (POST /v1/gameCenterActivities/{id}/relationships/leaderboards) Body shape: see OpenAPI components.schemas.GameCenterActivityLeaderboardsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterActivityLeaderboardsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "POST",
       path: "/v1/gameCenterActivities/{id}/relationships/leaderboards",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -181,13 +190,14 @@ export const gameCenterActivitiesTools: Tool[] = [
     name: "game_center_activities_leaderboards_delete_to_many_relationship",
     description: "[DEPRECATED] DELETE /v1/gameCenterActivities/{id}/relationships/leaderboards (DELETE /v1/gameCenterActivities/{id}/relationships/leaderboards) Body shape: see OpenAPI components.schemas.GameCenterActivityLeaderboardsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterActivityLeaderboardsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterActivities/{id}/relationships/leaderboards",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -198,13 +208,14 @@ export const gameCenterActivitiesTools: Tool[] = [
     name: "game_center_activities_leaderboards_v2_create_to_many_relationship",
     description: "POST /v1/gameCenterActivities/{id}/relationships/leaderboardsV2 (POST /v1/gameCenterActivities/{id}/relationships/leaderboardsV2) Body shape: see OpenAPI components.schemas.GameCenterActivityLeaderboardsV2LinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterActivityLeaderboardsV2LinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "POST",
       path: "/v1/gameCenterActivities/{id}/relationships/leaderboardsV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -215,13 +226,14 @@ export const gameCenterActivitiesTools: Tool[] = [
     name: "game_center_activities_leaderboards_v2_delete_to_many_relationship",
     description: "DELETE /v1/gameCenterActivities/{id}/relationships/leaderboardsV2 (DELETE /v1/gameCenterActivities/{id}/relationships/leaderboardsV2) Body shape: see OpenAPI components.schemas.GameCenterActivityLeaderboardsV2LinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterActivityLeaderboardsV2LinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterActivities/{id}/relationships/leaderboardsV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -233,12 +245,13 @@ export const gameCenterActivitiesTools: Tool[] = [
     description: "GET /v1/gameCenterActivities/{id}/relationships/versions (GET /v1/gameCenterActivities/{id}/relationships/versions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterActivities/{id}/relationships/versions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -260,12 +273,13 @@ export const gameCenterActivitiesTools: Tool[] = [
     include: z.union([z.array(z.enum(["activity", "localizations", "defaultImage", "releases"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
     limit_releases: z.coerce.number().int().describe("maximum number of related releases returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterActivities/{id}/versions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterActivityVersions]": args["fields_gameCenterActivityVersions"],
       "fields[gameCenterActivities]": args["fields_gameCenterActivities"],

@@ -52,12 +52,13 @@ export const ciProductsTools: Tool[] = [
     fields_scmRepositories: z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
     include: z.union([z.array(z.enum(["app", "bundleId", "primaryRepositories"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_primaryRepositories: z.coerce.number().int().describe("maximum number of related primaryRepositories returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciProducts/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[ciProducts]": args["fields_ciProducts"],
       "fields[apps]": args["fields_apps"],
@@ -73,12 +74,14 @@ export const ciProductsTools: Tool[] = [
   defineTool({
     name: "ci_products_delete_instance",
     description: "DELETE /v1/ciProducts/{id} (DELETE /v1/ciProducts/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/ciProducts/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -90,12 +93,13 @@ export const ciProductsTools: Tool[] = [
     description: "GET /v1/ciProducts/{id}/relationships/additionalRepositories (GET /v1/ciProducts/{id}/relationships/additionalRepositories)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciProducts/{id}/relationships/additionalRepositories",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -114,12 +118,13 @@ export const ciProductsTools: Tool[] = [
     fields_scmGitReferences: z.union([z.array(z.enum(["name", "canonicalName", "isDeleted", "kind", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmGitReferences").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["scmProvider", "defaultBranch"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciProducts/{id}/additionalRepositories",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[id]": args["filter_id"],
       "fields[scmRepositories]": args["fields_scmRepositories"],
@@ -136,12 +141,14 @@ export const ciProductsTools: Tool[] = [
   defineTool({
     name: "ci_products_app_get_to_one_relationship",
     description: "GET /v1/ciProducts/{id}/relationships/app (GET /v1/ciProducts/{id}/relationships/app)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciProducts/{id}/relationships/app",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -196,12 +203,13 @@ export const ciProductsTools: Tool[] = [
     limit_reviewSubmissions: z.coerce.number().int().describe("maximum number of related reviewSubmissions returned (when they are included)").optional(),
     limit_appStoreVersionExperimentsV2: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentsV2 returned (when they are included)").optional(),
     limit_androidToIosAppMappingDetails: z.coerce.number().int().describe("maximum number of related androidToIosAppMappingDetails returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciProducts/{id}/app",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[apps]": args["fields_apps"],
       "fields[appEncryptionDeclarations]": args["fields_appEncryptionDeclarations"],
@@ -258,12 +266,13 @@ export const ciProductsTools: Tool[] = [
     description: "GET /v1/ciProducts/{id}/relationships/buildRuns (GET /v1/ciProducts/{id}/relationships/buildRuns)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciProducts/{id}/relationships/buildRuns",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -287,12 +296,13 @@ export const ciProductsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["builds", "workflow", "product", "sourceBranchOrTag", "destinationBranch", "pullRequest"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_builds: z.coerce.number().int().describe("maximum number of related builds returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciProducts/{id}/buildRuns",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[builds]": args["filter_builds"],
       "sort": args["sort"],
@@ -316,12 +326,13 @@ export const ciProductsTools: Tool[] = [
     description: "GET /v1/ciProducts/{id}/relationships/primaryRepositories (GET /v1/ciProducts/{id}/relationships/primaryRepositories)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciProducts/{id}/relationships/primaryRepositories",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -340,12 +351,13 @@ export const ciProductsTools: Tool[] = [
     fields_scmGitReferences: z.union([z.array(z.enum(["name", "canonicalName", "isDeleted", "kind", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmGitReferences").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["scmProvider", "defaultBranch"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciProducts/{id}/primaryRepositories",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[id]": args["filter_id"],
       "fields[scmRepositories]": args["fields_scmRepositories"],
@@ -364,12 +376,13 @@ export const ciProductsTools: Tool[] = [
     description: "GET /v1/ciProducts/{id}/relationships/workflows (GET /v1/ciProducts/{id}/relationships/workflows)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciProducts/{id}/relationships/workflows",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -389,12 +402,13 @@ export const ciProductsTools: Tool[] = [
     fields_ciMacOsVersions: z.union([z.array(z.enum(["version", "name", "xcodeVersions"])), z.string()]).describe("the fields to include for returned resources of type ciMacOsVersions").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["product", "repository", "xcodeVersion", "macOsVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/ciProducts/{id}/workflows",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[ciWorkflows]": args["fields_ciWorkflows"],
       "fields[ciProducts]": args["fields_ciProducts"],

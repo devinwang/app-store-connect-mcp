@@ -33,12 +33,13 @@ export const buildUploadsTools: Tool[] = [
     input: z.object({
     fields_buildUploads: z.union([z.array(z.enum(["cfBundleShortVersionString", "cfBundleVersion", "createdDate", "state", "platform", "uploadedDate", "build", "assetFile", "assetDescriptionFile", "assetSpiFile", "buildUploadFiles"])), z.string()]).describe("the fields to include for returned resources of type buildUploads").optional(),
     include: z.union([z.array(z.enum(["build", "assetFile", "assetDescriptionFile", "assetSpiFile"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/buildUploads/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[buildUploads]": args["fields_buildUploads"],
       "include": args["include"],
@@ -51,12 +52,14 @@ export const buildUploadsTools: Tool[] = [
   defineTool({
     name: "build_uploads_delete_instance",
     description: "DELETE /v1/buildUploads/{id} (DELETE /v1/buildUploads/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/buildUploads/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -68,12 +71,13 @@ export const buildUploadsTools: Tool[] = [
     description: "GET /v1/buildUploads/{id}/relationships/buildUploadFiles (GET /v1/buildUploads/{id}/relationships/buildUploadFiles)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/buildUploads/{id}/relationships/buildUploadFiles",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -88,12 +92,13 @@ export const buildUploadsTools: Tool[] = [
     input: z.object({
     fields_buildUploadFiles: z.union([z.array(z.enum(["assetDeliveryState", "assetToken", "assetType", "fileName", "fileSize", "sourceFileChecksums", "uploadOperations", "uti"])), z.string()]).describe("the fields to include for returned resources of type buildUploadFiles").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/buildUploads/{id}/buildUploadFiles",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[buildUploadFiles]": args["fields_buildUploadFiles"],
       "limit": args["limit"],

@@ -17,12 +17,13 @@ export const customerReviewsTools: Tool[] = [
     fields_customerReviews: z.union([z.array(z.enum(["rating", "title", "body", "reviewerNickname", "createdDate", "territory", "response"])), z.string()]).describe("the fields to include for returned resources of type customerReviews").optional(),
     fields_customerReviewResponses: z.union([z.array(z.enum(["responseBody", "lastModifiedDate", "state", "review"])), z.string()]).describe("the fields to include for returned resources of type customerReviewResponses").optional(),
     include: z.union([z.array(z.enum(["response"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/customerReviews/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[customerReviews]": args["fields_customerReviews"],
       "fields[customerReviewResponses]": args["fields_customerReviewResponses"],
@@ -36,12 +37,14 @@ export const customerReviewsTools: Tool[] = [
   defineTool({
     name: "customer_reviews_response_get_to_one_relationship",
     description: "GET /v1/customerReviews/{id}/relationships/response (GET /v1/customerReviews/{id}/relationships/response)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/customerReviews/{id}/relationships/response",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -55,12 +58,13 @@ export const customerReviewsTools: Tool[] = [
     fields_customerReviewResponses: z.union([z.array(z.enum(["responseBody", "lastModifiedDate", "state", "review"])), z.string()]).describe("the fields to include for returned resources of type customerReviewResponses").optional(),
     fields_customerReviews: z.union([z.array(z.enum(["rating", "title", "body", "reviewerNickname", "createdDate", "territory", "response"])), z.string()]).describe("the fields to include for returned resources of type customerReviews").optional(),
     include: z.union([z.array(z.enum(["review"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/customerReviews/{id}/response",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[customerReviewResponses]": args["fields_customerReviewResponses"],
       "fields[customerReviews]": args["fields_customerReviews"],

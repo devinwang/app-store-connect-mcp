@@ -38,12 +38,13 @@ export const appCustomProductPageLocalizationsTools: Tool[] = [
     limit_appPreviewSets: z.coerce.number().int().describe("maximum number of related appPreviewSets returned (when they are included)").optional(),
     limit_appScreenshotSets: z.coerce.number().int().describe("maximum number of related appScreenshotSets returned (when they are included)").optional(),
     limit_searchKeywords: z.coerce.number().int().describe("maximum number of related searchKeywords returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appCustomProductPageLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appCustomProductPageLocalizations]": args["fields_appCustomProductPageLocalizations"],
       "fields[appScreenshotSets]": args["fields_appScreenshotSets"],
@@ -62,13 +63,14 @@ export const appCustomProductPageLocalizationsTools: Tool[] = [
     name: "app_custom_product_page_localizations_update_instance",
     description: "PATCH /v1/appCustomProductPageLocalizations/{id} (PATCH /v1/appCustomProductPageLocalizations/{id}) Body shape: see OpenAPI components.schemas.AppCustomProductPageLocalizationUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppCustomProductPageLocalizationUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appCustomProductPageLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -78,12 +80,14 @@ export const appCustomProductPageLocalizationsTools: Tool[] = [
   defineTool({
     name: "app_custom_product_page_localizations_delete_instance",
     description: "DELETE /v1/appCustomProductPageLocalizations/{id} (DELETE /v1/appCustomProductPageLocalizations/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appCustomProductPageLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -95,12 +99,13 @@ export const appCustomProductPageLocalizationsTools: Tool[] = [
     description: "GET /v1/appCustomProductPageLocalizations/{id}/relationships/appPreviewSets (GET /v1/appCustomProductPageLocalizations/{id}/relationships/appPreviewSets)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appCustomProductPageLocalizations/{id}/relationships/appPreviewSets",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -124,12 +129,13 @@ export const appCustomProductPageLocalizationsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appPreviews"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appPreviews: z.coerce.number().int().describe("maximum number of related appPreviews returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appCustomProductPageLocalizations/{id}/appPreviewSets",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[previewType]": args["filter_previewType"],
       "filter[appStoreVersionLocalization]": args["filter_appStoreVersionLocalization"],
@@ -153,12 +159,13 @@ export const appCustomProductPageLocalizationsTools: Tool[] = [
     description: "GET /v1/appCustomProductPageLocalizations/{id}/relationships/appScreenshotSets (GET /v1/appCustomProductPageLocalizations/{id}/relationships/appScreenshotSets)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appCustomProductPageLocalizations/{id}/relationships/appScreenshotSets",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -182,12 +189,13 @@ export const appCustomProductPageLocalizationsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appScreenshots"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appScreenshots: z.coerce.number().int().describe("maximum number of related appScreenshots returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appCustomProductPageLocalizations/{id}/appScreenshotSets",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[screenshotDisplayType]": args["filter_screenshotDisplayType"],
       "filter[appStoreVersionLocalization]": args["filter_appStoreVersionLocalization"],
@@ -211,12 +219,13 @@ export const appCustomProductPageLocalizationsTools: Tool[] = [
     description: "GET /v1/appCustomProductPageLocalizations/{id}/relationships/searchKeywords (GET /v1/appCustomProductPageLocalizations/{id}/relationships/searchKeywords)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appCustomProductPageLocalizations/{id}/relationships/searchKeywords",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -229,13 +238,14 @@ export const appCustomProductPageLocalizationsTools: Tool[] = [
     name: "app_custom_product_page_localizations_search_keywords_create_to_many_relationship",
     description: "POST /v1/appCustomProductPageLocalizations/{id}/relationships/searchKeywords (POST /v1/appCustomProductPageLocalizations/{id}/relationships/searchKeywords) Body shape: see OpenAPI components.schemas.AppCustomProductPageLocalizationSearchKeywordsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppCustomProductPageLocalizationSearchKeywordsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "POST",
       path: "/v1/appCustomProductPageLocalizations/{id}/relationships/searchKeywords",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -246,13 +256,14 @@ export const appCustomProductPageLocalizationsTools: Tool[] = [
     name: "app_custom_product_page_localizations_search_keywords_delete_to_many_relationship",
     description: "DELETE /v1/appCustomProductPageLocalizations/{id}/relationships/searchKeywords (DELETE /v1/appCustomProductPageLocalizations/{id}/relationships/searchKeywords) Body shape: see OpenAPI components.schemas.AppCustomProductPageLocalizationSearchKeywordsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppCustomProductPageLocalizationSearchKeywordsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appCustomProductPageLocalizations/{id}/relationships/searchKeywords",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -267,12 +278,13 @@ export const appCustomProductPageLocalizationsTools: Tool[] = [
     filter_locale: z.union([z.array(z.string()), z.string()]).describe("filter by locale").optional(),
     fields_appKeywords: z.union([z.array(z.string()), z.string()]).describe("the fields to include for returned resources of type appKeywords").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appCustomProductPageLocalizations/{id}/searchKeywords",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[platform]": args["filter_platform"],
       "filter[locale]": args["filter_locale"],

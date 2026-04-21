@@ -16,12 +16,13 @@ export const scmPullRequestsTools: Tool[] = [
     input: z.object({
     fields_scmPullRequests: z.union([z.array(z.enum(["title", "number", "webUrl", "sourceRepositoryOwner", "sourceRepositoryName", "sourceBranchName", "destinationRepositoryOwner", "destinationRepositoryName", "destinationBranchName", "isClosed", "isCrossRepository", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmPullRequests").optional(),
     include: z.union([z.array(z.enum(["repository"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/scmPullRequests/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[scmPullRequests]": args["fields_scmPullRequests"],
       "include": args["include"],

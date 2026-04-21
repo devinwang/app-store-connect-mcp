@@ -33,12 +33,13 @@ export const subscriptionOfferCodeOneTimeUseCodesTools: Tool[] = [
     input: z.object({
     fields_subscriptionOfferCodeOneTimeUseCodes: z.union([z.array(z.enum(["numberOfCodes", "createdDate", "expirationDate", "active", "environment", "offerCode", "values"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodeOneTimeUseCodes").optional(),
     include: z.union([z.array(z.enum(["offerCode"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionOfferCodeOneTimeUseCodes/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[subscriptionOfferCodeOneTimeUseCodes]": args["fields_subscriptionOfferCodeOneTimeUseCodes"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const subscriptionOfferCodeOneTimeUseCodesTools: Tool[] = [
     name: "subscription_offer_code_one_time_use_codes_update_instance",
     description: "PATCH /v1/subscriptionOfferCodeOneTimeUseCodes/{id} (PATCH /v1/subscriptionOfferCodeOneTimeUseCodes/{id}) Body shape: see OpenAPI components.schemas.SubscriptionOfferCodeOneTimeUseCodeUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.SubscriptionOfferCodeOneTimeUseCodeUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/subscriptionOfferCodeOneTimeUseCodes/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -68,12 +70,14 @@ export const subscriptionOfferCodeOneTimeUseCodesTools: Tool[] = [
   defineTool({
     name: "subscription_offer_code_one_time_use_codes_values_get_to_one_related",
     description: "GET /v1/subscriptionOfferCodeOneTimeUseCodes/{id}/values (GET /v1/subscriptionOfferCodeOneTimeUseCodes/{id}/values)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionOfferCodeOneTimeUseCodes/{id}/values",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

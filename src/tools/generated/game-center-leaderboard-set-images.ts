@@ -33,12 +33,13 @@ export const gameCenterLeaderboardSetImagesTools: Tool[] = [
     input: z.object({
     fields_gameCenterLeaderboardSetImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterLeaderboardSetLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetImages").optional(),
     include: z.union([z.array(z.enum(["gameCenterLeaderboardSetLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterLeaderboardSetImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardSetImages]": args["fields_gameCenterLeaderboardSetImages"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const gameCenterLeaderboardSetImagesTools: Tool[] = [
     name: "game_center_leaderboard_set_images_update_instance",
     description: "[DEPRECATED] PATCH /v1/gameCenterLeaderboardSetImages/{id} (PATCH /v1/gameCenterLeaderboardSetImages/{id}) Body shape: see OpenAPI components.schemas.GameCenterLeaderboardSetImageUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterLeaderboardSetImageUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterLeaderboardSetImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -68,12 +70,14 @@ export const gameCenterLeaderboardSetImagesTools: Tool[] = [
   defineTool({
     name: "game_center_leaderboard_set_images_delete_instance",
     description: "[DEPRECATED] DELETE /v1/gameCenterLeaderboardSetImages/{id} (DELETE /v1/gameCenterLeaderboardSetImages/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterLeaderboardSetImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -103,12 +107,13 @@ export const gameCenterLeaderboardSetImagesTools: Tool[] = [
     input: z.object({
     fields_gameCenterLeaderboardSetImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetImages").optional(),
     include: z.union([z.array(z.enum(["localization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterLeaderboardSetImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardSetImages]": args["fields_gameCenterLeaderboardSetImages"],
       "include": args["include"],
@@ -122,13 +127,14 @@ export const gameCenterLeaderboardSetImagesTools: Tool[] = [
     name: "game_center_leaderboard_set_images_v2_update_instance",
     description: "PATCH /v2/gameCenterLeaderboardSetImages/{id} (PATCH /v2/gameCenterLeaderboardSetImages/{id}) Body shape: see OpenAPI components.schemas.GameCenterLeaderboardSetImageV2UpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterLeaderboardSetImageV2UpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v2/gameCenterLeaderboardSetImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -138,12 +144,14 @@ export const gameCenterLeaderboardSetImagesTools: Tool[] = [
   defineTool({
     name: "game_center_leaderboard_set_images_v2_delete_instance",
     description: "DELETE /v2/gameCenterLeaderboardSetImages/{id} (DELETE /v2/gameCenterLeaderboardSetImages/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v2/gameCenterLeaderboardSetImages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

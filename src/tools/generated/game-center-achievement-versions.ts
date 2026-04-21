@@ -35,12 +35,13 @@ export const gameCenterAchievementVersionsTools: Tool[] = [
     fields_gameCenterAchievementLocalizations: z.union([z.array(z.enum(["locale", "name", "beforeEarnedDescription", "afterEarnedDescription", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementLocalizations").optional(),
     include: z.union([z.array(z.enum(["achievement", "localizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterAchievementVersions/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievementVersions]": args["fields_gameCenterAchievementVersions"],
       "fields[gameCenterAchievementLocalizations]": args["fields_gameCenterAchievementLocalizations"],
@@ -57,12 +58,13 @@ export const gameCenterAchievementVersionsTools: Tool[] = [
     description: "GET /v2/gameCenterAchievementVersions/{id}/relationships/localizations (GET /v2/gameCenterAchievementVersions/{id}/relationships/localizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterAchievementVersions/{id}/relationships/localizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -80,12 +82,13 @@ export const gameCenterAchievementVersionsTools: Tool[] = [
     fields_gameCenterAchievementImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementImages").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["version", "image"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v2/gameCenterAchievementVersions/{id}/localizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievementLocalizations]": args["fields_gameCenterAchievementLocalizations"],
       "fields[gameCenterAchievementVersions]": args["fields_gameCenterAchievementVersions"],

@@ -14,13 +14,14 @@ export const territoryAvailabilitiesTools: Tool[] = [
     name: "territory_availabilities_update_instance",
     description: "PATCH /v1/territoryAvailabilities/{id} (PATCH /v1/territoryAvailabilities/{id}) Body shape: see OpenAPI components.schemas.TerritoryAvailabilityUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.TerritoryAvailabilityUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/territoryAvailabilities/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });

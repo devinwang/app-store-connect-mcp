@@ -46,12 +46,13 @@ export const buildBetaDetailsTools: Tool[] = [
     fields_buildBetaDetails: z.union([z.array(z.enum(["autoNotifyEnabled", "internalBuildState", "externalBuildState", "build"])), z.string()]).describe("the fields to include for returned resources of type buildBetaDetails").optional(),
     fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
     include: z.union([z.array(z.enum(["build"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/buildBetaDetails/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[buildBetaDetails]": args["fields_buildBetaDetails"],
       "fields[builds]": args["fields_builds"],
@@ -66,13 +67,14 @@ export const buildBetaDetailsTools: Tool[] = [
     name: "build_beta_details_update_instance",
     description: "PATCH /v1/buildBetaDetails/{id} (PATCH /v1/buildBetaDetails/{id}) Body shape: see OpenAPI components.schemas.BuildBetaDetailUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.BuildBetaDetailUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/buildBetaDetails/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -82,12 +84,14 @@ export const buildBetaDetailsTools: Tool[] = [
   defineTool({
     name: "build_beta_details_build_get_to_one_relationship",
     description: "GET /v1/buildBetaDetails/{id}/relationships/build (GET /v1/buildBetaDetails/{id}/relationships/build)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/buildBetaDetails/{id}/relationships/build",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -117,12 +121,13 @@ export const buildBetaDetailsTools: Tool[] = [
     limit_betaBuildLocalizations: z.coerce.number().int().describe("maximum number of related betaBuildLocalizations returned (when they are included)").optional(),
     limit_icons: z.coerce.number().int().describe("maximum number of related icons returned (when they are included)").optional(),
     limit_buildBundles: z.coerce.number().int().describe("maximum number of related buildBundles returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/buildBetaDetails/{id}/build",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[builds]": args["fields_builds"],
       "fields[preReleaseVersions]": args["fields_preReleaseVersions"],

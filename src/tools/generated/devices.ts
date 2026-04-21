@@ -65,12 +65,13 @@ export const devicesTools: Tool[] = [
     description: "GET /v1/devices/{id} (GET /v1/devices/{id})",
     input: z.object({
     fields_devices: z.union([z.array(z.enum(["name", "platform", "udid", "deviceClass", "status", "model", "addedDate"])), z.string()]).describe("the fields to include for returned resources of type devices").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/devices/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[devices]": args["fields_devices"],
     },
@@ -83,13 +84,14 @@ export const devicesTools: Tool[] = [
     name: "devices_update_instance",
     description: "PATCH /v1/devices/{id} (PATCH /v1/devices/{id}) Body shape: see OpenAPI components.schemas.DeviceUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.DeviceUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/devices/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });

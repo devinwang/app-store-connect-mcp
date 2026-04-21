@@ -35,12 +35,13 @@ export const analyticsReportRequestsTools: Tool[] = [
     fields_analyticsReports: z.union([z.array(z.enum(["name", "category", "instances"])), z.string()]).describe("the fields to include for returned resources of type analyticsReports").optional(),
     include: z.union([z.array(z.enum(["reports"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_reports: z.coerce.number().int().describe("maximum number of related reports returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/analyticsReportRequests/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[analyticsReportRequests]": args["fields_analyticsReportRequests"],
       "fields[analyticsReports]": args["fields_analyticsReports"],
@@ -55,12 +56,14 @@ export const analyticsReportRequestsTools: Tool[] = [
   defineTool({
     name: "analytics_report_requests_delete_instance",
     description: "DELETE /v1/analyticsReportRequests/{id} (DELETE /v1/analyticsReportRequests/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/analyticsReportRequests/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -72,12 +75,13 @@ export const analyticsReportRequestsTools: Tool[] = [
     description: "GET /v1/analyticsReportRequests/{id}/relationships/reports (GET /v1/analyticsReportRequests/{id}/relationships/reports)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/analyticsReportRequests/{id}/relationships/reports",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -94,12 +98,13 @@ export const analyticsReportRequestsTools: Tool[] = [
     filter_category: z.union([z.array(z.enum(["APP_USAGE", "APP_STORE_ENGAGEMENT", "COMMERCE", "FRAMEWORK_USAGE", "PERFORMANCE"])), z.string()]).describe("filter by attribute 'category'").optional(),
     fields_analyticsReports: z.union([z.array(z.enum(["name", "category", "instances"])), z.string()]).describe("the fields to include for returned resources of type analyticsReports").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/analyticsReportRequests/{id}/reports",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[name]": args["filter_name"],
       "filter[category]": args["filter_category"],

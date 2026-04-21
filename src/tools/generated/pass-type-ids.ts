@@ -70,12 +70,13 @@ export const passTypeIdsTools: Tool[] = [
     fields_certificates: z.union([z.array(z.enum(["name", "certificateType", "displayName", "serialNumber", "platform", "expirationDate", "certificateContent", "activated", "passTypeId"])), z.string()]).describe("the fields to include for returned resources of type certificates").optional(),
     include: z.union([z.array(z.enum(["certificates"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_certificates: z.coerce.number().int().describe("maximum number of related certificates returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/passTypeIds/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[passTypeIds]": args["fields_passTypeIds"],
       "fields[certificates]": args["fields_certificates"],
@@ -91,13 +92,14 @@ export const passTypeIdsTools: Tool[] = [
     name: "pass_type_ids_update_instance",
     description: "PATCH /v1/passTypeIds/{id} (PATCH /v1/passTypeIds/{id}) Body shape: see OpenAPI components.schemas.PassTypeIdUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.PassTypeIdUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/passTypeIds/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -107,12 +109,14 @@ export const passTypeIdsTools: Tool[] = [
   defineTool({
     name: "pass_type_ids_delete_instance",
     description: "DELETE /v1/passTypeIds/{id} (DELETE /v1/passTypeIds/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/passTypeIds/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -124,12 +128,13 @@ export const passTypeIdsTools: Tool[] = [
     description: "GET /v1/passTypeIds/{id}/relationships/certificates (GET /v1/passTypeIds/{id}/relationships/certificates)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/passTypeIds/{id}/relationships/certificates",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -151,12 +156,13 @@ export const passTypeIdsTools: Tool[] = [
     fields_passTypeIds: z.union([z.array(z.enum(["name", "identifier", "certificates"])), z.string()]).describe("the fields to include for returned resources of type passTypeIds").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["passTypeId"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/passTypeIds/{id}/certificates",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[displayName]": args["filter_displayName"],
       "filter[certificateType]": args["filter_certificateType"],

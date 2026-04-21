@@ -46,12 +46,13 @@ export const appCategoriesTools: Tool[] = [
     fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     include: z.union([z.array(z.enum(["subcategories", "parent"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_subcategories: z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appCategories/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appCategories]": args["fields_appCategories"],
       "include": args["include"],
@@ -65,12 +66,14 @@ export const appCategoriesTools: Tool[] = [
   defineTool({
     name: "app_categories_parent_get_to_one_relationship",
     description: "GET /v1/appCategories/{id}/relationships/parent (GET /v1/appCategories/{id}/relationships/parent)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appCategories/{id}/relationships/parent",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -82,12 +85,13 @@ export const appCategoriesTools: Tool[] = [
     description: "GET /v1/appCategories/{id}/parent (GET /v1/appCategories/{id}/parent)",
     input: z.object({
     fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appCategories/{id}/parent",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appCategories]": args["fields_appCategories"],
     },
@@ -101,12 +105,13 @@ export const appCategoriesTools: Tool[] = [
     description: "GET /v1/appCategories/{id}/relationships/subcategories (GET /v1/appCategories/{id}/relationships/subcategories)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appCategories/{id}/relationships/subcategories",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -121,12 +126,13 @@ export const appCategoriesTools: Tool[] = [
     input: z.object({
     fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appCategories/{id}/subcategories",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appCategories]": args["fields_appCategories"],
       "limit": args["limit"],

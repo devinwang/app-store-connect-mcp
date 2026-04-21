@@ -63,12 +63,13 @@ export const betaBuildLocalizationsTools: Tool[] = [
     fields_betaBuildLocalizations: z.union([z.array(z.enum(["whatsNew", "locale", "build"])), z.string()]).describe("the fields to include for returned resources of type betaBuildLocalizations").optional(),
     fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
     include: z.union([z.array(z.enum(["build"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/betaBuildLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[betaBuildLocalizations]": args["fields_betaBuildLocalizations"],
       "fields[builds]": args["fields_builds"],
@@ -83,13 +84,14 @@ export const betaBuildLocalizationsTools: Tool[] = [
     name: "beta_build_localizations_update_instance",
     description: "PATCH /v1/betaBuildLocalizations/{id} (PATCH /v1/betaBuildLocalizations/{id}) Body shape: see OpenAPI components.schemas.BetaBuildLocalizationUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.BetaBuildLocalizationUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/betaBuildLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -99,12 +101,14 @@ export const betaBuildLocalizationsTools: Tool[] = [
   defineTool({
     name: "beta_build_localizations_delete_instance",
     description: "DELETE /v1/betaBuildLocalizations/{id} (DELETE /v1/betaBuildLocalizations/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/betaBuildLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -114,12 +118,14 @@ export const betaBuildLocalizationsTools: Tool[] = [
   defineTool({
     name: "beta_build_localizations_build_get_to_one_relationship",
     description: "GET /v1/betaBuildLocalizations/{id}/relationships/build (GET /v1/betaBuildLocalizations/{id}/relationships/build)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/betaBuildLocalizations/{id}/relationships/build",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -131,12 +137,13 @@ export const betaBuildLocalizationsTools: Tool[] = [
     description: "GET /v1/betaBuildLocalizations/{id}/build (GET /v1/betaBuildLocalizations/{id}/build)",
     input: z.object({
     fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/betaBuildLocalizations/{id}/build",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[builds]": args["fields_builds"],
     },

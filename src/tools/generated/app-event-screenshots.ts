@@ -33,12 +33,13 @@ export const appEventScreenshotsTools: Tool[] = [
     input: z.object({
     fields_appEventScreenshots: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "assetToken", "uploadOperations", "assetDeliveryState", "appEventAssetType", "appEventLocalization"])), z.string()]).describe("the fields to include for returned resources of type appEventScreenshots").optional(),
     include: z.union([z.array(z.enum(["appEventLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appEventScreenshots/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appEventScreenshots]": args["fields_appEventScreenshots"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const appEventScreenshotsTools: Tool[] = [
     name: "app_event_screenshots_update_instance",
     description: "PATCH /v1/appEventScreenshots/{id} (PATCH /v1/appEventScreenshots/{id}) Body shape: see OpenAPI components.schemas.AppEventScreenshotUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppEventScreenshotUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appEventScreenshots/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -68,12 +70,14 @@ export const appEventScreenshotsTools: Tool[] = [
   defineTool({
     name: "app_event_screenshots_delete_instance",
     description: "DELETE /v1/appEventScreenshots/{id} (DELETE /v1/appEventScreenshots/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appEventScreenshots/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

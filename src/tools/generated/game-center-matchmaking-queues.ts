@@ -56,12 +56,13 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
     input: z.object({
     fields_gameCenterMatchmakingQueues: z.union([z.array(z.enum(["referenceName", "classicMatchmakingBundleIds", "ruleSet", "experimentRuleSet"])), z.string()]).describe("the fields to include for returned resources of type gameCenterMatchmakingQueues").optional(),
     include: z.union([z.array(z.enum(["ruleSet", "experimentRuleSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterMatchmakingQueues/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterMatchmakingQueues]": args["fields_gameCenterMatchmakingQueues"],
       "include": args["include"],
@@ -75,13 +76,14 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
     name: "game_center_matchmaking_queues_update_instance",
     description: "PATCH /v1/gameCenterMatchmakingQueues/{id} (PATCH /v1/gameCenterMatchmakingQueues/{id}) Body shape: see OpenAPI components.schemas.GameCenterMatchmakingQueueUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterMatchmakingQueueUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterMatchmakingQueues/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -91,12 +93,14 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
   defineTool({
     name: "game_center_matchmaking_queues_delete_instance",
     description: "DELETE /v1/gameCenterMatchmakingQueues/{id} (DELETE /v1/gameCenterMatchmakingQueues/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterMatchmakingQueues/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -110,12 +114,13 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
     granularity: z.enum(["P1D", "PT1H", "PT15M"]).describe("the granularity of the per-group dataset").optional(),
     sort: z.union([z.array(z.enum(["count", "-count", "averageNumberOfRequests", "-averageNumberOfRequests", "p50NumberOfRequests", "-p50NumberOfRequests", "p95NumberOfRequests", "-p95NumberOfRequests"])), z.string()]).describe("comma-separated list of sort expressions; metrics will be sorted as specified").optional(),
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterMatchmakingQueues/{id}/metrics/experimentMatchmakingQueueSizes",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "granularity": args["granularity"],
       "sort": args["sort"],
@@ -136,12 +141,13 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
     filter_gameCenterDetail: z.string().describe("filter by 'gameCenterDetail' relationship dimension").optional(),
     sort: z.union([z.array(z.enum(["count", "-count", "averageSecondsInQueue", "-averageSecondsInQueue", "p50SecondsInQueue", "-p50SecondsInQueue", "p95SecondsInQueue", "-p95SecondsInQueue"])), z.string()]).describe("comma-separated list of sort expressions; metrics will be sorted as specified").optional(),
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterMatchmakingQueues/{id}/metrics/experimentMatchmakingRequests",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "granularity": args["granularity"],
       "groupBy": args["groupBy"],
@@ -162,12 +168,13 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
     granularity: z.enum(["P1D", "PT1H", "PT15M"]).describe("the granularity of the per-group dataset").optional(),
     sort: z.union([z.array(z.enum(["count", "-count", "averageNumberOfRequests", "-averageNumberOfRequests", "p50NumberOfRequests", "-p50NumberOfRequests", "p95NumberOfRequests", "-p95NumberOfRequests"])), z.string()]).describe("comma-separated list of sort expressions; metrics will be sorted as specified").optional(),
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterMatchmakingQueues/{id}/metrics/matchmakingQueueSizes",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "granularity": args["granularity"],
       "sort": args["sort"],
@@ -188,12 +195,13 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
     filter_gameCenterDetail: z.string().describe("filter by 'gameCenterDetail' relationship dimension").optional(),
     sort: z.union([z.array(z.enum(["count", "-count", "averageSecondsInQueue", "-averageSecondsInQueue", "p50SecondsInQueue", "-p50SecondsInQueue", "p95SecondsInQueue", "-p95SecondsInQueue"])), z.string()]).describe("comma-separated list of sort expressions; metrics will be sorted as specified").optional(),
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterMatchmakingQueues/{id}/metrics/matchmakingRequests",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "granularity": args["granularity"],
       "groupBy": args["groupBy"],
@@ -214,12 +222,13 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
     granularity: z.enum(["P1D", "PT1H", "PT15M"]).describe("the granularity of the per-group dataset").optional(),
     sort: z.union([z.array(z.enum(["count", "-count", "averagePlayerCount", "-averagePlayerCount", "p50PlayerCount", "-p50PlayerCount", "p95PlayerCount", "-p95PlayerCount"])), z.string()]).describe("comma-separated list of sort expressions; metrics will be sorted as specified").optional(),
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterMatchmakingQueues/{id}/metrics/matchmakingSessions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "granularity": args["granularity"],
       "sort": args["sort"],

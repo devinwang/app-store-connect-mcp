@@ -33,12 +33,13 @@ export const subscriptionOfferCodeCustomCodesTools: Tool[] = [
     input: z.object({
     fields_subscriptionOfferCodeCustomCodes: z.union([z.array(z.enum(["customCode", "numberOfCodes", "createdDate", "expirationDate", "active", "offerCode"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodeCustomCodes").optional(),
     include: z.union([z.array(z.enum(["offerCode"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/subscriptionOfferCodeCustomCodes/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[subscriptionOfferCodeCustomCodes]": args["fields_subscriptionOfferCodeCustomCodes"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const subscriptionOfferCodeCustomCodesTools: Tool[] = [
     name: "subscription_offer_code_custom_codes_update_instance",
     description: "PATCH /v1/subscriptionOfferCodeCustomCodes/{id} (PATCH /v1/subscriptionOfferCodeCustomCodes/{id}) Body shape: see OpenAPI components.schemas.SubscriptionOfferCodeCustomCodeUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.SubscriptionOfferCodeCustomCodeUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/subscriptionOfferCodeCustomCodes/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });

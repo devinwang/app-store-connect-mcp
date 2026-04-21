@@ -31,13 +31,14 @@ export const betaAppClipInvocationLocalizationsTools: Tool[] = [
     name: "beta_app_clip_invocation_localizations_update_instance",
     description: "PATCH /v1/betaAppClipInvocationLocalizations/{id} (PATCH /v1/betaAppClipInvocationLocalizations/{id}) Body shape: see OpenAPI components.schemas.BetaAppClipInvocationLocalizationUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.BetaAppClipInvocationLocalizationUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/betaAppClipInvocationLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -47,12 +48,14 @@ export const betaAppClipInvocationLocalizationsTools: Tool[] = [
   defineTool({
     name: "beta_app_clip_invocation_localizations_delete_instance",
     description: "DELETE /v1/betaAppClipInvocationLocalizations/{id} (DELETE /v1/betaAppClipInvocationLocalizations/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/betaAppClipInvocationLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

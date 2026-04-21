@@ -35,12 +35,13 @@ export const appScreenshotSetsTools: Tool[] = [
     fields_appScreenshots: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "assetToken", "assetType", "uploadOperations", "assetDeliveryState", "appScreenshotSet"])), z.string()]).describe("the fields to include for returned resources of type appScreenshots").optional(),
     include: z.union([z.array(z.enum(["appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appScreenshots"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appScreenshots: z.coerce.number().int().describe("maximum number of related appScreenshots returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appScreenshotSets/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appScreenshotSets]": args["fields_appScreenshotSets"],
       "fields[appScreenshots]": args["fields_appScreenshots"],
@@ -55,12 +56,14 @@ export const appScreenshotSetsTools: Tool[] = [
   defineTool({
     name: "app_screenshot_sets_delete_instance",
     description: "DELETE /v1/appScreenshotSets/{id} (DELETE /v1/appScreenshotSets/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appScreenshotSets/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -72,12 +75,13 @@ export const appScreenshotSetsTools: Tool[] = [
     description: "GET /v1/appScreenshotSets/{id}/relationships/appScreenshots (GET /v1/appScreenshotSets/{id}/relationships/appScreenshots)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appScreenshotSets/{id}/relationships/appScreenshots",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -90,13 +94,14 @@ export const appScreenshotSetsTools: Tool[] = [
     name: "app_screenshot_sets_app_screenshots_replace_to_many_relationship",
     description: "PATCH /v1/appScreenshotSets/{id}/relationships/appScreenshots (PATCH /v1/appScreenshotSets/{id}/relationships/appScreenshots) Body shape: see OpenAPI components.schemas.AppScreenshotSetAppScreenshotsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppScreenshotSetAppScreenshotsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appScreenshotSets/{id}/relationships/appScreenshots",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -111,12 +116,13 @@ export const appScreenshotSetsTools: Tool[] = [
     fields_appScreenshotSets: z.union([z.array(z.enum(["screenshotDisplayType", "appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appScreenshots"])), z.string()]).describe("the fields to include for returned resources of type appScreenshotSets").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appScreenshotSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appScreenshotSets/{id}/appScreenshots",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appScreenshots]": args["fields_appScreenshots"],
       "fields[appScreenshotSets]": args["fields_appScreenshotSets"],

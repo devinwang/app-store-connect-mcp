@@ -15,12 +15,13 @@ export const betaCrashLogsTools: Tool[] = [
     description: "GET /v1/betaCrashLogs/{id} (GET /v1/betaCrashLogs/{id})",
     input: z.object({
     fields_betaCrashLogs: z.union([z.array(z.enum(["logText"])), z.string()]).describe("the fields to include for returned resources of type betaCrashLogs").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/betaCrashLogs/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[betaCrashLogs]": args["fields_betaCrashLogs"],
     },

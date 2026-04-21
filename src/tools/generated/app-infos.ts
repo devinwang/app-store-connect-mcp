@@ -20,12 +20,13 @@ export const appInfosTools: Tool[] = [
     fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     include: z.union([z.array(z.enum(["app", "ageRatingDeclaration", "appInfoLocalizations", "primaryCategory", "primarySubcategoryOne", "primarySubcategoryTwo", "secondaryCategory", "secondarySubcategoryOne", "secondarySubcategoryTwo"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appInfoLocalizations: z.coerce.number().int().describe("maximum number of related appInfoLocalizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appInfos]": args["fields_appInfos"],
       "fields[ageRatingDeclarations]": args["fields_ageRatingDeclarations"],
@@ -43,13 +44,14 @@ export const appInfosTools: Tool[] = [
     name: "app_infos_update_instance",
     description: "PATCH /v1/appInfos/{id} (PATCH /v1/appInfos/{id}) Body shape: see OpenAPI components.schemas.AppInfoUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppInfoUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appInfos/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -59,12 +61,14 @@ export const appInfosTools: Tool[] = [
   defineTool({
     name: "app_infos_age_rating_declaration_get_to_one_relationship",
     description: "GET /v1/appInfos/{id}/relationships/ageRatingDeclaration (GET /v1/appInfos/{id}/relationships/ageRatingDeclaration)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/relationships/ageRatingDeclaration",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -76,12 +80,13 @@ export const appInfosTools: Tool[] = [
     description: "GET /v1/appInfos/{id}/ageRatingDeclaration (GET /v1/appInfos/{id}/ageRatingDeclaration)",
     input: z.object({
     fields_ageRatingDeclarations: z.union([z.array(z.enum(["advertising", "alcoholTobaccoOrDrugUseOrReferences", "contests", "gambling", "gamblingSimulated", "gunsOrOtherWeapons", "healthOrWellnessTopics", "kidsAgeBand", "lootBox", "medicalOrTreatmentInformation", "messagingAndChat", "parentalControls", "profanityOrCrudeHumor", "ageAssurance", "sexualContentGraphicAndNudity", "sexualContentOrNudity", "horrorOrFearThemes", "matureOrSuggestiveThemes", "unrestrictedWebAccess", "userGeneratedContent", "violenceCartoonOrFantasy", "violenceRealisticProlongedGraphicOrSadistic", "violenceRealistic", "ageRatingOverride", "ageRatingOverrideV2", "koreaAgeRatingOverride", "developerAgeRatingInfoUrl"])), z.string()]).describe("the fields to include for returned resources of type ageRatingDeclarations").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/ageRatingDeclaration",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[ageRatingDeclarations]": args["fields_ageRatingDeclarations"],
     },
@@ -95,12 +100,13 @@ export const appInfosTools: Tool[] = [
     description: "GET /v1/appInfos/{id}/relationships/appInfoLocalizations (GET /v1/appInfos/{id}/relationships/appInfoLocalizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/relationships/appInfoLocalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -118,12 +124,13 @@ export const appInfosTools: Tool[] = [
     fields_appInfos: z.union([z.array(z.enum(["appStoreState", "state", "appStoreAgeRating", "australiaAgeRating", "brazilAgeRating", "brazilAgeRatingV2", "franceAgeRating", "koreaAgeRating", "kidsAgeBand", "app", "ageRatingDeclaration", "appInfoLocalizations", "primaryCategory", "primarySubcategoryOne", "primarySubcategoryTwo", "secondaryCategory", "secondarySubcategoryOne", "secondarySubcategoryTwo", "territoryAgeRatings"])), z.string()]).describe("the fields to include for returned resources of type appInfos").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appInfo"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/appInfoLocalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[locale]": args["filter_locale"],
       "fields[appInfoLocalizations]": args["fields_appInfoLocalizations"],
@@ -139,12 +146,14 @@ export const appInfosTools: Tool[] = [
   defineTool({
     name: "app_infos_primary_category_get_to_one_relationship",
     description: "GET /v1/appInfos/{id}/relationships/primaryCategory (GET /v1/appInfos/{id}/relationships/primaryCategory)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/relationships/primaryCategory",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -158,12 +167,13 @@ export const appInfosTools: Tool[] = [
     fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     include: z.union([z.array(z.enum(["subcategories", "parent"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_subcategories: z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/primaryCategory",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appCategories]": args["fields_appCategories"],
       "include": args["include"],
@@ -177,12 +187,14 @@ export const appInfosTools: Tool[] = [
   defineTool({
     name: "app_infos_primary_subcategory_one_get_to_one_relationship",
     description: "GET /v1/appInfos/{id}/relationships/primarySubcategoryOne (GET /v1/appInfos/{id}/relationships/primarySubcategoryOne)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/relationships/primarySubcategoryOne",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -196,12 +208,13 @@ export const appInfosTools: Tool[] = [
     fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     include: z.union([z.array(z.enum(["subcategories", "parent"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_subcategories: z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/primarySubcategoryOne",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appCategories]": args["fields_appCategories"],
       "include": args["include"],
@@ -215,12 +228,14 @@ export const appInfosTools: Tool[] = [
   defineTool({
     name: "app_infos_primary_subcategory_two_get_to_one_relationship",
     description: "GET /v1/appInfos/{id}/relationships/primarySubcategoryTwo (GET /v1/appInfos/{id}/relationships/primarySubcategoryTwo)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/relationships/primarySubcategoryTwo",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -234,12 +249,13 @@ export const appInfosTools: Tool[] = [
     fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     include: z.union([z.array(z.enum(["subcategories", "parent"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_subcategories: z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/primarySubcategoryTwo",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appCategories]": args["fields_appCategories"],
       "include": args["include"],
@@ -253,12 +269,14 @@ export const appInfosTools: Tool[] = [
   defineTool({
     name: "app_infos_secondary_category_get_to_one_relationship",
     description: "GET /v1/appInfos/{id}/relationships/secondaryCategory (GET /v1/appInfos/{id}/relationships/secondaryCategory)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/relationships/secondaryCategory",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -272,12 +290,13 @@ export const appInfosTools: Tool[] = [
     fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     include: z.union([z.array(z.enum(["subcategories", "parent"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_subcategories: z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/secondaryCategory",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appCategories]": args["fields_appCategories"],
       "include": args["include"],
@@ -291,12 +310,14 @@ export const appInfosTools: Tool[] = [
   defineTool({
     name: "app_infos_secondary_subcategory_one_get_to_one_relationship",
     description: "GET /v1/appInfos/{id}/relationships/secondarySubcategoryOne (GET /v1/appInfos/{id}/relationships/secondarySubcategoryOne)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/relationships/secondarySubcategoryOne",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -310,12 +331,13 @@ export const appInfosTools: Tool[] = [
     fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     include: z.union([z.array(z.enum(["subcategories", "parent"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_subcategories: z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/secondarySubcategoryOne",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appCategories]": args["fields_appCategories"],
       "include": args["include"],
@@ -329,12 +351,14 @@ export const appInfosTools: Tool[] = [
   defineTool({
     name: "app_infos_secondary_subcategory_two_get_to_one_relationship",
     description: "GET /v1/appInfos/{id}/relationships/secondarySubcategoryTwo (GET /v1/appInfos/{id}/relationships/secondarySubcategoryTwo)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/relationships/secondarySubcategoryTwo",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -348,12 +372,13 @@ export const appInfosTools: Tool[] = [
     fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     include: z.union([z.array(z.enum(["subcategories", "parent"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_subcategories: z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/secondarySubcategoryTwo",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appCategories]": args["fields_appCategories"],
       "include": args["include"],
@@ -369,12 +394,13 @@ export const appInfosTools: Tool[] = [
     description: "GET /v1/appInfos/{id}/relationships/territoryAgeRatings (GET /v1/appInfos/{id}/relationships/territoryAgeRatings)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/relationships/territoryAgeRatings",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -391,12 +417,13 @@ export const appInfosTools: Tool[] = [
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["territory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appInfos/{id}/territoryAgeRatings",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[territoryAgeRatings]": args["fields_territoryAgeRatings"],
       "fields[territories]": args["fields_territories"],

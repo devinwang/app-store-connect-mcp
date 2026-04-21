@@ -35,12 +35,13 @@ export const alternativeDistributionPackagesTools: Tool[] = [
     fields_alternativeDistributionPackageVersions: z.union([z.array(z.enum(["url", "urlExpirationDate", "version", "fileChecksum", "state", "variants", "deltas", "alternativeDistributionPackage"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackageVersions").optional(),
     include: z.union([z.array(z.enum(["versions"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_versions: z.coerce.number().int().describe("maximum number of related versions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/alternativeDistributionPackages/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[alternativeDistributionPackages]": args["fields_alternativeDistributionPackages"],
       "fields[alternativeDistributionPackageVersions]": args["fields_alternativeDistributionPackageVersions"],
@@ -57,12 +58,13 @@ export const alternativeDistributionPackagesTools: Tool[] = [
     description: "GET /v1/alternativeDistributionPackages/{id}/relationships/versions (GET /v1/alternativeDistributionPackages/{id}/relationships/versions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/alternativeDistributionPackages/{id}/relationships/versions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -84,12 +86,13 @@ export const alternativeDistributionPackagesTools: Tool[] = [
     include: z.union([z.array(z.enum(["variants", "deltas", "alternativeDistributionPackage"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_variants: z.coerce.number().int().describe("maximum number of related variants returned (when they are included)").optional(),
     limit_deltas: z.coerce.number().int().describe("maximum number of related deltas returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/alternativeDistributionPackages/{id}/versions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[state]": args["filter_state"],
       "fields[alternativeDistributionPackageVersions]": args["fields_alternativeDistributionPackageVersions"],

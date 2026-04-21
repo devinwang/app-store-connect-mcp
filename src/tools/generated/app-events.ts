@@ -35,12 +35,13 @@ export const appEventsTools: Tool[] = [
     fields_appEventLocalizations: z.union([z.array(z.enum(["locale", "name", "shortDescription", "longDescription", "appEvent", "appEventScreenshots", "appEventVideoClips"])), z.string()]).describe("the fields to include for returned resources of type appEventLocalizations").optional(),
     include: z.union([z.array(z.enum(["localizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appEvents/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appEvents]": args["fields_appEvents"],
       "fields[appEventLocalizations]": args["fields_appEventLocalizations"],
@@ -56,13 +57,14 @@ export const appEventsTools: Tool[] = [
     name: "app_events_update_instance",
     description: "PATCH /v1/appEvents/{id} (PATCH /v1/appEvents/{id}) Body shape: see OpenAPI components.schemas.AppEventUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppEventUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/appEvents/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -72,12 +74,14 @@ export const appEventsTools: Tool[] = [
   defineTool({
     name: "app_events_delete_instance",
     description: "DELETE /v1/appEvents/{id} (DELETE /v1/appEvents/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/appEvents/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -89,12 +93,13 @@ export const appEventsTools: Tool[] = [
     description: "GET /v1/appEvents/{id}/relationships/localizations (GET /v1/appEvents/{id}/relationships/localizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appEvents/{id}/relationships/localizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -115,12 +120,13 @@ export const appEventsTools: Tool[] = [
     include: z.union([z.array(z.enum(["appEvent", "appEventScreenshots", "appEventVideoClips"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appEventScreenshots: z.coerce.number().int().describe("maximum number of related appEventScreenshots returned (when they are included)").optional(),
     limit_appEventVideoClips: z.coerce.number().int().describe("maximum number of related appEventVideoClips returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/appEvents/{id}/localizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appEventLocalizations]": args["fields_appEventLocalizations"],
       "fields[appEvents]": args["fields_appEvents"],

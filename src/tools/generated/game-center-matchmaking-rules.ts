@@ -31,13 +31,14 @@ export const gameCenterMatchmakingRulesTools: Tool[] = [
     name: "game_center_matchmaking_rules_update_instance",
     description: "PATCH /v1/gameCenterMatchmakingRules/{id} (PATCH /v1/gameCenterMatchmakingRules/{id}) Body shape: see OpenAPI components.schemas.GameCenterMatchmakingRuleUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterMatchmakingRuleUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterMatchmakingRules/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -47,12 +48,14 @@ export const gameCenterMatchmakingRulesTools: Tool[] = [
   defineTool({
     name: "game_center_matchmaking_rules_delete_instance",
     description: "DELETE /v1/gameCenterMatchmakingRules/{id} (DELETE /v1/gameCenterMatchmakingRules/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterMatchmakingRules/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -69,12 +72,13 @@ export const gameCenterMatchmakingRulesTools: Tool[] = [
     filter_gameCenterMatchmakingQueue: z.string().describe("filter by 'gameCenterMatchmakingQueue' relationship dimension").optional(),
     sort: z.union([z.array(z.enum(["count", "-count"])), z.string()]).describe("comma-separated list of sort expressions; metrics will be sorted as specified").optional(),
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterMatchmakingRules/{id}/metrics/matchmakingBooleanRuleResults",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "granularity": args["granularity"],
       "groupBy": args["groupBy"],
@@ -97,12 +101,13 @@ export const gameCenterMatchmakingRulesTools: Tool[] = [
     filter_gameCenterMatchmakingQueue: z.string().describe("filter by 'gameCenterMatchmakingQueue' relationship dimension").optional(),
     sort: z.union([z.array(z.enum(["count", "-count", "averageResult", "-averageResult", "p50Result", "-p50Result", "p95Result", "-p95Result"])), z.string()]).describe("comma-separated list of sort expressions; metrics will be sorted as specified").optional(),
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterMatchmakingRules/{id}/metrics/matchmakingNumberRuleResults",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "granularity": args["granularity"],
       "groupBy": args["groupBy"],
@@ -124,12 +129,13 @@ export const gameCenterMatchmakingRulesTools: Tool[] = [
     filter_gameCenterMatchmakingQueue: z.string().describe("filter by 'gameCenterMatchmakingQueue' relationship dimension").optional(),
     sort: z.union([z.array(z.enum(["count", "-count"])), z.string()]).describe("comma-separated list of sort expressions; metrics will be sorted as specified").optional(),
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterMatchmakingRules/{id}/metrics/matchmakingRuleErrors",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "granularity": args["granularity"],
       "groupBy": args["groupBy"],

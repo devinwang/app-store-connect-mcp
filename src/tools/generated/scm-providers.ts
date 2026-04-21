@@ -36,12 +36,13 @@ export const scmProvidersTools: Tool[] = [
     description: "GET /v1/scmProviders/{id} (GET /v1/scmProviders/{id})",
     input: z.object({
     fields_scmProviders: z.union([z.array(z.enum(["scmProviderType", "url", "repositories"])), z.string()]).describe("the fields to include for returned resources of type scmProviders").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/scmProviders/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[scmProviders]": args["fields_scmProviders"],
     },
@@ -55,12 +56,13 @@ export const scmProvidersTools: Tool[] = [
     description: "GET /v1/scmProviders/{id}/relationships/repositories (GET /v1/scmProviders/{id}/relationships/repositories)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/scmProviders/{id}/relationships/repositories",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -79,12 +81,13 @@ export const scmProvidersTools: Tool[] = [
     fields_scmGitReferences: z.union([z.array(z.enum(["name", "canonicalName", "isDeleted", "kind", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmGitReferences").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["scmProvider", "defaultBranch"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/scmProviders/{id}/repositories",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[id]": args["filter_id"],
       "fields[scmRepositories]": args["fields_scmRepositories"],

@@ -33,12 +33,13 @@ export const inAppPurchaseOfferCodeCustomCodesTools: Tool[] = [
     input: z.object({
     fields_inAppPurchaseOfferCodeCustomCodes: z.union([z.array(z.enum(["customCode", "numberOfCodes", "createdDate", "expirationDate", "active", "createdByActor", "deactivatedByActor"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchaseOfferCodeCustomCodes").optional(),
     include: z.union([z.array(z.enum(["createdByActor", "deactivatedByActor"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/inAppPurchaseOfferCodeCustomCodes/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[inAppPurchaseOfferCodeCustomCodes]": args["fields_inAppPurchaseOfferCodeCustomCodes"],
       "include": args["include"],
@@ -52,13 +53,14 @@ export const inAppPurchaseOfferCodeCustomCodesTools: Tool[] = [
     name: "in_app_purchase_offer_code_custom_codes_update_instance",
     description: "PATCH /v1/inAppPurchaseOfferCodeCustomCodes/{id} (PATCH /v1/inAppPurchaseOfferCodeCustomCodes/{id}) Body shape: see OpenAPI components.schemas.InAppPurchaseOfferCodeCustomCodeUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.InAppPurchaseOfferCodeCustomCodeUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/inAppPurchaseOfferCodeCustomCodes/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });

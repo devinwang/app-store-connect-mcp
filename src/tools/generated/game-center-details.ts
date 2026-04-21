@@ -60,12 +60,13 @@ export const gameCenterDetailsTools: Tool[] = [
     limit_gameCenterLeaderboardsV2: z.coerce.number().int().describe("maximum number of related gameCenterLeaderboardsV2 returned (when they are included)").optional(),
     limit_leaderboardReleases: z.coerce.number().int().describe("maximum number of related leaderboardReleases returned (when they are included)").optional(),
     limit_leaderboardSetReleases: z.coerce.number().int().describe("maximum number of related leaderboardSetReleases returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterDetails]": args["fields_gameCenterDetails"],
       "fields[gameCenterAppVersions]": args["fields_gameCenterAppVersions"],
@@ -106,13 +107,14 @@ export const gameCenterDetailsTools: Tool[] = [
     name: "game_center_details_update_instance",
     description: "PATCH /v1/gameCenterDetails/{id} (PATCH /v1/gameCenterDetails/{id}) Body shape: see OpenAPI components.schemas.GameCenterDetailUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterDetailUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterDetails/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -124,12 +126,13 @@ export const gameCenterDetailsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterDetails/{id}/relationships/achievementReleases (GET /v1/gameCenterDetails/{id}/relationships/achievementReleases)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/relationships/achievementReleases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -149,12 +152,13 @@ export const gameCenterDetailsTools: Tool[] = [
     fields_gameCenterAchievements: z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "points", "showBeforeEarned", "repeatable", "archived", "activityProperties", "gameCenterDetail", "gameCenterGroup", "groupAchievement", "localizations", "releases", "activity"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievements").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterAchievement"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/achievementReleases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[live]": args["filter_live"],
       "filter[gameCenterAchievement]": args["filter_gameCenterAchievement"],
@@ -174,12 +178,13 @@ export const gameCenterDetailsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterDetails/{id}/relationships/activityReleases (GET /v1/gameCenterDetails/{id}/relationships/activityReleases)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/relationships/activityReleases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -196,12 +201,13 @@ export const gameCenterDetailsTools: Tool[] = [
     fields_gameCenterActivityVersions: z.union([z.array(z.enum(["version", "state", "fallbackUrl", "activity", "localizations", "defaultImage", "releases"])), z.string()]).describe("the fields to include for returned resources of type gameCenterActivityVersions").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["version"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/activityReleases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterActivityVersionReleases]": args["fields_gameCenterActivityVersionReleases"],
       "fields[gameCenterActivityVersions]": args["fields_gameCenterActivityVersions"],
@@ -218,12 +224,13 @@ export const gameCenterDetailsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterDetails/{id}/relationships/challengeReleases (GET /v1/gameCenterDetails/{id}/relationships/challengeReleases)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/relationships/challengeReleases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -240,12 +247,13 @@ export const gameCenterDetailsTools: Tool[] = [
     fields_gameCenterChallengeVersions: z.union([z.array(z.enum(["version", "state", "challenge", "localizations", "releases", "defaultImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeVersions").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["version"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/challengeReleases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterChallengeVersionReleases]": args["fields_gameCenterChallengeVersionReleases"],
       "fields[gameCenterChallengeVersions]": args["fields_gameCenterChallengeVersions"],
@@ -261,13 +269,14 @@ export const gameCenterDetailsTools: Tool[] = [
     name: "game_center_details_challenges_minimum_platform_versions_replace_to_many_relationship",
     description: "PATCH /v1/gameCenterDetails/{id}/relationships/challengesMinimumPlatformVersions (PATCH /v1/gameCenterDetails/{id}/relationships/challengesMinimumPlatformVersions) Body shape: see OpenAPI components.schemas.GameCenterDetailChallengesMinimumPlatformVersionsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterDetailChallengesMinimumPlatformVersionsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterDetails/{id}/relationships/challengesMinimumPlatformVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -279,12 +288,13 @@ export const gameCenterDetailsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterDetails/{id}/relationships/gameCenterAchievements (GET /v1/gameCenterDetails/{id}/relationships/gameCenterAchievements)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/relationships/gameCenterAchievements",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -297,13 +307,14 @@ export const gameCenterDetailsTools: Tool[] = [
     name: "game_center_details_game_center_achievements_replace_to_many_relationship",
     description: "[DEPRECATED] PATCH /v1/gameCenterDetails/{id}/relationships/gameCenterAchievements (PATCH /v1/gameCenterDetails/{id}/relationships/gameCenterAchievements) Body shape: see OpenAPI components.schemas.GameCenterDetailGameCenterAchievementsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterDetailGameCenterAchievementsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterDetails/{id}/relationships/gameCenterAchievements",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -327,12 +338,13 @@ export const gameCenterDetailsTools: Tool[] = [
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterGroup", "groupAchievement", "localizations", "releases", "activity"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
     limit_releases: z.coerce.number().int().describe("maximum number of related releases returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/gameCenterAchievements",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[referenceName]": args["filter_referenceName"],
       "filter[archived]": args["filter_archived"],
@@ -358,12 +370,13 @@ export const gameCenterDetailsTools: Tool[] = [
     description: "GET /v1/gameCenterDetails/{id}/relationships/gameCenterAchievementsV2 (GET /v1/gameCenterDetails/{id}/relationships/gameCenterAchievementsV2)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/relationships/gameCenterAchievementsV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -376,13 +389,14 @@ export const gameCenterDetailsTools: Tool[] = [
     name: "game_center_details_game_center_achievements_v2_replace_to_many_relationship",
     description: "PATCH /v1/gameCenterDetails/{id}/relationships/gameCenterAchievementsV2 (PATCH /v1/gameCenterDetails/{id}/relationships/gameCenterAchievementsV2) Body shape: see OpenAPI components.schemas.GameCenterDetailGameCenterAchievementsV2LinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterDetailGameCenterAchievementsV2LinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterDetails/{id}/relationships/gameCenterAchievementsV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -404,12 +418,13 @@ export const gameCenterDetailsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterGroup", "activity", "versions"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_versions: z.coerce.number().int().describe("maximum number of related versions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/gameCenterAchievementsV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[referenceName]": args["filter_referenceName"],
       "filter[archived]": args["filter_archived"],
@@ -433,12 +448,13 @@ export const gameCenterDetailsTools: Tool[] = [
     description: "GET /v1/gameCenterDetails/{id}/relationships/gameCenterActivities (GET /v1/gameCenterDetails/{id}/relationships/gameCenterActivities)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/relationships/gameCenterActivities",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -464,12 +480,13 @@ export const gameCenterDetailsTools: Tool[] = [
     limit_leaderboards: z.coerce.number().int().describe("maximum number of related leaderboards returned (when they are included)").optional(),
     limit_leaderboardsV2: z.coerce.number().int().describe("maximum number of related leaderboardsV2 returned (when they are included)").optional(),
     limit_versions: z.coerce.number().int().describe("maximum number of related versions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/gameCenterActivities",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterActivities]": args["fields_gameCenterActivities"],
       "fields[gameCenterDetails]": args["fields_gameCenterDetails"],
@@ -495,12 +512,13 @@ export const gameCenterDetailsTools: Tool[] = [
     description: "GET /v1/gameCenterDetails/{id}/relationships/gameCenterAppVersions (GET /v1/gameCenterDetails/{id}/relationships/gameCenterAppVersions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/relationships/gameCenterAppVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -519,12 +537,13 @@ export const gameCenterDetailsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["compatibilityVersions", "appStoreVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_compatibilityVersions: z.coerce.number().int().describe("maximum number of related compatibilityVersions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/gameCenterAppVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[enabled]": args["filter_enabled"],
       "fields[gameCenterAppVersions]": args["fields_gameCenterAppVersions"],
@@ -543,12 +562,13 @@ export const gameCenterDetailsTools: Tool[] = [
     description: "GET /v1/gameCenterDetails/{id}/relationships/gameCenterChallenges (GET /v1/gameCenterDetails/{id}/relationships/gameCenterChallenges)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/relationships/gameCenterChallenges",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -572,12 +592,13 @@ export const gameCenterDetailsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterGroup", "versions", "leaderboard", "leaderboardV2"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_versions: z.coerce.number().int().describe("maximum number of related versions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/gameCenterChallenges",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[referenceName]": args["filter_referenceName"],
       "filter[archived]": args["filter_archived"],
@@ -599,12 +620,14 @@ export const gameCenterDetailsTools: Tool[] = [
   defineTool({
     name: "game_center_details_game_center_group_get_to_one_relationship",
     description: "GET /v1/gameCenterDetails/{id}/relationships/gameCenterGroup (GET /v1/gameCenterDetails/{id}/relationships/gameCenterGroup)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/relationships/gameCenterGroup",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -632,12 +655,13 @@ export const gameCenterDetailsTools: Tool[] = [
     limit_gameCenterAchievementsV2: z.coerce.number().int().describe("maximum number of related gameCenterAchievementsV2 returned (when they are included)").optional(),
     limit_gameCenterActivities: z.coerce.number().int().describe("maximum number of related gameCenterActivities returned (when they are included)").optional(),
     limit_gameCenterChallenges: z.coerce.number().int().describe("maximum number of related gameCenterChallenges returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/gameCenterGroup",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterGroups]": args["fields_gameCenterGroups"],
       "fields[gameCenterDetails]": args["fields_gameCenterDetails"],
@@ -667,12 +691,13 @@ export const gameCenterDetailsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardSets (GET /v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardSets)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardSets",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -685,13 +710,14 @@ export const gameCenterDetailsTools: Tool[] = [
     name: "game_center_details_game_center_leaderboard_sets_replace_to_many_relationship",
     description: "[DEPRECATED] PATCH /v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardSets (PATCH /v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardSets) Body shape: see OpenAPI components.schemas.GameCenterDetailGameCenterLeaderboardSetsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterDetailGameCenterLeaderboardSetsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardSets",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -715,12 +741,13 @@ export const gameCenterDetailsTools: Tool[] = [
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
     limit_gameCenterLeaderboards: z.coerce.number().int().describe("maximum number of related gameCenterLeaderboards returned (when they are included)").optional(),
     limit_releases: z.coerce.number().int().describe("maximum number of related releases returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/gameCenterLeaderboardSets",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[referenceName]": args["filter_referenceName"],
       "filter[id]": args["filter_id"],
@@ -746,12 +773,13 @@ export const gameCenterDetailsTools: Tool[] = [
     description: "GET /v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardSetsV2 (GET /v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardSetsV2)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardSetsV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -764,13 +792,14 @@ export const gameCenterDetailsTools: Tool[] = [
     name: "game_center_details_game_center_leaderboard_sets_v2_replace_to_many_relationship",
     description: "PATCH /v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardSetsV2 (PATCH /v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardSetsV2) Body shape: see OpenAPI components.schemas.GameCenterDetailGameCenterLeaderboardSetsV2LinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterDetailGameCenterLeaderboardSetsV2LinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardSetsV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -792,12 +821,13 @@ export const gameCenterDetailsTools: Tool[] = [
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterGroup", "gameCenterLeaderboards", "versions"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_gameCenterLeaderboards: z.coerce.number().int().describe("maximum number of related gameCenterLeaderboards returned (when they are included)").optional(),
     limit_versions: z.coerce.number().int().describe("maximum number of related versions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/gameCenterLeaderboardSetsV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[referenceName]": args["filter_referenceName"],
       "filter[id]": args["filter_id"],
@@ -821,12 +851,13 @@ export const gameCenterDetailsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboards (GET /v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboards)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboards",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -839,13 +870,14 @@ export const gameCenterDetailsTools: Tool[] = [
     name: "game_center_details_game_center_leaderboards_replace_to_many_relationship",
     description: "[DEPRECATED] PATCH /v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboards (PATCH /v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboards) Body shape: see OpenAPI components.schemas.GameCenterDetailGameCenterLeaderboardsLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterDetailGameCenterLeaderboardsLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboards",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -872,12 +904,13 @@ export const gameCenterDetailsTools: Tool[] = [
     limit_gameCenterLeaderboardSets: z.coerce.number().int().describe("maximum number of related gameCenterLeaderboardSets returned (when they are included)").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
     limit_releases: z.coerce.number().int().describe("maximum number of related releases returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/gameCenterLeaderboards",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[referenceName]": args["filter_referenceName"],
       "filter[archived]": args["filter_archived"],
@@ -906,12 +939,13 @@ export const gameCenterDetailsTools: Tool[] = [
     description: "GET /v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardsV2 (GET /v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardsV2)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardsV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -924,13 +958,14 @@ export const gameCenterDetailsTools: Tool[] = [
     name: "game_center_details_game_center_leaderboards_v2_replace_to_many_relationship",
     description: "PATCH /v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardsV2 (PATCH /v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardsV2) Body shape: see OpenAPI components.schemas.GameCenterDetailGameCenterLeaderboardsV2LinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterDetailGameCenterLeaderboardsV2LinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterDetails/{id}/relationships/gameCenterLeaderboardsV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -955,12 +990,13 @@ export const gameCenterDetailsTools: Tool[] = [
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterGroup", "gameCenterLeaderboardSets", "activity", "challenge", "versions"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_gameCenterLeaderboardSets: z.coerce.number().int().describe("maximum number of related gameCenterLeaderboardSets returned (when they are included)").optional(),
     limit_versions: z.coerce.number().int().describe("maximum number of related versions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/gameCenterLeaderboardsV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[referenceName]": args["filter_referenceName"],
       "filter[archived]": args["filter_archived"],
@@ -987,12 +1023,13 @@ export const gameCenterDetailsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterDetails/{id}/relationships/leaderboardReleases (GET /v1/gameCenterDetails/{id}/relationships/leaderboardReleases)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/relationships/leaderboardReleases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -1012,12 +1049,13 @@ export const gameCenterDetailsTools: Tool[] = [
     fields_gameCenterLeaderboards: z.union([z.array(z.enum(["defaultFormatter", "referenceName", "vendorIdentifier", "submissionType", "scoreSortType", "scoreRangeStart", "scoreRangeEnd", "recurrenceStartDate", "recurrenceDuration", "recurrenceRule", "archived", "activityProperties", "visibility", "gameCenterDetail", "gameCenterGroup", "groupLeaderboard", "gameCenterLeaderboardSets", "localizations", "releases", "activity", "challenge"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboards").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterLeaderboard"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/leaderboardReleases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[live]": args["filter_live"],
       "filter[gameCenterLeaderboard]": args["filter_gameCenterLeaderboard"],
@@ -1037,12 +1075,13 @@ export const gameCenterDetailsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterDetails/{id}/relationships/leaderboardSetReleases (GET /v1/gameCenterDetails/{id}/relationships/leaderboardSetReleases)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/relationships/leaderboardSetReleases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -1062,12 +1101,13 @@ export const gameCenterDetailsTools: Tool[] = [
     fields_gameCenterLeaderboardSets: z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "gameCenterDetail", "gameCenterGroup", "groupLeaderboardSet", "localizations", "gameCenterLeaderboards", "releases"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSets").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterLeaderboardSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/leaderboardSetReleases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[live]": args["filter_live"],
       "filter[gameCenterLeaderboardSet]": args["filter_gameCenterLeaderboardSet"],
@@ -1091,12 +1131,13 @@ export const gameCenterDetailsTools: Tool[] = [
     filter_result: z.enum(["MATCHED", "CANCELED", "EXPIRED"]).describe("filter by 'result' attribute dimension").optional(),
     sort: z.union([z.array(z.enum(["count", "-count", "averageSecondsInQueue", "-averageSecondsInQueue", "p50SecondsInQueue", "-p50SecondsInQueue", "p95SecondsInQueue", "-p95SecondsInQueue"])), z.string()]).describe("comma-separated list of sort expressions; metrics will be sorted as specified").optional(),
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/metrics/classicMatchmakingRequests",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "granularity": args["granularity"],
       "groupBy": args["groupBy"],
@@ -1118,12 +1159,13 @@ export const gameCenterDetailsTools: Tool[] = [
     filter_result: z.enum(["MATCHED", "CANCELED", "EXPIRED"]).describe("filter by 'result' attribute dimension").optional(),
     sort: z.union([z.array(z.enum(["count", "-count", "averageSecondsInQueue", "-averageSecondsInQueue", "p50SecondsInQueue", "-p50SecondsInQueue", "p95SecondsInQueue", "-p95SecondsInQueue"])), z.string()]).describe("comma-separated list of sort expressions; metrics will be sorted as specified").optional(),
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterDetails/{id}/metrics/ruleBasedMatchmakingRequests",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "granularity": args["granularity"],
       "groupBy": args["groupBy"],

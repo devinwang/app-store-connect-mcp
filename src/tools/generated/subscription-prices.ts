@@ -30,12 +30,14 @@ export const subscriptionPricesTools: Tool[] = [
   defineTool({
     name: "subscription_prices_delete_instance",
     description: "DELETE /v1/subscriptionPrices/{id} (DELETE /v1/subscriptionPrices/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/subscriptionPrices/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });

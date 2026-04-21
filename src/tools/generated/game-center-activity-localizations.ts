@@ -34,12 +34,13 @@ export const gameCenterActivityLocalizationsTools: Tool[] = [
     fields_gameCenterActivityLocalizations: z.union([z.array(z.enum(["locale", "name", "description", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterActivityLocalizations").optional(),
     fields_gameCenterActivityImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterActivityImages").optional(),
     include: z.union([z.array(z.enum(["version", "image"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterActivityLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterActivityLocalizations]": args["fields_gameCenterActivityLocalizations"],
       "fields[gameCenterActivityImages]": args["fields_gameCenterActivityImages"],
@@ -54,13 +55,14 @@ export const gameCenterActivityLocalizationsTools: Tool[] = [
     name: "game_center_activity_localizations_update_instance",
     description: "PATCH /v1/gameCenterActivityLocalizations/{id} (PATCH /v1/gameCenterActivityLocalizations/{id}) Body shape: see OpenAPI components.schemas.GameCenterActivityLocalizationUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.GameCenterActivityLocalizationUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/gameCenterActivityLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -70,12 +72,14 @@ export const gameCenterActivityLocalizationsTools: Tool[] = [
   defineTool({
     name: "game_center_activity_localizations_delete_instance",
     description: "DELETE /v1/gameCenterActivityLocalizations/{id} (DELETE /v1/gameCenterActivityLocalizations/{id})",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/gameCenterActivityLocalizations/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -85,12 +89,14 @@ export const gameCenterActivityLocalizationsTools: Tool[] = [
   defineTool({
     name: "game_center_activity_localizations_image_get_to_one_relationship",
     description: "GET /v1/gameCenterActivityLocalizations/{id}/relationships/image (GET /v1/gameCenterActivityLocalizations/{id}/relationships/image)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterActivityLocalizations/{id}/relationships/image",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -102,12 +108,13 @@ export const gameCenterActivityLocalizationsTools: Tool[] = [
     description: "GET /v1/gameCenterActivityLocalizations/{id}/image (GET /v1/gameCenterActivityLocalizations/{id}/image)",
     input: z.object({
     fields_gameCenterActivityImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterActivityImages").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/gameCenterActivityLocalizations/{id}/image",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterActivityImages]": args["fields_gameCenterActivityImages"],
     },

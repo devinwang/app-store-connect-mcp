@@ -186,12 +186,13 @@ export const appsTools: Tool[] = [
     limit_promotedPurchases: z.coerce.number().int().describe("maximum number of related promotedPurchases returned (when they are included)").optional(),
     limit_reviewSubmissions: z.coerce.number().int().describe("maximum number of related reviewSubmissions returned (when they are included)").optional(),
     limit_subscriptionGroups: z.coerce.number().int().describe("maximum number of related subscriptionGroups returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[apps]": args["fields_apps"],
       "fields[appEncryptionDeclarations]": args["fields_appEncryptionDeclarations"],
@@ -246,13 +247,14 @@ export const appsTools: Tool[] = [
     name: "apps_update_instance",
     description: "PATCH /v1/apps/{id} (PATCH /v1/apps/{id}) Body shape: see OpenAPI components.schemas.AppUpdateRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppUpdateRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/apps/{id}",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -264,12 +266,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/accessibilityDeclarations (GET /v1/apps/{id}/relationships/accessibilityDeclarations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/accessibilityDeclarations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -286,12 +289,13 @@ export const appsTools: Tool[] = [
     filter_state: z.union([z.array(z.enum(["DRAFT", "PUBLISHED", "REPLACED"])), z.string()]).describe("filter by attribute 'state'").optional(),
     fields_accessibilityDeclarations: z.union([z.array(z.enum(["deviceFamily", "state", "supportsAudioDescriptions", "supportsCaptions", "supportsDarkInterface", "supportsDifferentiateWithoutColorAlone", "supportsLargerText", "supportsReducedMotion", "supportsSufficientContrast", "supportsVoiceControl", "supportsVoiceover"])), z.string()]).describe("the fields to include for returned resources of type accessibilityDeclarations").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/accessibilityDeclarations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[deviceFamily]": args["filter_deviceFamily"],
       "filter[state]": args["filter_state"],
@@ -306,12 +310,14 @@ export const appsTools: Tool[] = [
   defineTool({
     name: "apps_alternative_distribution_key_get_to_one_relationship",
     description: "GET /v1/apps/{id}/relationships/alternativeDistributionKey (GET /v1/apps/{id}/relationships/alternativeDistributionKey)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/alternativeDistributionKey",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -323,12 +329,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/alternativeDistributionKey (GET /v1/apps/{id}/alternativeDistributionKey)",
     input: z.object({
     fields_alternativeDistributionKeys: z.union([z.array(z.enum(["publicKey"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionKeys").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/alternativeDistributionKey",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[alternativeDistributionKeys]": args["fields_alternativeDistributionKeys"],
     },
@@ -342,12 +349,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/analyticsReportRequests (GET /v1/apps/{id}/relationships/analyticsReportRequests)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/analyticsReportRequests",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -366,12 +374,13 @@ export const appsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["reports"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_reports: z.coerce.number().int().describe("maximum number of related reports returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/analyticsReportRequests",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[accessType]": args["filter_accessType"],
       "fields[analyticsReportRequests]": args["fields_analyticsReportRequests"],
@@ -390,12 +399,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/androidToIosAppMappingDetails (GET /v1/apps/{id}/relationships/androidToIosAppMappingDetails)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/androidToIosAppMappingDetails",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -410,12 +420,13 @@ export const appsTools: Tool[] = [
     input: z.object({
     fields_androidToIosAppMappingDetails: z.union([z.array(z.enum(["packageName", "appSigningKeyPublicCertificateSha256Fingerprints"])), z.string()]).describe("the fields to include for returned resources of type androidToIosAppMappingDetails").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/androidToIosAppMappingDetails",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[androidToIosAppMappingDetails]": args["fields_androidToIosAppMappingDetails"],
       "limit": args["limit"],
@@ -428,12 +439,14 @@ export const appsTools: Tool[] = [
   defineTool({
     name: "apps_app_availability_v2_get_to_one_relationship",
     description: "GET /v1/apps/{id}/relationships/appAvailabilityV2 (GET /v1/apps/{id}/relationships/appAvailabilityV2)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/appAvailabilityV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -448,12 +461,13 @@ export const appsTools: Tool[] = [
     fields_territoryAvailabilities: z.union([z.array(z.enum(["available", "releaseDate", "preOrderEnabled", "preOrderPublishDate", "contentStatuses", "territory"])), z.string()]).describe("the fields to include for returned resources of type territoryAvailabilities").optional(),
     include: z.union([z.array(z.enum(["territoryAvailabilities"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_territoryAvailabilities: z.coerce.number().int().describe("maximum number of related territoryAvailabilities returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/appAvailabilityV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appAvailabilities]": args["fields_appAvailabilities"],
       "fields[territoryAvailabilities]": args["fields_territoryAvailabilities"],
@@ -470,12 +484,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/appClips (GET /v1/apps/{id}/relationships/appClips)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/appClips",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -495,12 +510,13 @@ export const appsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["app", "appClipDefaultExperiences"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appClipDefaultExperiences: z.coerce.number().int().describe("maximum number of related appClipDefaultExperiences returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/appClips",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[bundleId]": args["filter_bundleId"],
       "fields[appClips]": args["fields_appClips"],
@@ -520,12 +536,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/appCustomProductPages (GET /v1/apps/{id}/relationships/appCustomProductPages)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/appCustomProductPages",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -545,12 +562,13 @@ export const appsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["app", "appCustomProductPageVersions"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appCustomProductPageVersions: z.coerce.number().int().describe("maximum number of related appCustomProductPageVersions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/appCustomProductPages",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[visible]": args["filter_visible"],
       "fields[appCustomProductPages]": args["fields_appCustomProductPages"],
@@ -570,12 +588,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/appEncryptionDeclarations (GET /v1/apps/{id}/relationships/appEncryptionDeclarations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/appEncryptionDeclarations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -597,12 +616,13 @@ export const appsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["app", "builds", "appEncryptionDeclarationDocument"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_builds: z.coerce.number().int().describe("maximum number of related builds returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/appEncryptionDeclarations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[platform]": args["filter_platform"],
       "filter[builds]": args["filter_builds"],
@@ -624,12 +644,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/appEvents (GET /v1/apps/{id}/relationships/appEvents)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/appEvents",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -649,12 +670,13 @@ export const appsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["localizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/appEvents",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[eventState]": args["filter_eventState"],
       "filter[id]": args["filter_id"],
@@ -674,12 +696,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/appInfos (GET /v1/apps/{id}/relationships/appInfos)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/appInfos",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -700,12 +723,13 @@ export const appsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["app", "ageRatingDeclaration", "appInfoLocalizations", "primaryCategory", "primarySubcategoryOne", "primarySubcategoryTwo", "secondaryCategory", "secondarySubcategoryOne", "secondarySubcategoryTwo"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appInfoLocalizations: z.coerce.number().int().describe("maximum number of related appInfoLocalizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/appInfos",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appInfos]": args["fields_appInfos"],
       "fields[apps]": args["fields_apps"],
@@ -726,12 +750,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/appPricePoints (GET /v1/apps/{id}/relationships/appPricePoints)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/appPricePoints",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -750,12 +775,13 @@ export const appsTools: Tool[] = [
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["app", "territory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/appPricePoints",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[territory]": args["filter_territory"],
       "fields[appPricePoints]": args["fields_appPricePoints"],
@@ -772,12 +798,14 @@ export const appsTools: Tool[] = [
   defineTool({
     name: "apps_app_price_schedule_get_to_one_relationship",
     description: "GET /v1/apps/{id}/relationships/appPriceSchedule (GET /v1/apps/{id}/relationships/appPriceSchedule)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/appPriceSchedule",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -795,12 +823,13 @@ export const appsTools: Tool[] = [
     include: z.union([z.array(z.enum(["app", "baseTerritory", "manualPrices", "automaticPrices"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_manualPrices: z.coerce.number().int().describe("maximum number of related manualPrices returned (when they are included)").optional(),
     limit_automaticPrices: z.coerce.number().int().describe("maximum number of related automaticPrices returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/appPriceSchedule",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[appPriceSchedules]": args["fields_appPriceSchedules"],
       "fields[apps]": args["fields_apps"],
@@ -820,12 +849,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/appStoreVersionExperimentsV2 (GET /v1/apps/{id}/relationships/appStoreVersionExperimentsV2)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/appStoreVersionExperimentsV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -847,12 +877,13 @@ export const appsTools: Tool[] = [
     include: z.union([z.array(z.enum(["app", "latestControlVersion", "controlVersions", "appStoreVersionExperimentTreatments"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_controlVersions: z.coerce.number().int().describe("maximum number of related controlVersions returned (when they are included)").optional(),
     limit_appStoreVersionExperimentTreatments: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentTreatments returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/appStoreVersionExperimentsV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[state]": args["filter_state"],
       "fields[appStoreVersionExperiments]": args["fields_appStoreVersionExperiments"],
@@ -874,12 +905,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/appStoreVersions (GET /v1/apps/{id}/relationships/appStoreVersions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/appStoreVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -914,12 +946,13 @@ export const appsTools: Tool[] = [
     limit_appStoreVersionLocalizations: z.coerce.number().int().describe("maximum number of related appStoreVersionLocalizations returned (when they are included)").optional(),
     limit_appStoreVersionExperiments: z.coerce.number().int().describe("maximum number of related appStoreVersionExperiments returned (when they are included)").optional(),
     limit_appStoreVersionExperimentsV2: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentsV2 returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/appStoreVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[platform]": args["filter_platform"],
       "filter[versionString]": args["filter_versionString"],
@@ -954,12 +987,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/appTags (GET /v1/apps/{id}/relationships/appTags)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/appTags",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -979,12 +1013,13 @@ export const appsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["territories"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_territories: z.coerce.number().int().describe("maximum number of related territories returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/appTags",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[visibleInAppStore]": args["filter_visibleInAppStore"],
       "sort": args["sort"],
@@ -1004,12 +1039,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/backgroundAssets (GET /v1/apps/{id}/relationships/backgroundAssets)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/backgroundAssets",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -1031,12 +1067,13 @@ export const appsTools: Tool[] = [
     fields_backgroundAssetVersions: z.union([z.array(z.enum(["createdDate", "platforms", "state", "stateDetails", "version", "backgroundAsset", "internalBetaRelease", "externalBetaRelease", "appStoreRelease", "assetFile", "manifestFile", "backgroundAssetUploadFiles"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetVersions").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["app", "appStoreVersion", "internalBetaVersion", "externalBetaVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/backgroundAssets",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[archived]": args["filter_archived"],
       "filter[assetPackIdentifier]": args["filter_assetPackIdentifier"],
@@ -1058,12 +1095,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/betaAppLocalizations (GET /v1/apps/{id}/relationships/betaAppLocalizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/betaAppLocalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -1078,12 +1116,13 @@ export const appsTools: Tool[] = [
     input: z.object({
     fields_betaAppLocalizations: z.union([z.array(z.enum(["feedbackEmail", "marketingUrl", "privacyPolicyUrl", "tvOsPrivacyPolicy", "description", "locale", "app"])), z.string()]).describe("the fields to include for returned resources of type betaAppLocalizations").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/betaAppLocalizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[betaAppLocalizations]": args["fields_betaAppLocalizations"],
       "limit": args["limit"],
@@ -1096,12 +1135,14 @@ export const appsTools: Tool[] = [
   defineTool({
     name: "apps_beta_app_review_detail_get_to_one_relationship",
     description: "GET /v1/apps/{id}/relationships/betaAppReviewDetail (GET /v1/apps/{id}/relationships/betaAppReviewDetail)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/betaAppReviewDetail",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -1113,12 +1154,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/betaAppReviewDetail (GET /v1/apps/{id}/betaAppReviewDetail)",
     input: z.object({
     fields_betaAppReviewDetails: z.union([z.array(z.enum(["contactFirstName", "contactLastName", "contactPhone", "contactEmail", "demoAccountName", "demoAccountPassword", "demoAccountRequired", "notes", "app"])), z.string()]).describe("the fields to include for returned resources of type betaAppReviewDetails").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/betaAppReviewDetail",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[betaAppReviewDetails]": args["fields_betaAppReviewDetails"],
     },
@@ -1132,12 +1174,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/betaFeedbackCrashSubmissions (GET /v1/apps/{id}/relationships/betaFeedbackCrashSubmissions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/betaFeedbackCrashSubmissions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -1163,12 +1206,13 @@ export const appsTools: Tool[] = [
     fields_betaTesters: z.union([z.array(z.enum(["firstName", "lastName", "email", "inviteType", "state", "appDevices", "apps", "betaGroups", "builds"])), z.string()]).describe("the fields to include for returned resources of type betaTesters").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["build", "tester"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/betaFeedbackCrashSubmissions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[deviceModel]": args["filter_deviceModel"],
       "filter[osVersion]": args["filter_osVersion"],
@@ -1194,12 +1238,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/betaFeedbackScreenshotSubmissions (GET /v1/apps/{id}/relationships/betaFeedbackScreenshotSubmissions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/betaFeedbackScreenshotSubmissions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -1225,12 +1270,13 @@ export const appsTools: Tool[] = [
     fields_betaTesters: z.union([z.array(z.enum(["firstName", "lastName", "email", "inviteType", "state", "appDevices", "apps", "betaGroups", "builds"])), z.string()]).describe("the fields to include for returned resources of type betaTesters").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["build", "tester"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/betaFeedbackScreenshotSubmissions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[deviceModel]": args["filter_deviceModel"],
       "filter[osVersion]": args["filter_osVersion"],
@@ -1256,12 +1302,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/betaGroups (GET /v1/apps/{id}/relationships/betaGroups)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/betaGroups",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -1276,12 +1323,13 @@ export const appsTools: Tool[] = [
     input: z.object({
     fields_betaGroups: z.union([z.array(z.enum(["name", "createdDate", "isInternalGroup", "hasAccessToAllBuilds", "publicLinkEnabled", "publicLinkId", "publicLinkLimitEnabled", "publicLinkLimit", "publicLink", "feedbackEnabled", "iosBuildsAvailableForAppleSiliconMac", "iosBuildsAvailableForAppleVision", "app", "builds", "betaTesters", "betaRecruitmentCriteria", "betaRecruitmentCriterionCompatibleBuildCheck"])), z.string()]).describe("the fields to include for returned resources of type betaGroups").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/betaGroups",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[betaGroups]": args["fields_betaGroups"],
       "limit": args["limit"],
@@ -1294,12 +1342,14 @@ export const appsTools: Tool[] = [
   defineTool({
     name: "apps_beta_license_agreement_get_to_one_relationship",
     description: "GET /v1/apps/{id}/relationships/betaLicenseAgreement (GET /v1/apps/{id}/relationships/betaLicenseAgreement)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/betaLicenseAgreement",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -1311,12 +1361,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/betaLicenseAgreement (GET /v1/apps/{id}/betaLicenseAgreement)",
     input: z.object({
     fields_betaLicenseAgreements: z.union([z.array(z.enum(["agreementText", "app"])), z.string()]).describe("the fields to include for returned resources of type betaLicenseAgreements").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/betaLicenseAgreement",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[betaLicenseAgreements]": args["fields_betaLicenseAgreements"],
     },
@@ -1329,13 +1380,14 @@ export const appsTools: Tool[] = [
     name: "apps_beta_testers_delete_to_many_relationship",
     description: "DELETE /v1/apps/{id}/relationships/betaTesters (DELETE /v1/apps/{id}/relationships/betaTesters) Body shape: see OpenAPI components.schemas.AppBetaTestersLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppBetaTestersLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "DELETE",
       path: "/v1/apps/{id}/relationships/betaTesters",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -1347,12 +1399,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/buildUploads (GET /v1/apps/{id}/relationships/buildUploads)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/buildUploads",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -1375,12 +1428,13 @@ export const appsTools: Tool[] = [
     fields_buildUploadFiles: z.union([z.array(z.enum(["assetDeliveryState", "assetToken", "assetType", "fileName", "fileSize", "sourceFileChecksums", "uploadOperations", "uti"])), z.string()]).describe("the fields to include for returned resources of type buildUploadFiles").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["build", "assetFile", "assetDescriptionFile", "assetSpiFile"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/buildUploads",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[cfBundleShortVersionString]": args["filter_cfBundleShortVersionString"],
       "filter[cfBundleVersion]": args["filter_cfBundleVersion"],
@@ -1403,12 +1457,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/builds (GET /v1/apps/{id}/relationships/builds)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/builds",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -1423,12 +1478,13 @@ export const appsTools: Tool[] = [
     input: z.object({
     fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/builds",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[builds]": args["fields_builds"],
       "limit": args["limit"],
@@ -1441,12 +1497,14 @@ export const appsTools: Tool[] = [
   defineTool({
     name: "apps_ci_product_get_to_one_relationship",
     description: "GET /v1/apps/{id}/relationships/ciProduct (GET /v1/apps/{id}/relationships/ciProduct)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/ciProduct",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -1463,12 +1521,13 @@ export const appsTools: Tool[] = [
     fields_scmRepositories: z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
     include: z.union([z.array(z.enum(["app", "bundleId", "primaryRepositories"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_primaryRepositories: z.coerce.number().int().describe("maximum number of related primaryRepositories returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/ciProduct",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[ciProducts]": args["fields_ciProducts"],
       "fields[apps]": args["fields_apps"],
@@ -1492,12 +1551,13 @@ export const appsTools: Tool[] = [
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["territory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/customerReviewSummarizations",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[platform]": args["filter_platform"],
       "filter[territory]": args["filter_territory"],
@@ -1516,12 +1576,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/customerReviews (GET /v1/apps/{id}/relationships/customerReviews)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/customerReviews",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -1542,12 +1603,13 @@ export const appsTools: Tool[] = [
     fields_customerReviewResponses: z.union([z.array(z.enum(["responseBody", "lastModifiedDate", "state", "review"])), z.string()]).describe("the fields to include for returned resources of type customerReviewResponses").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["response"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/customerReviews",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[territory]": args["filter_territory"],
       "filter[rating]": args["filter_rating"],
@@ -1566,12 +1628,14 @@ export const appsTools: Tool[] = [
   defineTool({
     name: "apps_end_user_license_agreement_get_to_one_relationship",
     description: "GET /v1/apps/{id}/relationships/endUserLicenseAgreement (GET /v1/apps/{id}/relationships/endUserLicenseAgreement)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/endUserLicenseAgreement",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -1583,12 +1647,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/endUserLicenseAgreement (GET /v1/apps/{id}/endUserLicenseAgreement)",
     input: z.object({
     fields_endUserLicenseAgreements: z.union([z.array(z.enum(["agreementText", "app", "territories"])), z.string()]).describe("the fields to include for returned resources of type endUserLicenseAgreements").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/endUserLicenseAgreement",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[endUserLicenseAgreements]": args["fields_endUserLicenseAgreements"],
     },
@@ -1600,12 +1665,14 @@ export const appsTools: Tool[] = [
   defineTool({
     name: "apps_game_center_detail_get_to_one_relationship",
     description: "GET /v1/apps/{id}/relationships/gameCenterDetail (GET /v1/apps/{id}/relationships/gameCenterDetail)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/gameCenterDetail",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -1647,12 +1714,13 @@ export const appsTools: Tool[] = [
     limit_leaderboardReleases: z.coerce.number().int().describe("maximum number of related leaderboardReleases returned (when they are included)").optional(),
     limit_leaderboardSetReleases: z.coerce.number().int().describe("maximum number of related leaderboardSetReleases returned (when they are included)").optional(),
     limit_challengesMinimumPlatformVersions: z.coerce.number().int().describe("maximum number of related challengesMinimumPlatformVersions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/gameCenterDetail",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterDetails]": args["fields_gameCenterDetails"],
       "fields[apps]": args["fields_apps"],
@@ -1696,12 +1764,13 @@ export const appsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/apps/{id}/relationships/gameCenterEnabledVersions (GET /v1/apps/{id}/relationships/gameCenterEnabledVersions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/gameCenterEnabledVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -1723,12 +1792,13 @@ export const appsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["compatibleVersions", "app"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_compatibleVersions: z.coerce.number().int().describe("maximum number of related compatibleVersions returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/gameCenterEnabledVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[platform]": args["filter_platform"],
       "filter[versionString]": args["filter_versionString"],
@@ -1750,12 +1820,13 @@ export const appsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/apps/{id}/relationships/inAppPurchases (GET /v1/apps/{id}/relationships/inAppPurchases)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/inAppPurchases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -1776,12 +1847,13 @@ export const appsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["apps"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_apps: z.coerce.number().int().describe("maximum number of related apps returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/inAppPurchases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[inAppPurchaseType]": args["filter_inAppPurchaseType"],
       "filter[canBeSubmitted]": args["filter_canBeSubmitted"],
@@ -1802,12 +1874,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/inAppPurchasesV2 (GET /v1/apps/{id}/relationships/inAppPurchasesV2)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/inAppPurchasesV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -1839,12 +1912,13 @@ export const appsTools: Tool[] = [
     limit_inAppPurchaseLocalizations: z.coerce.number().int().describe("maximum number of related inAppPurchaseLocalizations returned (when they are included)").optional(),
     limit_images: z.coerce.number().int().describe("maximum number of related images returned (when they are included)").optional(),
     limit_offerCodes: z.coerce.number().int().describe("maximum number of related offerCodes returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/inAppPurchasesV2",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[productId]": args["filter_productId"],
       "filter[name]": args["filter_name"],
@@ -1874,12 +1948,14 @@ export const appsTools: Tool[] = [
   defineTool({
     name: "apps_marketplace_search_detail_get_to_one_relationship",
     description: "GET /v1/apps/{id}/relationships/marketplaceSearchDetail (GET /v1/apps/{id}/relationships/marketplaceSearchDetail)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/marketplaceSearchDetail",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -1891,12 +1967,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/marketplaceSearchDetail (GET /v1/apps/{id}/marketplaceSearchDetail)",
     input: z.object({
     fields_marketplaceSearchDetails: z.union([z.array(z.enum(["catalogUrl"])), z.string()]).describe("the fields to include for returned resources of type marketplaceSearchDetails").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/marketplaceSearchDetail",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[marketplaceSearchDetails]": args["fields_marketplaceSearchDetails"],
     },
@@ -1912,12 +1989,13 @@ export const appsTools: Tool[] = [
     filter_platform: z.union([z.array(z.enum(["IOS"])), z.string()]).describe("filter by attribute 'platform'").optional(),
     filter_metricType: z.union([z.array(z.enum(["DISK", "HANG", "BATTERY", "LAUNCH", "MEMORY", "ANIMATION", "TERMINATION"])), z.string()]).describe("filter by attribute 'metricType'").optional(),
     filter_deviceType: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'deviceType'").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/perfPowerMetrics",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[platform]": args["filter_platform"],
       "filter[metricType]": args["filter_metricType"],
@@ -1933,12 +2011,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/preReleaseVersions (GET /v1/apps/{id}/relationships/preReleaseVersions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/preReleaseVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -1953,12 +2032,13 @@ export const appsTools: Tool[] = [
     input: z.object({
     fields_preReleaseVersions: z.union([z.array(z.enum(["version", "platform", "builds", "app"])), z.string()]).describe("the fields to include for returned resources of type preReleaseVersions").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/preReleaseVersions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[preReleaseVersions]": args["fields_preReleaseVersions"],
       "limit": args["limit"],
@@ -1973,12 +2053,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/promotedPurchases (GET /v1/apps/{id}/relationships/promotedPurchases)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/promotedPurchases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -1991,13 +2072,14 @@ export const appsTools: Tool[] = [
     name: "apps_promoted_purchases_replace_to_many_relationship",
     description: "PATCH /v1/apps/{id}/relationships/promotedPurchases (PATCH /v1/apps/{id}/relationships/promotedPurchases) Body shape: see OpenAPI components.schemas.AppPromotedPurchasesLinkagesRequest for the full JSON:API envelope.",
     input: z.object({
+    id: z.string().describe("the id of the requested resource"),
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.AppPromotedPurchasesLinkagesRequest."),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "PATCH",
       path: "/v1/apps/{id}/relationships/promotedPurchases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: args.body,
     });
@@ -2013,12 +2095,13 @@ export const appsTools: Tool[] = [
     fields_subscriptions: z.union([z.array(z.enum(["name", "productId", "familySharable", "state", "subscriptionPeriod", "reviewNote", "groupLevel", "subscriptionLocalizations", "appStoreReviewScreenshot", "group", "introductoryOffers", "promotionalOffers", "offerCodes", "prices", "pricePoints", "promotedPurchase", "subscriptionAvailability", "winBackOffers", "images"])), z.string()]).describe("the fields to include for returned resources of type subscriptions").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["inAppPurchaseV2", "subscription"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/promotedPurchases",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[promotedPurchases]": args["fields_promotedPurchases"],
       "fields[inAppPurchases]": args["fields_inAppPurchases"],
@@ -2036,12 +2119,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/reviewSubmissions (GET /v1/apps/{id}/relationships/reviewSubmissions)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/reviewSubmissions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -2064,12 +2148,13 @@ export const appsTools: Tool[] = [
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["app", "items", "appStoreVersionForReview", "submittedByActor", "lastUpdatedByActor"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_items: z.coerce.number().int().describe("maximum number of related items returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/reviewSubmissions",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[platform]": args["filter_platform"],
       "filter[state]": args["filter_state"],
@@ -2092,12 +2177,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/searchKeywords (GET /v1/apps/{id}/relationships/searchKeywords)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/searchKeywords",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -2114,12 +2200,13 @@ export const appsTools: Tool[] = [
     filter_locale: z.union([z.array(z.string()), z.string()]).describe("filter by locale").optional(),
     fields_appKeywords: z.union([z.array(z.string()), z.string()]).describe("the fields to include for returned resources of type appKeywords").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/searchKeywords",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[platform]": args["filter_platform"],
       "filter[locale]": args["filter_locale"],
@@ -2134,12 +2221,14 @@ export const appsTools: Tool[] = [
   defineTool({
     name: "apps_subscription_grace_period_get_to_one_relationship",
     description: "GET /v1/apps/{id}/relationships/subscriptionGracePeriod (GET /v1/apps/{id}/relationships/subscriptionGracePeriod)",
-    input: z.object({}).strict(),
+    input: z.object({
+    id: z.string().describe("the id of the requested resource"),
+  }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/subscriptionGracePeriod",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: undefined,
       body: undefined,
     });
@@ -2151,12 +2240,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/subscriptionGracePeriod (GET /v1/apps/{id}/subscriptionGracePeriod)",
     input: z.object({
     fields_subscriptionGracePeriods: z.union([z.array(z.enum(["optIn", "sandboxOptIn", "duration", "renewalType"])), z.string()]).describe("the fields to include for returned resources of type subscriptionGracePeriods").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/subscriptionGracePeriod",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[subscriptionGracePeriods]": args["fields_subscriptionGracePeriods"],
     },
@@ -2170,12 +2260,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/subscriptionGroups (GET /v1/apps/{id}/relationships/subscriptionGroups)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/subscriptionGroups",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -2198,12 +2289,13 @@ export const appsTools: Tool[] = [
     include: z.union([z.array(z.enum(["subscriptions", "subscriptionGroupLocalizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_subscriptions: z.coerce.number().int().describe("maximum number of related subscriptions returned (when they are included)").optional(),
     limit_subscriptionGroupLocalizations: z.coerce.number().int().describe("maximum number of related subscriptionGroupLocalizations returned (when they are included)").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/subscriptionGroups",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "filter[referenceName]": args["filter_referenceName"],
       "filter[subscriptions.state]": args["filter_subscriptions_state"],
@@ -2226,12 +2318,13 @@ export const appsTools: Tool[] = [
     description: "GET /v1/apps/{id}/relationships/webhooks (GET /v1/apps/{id}/relationships/webhooks)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/relationships/webhooks",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "limit": args["limit"],
     },
@@ -2248,12 +2341,13 @@ export const appsTools: Tool[] = [
     fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["app"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/webhooks",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "fields[webhooks]": args["fields_webhooks"],
       "fields[apps]": args["fields_apps"],
@@ -2273,12 +2367,13 @@ export const appsTools: Tool[] = [
     groupBy: z.union([z.array(z.enum(["betaTesters"])), z.string()]).describe("the dimension by which to group the results").optional(),
     filter_betaTesters: z.string().describe("filter by 'betaTesters' relationship dimension").optional(),
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
+    id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
       method: "GET",
       path: "/v1/apps/{id}/metrics/betaTesterUsages",
-      pathParams: undefined,
+      pathParams: { id: String(args["id"]) },
       query: {
       "period": args["period"],
       "groupBy": args["groupBy"],

@@ -31,10 +31,10 @@ export const gameCenterAchievementVersionsTools: Tool[] = [
     name: "game_center_achievement_versions_v2_get_instance",
     description: "GET /v2/gameCenterAchievementVersions/{id} (GET /v2/gameCenterAchievementVersions/{id})",
     input: z.object({
-    "fields[gameCenterAchievementVersions]": z.union([z.array(z.enum(["version", "state", "achievement", "localizations"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementVersions").optional(),
-    "fields[gameCenterAchievementLocalizations]": z.union([z.array(z.enum(["locale", "name", "beforeEarnedDescription", "afterEarnedDescription", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementLocalizations").optional(),
+    fields_gameCenterAchievementVersions: z.union([z.array(z.enum(["version", "state", "achievement", "localizations"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementVersions").optional(),
+    fields_gameCenterAchievementLocalizations: z.union([z.array(z.enum(["locale", "name", "beforeEarnedDescription", "afterEarnedDescription", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementLocalizations").optional(),
     include: z.union([z.array(z.enum(["achievement", "localizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[localizations]": z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
+    limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -42,10 +42,10 @@ export const gameCenterAchievementVersionsTools: Tool[] = [
       path: "/v2/gameCenterAchievementVersions/{id}",
       pathParams: undefined,
       query: {
-      "fields[gameCenterAchievementVersions]": args["fields[gameCenterAchievementVersions]"],
-      "fields[gameCenterAchievementLocalizations]": args["fields[gameCenterAchievementLocalizations]"],
+      "fields[gameCenterAchievementVersions]": args["fields_gameCenterAchievementVersions"],
+      "fields[gameCenterAchievementLocalizations]": args["fields_gameCenterAchievementLocalizations"],
       "include": args["include"],
-      "limit[localizations]": args["limit[localizations]"],
+      "limit[localizations]": args["limit_localizations"],
     },
       body: undefined,
     });
@@ -75,9 +75,9 @@ export const gameCenterAchievementVersionsTools: Tool[] = [
     name: "game_center_achievement_versions_v2_localizations_get_to_many_related",
     description: "GET /v2/gameCenterAchievementVersions/{id}/localizations (GET /v2/gameCenterAchievementVersions/{id}/localizations)",
     input: z.object({
-    "fields[gameCenterAchievementLocalizations]": z.union([z.array(z.enum(["locale", "name", "beforeEarnedDescription", "afterEarnedDescription", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementLocalizations").optional(),
-    "fields[gameCenterAchievementVersions]": z.union([z.array(z.enum(["version", "state", "achievement", "localizations"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementVersions").optional(),
-    "fields[gameCenterAchievementImages]": z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementImages").optional(),
+    fields_gameCenterAchievementLocalizations: z.union([z.array(z.enum(["locale", "name", "beforeEarnedDescription", "afterEarnedDescription", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementLocalizations").optional(),
+    fields_gameCenterAchievementVersions: z.union([z.array(z.enum(["version", "state", "achievement", "localizations"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementVersions").optional(),
+    fields_gameCenterAchievementImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementImages").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["version", "image"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -87,9 +87,9 @@ export const gameCenterAchievementVersionsTools: Tool[] = [
       path: "/v2/gameCenterAchievementVersions/{id}/localizations",
       pathParams: undefined,
       query: {
-      "fields[gameCenterAchievementLocalizations]": args["fields[gameCenterAchievementLocalizations]"],
-      "fields[gameCenterAchievementVersions]": args["fields[gameCenterAchievementVersions]"],
-      "fields[gameCenterAchievementImages]": args["fields[gameCenterAchievementImages]"],
+      "fields[gameCenterAchievementLocalizations]": args["fields_gameCenterAchievementLocalizations"],
+      "fields[gameCenterAchievementVersions]": args["fields_gameCenterAchievementVersions"],
+      "fields[gameCenterAchievementImages]": args["fields_gameCenterAchievementImages"],
       "limit": args["limit"],
       "include": args["include"],
     },

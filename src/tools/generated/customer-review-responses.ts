@@ -31,7 +31,7 @@ export const customerReviewResponsesTools: Tool[] = [
     name: "customer_review_responses_get_instance",
     description: "GET /v1/customerReviewResponses/{id} (GET /v1/customerReviewResponses/{id})",
     input: z.object({
-    "fields[customerReviewResponses]": z.union([z.array(z.enum(["responseBody", "lastModifiedDate", "state", "review"])), z.string()]).describe("the fields to include for returned resources of type customerReviewResponses").optional(),
+    fields_customerReviewResponses: z.union([z.array(z.enum(["responseBody", "lastModifiedDate", "state", "review"])), z.string()]).describe("the fields to include for returned resources of type customerReviewResponses").optional(),
     include: z.union([z.array(z.enum(["review"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const customerReviewResponsesTools: Tool[] = [
       path: "/v1/customerReviewResponses/{id}",
       pathParams: undefined,
       query: {
-      "fields[customerReviewResponses]": args["fields[customerReviewResponses]"],
+      "fields[customerReviewResponses]": args["fields_customerReviewResponses"],
       "include": args["include"],
     },
       body: undefined,

@@ -14,8 +14,8 @@ export const actorsTools: Tool[] = [
     name: "actors_get_collection",
     description: "GET /v1/actors (GET /v1/actors)",
     input: z.object({
-    "filter[id]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s)").optional(),
-    "fields[actors]": z.union([z.array(z.enum(["actorType", "userFirstName", "userLastName", "userEmail", "apiKeyId"])), z.string()]).describe("the fields to include for returned resources of type actors").optional(),
+    filter_id: z.union([z.array(z.string()), z.string()]).describe("filter by id(s)").optional(),
+    fields_actors: z.union([z.array(z.enum(["actorType", "userFirstName", "userLastName", "userEmail", "apiKeyId"])), z.string()]).describe("the fields to include for returned resources of type actors").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -24,8 +24,8 @@ export const actorsTools: Tool[] = [
       path: "/v1/actors",
       pathParams: undefined,
       query: {
-      "filter[id]": args["filter[id]"],
-      "fields[actors]": args["fields[actors]"],
+      "filter[id]": args["filter_id"],
+      "fields[actors]": args["fields_actors"],
       "limit": args["limit"],
     },
       body: undefined,
@@ -37,7 +37,7 @@ export const actorsTools: Tool[] = [
     name: "actors_get_instance",
     description: "GET /v1/actors/{id} (GET /v1/actors/{id})",
     input: z.object({
-    "fields[actors]": z.union([z.array(z.enum(["actorType", "userFirstName", "userLastName", "userEmail", "apiKeyId"])), z.string()]).describe("the fields to include for returned resources of type actors").optional(),
+    fields_actors: z.union([z.array(z.enum(["actorType", "userFirstName", "userLastName", "userEmail", "apiKeyId"])), z.string()]).describe("the fields to include for returned resources of type actors").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -45,7 +45,7 @@ export const actorsTools: Tool[] = [
       path: "/v1/actors/{id}",
       pathParams: undefined,
       query: {
-      "fields[actors]": args["fields[actors]"],
+      "fields[actors]": args["fields_actors"],
     },
       body: undefined,
     });

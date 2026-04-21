@@ -14,7 +14,7 @@ export const betaFeedbackScreenshotSubmissionsTools: Tool[] = [
     name: "beta_feedback_screenshot_submissions_get_instance",
     description: "GET /v1/betaFeedbackScreenshotSubmissions/{id} (GET /v1/betaFeedbackScreenshotSubmissions/{id})",
     input: z.object({
-    "fields[betaFeedbackScreenshotSubmissions]": z.union([z.array(z.enum(["createdDate", "comment", "email", "deviceModel", "osVersion", "locale", "timeZone", "architecture", "connectionType", "pairedAppleWatch", "appUptimeInMilliseconds", "diskBytesAvailable", "diskBytesTotal", "batteryPercentage", "screenWidthInPoints", "screenHeightInPoints", "appPlatform", "devicePlatform", "deviceFamily", "buildBundleId", "screenshots", "build", "tester"])), z.string()]).describe("the fields to include for returned resources of type betaFeedbackScreenshotSubmissions").optional(),
+    fields_betaFeedbackScreenshotSubmissions: z.union([z.array(z.enum(["createdDate", "comment", "email", "deviceModel", "osVersion", "locale", "timeZone", "architecture", "connectionType", "pairedAppleWatch", "appUptimeInMilliseconds", "diskBytesAvailable", "diskBytesTotal", "batteryPercentage", "screenWidthInPoints", "screenHeightInPoints", "appPlatform", "devicePlatform", "deviceFamily", "buildBundleId", "screenshots", "build", "tester"])), z.string()]).describe("the fields to include for returned resources of type betaFeedbackScreenshotSubmissions").optional(),
     include: z.union([z.array(z.enum(["build", "tester"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -23,7 +23,7 @@ export const betaFeedbackScreenshotSubmissionsTools: Tool[] = [
       path: "/v1/betaFeedbackScreenshotSubmissions/{id}",
       pathParams: undefined,
       query: {
-      "fields[betaFeedbackScreenshotSubmissions]": args["fields[betaFeedbackScreenshotSubmissions]"],
+      "fields[betaFeedbackScreenshotSubmissions]": args["fields_betaFeedbackScreenshotSubmissions"],
       "include": args["include"],
     },
       body: undefined,

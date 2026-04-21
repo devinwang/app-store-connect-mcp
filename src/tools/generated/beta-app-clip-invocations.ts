@@ -31,9 +31,9 @@ export const betaAppClipInvocationsTools: Tool[] = [
     name: "beta_app_clip_invocations_get_instance",
     description: "GET /v1/betaAppClipInvocations/{id} (GET /v1/betaAppClipInvocations/{id})",
     input: z.object({
-    "fields[betaAppClipInvocations]": z.union([z.array(z.enum(["url", "betaAppClipInvocationLocalizations"])), z.string()]).describe("the fields to include for returned resources of type betaAppClipInvocations").optional(),
+    fields_betaAppClipInvocations: z.union([z.array(z.enum(["url", "betaAppClipInvocationLocalizations"])), z.string()]).describe("the fields to include for returned resources of type betaAppClipInvocations").optional(),
     include: z.union([z.array(z.enum(["betaAppClipInvocationLocalizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[betaAppClipInvocationLocalizations]": z.coerce.number().int().describe("maximum number of related betaAppClipInvocationLocalizations returned (when they are included)").optional(),
+    limit_betaAppClipInvocationLocalizations: z.coerce.number().int().describe("maximum number of related betaAppClipInvocationLocalizations returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -41,9 +41,9 @@ export const betaAppClipInvocationsTools: Tool[] = [
       path: "/v1/betaAppClipInvocations/{id}",
       pathParams: undefined,
       query: {
-      "fields[betaAppClipInvocations]": args["fields[betaAppClipInvocations]"],
+      "fields[betaAppClipInvocations]": args["fields_betaAppClipInvocations"],
       "include": args["include"],
-      "limit[betaAppClipInvocationLocalizations]": args["limit[betaAppClipInvocationLocalizations]"],
+      "limit[betaAppClipInvocationLocalizations]": args["limit_betaAppClipInvocationLocalizations"],
     },
       body: undefined,
     });

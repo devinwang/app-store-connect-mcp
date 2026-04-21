@@ -14,7 +14,7 @@ export const betaRecruitmentCriterionOptionsTools: Tool[] = [
     name: "beta_recruitment_criterion_options_get_collection",
     description: "GET /v1/betaRecruitmentCriterionOptions (GET /v1/betaRecruitmentCriterionOptions)",
     input: z.object({
-    "fields[betaRecruitmentCriterionOptions]": z.union([z.array(z.enum(["deviceFamilyOsVersions"])), z.string()]).describe("the fields to include for returned resources of type betaRecruitmentCriterionOptions").optional(),
+    fields_betaRecruitmentCriterionOptions: z.union([z.array(z.enum(["deviceFamilyOsVersions"])), z.string()]).describe("the fields to include for returned resources of type betaRecruitmentCriterionOptions").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -23,7 +23,7 @@ export const betaRecruitmentCriterionOptionsTools: Tool[] = [
       path: "/v1/betaRecruitmentCriterionOptions",
       pathParams: undefined,
       query: {
-      "fields[betaRecruitmentCriterionOptions]": args["fields[betaRecruitmentCriterionOptions]"],
+      "fields[betaRecruitmentCriterionOptions]": args["fields_betaRecruitmentCriterionOptions"],
       "limit": args["limit"],
     },
       body: undefined,

@@ -31,7 +31,7 @@ export const gameCenterLeaderboardSetReleasesTools: Tool[] = [
     name: "game_center_leaderboard_set_releases_get_instance",
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboardSetReleases/{id} (GET /v1/gameCenterLeaderboardSetReleases/{id})",
     input: z.object({
-    "fields[gameCenterLeaderboardSetReleases]": z.union([z.array(z.enum(["live", "gameCenterDetail", "gameCenterLeaderboardSet"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetReleases").optional(),
+    fields_gameCenterLeaderboardSetReleases: z.union([z.array(z.enum(["live", "gameCenterDetail", "gameCenterLeaderboardSet"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetReleases").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterLeaderboardSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const gameCenterLeaderboardSetReleasesTools: Tool[] = [
       path: "/v1/gameCenterLeaderboardSetReleases/{id}",
       pathParams: undefined,
       query: {
-      "fields[gameCenterLeaderboardSetReleases]": args["fields[gameCenterLeaderboardSetReleases]"],
+      "fields[gameCenterLeaderboardSetReleases]": args["fields_gameCenterLeaderboardSetReleases"],
       "include": args["include"],
     },
       body: undefined,

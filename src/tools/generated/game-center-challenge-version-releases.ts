@@ -31,7 +31,7 @@ export const gameCenterChallengeVersionReleasesTools: Tool[] = [
     name: "game_center_challenge_version_releases_get_instance",
     description: "[DEPRECATED] GET /v1/gameCenterChallengeVersionReleases/{id} (GET /v1/gameCenterChallengeVersionReleases/{id})",
     input: z.object({
-    "fields[gameCenterChallengeVersionReleases]": z.union([z.array(z.enum(["version"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeVersionReleases").optional(),
+    fields_gameCenterChallengeVersionReleases: z.union([z.array(z.enum(["version"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeVersionReleases").optional(),
     include: z.union([z.array(z.enum(["version"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const gameCenterChallengeVersionReleasesTools: Tool[] = [
       path: "/v1/gameCenterChallengeVersionReleases/{id}",
       pathParams: undefined,
       query: {
-      "fields[gameCenterChallengeVersionReleases]": args["fields[gameCenterChallengeVersionReleases]"],
+      "fields[gameCenterChallengeVersionReleases]": args["fields_gameCenterChallengeVersionReleases"],
       "include": args["include"],
     },
       body: undefined,

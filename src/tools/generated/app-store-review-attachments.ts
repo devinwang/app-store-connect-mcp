@@ -31,7 +31,7 @@ export const appStoreReviewAttachmentsTools: Tool[] = [
     name: "app_store_review_attachments_get_instance",
     description: "GET /v1/appStoreReviewAttachments/{id} (GET /v1/appStoreReviewAttachments/{id})",
     input: z.object({
-    "fields[appStoreReviewAttachments]": z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "uploadOperations", "assetDeliveryState", "appStoreReviewDetail"])), z.string()]).describe("the fields to include for returned resources of type appStoreReviewAttachments").optional(),
+    fields_appStoreReviewAttachments: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "uploadOperations", "assetDeliveryState", "appStoreReviewDetail"])), z.string()]).describe("the fields to include for returned resources of type appStoreReviewAttachments").optional(),
     include: z.union([z.array(z.enum(["appStoreReviewDetail"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const appStoreReviewAttachmentsTools: Tool[] = [
       path: "/v1/appStoreReviewAttachments/{id}",
       pathParams: undefined,
       query: {
-      "fields[appStoreReviewAttachments]": args["fields[appStoreReviewAttachments]"],
+      "fields[appStoreReviewAttachments]": args["fields_appStoreReviewAttachments"],
       "include": args["include"],
     },
       body: undefined,

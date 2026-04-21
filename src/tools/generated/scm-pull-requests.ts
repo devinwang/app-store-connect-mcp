@@ -14,7 +14,7 @@ export const scmPullRequestsTools: Tool[] = [
     name: "scm_pull_requests_get_instance",
     description: "GET /v1/scmPullRequests/{id} (GET /v1/scmPullRequests/{id})",
     input: z.object({
-    "fields[scmPullRequests]": z.union([z.array(z.enum(["title", "number", "webUrl", "sourceRepositoryOwner", "sourceRepositoryName", "sourceBranchName", "destinationRepositoryOwner", "destinationRepositoryName", "destinationBranchName", "isClosed", "isCrossRepository", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmPullRequests").optional(),
+    fields_scmPullRequests: z.union([z.array(z.enum(["title", "number", "webUrl", "sourceRepositoryOwner", "sourceRepositoryName", "sourceBranchName", "destinationRepositoryOwner", "destinationRepositoryName", "destinationBranchName", "isClosed", "isCrossRepository", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmPullRequests").optional(),
     include: z.union([z.array(z.enum(["repository"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -23,7 +23,7 @@ export const scmPullRequestsTools: Tool[] = [
       path: "/v1/scmPullRequests/{id}",
       pathParams: undefined,
       query: {
-      "fields[scmPullRequests]": args["fields[scmPullRequests]"],
+      "fields[scmPullRequests]": args["fields_scmPullRequests"],
       "include": args["include"],
     },
       body: undefined,

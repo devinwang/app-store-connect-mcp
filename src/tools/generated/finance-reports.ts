@@ -14,10 +14,10 @@ export const financeReportsTools: Tool[] = [
     name: "finance_reports_get_collection",
     description: "GET /v1/financeReports (GET /v1/financeReports)",
     input: z.object({
-    "filter[vendorNumber]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'vendorNumber'").optional(),
-    "filter[reportType]": z.union([z.array(z.enum(["FINANCIAL", "FINANCE_DETAIL"])), z.string()]).describe("filter by attribute 'reportType'").optional(),
-    "filter[regionCode]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'regionCode'").optional(),
-    "filter[reportDate]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'reportDate'").optional(),
+    filter_vendorNumber: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'vendorNumber'").optional(),
+    filter_reportType: z.union([z.array(z.enum(["FINANCIAL", "FINANCE_DETAIL"])), z.string()]).describe("filter by attribute 'reportType'").optional(),
+    filter_regionCode: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'regionCode'").optional(),
+    filter_reportDate: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'reportDate'").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -25,10 +25,10 @@ export const financeReportsTools: Tool[] = [
       path: "/v1/financeReports",
       pathParams: undefined,
       query: {
-      "filter[vendorNumber]": args["filter[vendorNumber]"],
-      "filter[reportType]": args["filter[reportType]"],
-      "filter[regionCode]": args["filter[regionCode]"],
-      "filter[reportDate]": args["filter[reportDate]"],
+      "filter[vendorNumber]": args["filter_vendorNumber"],
+      "filter[reportType]": args["filter_reportType"],
+      "filter[regionCode]": args["filter_regionCode"],
+      "filter[reportDate]": args["filter_reportDate"],
     },
       body: undefined,
     });

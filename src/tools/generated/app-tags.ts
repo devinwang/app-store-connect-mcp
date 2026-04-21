@@ -50,7 +50,7 @@ export const appTagsTools: Tool[] = [
     name: "app_tags_territories_get_to_many_related",
     description: "GET /v1/appTags/{id}/territories (GET /v1/appTags/{id}/territories)",
     input: z.object({
-    "fields[territories]": z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -59,7 +59,7 @@ export const appTagsTools: Tool[] = [
       path: "/v1/appTags/{id}/territories",
       pathParams: undefined,
       query: {
-      "fields[territories]": args["fields[territories]"],
+      "fields[territories]": args["fields_territories"],
       "limit": args["limit"],
     },
       body: undefined,

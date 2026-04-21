@@ -31,7 +31,7 @@ export const subscriptionOfferCodeCustomCodesTools: Tool[] = [
     name: "subscription_offer_code_custom_codes_get_instance",
     description: "GET /v1/subscriptionOfferCodeCustomCodes/{id} (GET /v1/subscriptionOfferCodeCustomCodes/{id})",
     input: z.object({
-    "fields[subscriptionOfferCodeCustomCodes]": z.union([z.array(z.enum(["customCode", "numberOfCodes", "createdDate", "expirationDate", "active", "offerCode"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodeCustomCodes").optional(),
+    fields_subscriptionOfferCodeCustomCodes: z.union([z.array(z.enum(["customCode", "numberOfCodes", "createdDate", "expirationDate", "active", "offerCode"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodeCustomCodes").optional(),
     include: z.union([z.array(z.enum(["offerCode"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const subscriptionOfferCodeCustomCodesTools: Tool[] = [
       path: "/v1/subscriptionOfferCodeCustomCodes/{id}",
       pathParams: undefined,
       query: {
-      "fields[subscriptionOfferCodeCustomCodes]": args["fields[subscriptionOfferCodeCustomCodes]"],
+      "fields[subscriptionOfferCodeCustomCodes]": args["fields_subscriptionOfferCodeCustomCodes"],
       "include": args["include"],
     },
       body: undefined,

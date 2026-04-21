@@ -31,7 +31,7 @@ export const subscriptionGroupLocalizationsTools: Tool[] = [
     name: "subscription_group_localizations_get_instance",
     description: "GET /v1/subscriptionGroupLocalizations/{id} (GET /v1/subscriptionGroupLocalizations/{id})",
     input: z.object({
-    "fields[subscriptionGroupLocalizations]": z.union([z.array(z.enum(["name", "customAppName", "locale", "state", "subscriptionGroup"])), z.string()]).describe("the fields to include for returned resources of type subscriptionGroupLocalizations").optional(),
+    fields_subscriptionGroupLocalizations: z.union([z.array(z.enum(["name", "customAppName", "locale", "state", "subscriptionGroup"])), z.string()]).describe("the fields to include for returned resources of type subscriptionGroupLocalizations").optional(),
     include: z.union([z.array(z.enum(["subscriptionGroup"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const subscriptionGroupLocalizationsTools: Tool[] = [
       path: "/v1/subscriptionGroupLocalizations/{id}",
       pathParams: undefined,
       query: {
-      "fields[subscriptionGroupLocalizations]": args["fields[subscriptionGroupLocalizations]"],
+      "fields[subscriptionGroupLocalizations]": args["fields_subscriptionGroupLocalizations"],
       "include": args["include"],
     },
       body: undefined,

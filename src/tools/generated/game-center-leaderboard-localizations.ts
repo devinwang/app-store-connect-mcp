@@ -31,8 +31,8 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
     name: "game_center_leaderboard_localizations_get_instance",
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboardLocalizations/{id} (GET /v1/gameCenterLeaderboardLocalizations/{id})",
     input: z.object({
-    "fields[gameCenterLeaderboardLocalizations]": z.union([z.array(z.enum(["locale", "name", "formatterOverride", "formatterSuffix", "formatterSuffixSingular", "description", "gameCenterLeaderboard", "gameCenterLeaderboardImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardLocalizations").optional(),
-    "fields[gameCenterLeaderboardImages]": z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterLeaderboardLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
+    fields_gameCenterLeaderboardLocalizations: z.union([z.array(z.enum(["locale", "name", "formatterOverride", "formatterSuffix", "formatterSuffixSingular", "description", "gameCenterLeaderboard", "gameCenterLeaderboardImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardLocalizations").optional(),
+    fields_gameCenterLeaderboardImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterLeaderboardLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
     include: z.union([z.array(z.enum(["gameCenterLeaderboard", "gameCenterLeaderboardImage"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -41,8 +41,8 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
       path: "/v1/gameCenterLeaderboardLocalizations/{id}",
       pathParams: undefined,
       query: {
-      "fields[gameCenterLeaderboardLocalizations]": args["fields[gameCenterLeaderboardLocalizations]"],
-      "fields[gameCenterLeaderboardImages]": args["fields[gameCenterLeaderboardImages]"],
+      "fields[gameCenterLeaderboardLocalizations]": args["fields_gameCenterLeaderboardLocalizations"],
+      "fields[gameCenterLeaderboardImages]": args["fields_gameCenterLeaderboardImages"],
       "include": args["include"],
     },
       body: undefined,
@@ -103,8 +103,8 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
     name: "game_center_leaderboard_localizations_v2_get_instance",
     description: "GET /v2/gameCenterLeaderboardLocalizations/{id} (GET /v2/gameCenterLeaderboardLocalizations/{id})",
     input: z.object({
-    "fields[gameCenterLeaderboardLocalizations]": z.union([z.array(z.enum(["locale", "name", "formatterOverride", "formatterSuffix", "formatterSuffixSingular", "description", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardLocalizations").optional(),
-    "fields[gameCenterLeaderboardImages]": z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
+    fields_gameCenterLeaderboardLocalizations: z.union([z.array(z.enum(["locale", "name", "formatterOverride", "formatterSuffix", "formatterSuffixSingular", "description", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardLocalizations").optional(),
+    fields_gameCenterLeaderboardImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
     include: z.union([z.array(z.enum(["version", "image"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -113,8 +113,8 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
       path: "/v2/gameCenterLeaderboardLocalizations/{id}",
       pathParams: undefined,
       query: {
-      "fields[gameCenterLeaderboardLocalizations]": args["fields[gameCenterLeaderboardLocalizations]"],
-      "fields[gameCenterLeaderboardImages]": args["fields[gameCenterLeaderboardImages]"],
+      "fields[gameCenterLeaderboardLocalizations]": args["fields_gameCenterLeaderboardLocalizations"],
+      "fields[gameCenterLeaderboardImages]": args["fields_gameCenterLeaderboardImages"],
       "include": args["include"],
     },
       body: undefined,
@@ -173,8 +173,8 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
     name: "game_center_leaderboard_localizations_game_center_leaderboard_image_get_to_one_related",
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboardLocalizations/{id}/gameCenterLeaderboardImage (GET /v1/gameCenterLeaderboardLocalizations/{id}/gameCenterLeaderboardImage)",
     input: z.object({
-    "fields[gameCenterLeaderboardImages]": z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterLeaderboardLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
-    "fields[gameCenterLeaderboardLocalizations]": z.union([z.array(z.enum(["locale", "name", "formatterOverride", "formatterSuffix", "formatterSuffixSingular", "description", "gameCenterLeaderboard", "gameCenterLeaderboardImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardLocalizations").optional(),
+    fields_gameCenterLeaderboardImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterLeaderboardLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
+    fields_gameCenterLeaderboardLocalizations: z.union([z.array(z.enum(["locale", "name", "formatterOverride", "formatterSuffix", "formatterSuffixSingular", "description", "gameCenterLeaderboard", "gameCenterLeaderboardImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardLocalizations").optional(),
     include: z.union([z.array(z.enum(["gameCenterLeaderboardLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -183,8 +183,8 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
       path: "/v1/gameCenterLeaderboardLocalizations/{id}/gameCenterLeaderboardImage",
       pathParams: undefined,
       query: {
-      "fields[gameCenterLeaderboardImages]": args["fields[gameCenterLeaderboardImages]"],
-      "fields[gameCenterLeaderboardLocalizations]": args["fields[gameCenterLeaderboardLocalizations]"],
+      "fields[gameCenterLeaderboardImages]": args["fields_gameCenterLeaderboardImages"],
+      "fields[gameCenterLeaderboardLocalizations]": args["fields_gameCenterLeaderboardLocalizations"],
       "include": args["include"],
     },
       body: undefined,
@@ -211,8 +211,8 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
     name: "game_center_leaderboard_localizations_v2_image_get_to_one_related",
     description: "GET /v2/gameCenterLeaderboardLocalizations/{id}/image (GET /v2/gameCenterLeaderboardLocalizations/{id}/image)",
     input: z.object({
-    "fields[gameCenterLeaderboardImages]": z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
-    "fields[gameCenterLeaderboardLocalizations]": z.union([z.array(z.enum(["locale", "name", "formatterOverride", "formatterSuffix", "formatterSuffixSingular", "description", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardLocalizations").optional(),
+    fields_gameCenterLeaderboardImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
+    fields_gameCenterLeaderboardLocalizations: z.union([z.array(z.enum(["locale", "name", "formatterOverride", "formatterSuffix", "formatterSuffixSingular", "description", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardLocalizations").optional(),
     include: z.union([z.array(z.enum(["localization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -221,8 +221,8 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
       path: "/v2/gameCenterLeaderboardLocalizations/{id}/image",
       pathParams: undefined,
       query: {
-      "fields[gameCenterLeaderboardImages]": args["fields[gameCenterLeaderboardImages]"],
-      "fields[gameCenterLeaderboardLocalizations]": args["fields[gameCenterLeaderboardLocalizations]"],
+      "fields[gameCenterLeaderboardImages]": args["fields_gameCenterLeaderboardImages"],
+      "fields[gameCenterLeaderboardLocalizations]": args["fields_gameCenterLeaderboardLocalizations"],
       "include": args["include"],
     },
       body: undefined,

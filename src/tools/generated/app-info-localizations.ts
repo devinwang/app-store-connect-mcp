@@ -31,7 +31,7 @@ export const appInfoLocalizationsTools: Tool[] = [
     name: "app_info_localizations_get_instance",
     description: "GET /v1/appInfoLocalizations/{id} (GET /v1/appInfoLocalizations/{id})",
     input: z.object({
-    "fields[appInfoLocalizations]": z.union([z.array(z.enum(["locale", "name", "subtitle", "privacyPolicyUrl", "privacyChoicesUrl", "privacyPolicyText", "appInfo"])), z.string()]).describe("the fields to include for returned resources of type appInfoLocalizations").optional(),
+    fields_appInfoLocalizations: z.union([z.array(z.enum(["locale", "name", "subtitle", "privacyPolicyUrl", "privacyChoicesUrl", "privacyPolicyText", "appInfo"])), z.string()]).describe("the fields to include for returned resources of type appInfoLocalizations").optional(),
     include: z.union([z.array(z.enum(["appInfo"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const appInfoLocalizationsTools: Tool[] = [
       path: "/v1/appInfoLocalizations/{id}",
       pathParams: undefined,
       query: {
-      "fields[appInfoLocalizations]": args["fields[appInfoLocalizations]"],
+      "fields[appInfoLocalizations]": args["fields_appInfoLocalizations"],
       "include": args["include"],
     },
       body: undefined,

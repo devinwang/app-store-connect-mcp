@@ -31,7 +31,7 @@ export const androidToIosAppMappingDetailsTools: Tool[] = [
     name: "android_to_ios_app_mapping_details_get_instance",
     description: "GET /v1/androidToIosAppMappingDetails/{id} (GET /v1/androidToIosAppMappingDetails/{id})",
     input: z.object({
-    "fields[androidToIosAppMappingDetails]": z.union([z.array(z.enum(["packageName", "appSigningKeyPublicCertificateSha256Fingerprints"])), z.string()]).describe("the fields to include for returned resources of type androidToIosAppMappingDetails").optional(),
+    fields_androidToIosAppMappingDetails: z.union([z.array(z.enum(["packageName", "appSigningKeyPublicCertificateSha256Fingerprints"])), z.string()]).describe("the fields to include for returned resources of type androidToIosAppMappingDetails").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -39,7 +39,7 @@ export const androidToIosAppMappingDetailsTools: Tool[] = [
       path: "/v1/androidToIosAppMappingDetails/{id}",
       pathParams: undefined,
       query: {
-      "fields[androidToIosAppMappingDetails]": args["fields[androidToIosAppMappingDetails]"],
+      "fields[androidToIosAppMappingDetails]": args["fields_androidToIosAppMappingDetails"],
     },
       body: undefined,
     });

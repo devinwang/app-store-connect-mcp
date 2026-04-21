@@ -14,7 +14,7 @@ export const alternativeDistributionDomainsTools: Tool[] = [
     name: "alternative_distribution_domains_get_collection",
     description: "GET /v1/alternativeDistributionDomains (GET /v1/alternativeDistributionDomains)",
     input: z.object({
-    "fields[alternativeDistributionDomains]": z.union([z.array(z.enum(["domain", "referenceName", "createdDate"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionDomains").optional(),
+    fields_alternativeDistributionDomains: z.union([z.array(z.enum(["domain", "referenceName", "createdDate"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionDomains").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -23,7 +23,7 @@ export const alternativeDistributionDomainsTools: Tool[] = [
       path: "/v1/alternativeDistributionDomains",
       pathParams: undefined,
       query: {
-      "fields[alternativeDistributionDomains]": args["fields[alternativeDistributionDomains]"],
+      "fields[alternativeDistributionDomains]": args["fields_alternativeDistributionDomains"],
       "limit": args["limit"],
     },
       body: undefined,
@@ -52,7 +52,7 @@ export const alternativeDistributionDomainsTools: Tool[] = [
     name: "alternative_distribution_domains_get_instance",
     description: "GET /v1/alternativeDistributionDomains/{id} (GET /v1/alternativeDistributionDomains/{id})",
     input: z.object({
-    "fields[alternativeDistributionDomains]": z.union([z.array(z.enum(["domain", "referenceName", "createdDate"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionDomains").optional(),
+    fields_alternativeDistributionDomains: z.union([z.array(z.enum(["domain", "referenceName", "createdDate"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionDomains").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -60,7 +60,7 @@ export const alternativeDistributionDomainsTools: Tool[] = [
       path: "/v1/alternativeDistributionDomains/{id}",
       pathParams: undefined,
       query: {
-      "fields[alternativeDistributionDomains]": args["fields[alternativeDistributionDomains]"],
+      "fields[alternativeDistributionDomains]": args["fields_alternativeDistributionDomains"],
     },
       body: undefined,
     });

@@ -14,19 +14,19 @@ export const profilesTools: Tool[] = [
     name: "profiles_get_collection",
     description: "GET /v1/profiles (GET /v1/profiles)",
     input: z.object({
-    "filter[name]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'name'").optional(),
-    "filter[profileType]": z.union([z.array(z.enum(["IOS_APP_DEVELOPMENT", "IOS_APP_STORE", "IOS_APP_ADHOC", "IOS_APP_INHOUSE", "MAC_APP_DEVELOPMENT", "MAC_APP_STORE", "MAC_APP_DIRECT", "TVOS_APP_DEVELOPMENT", "TVOS_APP_STORE", "TVOS_APP_ADHOC", "TVOS_APP_INHOUSE", "MAC_CATALYST_APP_DEVELOPMENT", "MAC_CATALYST_APP_STORE", "MAC_CATALYST_APP_DIRECT"])), z.string()]).describe("filter by attribute 'profileType'").optional(),
-    "filter[profileState]": z.union([z.array(z.enum(["ACTIVE", "INVALID"])), z.string()]).describe("filter by attribute 'profileState'").optional(),
-    "filter[id]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s)").optional(),
+    filter_name: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'name'").optional(),
+    filter_profileType: z.union([z.array(z.enum(["IOS_APP_DEVELOPMENT", "IOS_APP_STORE", "IOS_APP_ADHOC", "IOS_APP_INHOUSE", "MAC_APP_DEVELOPMENT", "MAC_APP_STORE", "MAC_APP_DIRECT", "TVOS_APP_DEVELOPMENT", "TVOS_APP_STORE", "TVOS_APP_ADHOC", "TVOS_APP_INHOUSE", "MAC_CATALYST_APP_DEVELOPMENT", "MAC_CATALYST_APP_STORE", "MAC_CATALYST_APP_DIRECT"])), z.string()]).describe("filter by attribute 'profileType'").optional(),
+    filter_profileState: z.union([z.array(z.enum(["ACTIVE", "INVALID"])), z.string()]).describe("filter by attribute 'profileState'").optional(),
+    filter_id: z.union([z.array(z.string()), z.string()]).describe("filter by id(s)").optional(),
     sort: z.union([z.array(z.enum(["name", "-name", "profileType", "-profileType", "profileState", "-profileState", "id", "-id"])), z.string()]).describe("comma-separated list of sort expressions; resources will be sorted as specified").optional(),
-    "fields[profiles]": z.union([z.array(z.enum(["name", "platform", "profileType", "profileState", "profileContent", "uuid", "createdDate", "expirationDate", "bundleId", "devices", "certificates"])), z.string()]).describe("the fields to include for returned resources of type profiles").optional(),
-    "fields[bundleIds]": z.union([z.array(z.enum(["name", "platform", "identifier", "seedId", "profiles", "bundleIdCapabilities", "app"])), z.string()]).describe("the fields to include for returned resources of type bundleIds").optional(),
-    "fields[devices]": z.union([z.array(z.enum(["name", "platform", "udid", "deviceClass", "status", "model", "addedDate"])), z.string()]).describe("the fields to include for returned resources of type devices").optional(),
-    "fields[certificates]": z.union([z.array(z.enum(["name", "certificateType", "displayName", "serialNumber", "platform", "expirationDate", "certificateContent", "activated", "passTypeId"])), z.string()]).describe("the fields to include for returned resources of type certificates").optional(),
+    fields_profiles: z.union([z.array(z.enum(["name", "platform", "profileType", "profileState", "profileContent", "uuid", "createdDate", "expirationDate", "bundleId", "devices", "certificates"])), z.string()]).describe("the fields to include for returned resources of type profiles").optional(),
+    fields_bundleIds: z.union([z.array(z.enum(["name", "platform", "identifier", "seedId", "profiles", "bundleIdCapabilities", "app"])), z.string()]).describe("the fields to include for returned resources of type bundleIds").optional(),
+    fields_devices: z.union([z.array(z.enum(["name", "platform", "udid", "deviceClass", "status", "model", "addedDate"])), z.string()]).describe("the fields to include for returned resources of type devices").optional(),
+    fields_certificates: z.union([z.array(z.enum(["name", "certificateType", "displayName", "serialNumber", "platform", "expirationDate", "certificateContent", "activated", "passTypeId"])), z.string()]).describe("the fields to include for returned resources of type certificates").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["bundleId", "devices", "certificates"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[certificates]": z.coerce.number().int().describe("maximum number of related certificates returned (when they are included)").optional(),
-    "limit[devices]": z.coerce.number().int().describe("maximum number of related devices returned (when they are included)").optional(),
+    limit_certificates: z.coerce.number().int().describe("maximum number of related certificates returned (when they are included)").optional(),
+    limit_devices: z.coerce.number().int().describe("maximum number of related devices returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -34,19 +34,19 @@ export const profilesTools: Tool[] = [
       path: "/v1/profiles",
       pathParams: undefined,
       query: {
-      "filter[name]": args["filter[name]"],
-      "filter[profileType]": args["filter[profileType]"],
-      "filter[profileState]": args["filter[profileState]"],
-      "filter[id]": args["filter[id]"],
+      "filter[name]": args["filter_name"],
+      "filter[profileType]": args["filter_profileType"],
+      "filter[profileState]": args["filter_profileState"],
+      "filter[id]": args["filter_id"],
       "sort": args["sort"],
-      "fields[profiles]": args["fields[profiles]"],
-      "fields[bundleIds]": args["fields[bundleIds]"],
-      "fields[devices]": args["fields[devices]"],
-      "fields[certificates]": args["fields[certificates]"],
+      "fields[profiles]": args["fields_profiles"],
+      "fields[bundleIds]": args["fields_bundleIds"],
+      "fields[devices]": args["fields_devices"],
+      "fields[certificates]": args["fields_certificates"],
       "limit": args["limit"],
       "include": args["include"],
-      "limit[certificates]": args["limit[certificates]"],
-      "limit[devices]": args["limit[devices]"],
+      "limit[certificates]": args["limit_certificates"],
+      "limit[devices]": args["limit_devices"],
     },
       body: undefined,
     });
@@ -74,13 +74,13 @@ export const profilesTools: Tool[] = [
     name: "profiles_get_instance",
     description: "GET /v1/profiles/{id} (GET /v1/profiles/{id})",
     input: z.object({
-    "fields[profiles]": z.union([z.array(z.enum(["name", "platform", "profileType", "profileState", "profileContent", "uuid", "createdDate", "expirationDate", "bundleId", "devices", "certificates"])), z.string()]).describe("the fields to include for returned resources of type profiles").optional(),
-    "fields[bundleIds]": z.union([z.array(z.enum(["name", "platform", "identifier", "seedId", "profiles", "bundleIdCapabilities", "app"])), z.string()]).describe("the fields to include for returned resources of type bundleIds").optional(),
-    "fields[devices]": z.union([z.array(z.enum(["name", "platform", "udid", "deviceClass", "status", "model", "addedDate"])), z.string()]).describe("the fields to include for returned resources of type devices").optional(),
-    "fields[certificates]": z.union([z.array(z.enum(["name", "certificateType", "displayName", "serialNumber", "platform", "expirationDate", "certificateContent", "activated", "passTypeId"])), z.string()]).describe("the fields to include for returned resources of type certificates").optional(),
+    fields_profiles: z.union([z.array(z.enum(["name", "platform", "profileType", "profileState", "profileContent", "uuid", "createdDate", "expirationDate", "bundleId", "devices", "certificates"])), z.string()]).describe("the fields to include for returned resources of type profiles").optional(),
+    fields_bundleIds: z.union([z.array(z.enum(["name", "platform", "identifier", "seedId", "profiles", "bundleIdCapabilities", "app"])), z.string()]).describe("the fields to include for returned resources of type bundleIds").optional(),
+    fields_devices: z.union([z.array(z.enum(["name", "platform", "udid", "deviceClass", "status", "model", "addedDate"])), z.string()]).describe("the fields to include for returned resources of type devices").optional(),
+    fields_certificates: z.union([z.array(z.enum(["name", "certificateType", "displayName", "serialNumber", "platform", "expirationDate", "certificateContent", "activated", "passTypeId"])), z.string()]).describe("the fields to include for returned resources of type certificates").optional(),
     include: z.union([z.array(z.enum(["bundleId", "devices", "certificates"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[certificates]": z.coerce.number().int().describe("maximum number of related certificates returned (when they are included)").optional(),
-    "limit[devices]": z.coerce.number().int().describe("maximum number of related devices returned (when they are included)").optional(),
+    limit_certificates: z.coerce.number().int().describe("maximum number of related certificates returned (when they are included)").optional(),
+    limit_devices: z.coerce.number().int().describe("maximum number of related devices returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -88,13 +88,13 @@ export const profilesTools: Tool[] = [
       path: "/v1/profiles/{id}",
       pathParams: undefined,
       query: {
-      "fields[profiles]": args["fields[profiles]"],
-      "fields[bundleIds]": args["fields[bundleIds]"],
-      "fields[devices]": args["fields[devices]"],
-      "fields[certificates]": args["fields[certificates]"],
+      "fields[profiles]": args["fields_profiles"],
+      "fields[bundleIds]": args["fields_bundleIds"],
+      "fields[devices]": args["fields_devices"],
+      "fields[certificates]": args["fields_certificates"],
       "include": args["include"],
-      "limit[certificates]": args["limit[certificates]"],
-      "limit[devices]": args["limit[devices]"],
+      "limit[certificates]": args["limit_certificates"],
+      "limit[devices]": args["limit_devices"],
     },
       body: undefined,
     });
@@ -135,7 +135,7 @@ export const profilesTools: Tool[] = [
     name: "profiles_bundle_id_get_to_one_related",
     description: "GET /v1/profiles/{id}/bundleId (GET /v1/profiles/{id}/bundleId)",
     input: z.object({
-    "fields[bundleIds]": z.union([z.array(z.enum(["name", "platform", "identifier", "seedId", "profiles", "bundleIdCapabilities", "app"])), z.string()]).describe("the fields to include for returned resources of type bundleIds").optional(),
+    fields_bundleIds: z.union([z.array(z.enum(["name", "platform", "identifier", "seedId", "profiles", "bundleIdCapabilities", "app"])), z.string()]).describe("the fields to include for returned resources of type bundleIds").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -143,7 +143,7 @@ export const profilesTools: Tool[] = [
       path: "/v1/profiles/{id}/bundleId",
       pathParams: undefined,
       query: {
-      "fields[bundleIds]": args["fields[bundleIds]"],
+      "fields[bundleIds]": args["fields_bundleIds"],
     },
       body: undefined,
     });
@@ -173,7 +173,7 @@ export const profilesTools: Tool[] = [
     name: "profiles_certificates_get_to_many_related",
     description: "GET /v1/profiles/{id}/certificates (GET /v1/profiles/{id}/certificates)",
     input: z.object({
-    "fields[certificates]": z.union([z.array(z.enum(["name", "certificateType", "displayName", "serialNumber", "platform", "expirationDate", "certificateContent", "activated", "passTypeId"])), z.string()]).describe("the fields to include for returned resources of type certificates").optional(),
+    fields_certificates: z.union([z.array(z.enum(["name", "certificateType", "displayName", "serialNumber", "platform", "expirationDate", "certificateContent", "activated", "passTypeId"])), z.string()]).describe("the fields to include for returned resources of type certificates").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -182,7 +182,7 @@ export const profilesTools: Tool[] = [
       path: "/v1/profiles/{id}/certificates",
       pathParams: undefined,
       query: {
-      "fields[certificates]": args["fields[certificates]"],
+      "fields[certificates]": args["fields_certificates"],
       "limit": args["limit"],
     },
       body: undefined,
@@ -213,7 +213,7 @@ export const profilesTools: Tool[] = [
     name: "profiles_devices_get_to_many_related",
     description: "GET /v1/profiles/{id}/devices (GET /v1/profiles/{id}/devices)",
     input: z.object({
-    "fields[devices]": z.union([z.array(z.enum(["name", "platform", "udid", "deviceClass", "status", "model", "addedDate"])), z.string()]).describe("the fields to include for returned resources of type devices").optional(),
+    fields_devices: z.union([z.array(z.enum(["name", "platform", "udid", "deviceClass", "status", "model", "addedDate"])), z.string()]).describe("the fields to include for returned resources of type devices").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -222,7 +222,7 @@ export const profilesTools: Tool[] = [
       path: "/v1/profiles/{id}/devices",
       pathParams: undefined,
       query: {
-      "fields[devices]": args["fields[devices]"],
+      "fields[devices]": args["fields_devices"],
       "limit": args["limit"],
     },
       body: undefined,

@@ -31,7 +31,7 @@ export const appEventVideoClipsTools: Tool[] = [
     name: "app_event_video_clips_get_instance",
     description: "GET /v1/appEventVideoClips/{id} (GET /v1/appEventVideoClips/{id})",
     input: z.object({
-    "fields[appEventVideoClips]": z.union([z.array(z.enum(["fileSize", "fileName", "previewFrameTimeCode", "videoUrl", "previewFrameImage", "previewImage", "uploadOperations", "assetDeliveryState", "videoDeliveryState", "appEventAssetType", "appEventLocalization"])), z.string()]).describe("the fields to include for returned resources of type appEventVideoClips").optional(),
+    fields_appEventVideoClips: z.union([z.array(z.enum(["fileSize", "fileName", "previewFrameTimeCode", "videoUrl", "previewFrameImage", "previewImage", "uploadOperations", "assetDeliveryState", "videoDeliveryState", "appEventAssetType", "appEventLocalization"])), z.string()]).describe("the fields to include for returned resources of type appEventVideoClips").optional(),
     include: z.union([z.array(z.enum(["appEventLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const appEventVideoClipsTools: Tool[] = [
       path: "/v1/appEventVideoClips/{id}",
       pathParams: undefined,
       query: {
-      "fields[appEventVideoClips]": args["fields[appEventVideoClips]"],
+      "fields[appEventVideoClips]": args["fields_appEventVideoClips"],
       "include": args["include"],
     },
       body: undefined,

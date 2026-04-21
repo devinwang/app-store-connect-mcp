@@ -14,7 +14,7 @@ export const inAppPurchaseContentsTools: Tool[] = [
     name: "in_app_purchase_contents_get_instance",
     description: "GET /v1/inAppPurchaseContents/{id} (GET /v1/inAppPurchaseContents/{id})",
     input: z.object({
-    "fields[inAppPurchaseContents]": z.union([z.array(z.enum(["fileName", "fileSize", "url", "lastModifiedDate", "inAppPurchaseV2"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchaseContents").optional(),
+    fields_inAppPurchaseContents: z.union([z.array(z.enum(["fileName", "fileSize", "url", "lastModifiedDate", "inAppPurchaseV2"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchaseContents").optional(),
     include: z.union([z.array(z.enum(["inAppPurchaseV2"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -23,7 +23,7 @@ export const inAppPurchaseContentsTools: Tool[] = [
       path: "/v1/inAppPurchaseContents/{id}",
       pathParams: undefined,
       query: {
-      "fields[inAppPurchaseContents]": args["fields[inAppPurchaseContents]"],
+      "fields[inAppPurchaseContents]": args["fields_inAppPurchaseContents"],
       "include": args["include"],
     },
       body: undefined,

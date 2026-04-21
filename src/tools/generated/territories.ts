@@ -14,7 +14,7 @@ export const territoriesTools: Tool[] = [
     name: "territories_get_collection",
     description: "GET /v1/territories (GET /v1/territories)",
     input: z.object({
-    "fields[territories]": z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -23,7 +23,7 @@ export const territoriesTools: Tool[] = [
       path: "/v1/territories",
       pathParams: undefined,
       query: {
-      "fields[territories]": args["fields[territories]"],
+      "fields[territories]": args["fields_territories"],
       "limit": args["limit"],
     },
       body: undefined,

@@ -14,8 +14,8 @@ export const customerReviewsTools: Tool[] = [
     name: "customer_reviews_get_instance",
     description: "GET /v1/customerReviews/{id} (GET /v1/customerReviews/{id})",
     input: z.object({
-    "fields[customerReviews]": z.union([z.array(z.enum(["rating", "title", "body", "reviewerNickname", "createdDate", "territory", "response"])), z.string()]).describe("the fields to include for returned resources of type customerReviews").optional(),
-    "fields[customerReviewResponses]": z.union([z.array(z.enum(["responseBody", "lastModifiedDate", "state", "review"])), z.string()]).describe("the fields to include for returned resources of type customerReviewResponses").optional(),
+    fields_customerReviews: z.union([z.array(z.enum(["rating", "title", "body", "reviewerNickname", "createdDate", "territory", "response"])), z.string()]).describe("the fields to include for returned resources of type customerReviews").optional(),
+    fields_customerReviewResponses: z.union([z.array(z.enum(["responseBody", "lastModifiedDate", "state", "review"])), z.string()]).describe("the fields to include for returned resources of type customerReviewResponses").optional(),
     include: z.union([z.array(z.enum(["response"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -24,8 +24,8 @@ export const customerReviewsTools: Tool[] = [
       path: "/v1/customerReviews/{id}",
       pathParams: undefined,
       query: {
-      "fields[customerReviews]": args["fields[customerReviews]"],
-      "fields[customerReviewResponses]": args["fields[customerReviewResponses]"],
+      "fields[customerReviews]": args["fields_customerReviews"],
+      "fields[customerReviewResponses]": args["fields_customerReviewResponses"],
       "include": args["include"],
     },
       body: undefined,
@@ -52,8 +52,8 @@ export const customerReviewsTools: Tool[] = [
     name: "customer_reviews_response_get_to_one_related",
     description: "GET /v1/customerReviews/{id}/response (GET /v1/customerReviews/{id}/response)",
     input: z.object({
-    "fields[customerReviewResponses]": z.union([z.array(z.enum(["responseBody", "lastModifiedDate", "state", "review"])), z.string()]).describe("the fields to include for returned resources of type customerReviewResponses").optional(),
-    "fields[customerReviews]": z.union([z.array(z.enum(["rating", "title", "body", "reviewerNickname", "createdDate", "territory", "response"])), z.string()]).describe("the fields to include for returned resources of type customerReviews").optional(),
+    fields_customerReviewResponses: z.union([z.array(z.enum(["responseBody", "lastModifiedDate", "state", "review"])), z.string()]).describe("the fields to include for returned resources of type customerReviewResponses").optional(),
+    fields_customerReviews: z.union([z.array(z.enum(["rating", "title", "body", "reviewerNickname", "createdDate", "territory", "response"])), z.string()]).describe("the fields to include for returned resources of type customerReviews").optional(),
     include: z.union([z.array(z.enum(["review"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -62,8 +62,8 @@ export const customerReviewsTools: Tool[] = [
       path: "/v1/customerReviews/{id}/response",
       pathParams: undefined,
       query: {
-      "fields[customerReviewResponses]": args["fields[customerReviewResponses]"],
-      "fields[customerReviews]": args["fields[customerReviews]"],
+      "fields[customerReviewResponses]": args["fields_customerReviewResponses"],
+      "fields[customerReviews]": args["fields_customerReviews"],
       "include": args["include"],
     },
       body: undefined,

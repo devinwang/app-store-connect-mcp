@@ -31,7 +31,7 @@ export const appPreviewsTools: Tool[] = [
     name: "app_previews_get_instance",
     description: "GET /v1/appPreviews/{id} (GET /v1/appPreviews/{id})",
     input: z.object({
-    "fields[appPreviews]": z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "previewFrameTimeCode", "mimeType", "videoUrl", "previewFrameImage", "previewImage", "uploadOperations", "assetDeliveryState", "videoDeliveryState", "appPreviewSet"])), z.string()]).describe("the fields to include for returned resources of type appPreviews").optional(),
+    fields_appPreviews: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "previewFrameTimeCode", "mimeType", "videoUrl", "previewFrameImage", "previewImage", "uploadOperations", "assetDeliveryState", "videoDeliveryState", "appPreviewSet"])), z.string()]).describe("the fields to include for returned resources of type appPreviews").optional(),
     include: z.union([z.array(z.enum(["appPreviewSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const appPreviewsTools: Tool[] = [
       path: "/v1/appPreviews/{id}",
       pathParams: undefined,
       query: {
-      "fields[appPreviews]": args["fields[appPreviews]"],
+      "fields[appPreviews]": args["fields_appPreviews"],
       "include": args["include"],
     },
       body: undefined,

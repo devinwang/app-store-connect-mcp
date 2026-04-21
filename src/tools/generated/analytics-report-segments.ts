@@ -14,7 +14,7 @@ export const analyticsReportSegmentsTools: Tool[] = [
     name: "analytics_report_segments_get_instance",
     description: "GET /v1/analyticsReportSegments/{id} (GET /v1/analyticsReportSegments/{id})",
     input: z.object({
-    "fields[analyticsReportSegments]": z.union([z.array(z.enum(["checksum", "sizeInBytes", "url"])), z.string()]).describe("the fields to include for returned resources of type analyticsReportSegments").optional(),
+    fields_analyticsReportSegments: z.union([z.array(z.enum(["checksum", "sizeInBytes", "url"])), z.string()]).describe("the fields to include for returned resources of type analyticsReportSegments").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -22,7 +22,7 @@ export const analyticsReportSegmentsTools: Tool[] = [
       path: "/v1/analyticsReportSegments/{id}",
       pathParams: undefined,
       query: {
-      "fields[analyticsReportSegments]": args["fields[analyticsReportSegments]"],
+      "fields[analyticsReportSegments]": args["fields_analyticsReportSegments"],
     },
       body: undefined,
     });

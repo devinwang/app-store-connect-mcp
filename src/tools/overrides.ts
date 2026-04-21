@@ -113,8 +113,8 @@ export const overrideTools: Tool[] = [
       "Download a sales report and return its parsed TSV contents. Wraps `GET /v1/salesReports`, decodes the gzip, and optionally parses the TSV into rows. See https://developer.apple.com/documentation/appstoreconnectapi/download_sales_and_trends_reports for filter parameter values.",
     input: z
       .object({
-        "filter[frequency]": z.enum(["DAILY", "WEEKLY", "MONTHLY", "YEARLY"]),
-        "filter[reportType]": z.enum([
+        filter_frequency: z.enum(["DAILY", "WEEKLY", "MONTHLY", "YEARLY"]),
+        filter_reportType: z.enum([
           "SALES",
           "PRE_ORDER",
           "NEWSSTAND",
@@ -126,7 +126,7 @@ export const overrideTools: Tool[] = [
           "FIRST_ANNUAL",
           "WIN_BACK_ELIGIBILITY",
         ]),
-        "filter[reportSubType]": z.enum([
+        filter_reportSubType: z.enum([
           "SUMMARY",
           "DETAILED",
           "OPT_IN",
@@ -134,9 +134,9 @@ export const overrideTools: Tool[] = [
           "SUMMARY_TERRITORY",
           "SUMMARY_CHANNEL",
         ]),
-        "filter[vendorNumber]": z.string(),
-        "filter[reportDate]": z.string().optional(),
-        "filter[version]": z.string().optional(),
+        filter_vendorNumber: z.string(),
+        filter_reportDate: z.string().optional(),
+        filter_version: z.string().optional(),
         parse: z
           .boolean()
           .optional()
@@ -146,11 +146,18 @@ export const overrideTools: Tool[] = [
       })
       .strict(),
     handler: async (args) => {
-      const { parse = true, ...filters } = args;
+      const { parse = true, ...flat } = args;
       const res = await ascRequest({
         method: "GET",
         path: "/v1/salesReports",
-        query: filters as Record<string, unknown>,
+        query: {
+          "filter[frequency]": flat.filter_frequency,
+          "filter[reportType]": flat.filter_reportType,
+          "filter[reportSubType]": flat.filter_reportSubType,
+          "filter[vendorNumber]": flat.filter_vendorNumber,
+          "filter[reportDate]": flat.filter_reportDate,
+          "filter[version]": flat.filter_version,
+        },
         accept: "application/a-gzip",
         raw: true,
       });
@@ -168,10 +175,10 @@ export const overrideTools: Tool[] = [
       "Download a financial report and return its parsed TSV contents. Wraps `GET /v1/financeReports`, decodes the gzip, and optionally parses the TSV into rows.",
     input: z
       .object({
-        "filter[regionCode]": z.string(),
-        "filter[reportDate]": z.string(),
-        "filter[reportType]": z.enum(["FINANCIAL", "FINANCE_DETAIL"]),
-        "filter[vendorNumber]": z.string(),
+        filter_regionCode: z.string(),
+        filter_reportDate: z.string(),
+        filter_reportType: z.enum(["FINANCIAL", "FINANCE_DETAIL"]),
+        filter_vendorNumber: z.string(),
         parse: z
           .boolean()
           .optional()
@@ -181,11 +188,16 @@ export const overrideTools: Tool[] = [
       })
       .strict(),
     handler: async (args) => {
-      const { parse = true, ...filters } = args;
+      const { parse = true, ...flat } = args;
       const res = await ascRequest({
         method: "GET",
         path: "/v1/financeReports",
-        query: filters as Record<string, unknown>,
+        query: {
+          "filter[regionCode]": flat.filter_regionCode,
+          "filter[reportDate]": flat.filter_reportDate,
+          "filter[reportType]": flat.filter_reportType,
+          "filter[vendorNumber]": flat.filter_vendorNumber,
+        },
         accept: "application/a-gzip",
         raw: true,
       });

@@ -14,7 +14,7 @@ export const ciTestResultsTools: Tool[] = [
     name: "ci_test_results_get_instance",
     description: "GET /v1/ciTestResults/{id} (GET /v1/ciTestResults/{id})",
     input: z.object({
-    "fields[ciTestResults]": z.union([z.array(z.enum(["className", "name", "status", "fileSource", "message", "destinationTestResults"])), z.string()]).describe("the fields to include for returned resources of type ciTestResults").optional(),
+    fields_ciTestResults: z.union([z.array(z.enum(["className", "name", "status", "fileSource", "message", "destinationTestResults"])), z.string()]).describe("the fields to include for returned resources of type ciTestResults").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -22,7 +22,7 @@ export const ciTestResultsTools: Tool[] = [
       path: "/v1/ciTestResults/{id}",
       pathParams: undefined,
       query: {
-      "fields[ciTestResults]": args["fields[ciTestResults]"],
+      "fields[ciTestResults]": args["fields_ciTestResults"],
     },
       body: undefined,
     });

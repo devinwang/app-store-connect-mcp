@@ -31,7 +31,7 @@ export const buildUploadFilesTools: Tool[] = [
     name: "build_upload_files_get_instance",
     description: "GET /v1/buildUploadFiles/{id} (GET /v1/buildUploadFiles/{id})",
     input: z.object({
-    "fields[buildUploadFiles]": z.union([z.array(z.enum(["assetDeliveryState", "assetToken", "assetType", "fileName", "fileSize", "sourceFileChecksums", "uploadOperations", "uti"])), z.string()]).describe("the fields to include for returned resources of type buildUploadFiles").optional(),
+    fields_buildUploadFiles: z.union([z.array(z.enum(["assetDeliveryState", "assetToken", "assetType", "fileName", "fileSize", "sourceFileChecksums", "uploadOperations", "uti"])), z.string()]).describe("the fields to include for returned resources of type buildUploadFiles").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -39,7 +39,7 @@ export const buildUploadFilesTools: Tool[] = [
       path: "/v1/buildUploadFiles/{id}",
       pathParams: undefined,
       query: {
-      "fields[buildUploadFiles]": args["fields[buildUploadFiles]"],
+      "fields[buildUploadFiles]": args["fields_buildUploadFiles"],
     },
       body: undefined,
     });

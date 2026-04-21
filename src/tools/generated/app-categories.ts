@@ -14,12 +14,12 @@ export const appCategoriesTools: Tool[] = [
     name: "app_categories_get_collection",
     description: "GET /v1/appCategories (GET /v1/appCategories)",
     input: z.object({
-    "filter[platforms]": z.union([z.array(z.enum(["IOS", "MAC_OS", "TV_OS", "VISION_OS"])), z.string()]).describe("filter by attribute 'platforms'").optional(),
-    "exists[parent]": z.coerce.boolean().describe("filter by existence or non-existence of related 'parent'").optional(),
-    "fields[appCategories]": z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
+    filter_platforms: z.union([z.array(z.enum(["IOS", "MAC_OS", "TV_OS", "VISION_OS"])), z.string()]).describe("filter by attribute 'platforms'").optional(),
+    exists_parent: z.coerce.boolean().describe("filter by existence or non-existence of related 'parent'").optional(),
+    fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["subcategories", "parent"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[subcategories]": z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
+    limit_subcategories: z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -27,12 +27,12 @@ export const appCategoriesTools: Tool[] = [
       path: "/v1/appCategories",
       pathParams: undefined,
       query: {
-      "filter[platforms]": args["filter[platforms]"],
-      "exists[parent]": args["exists[parent]"],
-      "fields[appCategories]": args["fields[appCategories]"],
+      "filter[platforms]": args["filter_platforms"],
+      "exists[parent]": args["exists_parent"],
+      "fields[appCategories]": args["fields_appCategories"],
       "limit": args["limit"],
       "include": args["include"],
-      "limit[subcategories]": args["limit[subcategories]"],
+      "limit[subcategories]": args["limit_subcategories"],
     },
       body: undefined,
     });
@@ -43,9 +43,9 @@ export const appCategoriesTools: Tool[] = [
     name: "app_categories_get_instance",
     description: "GET /v1/appCategories/{id} (GET /v1/appCategories/{id})",
     input: z.object({
-    "fields[appCategories]": z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
+    fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     include: z.union([z.array(z.enum(["subcategories", "parent"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[subcategories]": z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
+    limit_subcategories: z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -53,9 +53,9 @@ export const appCategoriesTools: Tool[] = [
       path: "/v1/appCategories/{id}",
       pathParams: undefined,
       query: {
-      "fields[appCategories]": args["fields[appCategories]"],
+      "fields[appCategories]": args["fields_appCategories"],
       "include": args["include"],
-      "limit[subcategories]": args["limit[subcategories]"],
+      "limit[subcategories]": args["limit_subcategories"],
     },
       body: undefined,
     });
@@ -81,7 +81,7 @@ export const appCategoriesTools: Tool[] = [
     name: "app_categories_parent_get_to_one_related",
     description: "GET /v1/appCategories/{id}/parent (GET /v1/appCategories/{id}/parent)",
     input: z.object({
-    "fields[appCategories]": z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
+    fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -89,7 +89,7 @@ export const appCategoriesTools: Tool[] = [
       path: "/v1/appCategories/{id}/parent",
       pathParams: undefined,
       query: {
-      "fields[appCategories]": args["fields[appCategories]"],
+      "fields[appCategories]": args["fields_appCategories"],
     },
       body: undefined,
     });
@@ -119,7 +119,7 @@ export const appCategoriesTools: Tool[] = [
     name: "app_categories_subcategories_get_to_many_related",
     description: "GET /v1/appCategories/{id}/subcategories (GET /v1/appCategories/{id}/subcategories)",
     input: z.object({
-    "fields[appCategories]": z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
+    fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -128,7 +128,7 @@ export const appCategoriesTools: Tool[] = [
       path: "/v1/appCategories/{id}/subcategories",
       pathParams: undefined,
       query: {
-      "fields[appCategories]": args["fields[appCategories]"],
+      "fields[appCategories]": args["fields_appCategories"],
       "limit": args["limit"],
     },
       body: undefined,

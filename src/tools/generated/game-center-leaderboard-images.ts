@@ -31,7 +31,7 @@ export const gameCenterLeaderboardImagesTools: Tool[] = [
     name: "game_center_leaderboard_images_get_instance",
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboardImages/{id} (GET /v1/gameCenterLeaderboardImages/{id})",
     input: z.object({
-    "fields[gameCenterLeaderboardImages]": z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterLeaderboardLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
+    fields_gameCenterLeaderboardImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterLeaderboardLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
     include: z.union([z.array(z.enum(["gameCenterLeaderboardLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const gameCenterLeaderboardImagesTools: Tool[] = [
       path: "/v1/gameCenterLeaderboardImages/{id}",
       pathParams: undefined,
       query: {
-      "fields[gameCenterLeaderboardImages]": args["fields[gameCenterLeaderboardImages]"],
+      "fields[gameCenterLeaderboardImages]": args["fields_gameCenterLeaderboardImages"],
       "include": args["include"],
     },
       body: undefined,
@@ -101,7 +101,7 @@ export const gameCenterLeaderboardImagesTools: Tool[] = [
     name: "game_center_leaderboard_images_v2_get_instance",
     description: "GET /v2/gameCenterLeaderboardImages/{id} (GET /v2/gameCenterLeaderboardImages/{id})",
     input: z.object({
-    "fields[gameCenterLeaderboardImages]": z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
+    fields_gameCenterLeaderboardImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
     include: z.union([z.array(z.enum(["localization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -110,7 +110,7 @@ export const gameCenterLeaderboardImagesTools: Tool[] = [
       path: "/v2/gameCenterLeaderboardImages/{id}",
       pathParams: undefined,
       query: {
-      "fields[gameCenterLeaderboardImages]": args["fields[gameCenterLeaderboardImages]"],
+      "fields[gameCenterLeaderboardImages]": args["fields_gameCenterLeaderboardImages"],
       "include": args["include"],
     },
       body: undefined,

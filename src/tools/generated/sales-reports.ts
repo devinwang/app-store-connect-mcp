@@ -14,12 +14,12 @@ export const salesReportsTools: Tool[] = [
     name: "sales_reports_get_collection",
     description: "GET /v1/salesReports (GET /v1/salesReports)",
     input: z.object({
-    "filter[vendorNumber]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'vendorNumber'").optional(),
-    "filter[reportType]": z.union([z.array(z.enum(["SALES", "PRE_ORDER", "NEWSSTAND", "SUBSCRIPTION", "SUBSCRIPTION_EVENT", "SUBSCRIBER", "SUBSCRIPTION_OFFER_CODE_REDEMPTION", "INSTALLS", "FIRST_ANNUAL", "WIN_BACK_ELIGIBILITY"])), z.string()]).describe("filter by attribute 'reportType'").optional(),
-    "filter[reportSubType]": z.union([z.array(z.enum(["SUMMARY", "DETAILED", "SUMMARY_INSTALL_TYPE", "SUMMARY_TERRITORY", "SUMMARY_CHANNEL"])), z.string()]).describe("filter by attribute 'reportSubType'").optional(),
-    "filter[frequency]": z.union([z.array(z.enum(["DAILY", "WEEKLY", "MONTHLY", "YEARLY"])), z.string()]).describe("filter by attribute 'frequency'").optional(),
-    "filter[reportDate]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'reportDate'").optional(),
-    "filter[version]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'version'").optional(),
+    filter_vendorNumber: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'vendorNumber'").optional(),
+    filter_reportType: z.union([z.array(z.enum(["SALES", "PRE_ORDER", "NEWSSTAND", "SUBSCRIPTION", "SUBSCRIPTION_EVENT", "SUBSCRIBER", "SUBSCRIPTION_OFFER_CODE_REDEMPTION", "INSTALLS", "FIRST_ANNUAL", "WIN_BACK_ELIGIBILITY"])), z.string()]).describe("filter by attribute 'reportType'").optional(),
+    filter_reportSubType: z.union([z.array(z.enum(["SUMMARY", "DETAILED", "SUMMARY_INSTALL_TYPE", "SUMMARY_TERRITORY", "SUMMARY_CHANNEL"])), z.string()]).describe("filter by attribute 'reportSubType'").optional(),
+    filter_frequency: z.union([z.array(z.enum(["DAILY", "WEEKLY", "MONTHLY", "YEARLY"])), z.string()]).describe("filter by attribute 'frequency'").optional(),
+    filter_reportDate: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'reportDate'").optional(),
+    filter_version: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'version'").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -27,12 +27,12 @@ export const salesReportsTools: Tool[] = [
       path: "/v1/salesReports",
       pathParams: undefined,
       query: {
-      "filter[vendorNumber]": args["filter[vendorNumber]"],
-      "filter[reportType]": args["filter[reportType]"],
-      "filter[reportSubType]": args["filter[reportSubType]"],
-      "filter[frequency]": args["filter[frequency]"],
-      "filter[reportDate]": args["filter[reportDate]"],
-      "filter[version]": args["filter[version]"],
+      "filter[vendorNumber]": args["filter_vendorNumber"],
+      "filter[reportType]": args["filter_reportType"],
+      "filter[reportSubType]": args["filter_reportSubType"],
+      "filter[frequency]": args["filter_frequency"],
+      "filter[reportDate]": args["filter_reportDate"],
+      "filter[version]": args["filter_version"],
     },
       body: undefined,
     });

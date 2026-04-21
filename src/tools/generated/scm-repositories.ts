@@ -14,8 +14,8 @@ export const scmRepositoriesTools: Tool[] = [
     name: "scm_repositories_get_collection",
     description: "GET /v1/scmRepositories (GET /v1/scmRepositories)",
     input: z.object({
-    "filter[id]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s)").optional(),
-    "fields[scmRepositories]": z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
+    filter_id: z.union([z.array(z.string()), z.string()]).describe("filter by id(s)").optional(),
+    fields_scmRepositories: z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["scmProvider", "defaultBranch"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -25,8 +25,8 @@ export const scmRepositoriesTools: Tool[] = [
       path: "/v1/scmRepositories",
       pathParams: undefined,
       query: {
-      "filter[id]": args["filter[id]"],
-      "fields[scmRepositories]": args["fields[scmRepositories]"],
+      "filter[id]": args["filter_id"],
+      "fields[scmRepositories]": args["fields_scmRepositories"],
       "limit": args["limit"],
       "include": args["include"],
     },
@@ -39,7 +39,7 @@ export const scmRepositoriesTools: Tool[] = [
     name: "scm_repositories_get_instance",
     description: "GET /v1/scmRepositories/{id} (GET /v1/scmRepositories/{id})",
     input: z.object({
-    "fields[scmRepositories]": z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
+    fields_scmRepositories: z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
     include: z.union([z.array(z.enum(["scmProvider", "defaultBranch"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -48,7 +48,7 @@ export const scmRepositoriesTools: Tool[] = [
       path: "/v1/scmRepositories/{id}",
       pathParams: undefined,
       query: {
-      "fields[scmRepositories]": args["fields[scmRepositories]"],
+      "fields[scmRepositories]": args["fields_scmRepositories"],
       "include": args["include"],
     },
       body: undefined,
@@ -79,8 +79,8 @@ export const scmRepositoriesTools: Tool[] = [
     name: "scm_repositories_git_references_get_to_many_related",
     description: "GET /v1/scmRepositories/{id}/gitReferences (GET /v1/scmRepositories/{id}/gitReferences)",
     input: z.object({
-    "fields[scmGitReferences]": z.union([z.array(z.enum(["name", "canonicalName", "isDeleted", "kind", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmGitReferences").optional(),
-    "fields[scmRepositories]": z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
+    fields_scmGitReferences: z.union([z.array(z.enum(["name", "canonicalName", "isDeleted", "kind", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmGitReferences").optional(),
+    fields_scmRepositories: z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["repository"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -90,8 +90,8 @@ export const scmRepositoriesTools: Tool[] = [
       path: "/v1/scmRepositories/{id}/gitReferences",
       pathParams: undefined,
       query: {
-      "fields[scmGitReferences]": args["fields[scmGitReferences]"],
-      "fields[scmRepositories]": args["fields[scmRepositories]"],
+      "fields[scmGitReferences]": args["fields_scmGitReferences"],
+      "fields[scmRepositories]": args["fields_scmRepositories"],
       "limit": args["limit"],
       "include": args["include"],
     },
@@ -123,8 +123,8 @@ export const scmRepositoriesTools: Tool[] = [
     name: "scm_repositories_pull_requests_get_to_many_related",
     description: "GET /v1/scmRepositories/{id}/pullRequests (GET /v1/scmRepositories/{id}/pullRequests)",
     input: z.object({
-    "fields[scmPullRequests]": z.union([z.array(z.enum(["title", "number", "webUrl", "sourceRepositoryOwner", "sourceRepositoryName", "sourceBranchName", "destinationRepositoryOwner", "destinationRepositoryName", "destinationBranchName", "isClosed", "isCrossRepository", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmPullRequests").optional(),
-    "fields[scmRepositories]": z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
+    fields_scmPullRequests: z.union([z.array(z.enum(["title", "number", "webUrl", "sourceRepositoryOwner", "sourceRepositoryName", "sourceBranchName", "destinationRepositoryOwner", "destinationRepositoryName", "destinationBranchName", "isClosed", "isCrossRepository", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmPullRequests").optional(),
+    fields_scmRepositories: z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["repository"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -134,8 +134,8 @@ export const scmRepositoriesTools: Tool[] = [
       path: "/v1/scmRepositories/{id}/pullRequests",
       pathParams: undefined,
       query: {
-      "fields[scmPullRequests]": args["fields[scmPullRequests]"],
-      "fields[scmRepositories]": args["fields[scmRepositories]"],
+      "fields[scmPullRequests]": args["fields_scmPullRequests"],
+      "fields[scmRepositories]": args["fields_scmRepositories"],
       "limit": args["limit"],
       "include": args["include"],
     },

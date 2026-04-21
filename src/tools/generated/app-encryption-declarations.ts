@@ -14,15 +14,15 @@ export const appEncryptionDeclarationsTools: Tool[] = [
     name: "app_encryption_declarations_get_collection",
     description: "GET /v1/appEncryptionDeclarations (GET /v1/appEncryptionDeclarations)",
     input: z.object({
-    "filter[platform]": z.union([z.array(z.enum(["IOS", "MAC_OS", "TV_OS", "VISION_OS"])), z.string()]).describe("filter by attribute 'platform'").optional(),
-    "filter[app]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'app'").optional(),
-    "filter[builds]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'builds'").optional(),
-    "fields[appEncryptionDeclarations]": z.union([z.array(z.enum(["appDescription", "createdDate", "usesEncryption", "exempt", "containsProprietaryCryptography", "containsThirdPartyCryptography", "availableOnFrenchStore", "platform", "uploadedDate", "documentUrl", "documentName", "documentType", "appEncryptionDeclarationState", "codeValue", "app", "builds", "appEncryptionDeclarationDocument"])), z.string()]).describe("the fields to include for returned resources of type appEncryptionDeclarations").optional(),
-    "fields[apps]": z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
-    "fields[appEncryptionDeclarationDocuments]": z.union([z.array(z.enum(["fileSize", "fileName", "assetToken", "downloadUrl", "sourceFileChecksum", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type appEncryptionDeclarationDocuments").optional(),
+    filter_platform: z.union([z.array(z.enum(["IOS", "MAC_OS", "TV_OS", "VISION_OS"])), z.string()]).describe("filter by attribute 'platform'").optional(),
+    filter_app: z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'app'").optional(),
+    filter_builds: z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'builds'").optional(),
+    fields_appEncryptionDeclarations: z.union([z.array(z.enum(["appDescription", "createdDate", "usesEncryption", "exempt", "containsProprietaryCryptography", "containsThirdPartyCryptography", "availableOnFrenchStore", "platform", "uploadedDate", "documentUrl", "documentName", "documentType", "appEncryptionDeclarationState", "codeValue", "app", "builds", "appEncryptionDeclarationDocument"])), z.string()]).describe("the fields to include for returned resources of type appEncryptionDeclarations").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
+    fields_appEncryptionDeclarationDocuments: z.union([z.array(z.enum(["fileSize", "fileName", "assetToken", "downloadUrl", "sourceFileChecksum", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type appEncryptionDeclarationDocuments").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["app", "builds", "appEncryptionDeclarationDocument"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[builds]": z.coerce.number().int().describe("maximum number of related builds returned (when they are included)").optional(),
+    limit_builds: z.coerce.number().int().describe("maximum number of related builds returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -30,15 +30,15 @@ export const appEncryptionDeclarationsTools: Tool[] = [
       path: "/v1/appEncryptionDeclarations",
       pathParams: undefined,
       query: {
-      "filter[platform]": args["filter[platform]"],
-      "filter[app]": args["filter[app]"],
-      "filter[builds]": args["filter[builds]"],
-      "fields[appEncryptionDeclarations]": args["fields[appEncryptionDeclarations]"],
-      "fields[apps]": args["fields[apps]"],
-      "fields[appEncryptionDeclarationDocuments]": args["fields[appEncryptionDeclarationDocuments]"],
+      "filter[platform]": args["filter_platform"],
+      "filter[app]": args["filter_app"],
+      "filter[builds]": args["filter_builds"],
+      "fields[appEncryptionDeclarations]": args["fields_appEncryptionDeclarations"],
+      "fields[apps]": args["fields_apps"],
+      "fields[appEncryptionDeclarationDocuments]": args["fields_appEncryptionDeclarationDocuments"],
       "limit": args["limit"],
       "include": args["include"],
-      "limit[builds]": args["limit[builds]"],
+      "limit[builds]": args["limit_builds"],
     },
       body: undefined,
     });
@@ -66,11 +66,11 @@ export const appEncryptionDeclarationsTools: Tool[] = [
     name: "app_encryption_declarations_get_instance",
     description: "GET /v1/appEncryptionDeclarations/{id} (GET /v1/appEncryptionDeclarations/{id})",
     input: z.object({
-    "fields[appEncryptionDeclarations]": z.union([z.array(z.enum(["appDescription", "createdDate", "usesEncryption", "exempt", "containsProprietaryCryptography", "containsThirdPartyCryptography", "availableOnFrenchStore", "platform", "uploadedDate", "documentUrl", "documentName", "documentType", "appEncryptionDeclarationState", "codeValue", "app", "builds", "appEncryptionDeclarationDocument"])), z.string()]).describe("the fields to include for returned resources of type appEncryptionDeclarations").optional(),
-    "fields[apps]": z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
-    "fields[appEncryptionDeclarationDocuments]": z.union([z.array(z.enum(["fileSize", "fileName", "assetToken", "downloadUrl", "sourceFileChecksum", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type appEncryptionDeclarationDocuments").optional(),
+    fields_appEncryptionDeclarations: z.union([z.array(z.enum(["appDescription", "createdDate", "usesEncryption", "exempt", "containsProprietaryCryptography", "containsThirdPartyCryptography", "availableOnFrenchStore", "platform", "uploadedDate", "documentUrl", "documentName", "documentType", "appEncryptionDeclarationState", "codeValue", "app", "builds", "appEncryptionDeclarationDocument"])), z.string()]).describe("the fields to include for returned resources of type appEncryptionDeclarations").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
+    fields_appEncryptionDeclarationDocuments: z.union([z.array(z.enum(["fileSize", "fileName", "assetToken", "downloadUrl", "sourceFileChecksum", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type appEncryptionDeclarationDocuments").optional(),
     include: z.union([z.array(z.enum(["app", "builds", "appEncryptionDeclarationDocument"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[builds]": z.coerce.number().int().describe("maximum number of related builds returned (when they are included)").optional(),
+    limit_builds: z.coerce.number().int().describe("maximum number of related builds returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -78,11 +78,11 @@ export const appEncryptionDeclarationsTools: Tool[] = [
       path: "/v1/appEncryptionDeclarations/{id}",
       pathParams: undefined,
       query: {
-      "fields[appEncryptionDeclarations]": args["fields[appEncryptionDeclarations]"],
-      "fields[apps]": args["fields[apps]"],
-      "fields[appEncryptionDeclarationDocuments]": args["fields[appEncryptionDeclarationDocuments]"],
+      "fields[appEncryptionDeclarations]": args["fields_appEncryptionDeclarations"],
+      "fields[apps]": args["fields_apps"],
+      "fields[appEncryptionDeclarationDocuments]": args["fields_appEncryptionDeclarationDocuments"],
       "include": args["include"],
-      "limit[builds]": args["limit[builds]"],
+      "limit[builds]": args["limit_builds"],
     },
       body: undefined,
     });
@@ -108,7 +108,7 @@ export const appEncryptionDeclarationsTools: Tool[] = [
     name: "app_encryption_declarations_app_get_to_one_related",
     description: "[DEPRECATED] GET /v1/appEncryptionDeclarations/{id}/app (GET /v1/appEncryptionDeclarations/{id}/app)",
     input: z.object({
-    "fields[apps]": z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -116,7 +116,7 @@ export const appEncryptionDeclarationsTools: Tool[] = [
       path: "/v1/appEncryptionDeclarations/{id}/app",
       pathParams: undefined,
       query: {
-      "fields[apps]": args["fields[apps]"],
+      "fields[apps]": args["fields_apps"],
     },
       body: undefined,
     });
@@ -142,7 +142,7 @@ export const appEncryptionDeclarationsTools: Tool[] = [
     name: "app_encryption_declarations_app_encryption_declaration_document_get_to_one_related",
     description: "GET /v1/appEncryptionDeclarations/{id}/appEncryptionDeclarationDocument (GET /v1/appEncryptionDeclarations/{id}/appEncryptionDeclarationDocument)",
     input: z.object({
-    "fields[appEncryptionDeclarationDocuments]": z.union([z.array(z.enum(["fileSize", "fileName", "assetToken", "downloadUrl", "sourceFileChecksum", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type appEncryptionDeclarationDocuments").optional(),
+    fields_appEncryptionDeclarationDocuments: z.union([z.array(z.enum(["fileSize", "fileName", "assetToken", "downloadUrl", "sourceFileChecksum", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type appEncryptionDeclarationDocuments").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -150,7 +150,7 @@ export const appEncryptionDeclarationsTools: Tool[] = [
       path: "/v1/appEncryptionDeclarations/{id}/appEncryptionDeclarationDocument",
       pathParams: undefined,
       query: {
-      "fields[appEncryptionDeclarationDocuments]": args["fields[appEncryptionDeclarationDocuments]"],
+      "fields[appEncryptionDeclarationDocuments]": args["fields_appEncryptionDeclarationDocuments"],
     },
       body: undefined,
     });

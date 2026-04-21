@@ -14,13 +14,13 @@ export const devicesTools: Tool[] = [
     name: "devices_get_collection",
     description: "GET /v1/devices (GET /v1/devices)",
     input: z.object({
-    "filter[name]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'name'").optional(),
-    "filter[platform]": z.union([z.array(z.enum(["IOS", "MAC_OS", "UNIVERSAL"])), z.string()]).describe("filter by attribute 'platform'").optional(),
-    "filter[udid]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'udid'").optional(),
-    "filter[status]": z.union([z.array(z.enum(["ENABLED", "DISABLED"])), z.string()]).describe("filter by attribute 'status'").optional(),
-    "filter[id]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s)").optional(),
+    filter_name: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'name'").optional(),
+    filter_platform: z.union([z.array(z.enum(["IOS", "MAC_OS", "UNIVERSAL"])), z.string()]).describe("filter by attribute 'platform'").optional(),
+    filter_udid: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'udid'").optional(),
+    filter_status: z.union([z.array(z.enum(["ENABLED", "DISABLED"])), z.string()]).describe("filter by attribute 'status'").optional(),
+    filter_id: z.union([z.array(z.string()), z.string()]).describe("filter by id(s)").optional(),
     sort: z.union([z.array(z.enum(["name", "-name", "platform", "-platform", "udid", "-udid", "status", "-status", "id", "-id"])), z.string()]).describe("comma-separated list of sort expressions; resources will be sorted as specified").optional(),
-    "fields[devices]": z.union([z.array(z.enum(["name", "platform", "udid", "deviceClass", "status", "model", "addedDate"])), z.string()]).describe("the fields to include for returned resources of type devices").optional(),
+    fields_devices: z.union([z.array(z.enum(["name", "platform", "udid", "deviceClass", "status", "model", "addedDate"])), z.string()]).describe("the fields to include for returned resources of type devices").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -29,13 +29,13 @@ export const devicesTools: Tool[] = [
       path: "/v1/devices",
       pathParams: undefined,
       query: {
-      "filter[name]": args["filter[name]"],
-      "filter[platform]": args["filter[platform]"],
-      "filter[udid]": args["filter[udid]"],
-      "filter[status]": args["filter[status]"],
-      "filter[id]": args["filter[id]"],
+      "filter[name]": args["filter_name"],
+      "filter[platform]": args["filter_platform"],
+      "filter[udid]": args["filter_udid"],
+      "filter[status]": args["filter_status"],
+      "filter[id]": args["filter_id"],
       "sort": args["sort"],
-      "fields[devices]": args["fields[devices]"],
+      "fields[devices]": args["fields_devices"],
       "limit": args["limit"],
     },
       body: undefined,
@@ -64,7 +64,7 @@ export const devicesTools: Tool[] = [
     name: "devices_get_instance",
     description: "GET /v1/devices/{id} (GET /v1/devices/{id})",
     input: z.object({
-    "fields[devices]": z.union([z.array(z.enum(["name", "platform", "udid", "deviceClass", "status", "model", "addedDate"])), z.string()]).describe("the fields to include for returned resources of type devices").optional(),
+    fields_devices: z.union([z.array(z.enum(["name", "platform", "udid", "deviceClass", "status", "model", "addedDate"])), z.string()]).describe("the fields to include for returned resources of type devices").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -72,7 +72,7 @@ export const devicesTools: Tool[] = [
       path: "/v1/devices/{id}",
       pathParams: undefined,
       query: {
-      "fields[devices]": args["fields[devices]"],
+      "fields[devices]": args["fields_devices"],
     },
       body: undefined,
     });

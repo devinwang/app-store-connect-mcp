@@ -31,7 +31,7 @@ export const inAppPurchaseAppStoreReviewScreenshotsTools: Tool[] = [
     name: "in_app_purchase_app_store_review_screenshots_get_instance",
     description: "GET /v1/inAppPurchaseAppStoreReviewScreenshots/{id} (GET /v1/inAppPurchaseAppStoreReviewScreenshots/{id})",
     input: z.object({
-    "fields[inAppPurchaseAppStoreReviewScreenshots]": z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "assetToken", "assetType", "uploadOperations", "assetDeliveryState", "inAppPurchaseV2"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchaseAppStoreReviewScreenshots").optional(),
+    fields_inAppPurchaseAppStoreReviewScreenshots: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "assetToken", "assetType", "uploadOperations", "assetDeliveryState", "inAppPurchaseV2"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchaseAppStoreReviewScreenshots").optional(),
     include: z.union([z.array(z.enum(["inAppPurchaseV2"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const inAppPurchaseAppStoreReviewScreenshotsTools: Tool[] = [
       path: "/v1/inAppPurchaseAppStoreReviewScreenshots/{id}",
       pathParams: undefined,
       query: {
-      "fields[inAppPurchaseAppStoreReviewScreenshots]": args["fields[inAppPurchaseAppStoreReviewScreenshots]"],
+      "fields[inAppPurchaseAppStoreReviewScreenshots]": args["fields_inAppPurchaseAppStoreReviewScreenshots"],
       "include": args["include"],
     },
       body: undefined,

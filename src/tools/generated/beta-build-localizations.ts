@@ -14,10 +14,10 @@ export const betaBuildLocalizationsTools: Tool[] = [
     name: "beta_build_localizations_get_collection",
     description: "GET /v1/betaBuildLocalizations (GET /v1/betaBuildLocalizations)",
     input: z.object({
-    "filter[locale]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'locale'").optional(),
-    "filter[build]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'build'").optional(),
-    "fields[betaBuildLocalizations]": z.union([z.array(z.enum(["whatsNew", "locale", "build"])), z.string()]).describe("the fields to include for returned resources of type betaBuildLocalizations").optional(),
-    "fields[builds]": z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
+    filter_locale: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'locale'").optional(),
+    filter_build: z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'build'").optional(),
+    fields_betaBuildLocalizations: z.union([z.array(z.enum(["whatsNew", "locale", "build"])), z.string()]).describe("the fields to include for returned resources of type betaBuildLocalizations").optional(),
+    fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["build"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -27,10 +27,10 @@ export const betaBuildLocalizationsTools: Tool[] = [
       path: "/v1/betaBuildLocalizations",
       pathParams: undefined,
       query: {
-      "filter[locale]": args["filter[locale]"],
-      "filter[build]": args["filter[build]"],
-      "fields[betaBuildLocalizations]": args["fields[betaBuildLocalizations]"],
-      "fields[builds]": args["fields[builds]"],
+      "filter[locale]": args["filter_locale"],
+      "filter[build]": args["filter_build"],
+      "fields[betaBuildLocalizations]": args["fields_betaBuildLocalizations"],
+      "fields[builds]": args["fields_builds"],
       "limit": args["limit"],
       "include": args["include"],
     },
@@ -60,8 +60,8 @@ export const betaBuildLocalizationsTools: Tool[] = [
     name: "beta_build_localizations_get_instance",
     description: "GET /v1/betaBuildLocalizations/{id} (GET /v1/betaBuildLocalizations/{id})",
     input: z.object({
-    "fields[betaBuildLocalizations]": z.union([z.array(z.enum(["whatsNew", "locale", "build"])), z.string()]).describe("the fields to include for returned resources of type betaBuildLocalizations").optional(),
-    "fields[builds]": z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
+    fields_betaBuildLocalizations: z.union([z.array(z.enum(["whatsNew", "locale", "build"])), z.string()]).describe("the fields to include for returned resources of type betaBuildLocalizations").optional(),
+    fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
     include: z.union([z.array(z.enum(["build"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -70,8 +70,8 @@ export const betaBuildLocalizationsTools: Tool[] = [
       path: "/v1/betaBuildLocalizations/{id}",
       pathParams: undefined,
       query: {
-      "fields[betaBuildLocalizations]": args["fields[betaBuildLocalizations]"],
-      "fields[builds]": args["fields[builds]"],
+      "fields[betaBuildLocalizations]": args["fields_betaBuildLocalizations"],
+      "fields[builds]": args["fields_builds"],
       "include": args["include"],
     },
       body: undefined,
@@ -130,7 +130,7 @@ export const betaBuildLocalizationsTools: Tool[] = [
     name: "beta_build_localizations_build_get_to_one_related",
     description: "GET /v1/betaBuildLocalizations/{id}/build (GET /v1/betaBuildLocalizations/{id}/build)",
     input: z.object({
-    "fields[builds]": z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
+    fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -138,7 +138,7 @@ export const betaBuildLocalizationsTools: Tool[] = [
       path: "/v1/betaBuildLocalizations/{id}/build",
       pathParams: undefined,
       query: {
-      "fields[builds]": args["fields[builds]"],
+      "fields[builds]": args["fields_builds"],
     },
       body: undefined,
     });

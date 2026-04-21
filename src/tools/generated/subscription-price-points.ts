@@ -14,7 +14,7 @@ export const subscriptionPricePointsTools: Tool[] = [
     name: "subscription_price_points_get_instance",
     description: "GET /v1/subscriptionPricePoints/{id} (GET /v1/subscriptionPricePoints/{id})",
     input: z.object({
-    "fields[subscriptionPricePoints]": z.union([z.array(z.enum(["customerPrice", "proceeds", "proceedsYear2", "territory", "equalizations"])), z.string()]).describe("the fields to include for returned resources of type subscriptionPricePoints").optional(),
+    fields_subscriptionPricePoints: z.union([z.array(z.enum(["customerPrice", "proceeds", "proceedsYear2", "territory", "equalizations"])), z.string()]).describe("the fields to include for returned resources of type subscriptionPricePoints").optional(),
     include: z.union([z.array(z.enum(["territory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -23,7 +23,7 @@ export const subscriptionPricePointsTools: Tool[] = [
       path: "/v1/subscriptionPricePoints/{id}",
       pathParams: undefined,
       query: {
-      "fields[subscriptionPricePoints]": args["fields[subscriptionPricePoints]"],
+      "fields[subscriptionPricePoints]": args["fields_subscriptionPricePoints"],
       "include": args["include"],
     },
       body: undefined,
@@ -54,10 +54,10 @@ export const subscriptionPricePointsTools: Tool[] = [
     name: "subscription_price_points_equalizations_get_to_many_related",
     description: "GET /v1/subscriptionPricePoints/{id}/equalizations (GET /v1/subscriptionPricePoints/{id}/equalizations)",
     input: z.object({
-    "filter[territory]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'territory'").optional(),
-    "filter[subscription]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'subscription'").optional(),
-    "fields[subscriptionPricePoints]": z.union([z.array(z.enum(["customerPrice", "proceeds", "proceedsYear2", "territory", "equalizations"])), z.string()]).describe("the fields to include for returned resources of type subscriptionPricePoints").optional(),
-    "fields[territories]": z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    filter_territory: z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'territory'").optional(),
+    filter_subscription: z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'subscription'").optional(),
+    fields_subscriptionPricePoints: z.union([z.array(z.enum(["customerPrice", "proceeds", "proceedsYear2", "territory", "equalizations"])), z.string()]).describe("the fields to include for returned resources of type subscriptionPricePoints").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["territory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -67,10 +67,10 @@ export const subscriptionPricePointsTools: Tool[] = [
       path: "/v1/subscriptionPricePoints/{id}/equalizations",
       pathParams: undefined,
       query: {
-      "filter[territory]": args["filter[territory]"],
-      "filter[subscription]": args["filter[subscription]"],
-      "fields[subscriptionPricePoints]": args["fields[subscriptionPricePoints]"],
-      "fields[territories]": args["fields[territories]"],
+      "filter[territory]": args["filter_territory"],
+      "filter[subscription]": args["filter_subscription"],
+      "fields[subscriptionPricePoints]": args["fields_subscriptionPricePoints"],
+      "fields[territories]": args["fields_territories"],
       "limit": args["limit"],
       "include": args["include"],
     },

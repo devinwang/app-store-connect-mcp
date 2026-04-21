@@ -31,10 +31,10 @@ export const appAvailabilitiesTools: Tool[] = [
     name: "app_availabilities_v2_get_instance",
     description: "GET /v2/appAvailabilities/{id} (GET /v2/appAvailabilities/{id})",
     input: z.object({
-    "fields[appAvailabilities]": z.union([z.array(z.enum(["availableInNewTerritories", "territoryAvailabilities"])), z.string()]).describe("the fields to include for returned resources of type appAvailabilities").optional(),
-    "fields[territoryAvailabilities]": z.union([z.array(z.enum(["available", "releaseDate", "preOrderEnabled", "preOrderPublishDate", "contentStatuses", "territory"])), z.string()]).describe("the fields to include for returned resources of type territoryAvailabilities").optional(),
+    fields_appAvailabilities: z.union([z.array(z.enum(["availableInNewTerritories", "territoryAvailabilities"])), z.string()]).describe("the fields to include for returned resources of type appAvailabilities").optional(),
+    fields_territoryAvailabilities: z.union([z.array(z.enum(["available", "releaseDate", "preOrderEnabled", "preOrderPublishDate", "contentStatuses", "territory"])), z.string()]).describe("the fields to include for returned resources of type territoryAvailabilities").optional(),
     include: z.union([z.array(z.enum(["territoryAvailabilities"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[territoryAvailabilities]": z.coerce.number().int().describe("maximum number of related territoryAvailabilities returned (when they are included)").optional(),
+    limit_territoryAvailabilities: z.coerce.number().int().describe("maximum number of related territoryAvailabilities returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -42,10 +42,10 @@ export const appAvailabilitiesTools: Tool[] = [
       path: "/v2/appAvailabilities/{id}",
       pathParams: undefined,
       query: {
-      "fields[appAvailabilities]": args["fields[appAvailabilities]"],
-      "fields[territoryAvailabilities]": args["fields[territoryAvailabilities]"],
+      "fields[appAvailabilities]": args["fields_appAvailabilities"],
+      "fields[territoryAvailabilities]": args["fields_territoryAvailabilities"],
       "include": args["include"],
-      "limit[territoryAvailabilities]": args["limit[territoryAvailabilities]"],
+      "limit[territoryAvailabilities]": args["limit_territoryAvailabilities"],
     },
       body: undefined,
     });
@@ -75,8 +75,8 @@ export const appAvailabilitiesTools: Tool[] = [
     name: "app_availabilities_v2_territory_availabilities_get_to_many_related",
     description: "GET /v2/appAvailabilities/{id}/territoryAvailabilities (GET /v2/appAvailabilities/{id}/territoryAvailabilities)",
     input: z.object({
-    "fields[territoryAvailabilities]": z.union([z.array(z.enum(["available", "releaseDate", "preOrderEnabled", "preOrderPublishDate", "contentStatuses", "territory"])), z.string()]).describe("the fields to include for returned resources of type territoryAvailabilities").optional(),
-    "fields[territories]": z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    fields_territoryAvailabilities: z.union([z.array(z.enum(["available", "releaseDate", "preOrderEnabled", "preOrderPublishDate", "contentStatuses", "territory"])), z.string()]).describe("the fields to include for returned resources of type territoryAvailabilities").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["territory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -86,8 +86,8 @@ export const appAvailabilitiesTools: Tool[] = [
       path: "/v2/appAvailabilities/{id}/territoryAvailabilities",
       pathParams: undefined,
       query: {
-      "fields[territoryAvailabilities]": args["fields[territoryAvailabilities]"],
-      "fields[territories]": args["fields[territories]"],
+      "fields[territoryAvailabilities]": args["fields_territoryAvailabilities"],
+      "fields[territories]": args["fields_territories"],
       "limit": args["limit"],
       "include": args["include"],
     },

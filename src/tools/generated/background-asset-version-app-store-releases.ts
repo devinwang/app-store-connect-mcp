@@ -14,7 +14,7 @@ export const backgroundAssetVersionAppStoreReleasesTools: Tool[] = [
     name: "background_asset_version_app_store_releases_get_instance",
     description: "GET /v1/backgroundAssetVersionAppStoreReleases/{id} (GET /v1/backgroundAssetVersionAppStoreReleases/{id})",
     input: z.object({
-    "fields[backgroundAssetVersionAppStoreReleases]": z.union([z.array(z.enum(["state", "backgroundAssetVersion"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetVersionAppStoreReleases").optional(),
+    fields_backgroundAssetVersionAppStoreReleases: z.union([z.array(z.enum(["state", "backgroundAssetVersion"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetVersionAppStoreReleases").optional(),
     include: z.union([z.array(z.enum(["backgroundAssetVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -23,7 +23,7 @@ export const backgroundAssetVersionAppStoreReleasesTools: Tool[] = [
       path: "/v1/backgroundAssetVersionAppStoreReleases/{id}",
       pathParams: undefined,
       query: {
-      "fields[backgroundAssetVersionAppStoreReleases]": args["fields[backgroundAssetVersionAppStoreReleases]"],
+      "fields[backgroundAssetVersionAppStoreReleases]": args["fields_backgroundAssetVersionAppStoreReleases"],
       "include": args["include"],
     },
       body: undefined,

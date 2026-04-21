@@ -31,7 +31,7 @@ export const backgroundAssetUploadFilesTools: Tool[] = [
     name: "background_asset_upload_files_get_instance",
     description: "GET /v1/backgroundAssetUploadFiles/{id} (GET /v1/backgroundAssetUploadFiles/{id})",
     input: z.object({
-    "fields[backgroundAssetUploadFiles]": z.union([z.array(z.enum(["assetDeliveryState", "assetToken", "assetType", "fileName", "fileSize", "sourceFileChecksum", "sourceFileChecksums", "uploadOperations"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetUploadFiles").optional(),
+    fields_backgroundAssetUploadFiles: z.union([z.array(z.enum(["assetDeliveryState", "assetToken", "assetType", "fileName", "fileSize", "sourceFileChecksum", "sourceFileChecksums", "uploadOperations"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetUploadFiles").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -39,7 +39,7 @@ export const backgroundAssetUploadFilesTools: Tool[] = [
       path: "/v1/backgroundAssetUploadFiles/{id}",
       pathParams: undefined,
       query: {
-      "fields[backgroundAssetUploadFiles]": args["fields[backgroundAssetUploadFiles]"],
+      "fields[backgroundAssetUploadFiles]": args["fields_backgroundAssetUploadFiles"],
     },
       body: undefined,
     });

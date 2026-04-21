@@ -14,7 +14,7 @@ export const scmGitReferencesTools: Tool[] = [
     name: "scm_git_references_get_instance",
     description: "GET /v1/scmGitReferences/{id} (GET /v1/scmGitReferences/{id})",
     input: z.object({
-    "fields[scmGitReferences]": z.union([z.array(z.enum(["name", "canonicalName", "isDeleted", "kind", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmGitReferences").optional(),
+    fields_scmGitReferences: z.union([z.array(z.enum(["name", "canonicalName", "isDeleted", "kind", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmGitReferences").optional(),
     include: z.union([z.array(z.enum(["repository"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -23,7 +23,7 @@ export const scmGitReferencesTools: Tool[] = [
       path: "/v1/scmGitReferences/{id}",
       pathParams: undefined,
       query: {
-      "fields[scmGitReferences]": args["fields[scmGitReferences]"],
+      "fields[scmGitReferences]": args["fields_scmGitReferences"],
       "include": args["include"],
     },
       body: undefined,

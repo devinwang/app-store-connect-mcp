@@ -31,10 +31,10 @@ export const appStoreVersionExperimentTreatmentsTools: Tool[] = [
     name: "app_store_version_experiment_treatments_get_instance",
     description: "GET /v1/appStoreVersionExperimentTreatments/{id} (GET /v1/appStoreVersionExperimentTreatments/{id})",
     input: z.object({
-    "fields[appStoreVersionExperimentTreatments]": z.union([z.array(z.enum(["name", "appIcon", "appIconName", "promotedDate", "appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatments").optional(),
-    "fields[appStoreVersionExperimentTreatmentLocalizations]": z.union([z.array(z.enum(["locale", "appStoreVersionExperimentTreatment", "appScreenshotSets", "appPreviewSets"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations").optional(),
+    fields_appStoreVersionExperimentTreatments: z.union([z.array(z.enum(["name", "appIcon", "appIconName", "promotedDate", "appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatments").optional(),
+    fields_appStoreVersionExperimentTreatmentLocalizations: z.union([z.array(z.enum(["locale", "appStoreVersionExperimentTreatment", "appScreenshotSets", "appPreviewSets"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations").optional(),
     include: z.union([z.array(z.enum(["appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[appStoreVersionExperimentTreatmentLocalizations]": z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included)").optional(),
+    limit_appStoreVersionExperimentTreatmentLocalizations: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -42,10 +42,10 @@ export const appStoreVersionExperimentTreatmentsTools: Tool[] = [
       path: "/v1/appStoreVersionExperimentTreatments/{id}",
       pathParams: undefined,
       query: {
-      "fields[appStoreVersionExperimentTreatments]": args["fields[appStoreVersionExperimentTreatments]"],
-      "fields[appStoreVersionExperimentTreatmentLocalizations]": args["fields[appStoreVersionExperimentTreatmentLocalizations]"],
+      "fields[appStoreVersionExperimentTreatments]": args["fields_appStoreVersionExperimentTreatments"],
+      "fields[appStoreVersionExperimentTreatmentLocalizations]": args["fields_appStoreVersionExperimentTreatmentLocalizations"],
       "include": args["include"],
-      "limit[appStoreVersionExperimentTreatmentLocalizations]": args["limit[appStoreVersionExperimentTreatmentLocalizations]"],
+      "limit[appStoreVersionExperimentTreatmentLocalizations]": args["limit_appStoreVersionExperimentTreatmentLocalizations"],
     },
       body: undefined,
     });
@@ -107,15 +107,15 @@ export const appStoreVersionExperimentTreatmentsTools: Tool[] = [
     name: "app_store_version_experiment_treatments_app_store_version_experiment_treatment_localizations_get_to_many_related",
     description: "GET /v1/appStoreVersionExperimentTreatments/{id}/appStoreVersionExperimentTreatmentLocalizations (GET /v1/appStoreVersionExperimentTreatments/{id}/appStoreVersionExperimentTreatmentLocalizations)",
     input: z.object({
-    "filter[locale]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'locale'").optional(),
-    "fields[appStoreVersionExperimentTreatmentLocalizations]": z.union([z.array(z.enum(["locale", "appStoreVersionExperimentTreatment", "appScreenshotSets", "appPreviewSets"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations").optional(),
-    "fields[appStoreVersionExperimentTreatments]": z.union([z.array(z.enum(["name", "appIcon", "appIconName", "promotedDate", "appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatments").optional(),
-    "fields[appScreenshotSets]": z.union([z.array(z.enum(["screenshotDisplayType", "appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appScreenshots"])), z.string()]).describe("the fields to include for returned resources of type appScreenshotSets").optional(),
-    "fields[appPreviewSets]": z.union([z.array(z.enum(["previewType", "appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appPreviews"])), z.string()]).describe("the fields to include for returned resources of type appPreviewSets").optional(),
+    filter_locale: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'locale'").optional(),
+    fields_appStoreVersionExperimentTreatmentLocalizations: z.union([z.array(z.enum(["locale", "appStoreVersionExperimentTreatment", "appScreenshotSets", "appPreviewSets"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations").optional(),
+    fields_appStoreVersionExperimentTreatments: z.union([z.array(z.enum(["name", "appIcon", "appIconName", "promotedDate", "appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatments").optional(),
+    fields_appScreenshotSets: z.union([z.array(z.enum(["screenshotDisplayType", "appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appScreenshots"])), z.string()]).describe("the fields to include for returned resources of type appScreenshotSets").optional(),
+    fields_appPreviewSets: z.union([z.array(z.enum(["previewType", "appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appPreviews"])), z.string()]).describe("the fields to include for returned resources of type appPreviewSets").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appStoreVersionExperimentTreatment", "appScreenshotSets", "appPreviewSets"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[appScreenshotSets]": z.coerce.number().int().describe("maximum number of related appScreenshotSets returned (when they are included)").optional(),
-    "limit[appPreviewSets]": z.coerce.number().int().describe("maximum number of related appPreviewSets returned (when they are included)").optional(),
+    limit_appScreenshotSets: z.coerce.number().int().describe("maximum number of related appScreenshotSets returned (when they are included)").optional(),
+    limit_appPreviewSets: z.coerce.number().int().describe("maximum number of related appPreviewSets returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -123,15 +123,15 @@ export const appStoreVersionExperimentTreatmentsTools: Tool[] = [
       path: "/v1/appStoreVersionExperimentTreatments/{id}/appStoreVersionExperimentTreatmentLocalizations",
       pathParams: undefined,
       query: {
-      "filter[locale]": args["filter[locale]"],
-      "fields[appStoreVersionExperimentTreatmentLocalizations]": args["fields[appStoreVersionExperimentTreatmentLocalizations]"],
-      "fields[appStoreVersionExperimentTreatments]": args["fields[appStoreVersionExperimentTreatments]"],
-      "fields[appScreenshotSets]": args["fields[appScreenshotSets]"],
-      "fields[appPreviewSets]": args["fields[appPreviewSets]"],
+      "filter[locale]": args["filter_locale"],
+      "fields[appStoreVersionExperimentTreatmentLocalizations]": args["fields_appStoreVersionExperimentTreatmentLocalizations"],
+      "fields[appStoreVersionExperimentTreatments]": args["fields_appStoreVersionExperimentTreatments"],
+      "fields[appScreenshotSets]": args["fields_appScreenshotSets"],
+      "fields[appPreviewSets]": args["fields_appPreviewSets"],
       "limit": args["limit"],
       "include": args["include"],
-      "limit[appScreenshotSets]": args["limit[appScreenshotSets]"],
-      "limit[appPreviewSets]": args["limit[appPreviewSets]"],
+      "limit[appScreenshotSets]": args["limit_appScreenshotSets"],
+      "limit[appPreviewSets]": args["limit_appPreviewSets"],
     },
       body: undefined,
     });

@@ -31,10 +31,10 @@ export const appPreviewSetsTools: Tool[] = [
     name: "app_preview_sets_get_instance",
     description: "GET /v1/appPreviewSets/{id} (GET /v1/appPreviewSets/{id})",
     input: z.object({
-    "fields[appPreviewSets]": z.union([z.array(z.enum(["previewType", "appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appPreviews"])), z.string()]).describe("the fields to include for returned resources of type appPreviewSets").optional(),
-    "fields[appPreviews]": z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "previewFrameTimeCode", "mimeType", "videoUrl", "previewFrameImage", "previewImage", "uploadOperations", "assetDeliveryState", "videoDeliveryState", "appPreviewSet"])), z.string()]).describe("the fields to include for returned resources of type appPreviews").optional(),
+    fields_appPreviewSets: z.union([z.array(z.enum(["previewType", "appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appPreviews"])), z.string()]).describe("the fields to include for returned resources of type appPreviewSets").optional(),
+    fields_appPreviews: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "previewFrameTimeCode", "mimeType", "videoUrl", "previewFrameImage", "previewImage", "uploadOperations", "assetDeliveryState", "videoDeliveryState", "appPreviewSet"])), z.string()]).describe("the fields to include for returned resources of type appPreviews").optional(),
     include: z.union([z.array(z.enum(["appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appPreviews"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[appPreviews]": z.coerce.number().int().describe("maximum number of related appPreviews returned (when they are included)").optional(),
+    limit_appPreviews: z.coerce.number().int().describe("maximum number of related appPreviews returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -42,10 +42,10 @@ export const appPreviewSetsTools: Tool[] = [
       path: "/v1/appPreviewSets/{id}",
       pathParams: undefined,
       query: {
-      "fields[appPreviewSets]": args["fields[appPreviewSets]"],
-      "fields[appPreviews]": args["fields[appPreviews]"],
+      "fields[appPreviewSets]": args["fields_appPreviewSets"],
+      "fields[appPreviews]": args["fields_appPreviews"],
       "include": args["include"],
-      "limit[appPreviews]": args["limit[appPreviews]"],
+      "limit[appPreviews]": args["limit_appPreviews"],
     },
       body: undefined,
     });
@@ -107,8 +107,8 @@ export const appPreviewSetsTools: Tool[] = [
     name: "app_preview_sets_app_previews_get_to_many_related",
     description: "GET /v1/appPreviewSets/{id}/appPreviews (GET /v1/appPreviewSets/{id}/appPreviews)",
     input: z.object({
-    "fields[appPreviews]": z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "previewFrameTimeCode", "mimeType", "videoUrl", "previewFrameImage", "previewImage", "uploadOperations", "assetDeliveryState", "videoDeliveryState", "appPreviewSet"])), z.string()]).describe("the fields to include for returned resources of type appPreviews").optional(),
-    "fields[appPreviewSets]": z.union([z.array(z.enum(["previewType", "appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appPreviews"])), z.string()]).describe("the fields to include for returned resources of type appPreviewSets").optional(),
+    fields_appPreviews: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "previewFrameTimeCode", "mimeType", "videoUrl", "previewFrameImage", "previewImage", "uploadOperations", "assetDeliveryState", "videoDeliveryState", "appPreviewSet"])), z.string()]).describe("the fields to include for returned resources of type appPreviews").optional(),
+    fields_appPreviewSets: z.union([z.array(z.enum(["previewType", "appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appPreviews"])), z.string()]).describe("the fields to include for returned resources of type appPreviewSets").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appPreviewSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -118,8 +118,8 @@ export const appPreviewSetsTools: Tool[] = [
       path: "/v1/appPreviewSets/{id}/appPreviews",
       pathParams: undefined,
       query: {
-      "fields[appPreviews]": args["fields[appPreviews]"],
-      "fields[appPreviewSets]": args["fields[appPreviewSets]"],
+      "fields[appPreviews]": args["fields_appPreviews"],
+      "fields[appPreviewSets]": args["fields_appPreviewSets"],
       "limit": args["limit"],
       "include": args["include"],
     },

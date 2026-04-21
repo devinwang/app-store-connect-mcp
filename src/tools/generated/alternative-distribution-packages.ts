@@ -31,10 +31,10 @@ export const alternativeDistributionPackagesTools: Tool[] = [
     name: "alternative_distribution_packages_get_instance",
     description: "GET /v1/alternativeDistributionPackages/{id} (GET /v1/alternativeDistributionPackages/{id})",
     input: z.object({
-    "fields[alternativeDistributionPackages]": z.union([z.array(z.enum(["sourceFileChecksum", "versions"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackages").optional(),
-    "fields[alternativeDistributionPackageVersions]": z.union([z.array(z.enum(["url", "urlExpirationDate", "version", "fileChecksum", "state", "variants", "deltas", "alternativeDistributionPackage"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackageVersions").optional(),
+    fields_alternativeDistributionPackages: z.union([z.array(z.enum(["sourceFileChecksum", "versions"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackages").optional(),
+    fields_alternativeDistributionPackageVersions: z.union([z.array(z.enum(["url", "urlExpirationDate", "version", "fileChecksum", "state", "variants", "deltas", "alternativeDistributionPackage"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackageVersions").optional(),
     include: z.union([z.array(z.enum(["versions"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[versions]": z.coerce.number().int().describe("maximum number of related versions returned (when they are included)").optional(),
+    limit_versions: z.coerce.number().int().describe("maximum number of related versions returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -42,10 +42,10 @@ export const alternativeDistributionPackagesTools: Tool[] = [
       path: "/v1/alternativeDistributionPackages/{id}",
       pathParams: undefined,
       query: {
-      "fields[alternativeDistributionPackages]": args["fields[alternativeDistributionPackages]"],
-      "fields[alternativeDistributionPackageVersions]": args["fields[alternativeDistributionPackageVersions]"],
+      "fields[alternativeDistributionPackages]": args["fields_alternativeDistributionPackages"],
+      "fields[alternativeDistributionPackageVersions]": args["fields_alternativeDistributionPackageVersions"],
       "include": args["include"],
-      "limit[versions]": args["limit[versions]"],
+      "limit[versions]": args["limit_versions"],
     },
       body: undefined,
     });
@@ -75,15 +75,15 @@ export const alternativeDistributionPackagesTools: Tool[] = [
     name: "alternative_distribution_packages_versions_get_to_many_related",
     description: "GET /v1/alternativeDistributionPackages/{id}/versions (GET /v1/alternativeDistributionPackages/{id}/versions)",
     input: z.object({
-    "filter[state]": z.union([z.array(z.enum(["COMPLETED", "REPLACED"])), z.string()]).describe("filter by attribute 'state'").optional(),
-    "fields[alternativeDistributionPackageVersions]": z.union([z.array(z.enum(["url", "urlExpirationDate", "version", "fileChecksum", "state", "variants", "deltas", "alternativeDistributionPackage"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackageVersions").optional(),
-    "fields[alternativeDistributionPackageVariants]": z.union([z.array(z.enum(["url", "urlExpirationDate", "alternativeDistributionKeyBlob", "fileChecksum"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackageVariants").optional(),
-    "fields[alternativeDistributionPackageDeltas]": z.union([z.array(z.enum(["url", "urlExpirationDate", "alternativeDistributionKeyBlob", "fileChecksum"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackageDeltas").optional(),
-    "fields[alternativeDistributionPackages]": z.union([z.array(z.enum(["sourceFileChecksum", "versions"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackages").optional(),
+    filter_state: z.union([z.array(z.enum(["COMPLETED", "REPLACED"])), z.string()]).describe("filter by attribute 'state'").optional(),
+    fields_alternativeDistributionPackageVersions: z.union([z.array(z.enum(["url", "urlExpirationDate", "version", "fileChecksum", "state", "variants", "deltas", "alternativeDistributionPackage"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackageVersions").optional(),
+    fields_alternativeDistributionPackageVariants: z.union([z.array(z.enum(["url", "urlExpirationDate", "alternativeDistributionKeyBlob", "fileChecksum"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackageVariants").optional(),
+    fields_alternativeDistributionPackageDeltas: z.union([z.array(z.enum(["url", "urlExpirationDate", "alternativeDistributionKeyBlob", "fileChecksum"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackageDeltas").optional(),
+    fields_alternativeDistributionPackages: z.union([z.array(z.enum(["sourceFileChecksum", "versions"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackages").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["variants", "deltas", "alternativeDistributionPackage"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[variants]": z.coerce.number().int().describe("maximum number of related variants returned (when they are included)").optional(),
-    "limit[deltas]": z.coerce.number().int().describe("maximum number of related deltas returned (when they are included)").optional(),
+    limit_variants: z.coerce.number().int().describe("maximum number of related variants returned (when they are included)").optional(),
+    limit_deltas: z.coerce.number().int().describe("maximum number of related deltas returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -91,15 +91,15 @@ export const alternativeDistributionPackagesTools: Tool[] = [
       path: "/v1/alternativeDistributionPackages/{id}/versions",
       pathParams: undefined,
       query: {
-      "filter[state]": args["filter[state]"],
-      "fields[alternativeDistributionPackageVersions]": args["fields[alternativeDistributionPackageVersions]"],
-      "fields[alternativeDistributionPackageVariants]": args["fields[alternativeDistributionPackageVariants]"],
-      "fields[alternativeDistributionPackageDeltas]": args["fields[alternativeDistributionPackageDeltas]"],
-      "fields[alternativeDistributionPackages]": args["fields[alternativeDistributionPackages]"],
+      "filter[state]": args["filter_state"],
+      "fields[alternativeDistributionPackageVersions]": args["fields_alternativeDistributionPackageVersions"],
+      "fields[alternativeDistributionPackageVariants]": args["fields_alternativeDistributionPackageVariants"],
+      "fields[alternativeDistributionPackageDeltas]": args["fields_alternativeDistributionPackageDeltas"],
+      "fields[alternativeDistributionPackages]": args["fields_alternativeDistributionPackages"],
       "limit": args["limit"],
       "include": args["include"],
-      "limit[variants]": args["limit[variants]"],
-      "limit[deltas]": args["limit[deltas]"],
+      "limit[variants]": args["limit_variants"],
+      "limit[deltas]": args["limit_deltas"],
     },
       body: undefined,
     });

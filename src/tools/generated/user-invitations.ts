@@ -14,15 +14,15 @@ export const userInvitationsTools: Tool[] = [
     name: "user_invitations_get_collection",
     description: "GET /v1/userInvitations (GET /v1/userInvitations)",
     input: z.object({
-    "filter[email]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'email'").optional(),
-    "filter[roles]": z.union([z.array(z.enum(["ADMIN", "FINANCE", "ACCOUNT_HOLDER", "SALES", "MARKETING", "APP_MANAGER", "DEVELOPER", "ACCESS_TO_REPORTS", "CUSTOMER_SUPPORT", "CREATE_APPS", "CLOUD_MANAGED_DEVELOPER_ID", "CLOUD_MANAGED_APP_DISTRIBUTION", "GENERATE_INDIVIDUAL_KEYS"])), z.string()]).describe("filter by attribute 'roles'").optional(),
-    "filter[visibleApps]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'visibleApps'").optional(),
+    filter_email: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'email'").optional(),
+    filter_roles: z.union([z.array(z.enum(["ADMIN", "FINANCE", "ACCOUNT_HOLDER", "SALES", "MARKETING", "APP_MANAGER", "DEVELOPER", "ACCESS_TO_REPORTS", "CUSTOMER_SUPPORT", "CREATE_APPS", "CLOUD_MANAGED_DEVELOPER_ID", "CLOUD_MANAGED_APP_DISTRIBUTION", "GENERATE_INDIVIDUAL_KEYS"])), z.string()]).describe("filter by attribute 'roles'").optional(),
+    filter_visibleApps: z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'visibleApps'").optional(),
     sort: z.union([z.array(z.enum(["email", "-email", "lastName", "-lastName"])), z.string()]).describe("comma-separated list of sort expressions; resources will be sorted as specified").optional(),
-    "fields[userInvitations]": z.union([z.array(z.enum(["email", "firstName", "lastName", "expirationDate", "roles", "allAppsVisible", "provisioningAllowed", "visibleApps"])), z.string()]).describe("the fields to include for returned resources of type userInvitations").optional(),
-    "fields[apps]": z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
+    fields_userInvitations: z.union([z.array(z.enum(["email", "firstName", "lastName", "expirationDate", "roles", "allAppsVisible", "provisioningAllowed", "visibleApps"])), z.string()]).describe("the fields to include for returned resources of type userInvitations").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["visibleApps"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[visibleApps]": z.coerce.number().int().describe("maximum number of related visibleApps returned (when they are included)").optional(),
+    limit_visibleApps: z.coerce.number().int().describe("maximum number of related visibleApps returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -30,15 +30,15 @@ export const userInvitationsTools: Tool[] = [
       path: "/v1/userInvitations",
       pathParams: undefined,
       query: {
-      "filter[email]": args["filter[email]"],
-      "filter[roles]": args["filter[roles]"],
-      "filter[visibleApps]": args["filter[visibleApps]"],
+      "filter[email]": args["filter_email"],
+      "filter[roles]": args["filter_roles"],
+      "filter[visibleApps]": args["filter_visibleApps"],
       "sort": args["sort"],
-      "fields[userInvitations]": args["fields[userInvitations]"],
-      "fields[apps]": args["fields[apps]"],
+      "fields[userInvitations]": args["fields_userInvitations"],
+      "fields[apps]": args["fields_apps"],
       "limit": args["limit"],
       "include": args["include"],
-      "limit[visibleApps]": args["limit[visibleApps]"],
+      "limit[visibleApps]": args["limit_visibleApps"],
     },
       body: undefined,
     });
@@ -66,10 +66,10 @@ export const userInvitationsTools: Tool[] = [
     name: "user_invitations_get_instance",
     description: "GET /v1/userInvitations/{id} (GET /v1/userInvitations/{id})",
     input: z.object({
-    "fields[userInvitations]": z.union([z.array(z.enum(["email", "firstName", "lastName", "expirationDate", "roles", "allAppsVisible", "provisioningAllowed", "visibleApps"])), z.string()]).describe("the fields to include for returned resources of type userInvitations").optional(),
-    "fields[apps]": z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
+    fields_userInvitations: z.union([z.array(z.enum(["email", "firstName", "lastName", "expirationDate", "roles", "allAppsVisible", "provisioningAllowed", "visibleApps"])), z.string()]).describe("the fields to include for returned resources of type userInvitations").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
     include: z.union([z.array(z.enum(["visibleApps"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[visibleApps]": z.coerce.number().int().describe("maximum number of related visibleApps returned (when they are included)").optional(),
+    limit_visibleApps: z.coerce.number().int().describe("maximum number of related visibleApps returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -77,10 +77,10 @@ export const userInvitationsTools: Tool[] = [
       path: "/v1/userInvitations/{id}",
       pathParams: undefined,
       query: {
-      "fields[userInvitations]": args["fields[userInvitations]"],
-      "fields[apps]": args["fields[apps]"],
+      "fields[userInvitations]": args["fields_userInvitations"],
+      "fields[apps]": args["fields_apps"],
       "include": args["include"],
-      "limit[visibleApps]": args["limit[visibleApps]"],
+      "limit[visibleApps]": args["limit_visibleApps"],
     },
       body: undefined,
     });
@@ -125,7 +125,7 @@ export const userInvitationsTools: Tool[] = [
     name: "user_invitations_visible_apps_get_to_many_related",
     description: "GET /v1/userInvitations/{id}/visibleApps (GET /v1/userInvitations/{id}/visibleApps)",
     input: z.object({
-    "fields[apps]": z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -134,7 +134,7 @@ export const userInvitationsTools: Tool[] = [
       path: "/v1/userInvitations/{id}/visibleApps",
       pathParams: undefined,
       query: {
-      "fields[apps]": args["fields[apps]"],
+      "fields[apps]": args["fields_apps"],
       "limit": args["limit"],
     },
       body: undefined,

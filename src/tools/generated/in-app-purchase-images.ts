@@ -31,7 +31,7 @@ export const inAppPurchaseImagesTools: Tool[] = [
     name: "in_app_purchase_images_get_instance",
     description: "GET /v1/inAppPurchaseImages/{id} (GET /v1/inAppPurchaseImages/{id})",
     input: z.object({
-    "fields[inAppPurchaseImages]": z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "assetToken", "imageAsset", "uploadOperations", "state", "inAppPurchase"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchaseImages").optional(),
+    fields_inAppPurchaseImages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "assetToken", "imageAsset", "uploadOperations", "state", "inAppPurchase"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchaseImages").optional(),
     include: z.union([z.array(z.enum(["inAppPurchase"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const inAppPurchaseImagesTools: Tool[] = [
       path: "/v1/inAppPurchaseImages/{id}",
       pathParams: undefined,
       query: {
-      "fields[inAppPurchaseImages]": args["fields[inAppPurchaseImages]"],
+      "fields[inAppPurchaseImages]": args["fields_inAppPurchaseImages"],
       "include": args["include"],
     },
       body: undefined,

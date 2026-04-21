@@ -31,10 +31,10 @@ export const appCustomProductPagesTools: Tool[] = [
     name: "app_custom_product_pages_get_instance",
     description: "GET /v1/appCustomProductPages/{id} (GET /v1/appCustomProductPages/{id})",
     input: z.object({
-    "fields[appCustomProductPages]": z.union([z.array(z.enum(["name", "url", "visible", "app", "appCustomProductPageVersions"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPages").optional(),
-    "fields[appCustomProductPageVersions]": z.union([z.array(z.enum(["version", "state", "deepLink", "appCustomProductPage", "appCustomProductPageLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPageVersions").optional(),
+    fields_appCustomProductPages: z.union([z.array(z.enum(["name", "url", "visible", "app", "appCustomProductPageVersions"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPages").optional(),
+    fields_appCustomProductPageVersions: z.union([z.array(z.enum(["version", "state", "deepLink", "appCustomProductPage", "appCustomProductPageLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPageVersions").optional(),
     include: z.union([z.array(z.enum(["app", "appCustomProductPageVersions"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[appCustomProductPageVersions]": z.coerce.number().int().describe("maximum number of related appCustomProductPageVersions returned (when they are included)").optional(),
+    limit_appCustomProductPageVersions: z.coerce.number().int().describe("maximum number of related appCustomProductPageVersions returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -42,10 +42,10 @@ export const appCustomProductPagesTools: Tool[] = [
       path: "/v1/appCustomProductPages/{id}",
       pathParams: undefined,
       query: {
-      "fields[appCustomProductPages]": args["fields[appCustomProductPages]"],
-      "fields[appCustomProductPageVersions]": args["fields[appCustomProductPageVersions]"],
+      "fields[appCustomProductPages]": args["fields_appCustomProductPages"],
+      "fields[appCustomProductPageVersions]": args["fields_appCustomProductPageVersions"],
       "include": args["include"],
-      "limit[appCustomProductPageVersions]": args["limit[appCustomProductPageVersions]"],
+      "limit[appCustomProductPageVersions]": args["limit_appCustomProductPageVersions"],
     },
       body: undefined,
     });
@@ -107,13 +107,13 @@ export const appCustomProductPagesTools: Tool[] = [
     name: "app_custom_product_pages_app_custom_product_page_versions_get_to_many_related",
     description: "GET /v1/appCustomProductPages/{id}/appCustomProductPageVersions (GET /v1/appCustomProductPages/{id}/appCustomProductPageVersions)",
     input: z.object({
-    "filter[state]": z.union([z.array(z.enum(["PREPARE_FOR_SUBMISSION", "READY_FOR_REVIEW", "WAITING_FOR_REVIEW", "IN_REVIEW", "ACCEPTED", "APPROVED", "REPLACED_WITH_NEW_VERSION", "REJECTED"])), z.string()]).describe("filter by attribute 'state'").optional(),
-    "fields[appCustomProductPageVersions]": z.union([z.array(z.enum(["version", "state", "deepLink", "appCustomProductPage", "appCustomProductPageLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPageVersions").optional(),
-    "fields[appCustomProductPages]": z.union([z.array(z.enum(["name", "url", "visible", "app", "appCustomProductPageVersions"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPages").optional(),
-    "fields[appCustomProductPageLocalizations]": z.union([z.array(z.enum(["locale", "promotionalText", "appCustomProductPageVersion", "appScreenshotSets", "appPreviewSets", "searchKeywords"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPageLocalizations").optional(),
+    filter_state: z.union([z.array(z.enum(["PREPARE_FOR_SUBMISSION", "READY_FOR_REVIEW", "WAITING_FOR_REVIEW", "IN_REVIEW", "ACCEPTED", "APPROVED", "REPLACED_WITH_NEW_VERSION", "REJECTED"])), z.string()]).describe("filter by attribute 'state'").optional(),
+    fields_appCustomProductPageVersions: z.union([z.array(z.enum(["version", "state", "deepLink", "appCustomProductPage", "appCustomProductPageLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPageVersions").optional(),
+    fields_appCustomProductPages: z.union([z.array(z.enum(["name", "url", "visible", "app", "appCustomProductPageVersions"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPages").optional(),
+    fields_appCustomProductPageLocalizations: z.union([z.array(z.enum(["locale", "promotionalText", "appCustomProductPageVersion", "appScreenshotSets", "appPreviewSets", "searchKeywords"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPageLocalizations").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appCustomProductPage", "appCustomProductPageLocalizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[appCustomProductPageLocalizations]": z.coerce.number().int().describe("maximum number of related appCustomProductPageLocalizations returned (when they are included)").optional(),
+    limit_appCustomProductPageLocalizations: z.coerce.number().int().describe("maximum number of related appCustomProductPageLocalizations returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -121,13 +121,13 @@ export const appCustomProductPagesTools: Tool[] = [
       path: "/v1/appCustomProductPages/{id}/appCustomProductPageVersions",
       pathParams: undefined,
       query: {
-      "filter[state]": args["filter[state]"],
-      "fields[appCustomProductPageVersions]": args["fields[appCustomProductPageVersions]"],
-      "fields[appCustomProductPages]": args["fields[appCustomProductPages]"],
-      "fields[appCustomProductPageLocalizations]": args["fields[appCustomProductPageLocalizations]"],
+      "filter[state]": args["filter_state"],
+      "fields[appCustomProductPageVersions]": args["fields_appCustomProductPageVersions"],
+      "fields[appCustomProductPages]": args["fields_appCustomProductPages"],
+      "fields[appCustomProductPageLocalizations]": args["fields_appCustomProductPageLocalizations"],
       "limit": args["limit"],
       "include": args["include"],
-      "limit[appCustomProductPageLocalizations]": args["limit[appCustomProductPageLocalizations]"],
+      "limit[appCustomProductPageLocalizations]": args["limit_appCustomProductPageLocalizations"],
     },
       body: undefined,
     });

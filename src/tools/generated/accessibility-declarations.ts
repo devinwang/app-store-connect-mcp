@@ -31,7 +31,7 @@ export const accessibilityDeclarationsTools: Tool[] = [
     name: "accessibility_declarations_get_instance",
     description: "GET /v1/accessibilityDeclarations/{id} (GET /v1/accessibilityDeclarations/{id})",
     input: z.object({
-    "fields[accessibilityDeclarations]": z.union([z.array(z.enum(["deviceFamily", "state", "supportsAudioDescriptions", "supportsCaptions", "supportsDarkInterface", "supportsDifferentiateWithoutColorAlone", "supportsLargerText", "supportsReducedMotion", "supportsSufficientContrast", "supportsVoiceControl", "supportsVoiceover"])), z.string()]).describe("the fields to include for returned resources of type accessibilityDeclarations").optional(),
+    fields_accessibilityDeclarations: z.union([z.array(z.enum(["deviceFamily", "state", "supportsAudioDescriptions", "supportsCaptions", "supportsDarkInterface", "supportsDifferentiateWithoutColorAlone", "supportsLargerText", "supportsReducedMotion", "supportsSufficientContrast", "supportsVoiceControl", "supportsVoiceover"])), z.string()]).describe("the fields to include for returned resources of type accessibilityDeclarations").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -39,7 +39,7 @@ export const accessibilityDeclarationsTools: Tool[] = [
       path: "/v1/accessibilityDeclarations/{id}",
       pathParams: undefined,
       query: {
-      "fields[accessibilityDeclarations]": args["fields[accessibilityDeclarations]"],
+      "fields[accessibilityDeclarations]": args["fields_accessibilityDeclarations"],
     },
       body: undefined,
     });

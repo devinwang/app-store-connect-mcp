@@ -14,7 +14,7 @@ export const scmProvidersTools: Tool[] = [
     name: "scm_providers_get_collection",
     description: "GET /v1/scmProviders (GET /v1/scmProviders)",
     input: z.object({
-    "fields[scmProviders]": z.union([z.array(z.enum(["scmProviderType", "url", "repositories"])), z.string()]).describe("the fields to include for returned resources of type scmProviders").optional(),
+    fields_scmProviders: z.union([z.array(z.enum(["scmProviderType", "url", "repositories"])), z.string()]).describe("the fields to include for returned resources of type scmProviders").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -23,7 +23,7 @@ export const scmProvidersTools: Tool[] = [
       path: "/v1/scmProviders",
       pathParams: undefined,
       query: {
-      "fields[scmProviders]": args["fields[scmProviders]"],
+      "fields[scmProviders]": args["fields_scmProviders"],
       "limit": args["limit"],
     },
       body: undefined,
@@ -35,7 +35,7 @@ export const scmProvidersTools: Tool[] = [
     name: "scm_providers_get_instance",
     description: "GET /v1/scmProviders/{id} (GET /v1/scmProviders/{id})",
     input: z.object({
-    "fields[scmProviders]": z.union([z.array(z.enum(["scmProviderType", "url", "repositories"])), z.string()]).describe("the fields to include for returned resources of type scmProviders").optional(),
+    fields_scmProviders: z.union([z.array(z.enum(["scmProviderType", "url", "repositories"])), z.string()]).describe("the fields to include for returned resources of type scmProviders").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -43,7 +43,7 @@ export const scmProvidersTools: Tool[] = [
       path: "/v1/scmProviders/{id}",
       pathParams: undefined,
       query: {
-      "fields[scmProviders]": args["fields[scmProviders]"],
+      "fields[scmProviders]": args["fields_scmProviders"],
     },
       body: undefined,
     });
@@ -73,10 +73,10 @@ export const scmProvidersTools: Tool[] = [
     name: "scm_providers_repositories_get_to_many_related",
     description: "GET /v1/scmProviders/{id}/repositories (GET /v1/scmProviders/{id}/repositories)",
     input: z.object({
-    "filter[id]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s)").optional(),
-    "fields[scmRepositories]": z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
-    "fields[scmProviders]": z.union([z.array(z.enum(["scmProviderType", "url", "repositories"])), z.string()]).describe("the fields to include for returned resources of type scmProviders").optional(),
-    "fields[scmGitReferences]": z.union([z.array(z.enum(["name", "canonicalName", "isDeleted", "kind", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmGitReferences").optional(),
+    filter_id: z.union([z.array(z.string()), z.string()]).describe("filter by id(s)").optional(),
+    fields_scmRepositories: z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
+    fields_scmProviders: z.union([z.array(z.enum(["scmProviderType", "url", "repositories"])), z.string()]).describe("the fields to include for returned resources of type scmProviders").optional(),
+    fields_scmGitReferences: z.union([z.array(z.enum(["name", "canonicalName", "isDeleted", "kind", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmGitReferences").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["scmProvider", "defaultBranch"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -86,10 +86,10 @@ export const scmProvidersTools: Tool[] = [
       path: "/v1/scmProviders/{id}/repositories",
       pathParams: undefined,
       query: {
-      "filter[id]": args["filter[id]"],
-      "fields[scmRepositories]": args["fields[scmRepositories]"],
-      "fields[scmProviders]": args["fields[scmProviders]"],
-      "fields[scmGitReferences]": args["fields[scmGitReferences]"],
+      "filter[id]": args["filter_id"],
+      "fields[scmRepositories]": args["fields_scmRepositories"],
+      "fields[scmProviders]": args["fields_scmProviders"],
+      "fields[scmGitReferences]": args["fields_scmGitReferences"],
       "limit": args["limit"],
       "include": args["include"],
     },

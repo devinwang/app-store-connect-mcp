@@ -14,7 +14,7 @@ export const alternativeDistributionPackageVariantsTools: Tool[] = [
     name: "alternative_distribution_package_variants_get_instance",
     description: "GET /v1/alternativeDistributionPackageVariants/{id} (GET /v1/alternativeDistributionPackageVariants/{id})",
     input: z.object({
-    "fields[alternativeDistributionPackageVariants]": z.union([z.array(z.enum(["url", "urlExpirationDate", "alternativeDistributionKeyBlob", "fileChecksum"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackageVariants").optional(),
+    fields_alternativeDistributionPackageVariants: z.union([z.array(z.enum(["url", "urlExpirationDate", "alternativeDistributionKeyBlob", "fileChecksum"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackageVariants").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -22,7 +22,7 @@ export const alternativeDistributionPackageVariantsTools: Tool[] = [
       path: "/v1/alternativeDistributionPackageVariants/{id}",
       pathParams: undefined,
       query: {
-      "fields[alternativeDistributionPackageVariants]": args["fields[alternativeDistributionPackageVariants]"],
+      "fields[alternativeDistributionPackageVariants]": args["fields_alternativeDistributionPackageVariants"],
     },
       body: undefined,
     });

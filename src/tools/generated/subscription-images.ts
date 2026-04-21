@@ -31,7 +31,7 @@ export const subscriptionImagesTools: Tool[] = [
     name: "subscription_images_get_instance",
     description: "GET /v1/subscriptionImages/{id} (GET /v1/subscriptionImages/{id})",
     input: z.object({
-    "fields[subscriptionImages]": z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "assetToken", "imageAsset", "uploadOperations", "state", "subscription"])), z.string()]).describe("the fields to include for returned resources of type subscriptionImages").optional(),
+    fields_subscriptionImages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "assetToken", "imageAsset", "uploadOperations", "state", "subscription"])), z.string()]).describe("the fields to include for returned resources of type subscriptionImages").optional(),
     include: z.union([z.array(z.enum(["subscription"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const subscriptionImagesTools: Tool[] = [
       path: "/v1/subscriptionImages/{id}",
       pathParams: undefined,
       query: {
-      "fields[subscriptionImages]": args["fields[subscriptionImages]"],
+      "fields[subscriptionImages]": args["fields_subscriptionImages"],
       "include": args["include"],
     },
       body: undefined,

@@ -31,7 +31,7 @@ export const buildUploadsTools: Tool[] = [
     name: "build_uploads_get_instance",
     description: "GET /v1/buildUploads/{id} (GET /v1/buildUploads/{id})",
     input: z.object({
-    "fields[buildUploads]": z.union([z.array(z.enum(["cfBundleShortVersionString", "cfBundleVersion", "createdDate", "state", "platform", "uploadedDate", "build", "assetFile", "assetDescriptionFile", "assetSpiFile", "buildUploadFiles"])), z.string()]).describe("the fields to include for returned resources of type buildUploads").optional(),
+    fields_buildUploads: z.union([z.array(z.enum(["cfBundleShortVersionString", "cfBundleVersion", "createdDate", "state", "platform", "uploadedDate", "build", "assetFile", "assetDescriptionFile", "assetSpiFile", "buildUploadFiles"])), z.string()]).describe("the fields to include for returned resources of type buildUploads").optional(),
     include: z.union([z.array(z.enum(["build", "assetFile", "assetDescriptionFile", "assetSpiFile"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const buildUploadsTools: Tool[] = [
       path: "/v1/buildUploads/{id}",
       pathParams: undefined,
       query: {
-      "fields[buildUploads]": args["fields[buildUploads]"],
+      "fields[buildUploads]": args["fields_buildUploads"],
       "include": args["include"],
     },
       body: undefined,
@@ -86,7 +86,7 @@ export const buildUploadsTools: Tool[] = [
     name: "build_uploads_build_upload_files_get_to_many_related",
     description: "GET /v1/buildUploads/{id}/buildUploadFiles (GET /v1/buildUploads/{id}/buildUploadFiles)",
     input: z.object({
-    "fields[buildUploadFiles]": z.union([z.array(z.enum(["assetDeliveryState", "assetToken", "assetType", "fileName", "fileSize", "sourceFileChecksums", "uploadOperations", "uti"])), z.string()]).describe("the fields to include for returned resources of type buildUploadFiles").optional(),
+    fields_buildUploadFiles: z.union([z.array(z.enum(["assetDeliveryState", "assetToken", "assetType", "fileName", "fileSize", "sourceFileChecksums", "uploadOperations", "uti"])), z.string()]).describe("the fields to include for returned resources of type buildUploadFiles").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -95,7 +95,7 @@ export const buildUploadsTools: Tool[] = [
       path: "/v1/buildUploads/{id}/buildUploadFiles",
       pathParams: undefined,
       query: {
-      "fields[buildUploadFiles]": args["fields[buildUploadFiles]"],
+      "fields[buildUploadFiles]": args["fields_buildUploadFiles"],
       "limit": args["limit"],
     },
       body: undefined,

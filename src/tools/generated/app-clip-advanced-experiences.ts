@@ -31,9 +31,9 @@ export const appClipAdvancedExperiencesTools: Tool[] = [
     name: "app_clip_advanced_experiences_get_instance",
     description: "GET /v1/appClipAdvancedExperiences/{id} (GET /v1/appClipAdvancedExperiences/{id})",
     input: z.object({
-    "fields[appClipAdvancedExperiences]": z.union([z.array(z.enum(["link", "version", "status", "action", "isPoweredBy", "place", "placeStatus", "businessCategory", "defaultLanguage", "appClip", "headerImage", "localizations"])), z.string()]).describe("the fields to include for returned resources of type appClipAdvancedExperiences").optional(),
+    fields_appClipAdvancedExperiences: z.union([z.array(z.enum(["link", "version", "status", "action", "isPoweredBy", "place", "placeStatus", "businessCategory", "defaultLanguage", "appClip", "headerImage", "localizations"])), z.string()]).describe("the fields to include for returned resources of type appClipAdvancedExperiences").optional(),
     include: z.union([z.array(z.enum(["appClip", "headerImage", "localizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[localizations]": z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
+    limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -41,9 +41,9 @@ export const appClipAdvancedExperiencesTools: Tool[] = [
       path: "/v1/appClipAdvancedExperiences/{id}",
       pathParams: undefined,
       query: {
-      "fields[appClipAdvancedExperiences]": args["fields[appClipAdvancedExperiences]"],
+      "fields[appClipAdvancedExperiences]": args["fields_appClipAdvancedExperiences"],
       "include": args["include"],
-      "limit[localizations]": args["limit[localizations]"],
+      "limit[localizations]": args["limit_localizations"],
     },
       body: undefined,
     });

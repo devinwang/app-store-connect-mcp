@@ -31,10 +31,10 @@ export const analyticsReportRequestsTools: Tool[] = [
     name: "analytics_report_requests_get_instance",
     description: "GET /v1/analyticsReportRequests/{id} (GET /v1/analyticsReportRequests/{id})",
     input: z.object({
-    "fields[analyticsReportRequests]": z.union([z.array(z.enum(["accessType", "stoppedDueToInactivity", "reports"])), z.string()]).describe("the fields to include for returned resources of type analyticsReportRequests").optional(),
-    "fields[analyticsReports]": z.union([z.array(z.enum(["name", "category", "instances"])), z.string()]).describe("the fields to include for returned resources of type analyticsReports").optional(),
+    fields_analyticsReportRequests: z.union([z.array(z.enum(["accessType", "stoppedDueToInactivity", "reports"])), z.string()]).describe("the fields to include for returned resources of type analyticsReportRequests").optional(),
+    fields_analyticsReports: z.union([z.array(z.enum(["name", "category", "instances"])), z.string()]).describe("the fields to include for returned resources of type analyticsReports").optional(),
     include: z.union([z.array(z.enum(["reports"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[reports]": z.coerce.number().int().describe("maximum number of related reports returned (when they are included)").optional(),
+    limit_reports: z.coerce.number().int().describe("maximum number of related reports returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -42,10 +42,10 @@ export const analyticsReportRequestsTools: Tool[] = [
       path: "/v1/analyticsReportRequests/{id}",
       pathParams: undefined,
       query: {
-      "fields[analyticsReportRequests]": args["fields[analyticsReportRequests]"],
-      "fields[analyticsReports]": args["fields[analyticsReports]"],
+      "fields[analyticsReportRequests]": args["fields_analyticsReportRequests"],
+      "fields[analyticsReports]": args["fields_analyticsReports"],
       "include": args["include"],
-      "limit[reports]": args["limit[reports]"],
+      "limit[reports]": args["limit_reports"],
     },
       body: undefined,
     });
@@ -90,9 +90,9 @@ export const analyticsReportRequestsTools: Tool[] = [
     name: "analytics_report_requests_reports_get_to_many_related",
     description: "GET /v1/analyticsReportRequests/{id}/reports (GET /v1/analyticsReportRequests/{id}/reports)",
     input: z.object({
-    "filter[name]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'name'").optional(),
-    "filter[category]": z.union([z.array(z.enum(["APP_USAGE", "APP_STORE_ENGAGEMENT", "COMMERCE", "FRAMEWORK_USAGE", "PERFORMANCE"])), z.string()]).describe("filter by attribute 'category'").optional(),
-    "fields[analyticsReports]": z.union([z.array(z.enum(["name", "category", "instances"])), z.string()]).describe("the fields to include for returned resources of type analyticsReports").optional(),
+    filter_name: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'name'").optional(),
+    filter_category: z.union([z.array(z.enum(["APP_USAGE", "APP_STORE_ENGAGEMENT", "COMMERCE", "FRAMEWORK_USAGE", "PERFORMANCE"])), z.string()]).describe("filter by attribute 'category'").optional(),
+    fields_analyticsReports: z.union([z.array(z.enum(["name", "category", "instances"])), z.string()]).describe("the fields to include for returned resources of type analyticsReports").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -101,9 +101,9 @@ export const analyticsReportRequestsTools: Tool[] = [
       path: "/v1/analyticsReportRequests/{id}/reports",
       pathParams: undefined,
       query: {
-      "filter[name]": args["filter[name]"],
-      "filter[category]": args["filter[category]"],
-      "fields[analyticsReports]": args["fields[analyticsReports]"],
+      "filter[name]": args["filter_name"],
+      "filter[category]": args["filter_category"],
+      "fields[analyticsReports]": args["fields_analyticsReports"],
       "limit": args["limit"],
     },
       body: undefined,

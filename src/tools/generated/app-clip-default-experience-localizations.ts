@@ -31,8 +31,8 @@ export const appClipDefaultExperienceLocalizationsTools: Tool[] = [
     name: "app_clip_default_experience_localizations_get_instance",
     description: "GET /v1/appClipDefaultExperienceLocalizations/{id} (GET /v1/appClipDefaultExperienceLocalizations/{id})",
     input: z.object({
-    "fields[appClipDefaultExperienceLocalizations]": z.union([z.array(z.enum(["locale", "subtitle", "appClipDefaultExperience", "appClipHeaderImage"])), z.string()]).describe("the fields to include for returned resources of type appClipDefaultExperienceLocalizations").optional(),
-    "fields[appClipHeaderImages]": z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "uploadOperations", "assetDeliveryState", "appClipDefaultExperienceLocalization"])), z.string()]).describe("the fields to include for returned resources of type appClipHeaderImages").optional(),
+    fields_appClipDefaultExperienceLocalizations: z.union([z.array(z.enum(["locale", "subtitle", "appClipDefaultExperience", "appClipHeaderImage"])), z.string()]).describe("the fields to include for returned resources of type appClipDefaultExperienceLocalizations").optional(),
+    fields_appClipHeaderImages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "uploadOperations", "assetDeliveryState", "appClipDefaultExperienceLocalization"])), z.string()]).describe("the fields to include for returned resources of type appClipHeaderImages").optional(),
     include: z.union([z.array(z.enum(["appClipDefaultExperience", "appClipHeaderImage"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -41,8 +41,8 @@ export const appClipDefaultExperienceLocalizationsTools: Tool[] = [
       path: "/v1/appClipDefaultExperienceLocalizations/{id}",
       pathParams: undefined,
       query: {
-      "fields[appClipDefaultExperienceLocalizations]": args["fields[appClipDefaultExperienceLocalizations]"],
-      "fields[appClipHeaderImages]": args["fields[appClipHeaderImages]"],
+      "fields[appClipDefaultExperienceLocalizations]": args["fields_appClipDefaultExperienceLocalizations"],
+      "fields[appClipHeaderImages]": args["fields_appClipHeaderImages"],
       "include": args["include"],
     },
       body: undefined,
@@ -101,8 +101,8 @@ export const appClipDefaultExperienceLocalizationsTools: Tool[] = [
     name: "app_clip_default_experience_localizations_app_clip_header_image_get_to_one_related",
     description: "GET /v1/appClipDefaultExperienceLocalizations/{id}/appClipHeaderImage (GET /v1/appClipDefaultExperienceLocalizations/{id}/appClipHeaderImage)",
     input: z.object({
-    "fields[appClipHeaderImages]": z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "uploadOperations", "assetDeliveryState", "appClipDefaultExperienceLocalization"])), z.string()]).describe("the fields to include for returned resources of type appClipHeaderImages").optional(),
-    "fields[appClipDefaultExperienceLocalizations]": z.union([z.array(z.enum(["locale", "subtitle", "appClipDefaultExperience", "appClipHeaderImage"])), z.string()]).describe("the fields to include for returned resources of type appClipDefaultExperienceLocalizations").optional(),
+    fields_appClipHeaderImages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "uploadOperations", "assetDeliveryState", "appClipDefaultExperienceLocalization"])), z.string()]).describe("the fields to include for returned resources of type appClipHeaderImages").optional(),
+    fields_appClipDefaultExperienceLocalizations: z.union([z.array(z.enum(["locale", "subtitle", "appClipDefaultExperience", "appClipHeaderImage"])), z.string()]).describe("the fields to include for returned resources of type appClipDefaultExperienceLocalizations").optional(),
     include: z.union([z.array(z.enum(["appClipDefaultExperienceLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -111,8 +111,8 @@ export const appClipDefaultExperienceLocalizationsTools: Tool[] = [
       path: "/v1/appClipDefaultExperienceLocalizations/{id}/appClipHeaderImage",
       pathParams: undefined,
       query: {
-      "fields[appClipHeaderImages]": args["fields[appClipHeaderImages]"],
-      "fields[appClipDefaultExperienceLocalizations]": args["fields[appClipDefaultExperienceLocalizations]"],
+      "fields[appClipHeaderImages]": args["fields_appClipHeaderImages"],
+      "fields[appClipDefaultExperienceLocalizations]": args["fields_appClipDefaultExperienceLocalizations"],
       "include": args["include"],
     },
       body: undefined,

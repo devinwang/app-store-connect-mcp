@@ -14,7 +14,7 @@ export const backgroundAssetVersionExternalBetaReleasesTools: Tool[] = [
     name: "background_asset_version_external_beta_releases_get_instance",
     description: "GET /v1/backgroundAssetVersionExternalBetaReleases/{id} (GET /v1/backgroundAssetVersionExternalBetaReleases/{id})",
     input: z.object({
-    "fields[backgroundAssetVersionExternalBetaReleases]": z.union([z.array(z.enum(["state", "backgroundAssetVersion"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetVersionExternalBetaReleases").optional(),
+    fields_backgroundAssetVersionExternalBetaReleases: z.union([z.array(z.enum(["state", "backgroundAssetVersion"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetVersionExternalBetaReleases").optional(),
     include: z.union([z.array(z.enum(["backgroundAssetVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -23,7 +23,7 @@ export const backgroundAssetVersionExternalBetaReleasesTools: Tool[] = [
       path: "/v1/backgroundAssetVersionExternalBetaReleases/{id}",
       pathParams: undefined,
       query: {
-      "fields[backgroundAssetVersionExternalBetaReleases]": args["fields[backgroundAssetVersionExternalBetaReleases]"],
+      "fields[backgroundAssetVersionExternalBetaReleases]": args["fields_backgroundAssetVersionExternalBetaReleases"],
       "include": args["include"],
     },
       body: undefined,

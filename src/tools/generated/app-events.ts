@@ -31,10 +31,10 @@ export const appEventsTools: Tool[] = [
     name: "app_events_get_instance",
     description: "GET /v1/appEvents/{id} (GET /v1/appEvents/{id})",
     input: z.object({
-    "fields[appEvents]": z.union([z.array(z.enum(["referenceName", "badge", "eventState", "deepLink", "purchaseRequirement", "primaryLocale", "priority", "purpose", "territorySchedules", "archivedTerritorySchedules", "localizations"])), z.string()]).describe("the fields to include for returned resources of type appEvents").optional(),
-    "fields[appEventLocalizations]": z.union([z.array(z.enum(["locale", "name", "shortDescription", "longDescription", "appEvent", "appEventScreenshots", "appEventVideoClips"])), z.string()]).describe("the fields to include for returned resources of type appEventLocalizations").optional(),
+    fields_appEvents: z.union([z.array(z.enum(["referenceName", "badge", "eventState", "deepLink", "purchaseRequirement", "primaryLocale", "priority", "purpose", "territorySchedules", "archivedTerritorySchedules", "localizations"])), z.string()]).describe("the fields to include for returned resources of type appEvents").optional(),
+    fields_appEventLocalizations: z.union([z.array(z.enum(["locale", "name", "shortDescription", "longDescription", "appEvent", "appEventScreenshots", "appEventVideoClips"])), z.string()]).describe("the fields to include for returned resources of type appEventLocalizations").optional(),
     include: z.union([z.array(z.enum(["localizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[localizations]": z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
+    limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -42,10 +42,10 @@ export const appEventsTools: Tool[] = [
       path: "/v1/appEvents/{id}",
       pathParams: undefined,
       query: {
-      "fields[appEvents]": args["fields[appEvents]"],
-      "fields[appEventLocalizations]": args["fields[appEventLocalizations]"],
+      "fields[appEvents]": args["fields_appEvents"],
+      "fields[appEventLocalizations]": args["fields_appEventLocalizations"],
       "include": args["include"],
-      "limit[localizations]": args["limit[localizations]"],
+      "limit[localizations]": args["limit_localizations"],
     },
       body: undefined,
     });
@@ -107,14 +107,14 @@ export const appEventsTools: Tool[] = [
     name: "app_events_localizations_get_to_many_related",
     description: "GET /v1/appEvents/{id}/localizations (GET /v1/appEvents/{id}/localizations)",
     input: z.object({
-    "fields[appEventLocalizations]": z.union([z.array(z.enum(["locale", "name", "shortDescription", "longDescription", "appEvent", "appEventScreenshots", "appEventVideoClips"])), z.string()]).describe("the fields to include for returned resources of type appEventLocalizations").optional(),
-    "fields[appEvents]": z.union([z.array(z.enum(["referenceName", "badge", "eventState", "deepLink", "purchaseRequirement", "primaryLocale", "priority", "purpose", "territorySchedules", "archivedTerritorySchedules", "localizations"])), z.string()]).describe("the fields to include for returned resources of type appEvents").optional(),
-    "fields[appEventScreenshots]": z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "assetToken", "uploadOperations", "assetDeliveryState", "appEventAssetType", "appEventLocalization"])), z.string()]).describe("the fields to include for returned resources of type appEventScreenshots").optional(),
-    "fields[appEventVideoClips]": z.union([z.array(z.enum(["fileSize", "fileName", "previewFrameTimeCode", "videoUrl", "previewFrameImage", "previewImage", "uploadOperations", "assetDeliveryState", "videoDeliveryState", "appEventAssetType", "appEventLocalization"])), z.string()]).describe("the fields to include for returned resources of type appEventVideoClips").optional(),
+    fields_appEventLocalizations: z.union([z.array(z.enum(["locale", "name", "shortDescription", "longDescription", "appEvent", "appEventScreenshots", "appEventVideoClips"])), z.string()]).describe("the fields to include for returned resources of type appEventLocalizations").optional(),
+    fields_appEvents: z.union([z.array(z.enum(["referenceName", "badge", "eventState", "deepLink", "purchaseRequirement", "primaryLocale", "priority", "purpose", "territorySchedules", "archivedTerritorySchedules", "localizations"])), z.string()]).describe("the fields to include for returned resources of type appEvents").optional(),
+    fields_appEventScreenshots: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "assetToken", "uploadOperations", "assetDeliveryState", "appEventAssetType", "appEventLocalization"])), z.string()]).describe("the fields to include for returned resources of type appEventScreenshots").optional(),
+    fields_appEventVideoClips: z.union([z.array(z.enum(["fileSize", "fileName", "previewFrameTimeCode", "videoUrl", "previewFrameImage", "previewImage", "uploadOperations", "assetDeliveryState", "videoDeliveryState", "appEventAssetType", "appEventLocalization"])), z.string()]).describe("the fields to include for returned resources of type appEventVideoClips").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appEvent", "appEventScreenshots", "appEventVideoClips"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[appEventScreenshots]": z.coerce.number().int().describe("maximum number of related appEventScreenshots returned (when they are included)").optional(),
-    "limit[appEventVideoClips]": z.coerce.number().int().describe("maximum number of related appEventVideoClips returned (when they are included)").optional(),
+    limit_appEventScreenshots: z.coerce.number().int().describe("maximum number of related appEventScreenshots returned (when they are included)").optional(),
+    limit_appEventVideoClips: z.coerce.number().int().describe("maximum number of related appEventVideoClips returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -122,14 +122,14 @@ export const appEventsTools: Tool[] = [
       path: "/v1/appEvents/{id}/localizations",
       pathParams: undefined,
       query: {
-      "fields[appEventLocalizations]": args["fields[appEventLocalizations]"],
-      "fields[appEvents]": args["fields[appEvents]"],
-      "fields[appEventScreenshots]": args["fields[appEventScreenshots]"],
-      "fields[appEventVideoClips]": args["fields[appEventVideoClips]"],
+      "fields[appEventLocalizations]": args["fields_appEventLocalizations"],
+      "fields[appEvents]": args["fields_appEvents"],
+      "fields[appEventScreenshots]": args["fields_appEventScreenshots"],
+      "fields[appEventVideoClips]": args["fields_appEventVideoClips"],
       "limit": args["limit"],
       "include": args["include"],
-      "limit[appEventScreenshots]": args["limit[appEventScreenshots]"],
-      "limit[appEventVideoClips]": args["limit[appEventVideoClips]"],
+      "limit[appEventScreenshots]": args["limit_appEventScreenshots"],
+      "limit[appEventVideoClips]": args["limit_appEventVideoClips"],
     },
       body: undefined,
     });

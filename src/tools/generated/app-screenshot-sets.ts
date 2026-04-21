@@ -31,10 +31,10 @@ export const appScreenshotSetsTools: Tool[] = [
     name: "app_screenshot_sets_get_instance",
     description: "GET /v1/appScreenshotSets/{id} (GET /v1/appScreenshotSets/{id})",
     input: z.object({
-    "fields[appScreenshotSets]": z.union([z.array(z.enum(["screenshotDisplayType", "appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appScreenshots"])), z.string()]).describe("the fields to include for returned resources of type appScreenshotSets").optional(),
-    "fields[appScreenshots]": z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "assetToken", "assetType", "uploadOperations", "assetDeliveryState", "appScreenshotSet"])), z.string()]).describe("the fields to include for returned resources of type appScreenshots").optional(),
+    fields_appScreenshotSets: z.union([z.array(z.enum(["screenshotDisplayType", "appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appScreenshots"])), z.string()]).describe("the fields to include for returned resources of type appScreenshotSets").optional(),
+    fields_appScreenshots: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "assetToken", "assetType", "uploadOperations", "assetDeliveryState", "appScreenshotSet"])), z.string()]).describe("the fields to include for returned resources of type appScreenshots").optional(),
     include: z.union([z.array(z.enum(["appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appScreenshots"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[appScreenshots]": z.coerce.number().int().describe("maximum number of related appScreenshots returned (when they are included)").optional(),
+    limit_appScreenshots: z.coerce.number().int().describe("maximum number of related appScreenshots returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -42,10 +42,10 @@ export const appScreenshotSetsTools: Tool[] = [
       path: "/v1/appScreenshotSets/{id}",
       pathParams: undefined,
       query: {
-      "fields[appScreenshotSets]": args["fields[appScreenshotSets]"],
-      "fields[appScreenshots]": args["fields[appScreenshots]"],
+      "fields[appScreenshotSets]": args["fields_appScreenshotSets"],
+      "fields[appScreenshots]": args["fields_appScreenshots"],
       "include": args["include"],
-      "limit[appScreenshots]": args["limit[appScreenshots]"],
+      "limit[appScreenshots]": args["limit_appScreenshots"],
     },
       body: undefined,
     });
@@ -107,8 +107,8 @@ export const appScreenshotSetsTools: Tool[] = [
     name: "app_screenshot_sets_app_screenshots_get_to_many_related",
     description: "GET /v1/appScreenshotSets/{id}/appScreenshots (GET /v1/appScreenshotSets/{id}/appScreenshots)",
     input: z.object({
-    "fields[appScreenshots]": z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "assetToken", "assetType", "uploadOperations", "assetDeliveryState", "appScreenshotSet"])), z.string()]).describe("the fields to include for returned resources of type appScreenshots").optional(),
-    "fields[appScreenshotSets]": z.union([z.array(z.enum(["screenshotDisplayType", "appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appScreenshots"])), z.string()]).describe("the fields to include for returned resources of type appScreenshotSets").optional(),
+    fields_appScreenshots: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "assetToken", "assetType", "uploadOperations", "assetDeliveryState", "appScreenshotSet"])), z.string()]).describe("the fields to include for returned resources of type appScreenshots").optional(),
+    fields_appScreenshotSets: z.union([z.array(z.enum(["screenshotDisplayType", "appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appScreenshots"])), z.string()]).describe("the fields to include for returned resources of type appScreenshotSets").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appScreenshotSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -118,8 +118,8 @@ export const appScreenshotSetsTools: Tool[] = [
       path: "/v1/appScreenshotSets/{id}/appScreenshots",
       pathParams: undefined,
       query: {
-      "fields[appScreenshots]": args["fields[appScreenshots]"],
-      "fields[appScreenshotSets]": args["fields[appScreenshotSets]"],
+      "fields[appScreenshots]": args["fields_appScreenshots"],
+      "fields[appScreenshotSets]": args["fields_appScreenshotSets"],
       "limit": args["limit"],
       "include": args["include"],
     },

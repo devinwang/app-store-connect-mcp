@@ -31,7 +31,7 @@ export const promotedPurchasesTools: Tool[] = [
     name: "promoted_purchases_get_instance",
     description: "GET /v1/promotedPurchases/{id} (GET /v1/promotedPurchases/{id})",
     input: z.object({
-    "fields[promotedPurchases]": z.union([z.array(z.enum(["visibleForAllUsers", "enabled", "state", "inAppPurchaseV2", "subscription"])), z.string()]).describe("the fields to include for returned resources of type promotedPurchases").optional(),
+    fields_promotedPurchases: z.union([z.array(z.enum(["visibleForAllUsers", "enabled", "state", "inAppPurchaseV2", "subscription"])), z.string()]).describe("the fields to include for returned resources of type promotedPurchases").optional(),
     include: z.union([z.array(z.enum(["inAppPurchaseV2", "subscription"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const promotedPurchasesTools: Tool[] = [
       path: "/v1/promotedPurchases/{id}",
       pathParams: undefined,
       query: {
-      "fields[promotedPurchases]": args["fields[promotedPurchases]"],
+      "fields[promotedPurchases]": args["fields_promotedPurchases"],
       "include": args["include"],
     },
       body: undefined,

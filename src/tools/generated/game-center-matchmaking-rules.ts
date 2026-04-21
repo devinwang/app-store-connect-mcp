@@ -65,8 +65,8 @@ export const gameCenterMatchmakingRulesTools: Tool[] = [
     input: z.object({
     granularity: z.enum(["P1D", "PT1H", "PT15M"]).describe("the granularity of the per-group dataset").optional(),
     groupBy: z.union([z.array(z.enum(["result", "gameCenterMatchmakingQueue"])), z.string()]).describe("the dimension by which to group the results").optional(),
-    "filter[result]": z.string().describe("filter by 'result' attribute dimension").optional(),
-    "filter[gameCenterMatchmakingQueue]": z.string().describe("filter by 'gameCenterMatchmakingQueue' relationship dimension").optional(),
+    filter_result: z.string().describe("filter by 'result' attribute dimension").optional(),
+    filter_gameCenterMatchmakingQueue: z.string().describe("filter by 'gameCenterMatchmakingQueue' relationship dimension").optional(),
     sort: z.union([z.array(z.enum(["count", "-count"])), z.string()]).describe("comma-separated list of sort expressions; metrics will be sorted as specified").optional(),
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
   }).strict(),
@@ -78,8 +78,8 @@ export const gameCenterMatchmakingRulesTools: Tool[] = [
       query: {
       "granularity": args["granularity"],
       "groupBy": args["groupBy"],
-      "filter[result]": args["filter[result]"],
-      "filter[gameCenterMatchmakingQueue]": args["filter[gameCenterMatchmakingQueue]"],
+      "filter[result]": args["filter_result"],
+      "filter[gameCenterMatchmakingQueue]": args["filter_gameCenterMatchmakingQueue"],
       "sort": args["sort"],
       "limit": args["limit"],
     },
@@ -94,7 +94,7 @@ export const gameCenterMatchmakingRulesTools: Tool[] = [
     input: z.object({
     granularity: z.enum(["P1D", "PT1H", "PT15M"]).describe("the granularity of the per-group dataset").optional(),
     groupBy: z.union([z.array(z.enum(["gameCenterMatchmakingQueue"])), z.string()]).describe("the dimension by which to group the results").optional(),
-    "filter[gameCenterMatchmakingQueue]": z.string().describe("filter by 'gameCenterMatchmakingQueue' relationship dimension").optional(),
+    filter_gameCenterMatchmakingQueue: z.string().describe("filter by 'gameCenterMatchmakingQueue' relationship dimension").optional(),
     sort: z.union([z.array(z.enum(["count", "-count", "averageResult", "-averageResult", "p50Result", "-p50Result", "p95Result", "-p95Result"])), z.string()]).describe("comma-separated list of sort expressions; metrics will be sorted as specified").optional(),
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
   }).strict(),
@@ -106,7 +106,7 @@ export const gameCenterMatchmakingRulesTools: Tool[] = [
       query: {
       "granularity": args["granularity"],
       "groupBy": args["groupBy"],
-      "filter[gameCenterMatchmakingQueue]": args["filter[gameCenterMatchmakingQueue]"],
+      "filter[gameCenterMatchmakingQueue]": args["filter_gameCenterMatchmakingQueue"],
       "sort": args["sort"],
       "limit": args["limit"],
     },
@@ -121,7 +121,7 @@ export const gameCenterMatchmakingRulesTools: Tool[] = [
     input: z.object({
     granularity: z.enum(["P1D", "PT1H", "PT15M"]).describe("the granularity of the per-group dataset").optional(),
     groupBy: z.union([z.array(z.enum(["gameCenterMatchmakingQueue"])), z.string()]).describe("the dimension by which to group the results").optional(),
-    "filter[gameCenterMatchmakingQueue]": z.string().describe("filter by 'gameCenterMatchmakingQueue' relationship dimension").optional(),
+    filter_gameCenterMatchmakingQueue: z.string().describe("filter by 'gameCenterMatchmakingQueue' relationship dimension").optional(),
     sort: z.union([z.array(z.enum(["count", "-count"])), z.string()]).describe("comma-separated list of sort expressions; metrics will be sorted as specified").optional(),
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
   }).strict(),
@@ -133,7 +133,7 @@ export const gameCenterMatchmakingRulesTools: Tool[] = [
       query: {
       "granularity": args["granularity"],
       "groupBy": args["groupBy"],
-      "filter[gameCenterMatchmakingQueue]": args["filter[gameCenterMatchmakingQueue]"],
+      "filter[gameCenterMatchmakingQueue]": args["filter_gameCenterMatchmakingQueue"],
       "sort": args["sort"],
       "limit": args["limit"],
     },

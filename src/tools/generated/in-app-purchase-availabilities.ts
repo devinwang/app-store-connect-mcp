@@ -31,10 +31,10 @@ export const inAppPurchaseAvailabilitiesTools: Tool[] = [
     name: "in_app_purchase_availabilities_get_instance",
     description: "GET /v1/inAppPurchaseAvailabilities/{id} (GET /v1/inAppPurchaseAvailabilities/{id})",
     input: z.object({
-    "fields[inAppPurchaseAvailabilities]": z.union([z.array(z.enum(["availableInNewTerritories", "availableTerritories"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchaseAvailabilities").optional(),
-    "fields[territories]": z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    fields_inAppPurchaseAvailabilities: z.union([z.array(z.enum(["availableInNewTerritories", "availableTerritories"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchaseAvailabilities").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     include: z.union([z.array(z.enum(["availableTerritories"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[availableTerritories]": z.coerce.number().int().describe("maximum number of related availableTerritories returned (when they are included)").optional(),
+    limit_availableTerritories: z.coerce.number().int().describe("maximum number of related availableTerritories returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -42,10 +42,10 @@ export const inAppPurchaseAvailabilitiesTools: Tool[] = [
       path: "/v1/inAppPurchaseAvailabilities/{id}",
       pathParams: undefined,
       query: {
-      "fields[inAppPurchaseAvailabilities]": args["fields[inAppPurchaseAvailabilities]"],
-      "fields[territories]": args["fields[territories]"],
+      "fields[inAppPurchaseAvailabilities]": args["fields_inAppPurchaseAvailabilities"],
+      "fields[territories]": args["fields_territories"],
       "include": args["include"],
-      "limit[availableTerritories]": args["limit[availableTerritories]"],
+      "limit[availableTerritories]": args["limit_availableTerritories"],
     },
       body: undefined,
     });
@@ -75,7 +75,7 @@ export const inAppPurchaseAvailabilitiesTools: Tool[] = [
     name: "in_app_purchase_availabilities_available_territories_get_to_many_related",
     description: "GET /v1/inAppPurchaseAvailabilities/{id}/availableTerritories (GET /v1/inAppPurchaseAvailabilities/{id}/availableTerritories)",
     input: z.object({
-    "fields[territories]": z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -84,7 +84,7 @@ export const inAppPurchaseAvailabilitiesTools: Tool[] = [
       path: "/v1/inAppPurchaseAvailabilities/{id}/availableTerritories",
       pathParams: undefined,
       query: {
-      "fields[territories]": args["fields[territories]"],
+      "fields[territories]": args["fields_territories"],
       "limit": args["limit"],
     },
       body: undefined,

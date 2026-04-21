@@ -31,7 +31,7 @@ export const subscriptionLocalizationsTools: Tool[] = [
     name: "subscription_localizations_get_instance",
     description: "GET /v1/subscriptionLocalizations/{id} (GET /v1/subscriptionLocalizations/{id})",
     input: z.object({
-    "fields[subscriptionLocalizations]": z.union([z.array(z.enum(["name", "locale", "description", "state", "subscription"])), z.string()]).describe("the fields to include for returned resources of type subscriptionLocalizations").optional(),
+    fields_subscriptionLocalizations: z.union([z.array(z.enum(["name", "locale", "description", "state", "subscription"])), z.string()]).describe("the fields to include for returned resources of type subscriptionLocalizations").optional(),
     include: z.union([z.array(z.enum(["subscription"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const subscriptionLocalizationsTools: Tool[] = [
       path: "/v1/subscriptionLocalizations/{id}",
       pathParams: undefined,
       query: {
-      "fields[subscriptionLocalizations]": args["fields[subscriptionLocalizations]"],
+      "fields[subscriptionLocalizations]": args["fields_subscriptionLocalizations"],
       "include": args["include"],
     },
       body: undefined,

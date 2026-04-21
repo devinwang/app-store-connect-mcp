@@ -14,11 +14,11 @@ export const ciMacOsVersionsTools: Tool[] = [
     name: "ci_mac_os_versions_get_collection",
     description: "GET /v1/ciMacOsVersions (GET /v1/ciMacOsVersions)",
     input: z.object({
-    "fields[ciMacOsVersions]": z.union([z.array(z.enum(["version", "name", "xcodeVersions"])), z.string()]).describe("the fields to include for returned resources of type ciMacOsVersions").optional(),
-    "fields[ciXcodeVersions]": z.union([z.array(z.enum(["version", "name", "testDestinations", "macOsVersions"])), z.string()]).describe("the fields to include for returned resources of type ciXcodeVersions").optional(),
+    fields_ciMacOsVersions: z.union([z.array(z.enum(["version", "name", "xcodeVersions"])), z.string()]).describe("the fields to include for returned resources of type ciMacOsVersions").optional(),
+    fields_ciXcodeVersions: z.union([z.array(z.enum(["version", "name", "testDestinations", "macOsVersions"])), z.string()]).describe("the fields to include for returned resources of type ciXcodeVersions").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["xcodeVersions"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[xcodeVersions]": z.coerce.number().int().describe("maximum number of related xcodeVersions returned (when they are included)").optional(),
+    limit_xcodeVersions: z.coerce.number().int().describe("maximum number of related xcodeVersions returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -26,11 +26,11 @@ export const ciMacOsVersionsTools: Tool[] = [
       path: "/v1/ciMacOsVersions",
       pathParams: undefined,
       query: {
-      "fields[ciMacOsVersions]": args["fields[ciMacOsVersions]"],
-      "fields[ciXcodeVersions]": args["fields[ciXcodeVersions]"],
+      "fields[ciMacOsVersions]": args["fields_ciMacOsVersions"],
+      "fields[ciXcodeVersions]": args["fields_ciXcodeVersions"],
       "limit": args["limit"],
       "include": args["include"],
-      "limit[xcodeVersions]": args["limit[xcodeVersions]"],
+      "limit[xcodeVersions]": args["limit_xcodeVersions"],
     },
       body: undefined,
     });
@@ -41,10 +41,10 @@ export const ciMacOsVersionsTools: Tool[] = [
     name: "ci_mac_os_versions_get_instance",
     description: "GET /v1/ciMacOsVersions/{id} (GET /v1/ciMacOsVersions/{id})",
     input: z.object({
-    "fields[ciMacOsVersions]": z.union([z.array(z.enum(["version", "name", "xcodeVersions"])), z.string()]).describe("the fields to include for returned resources of type ciMacOsVersions").optional(),
-    "fields[ciXcodeVersions]": z.union([z.array(z.enum(["version", "name", "testDestinations", "macOsVersions"])), z.string()]).describe("the fields to include for returned resources of type ciXcodeVersions").optional(),
+    fields_ciMacOsVersions: z.union([z.array(z.enum(["version", "name", "xcodeVersions"])), z.string()]).describe("the fields to include for returned resources of type ciMacOsVersions").optional(),
+    fields_ciXcodeVersions: z.union([z.array(z.enum(["version", "name", "testDestinations", "macOsVersions"])), z.string()]).describe("the fields to include for returned resources of type ciXcodeVersions").optional(),
     include: z.union([z.array(z.enum(["xcodeVersions"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[xcodeVersions]": z.coerce.number().int().describe("maximum number of related xcodeVersions returned (when they are included)").optional(),
+    limit_xcodeVersions: z.coerce.number().int().describe("maximum number of related xcodeVersions returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -52,10 +52,10 @@ export const ciMacOsVersionsTools: Tool[] = [
       path: "/v1/ciMacOsVersions/{id}",
       pathParams: undefined,
       query: {
-      "fields[ciMacOsVersions]": args["fields[ciMacOsVersions]"],
-      "fields[ciXcodeVersions]": args["fields[ciXcodeVersions]"],
+      "fields[ciMacOsVersions]": args["fields_ciMacOsVersions"],
+      "fields[ciXcodeVersions]": args["fields_ciXcodeVersions"],
       "include": args["include"],
-      "limit[xcodeVersions]": args["limit[xcodeVersions]"],
+      "limit[xcodeVersions]": args["limit_xcodeVersions"],
     },
       body: undefined,
     });
@@ -85,11 +85,11 @@ export const ciMacOsVersionsTools: Tool[] = [
     name: "ci_mac_os_versions_xcode_versions_get_to_many_related",
     description: "GET /v1/ciMacOsVersions/{id}/xcodeVersions (GET /v1/ciMacOsVersions/{id}/xcodeVersions)",
     input: z.object({
-    "fields[ciXcodeVersions]": z.union([z.array(z.enum(["version", "name", "testDestinations", "macOsVersions"])), z.string()]).describe("the fields to include for returned resources of type ciXcodeVersions").optional(),
-    "fields[ciMacOsVersions]": z.union([z.array(z.enum(["version", "name", "xcodeVersions"])), z.string()]).describe("the fields to include for returned resources of type ciMacOsVersions").optional(),
+    fields_ciXcodeVersions: z.union([z.array(z.enum(["version", "name", "testDestinations", "macOsVersions"])), z.string()]).describe("the fields to include for returned resources of type ciXcodeVersions").optional(),
+    fields_ciMacOsVersions: z.union([z.array(z.enum(["version", "name", "xcodeVersions"])), z.string()]).describe("the fields to include for returned resources of type ciMacOsVersions").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["macOsVersions"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[macOsVersions]": z.coerce.number().int().describe("maximum number of related macOsVersions returned (when they are included)").optional(),
+    limit_macOsVersions: z.coerce.number().int().describe("maximum number of related macOsVersions returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -97,11 +97,11 @@ export const ciMacOsVersionsTools: Tool[] = [
       path: "/v1/ciMacOsVersions/{id}/xcodeVersions",
       pathParams: undefined,
       query: {
-      "fields[ciXcodeVersions]": args["fields[ciXcodeVersions]"],
-      "fields[ciMacOsVersions]": args["fields[ciMacOsVersions]"],
+      "fields[ciXcodeVersions]": args["fields_ciXcodeVersions"],
+      "fields[ciMacOsVersions]": args["fields_ciMacOsVersions"],
       "limit": args["limit"],
       "include": args["include"],
-      "limit[macOsVersions]": args["limit[macOsVersions]"],
+      "limit[macOsVersions]": args["limit_macOsVersions"],
     },
       body: undefined,
     });

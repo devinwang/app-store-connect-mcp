@@ -14,7 +14,7 @@ export const sandboxTestersTools: Tool[] = [
     name: "sandbox_testers_v2_get_collection",
     description: "GET /v2/sandboxTesters (GET /v2/sandboxTesters)",
     input: z.object({
-    "fields[sandboxTesters]": z.union([z.array(z.enum(["firstName", "lastName", "acAccountName", "territory", "applePayCompatible", "interruptPurchases", "subscriptionRenewalRate"])), z.string()]).describe("the fields to include for returned resources of type sandboxTesters").optional(),
+    fields_sandboxTesters: z.union([z.array(z.enum(["firstName", "lastName", "acAccountName", "territory", "applePayCompatible", "interruptPurchases", "subscriptionRenewalRate"])), z.string()]).describe("the fields to include for returned resources of type sandboxTesters").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -23,7 +23,7 @@ export const sandboxTestersTools: Tool[] = [
       path: "/v2/sandboxTesters",
       pathParams: undefined,
       query: {
-      "fields[sandboxTesters]": args["fields[sandboxTesters]"],
+      "fields[sandboxTesters]": args["fields_sandboxTesters"],
       "limit": args["limit"],
     },
       body: undefined,

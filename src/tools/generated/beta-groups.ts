@@ -14,24 +14,24 @@ export const betaGroupsTools: Tool[] = [
     name: "beta_groups_get_collection",
     description: "GET /v1/betaGroups (GET /v1/betaGroups)",
     input: z.object({
-    "filter[name]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'name'").optional(),
-    "filter[isInternalGroup]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'isInternalGroup'").optional(),
-    "filter[publicLinkEnabled]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'publicLinkEnabled'").optional(),
-    "filter[publicLinkLimitEnabled]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'publicLinkLimitEnabled'").optional(),
-    "filter[publicLink]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'publicLink'").optional(),
-    "filter[app]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'app'").optional(),
-    "filter[builds]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'builds'").optional(),
-    "filter[id]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s)").optional(),
+    filter_name: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'name'").optional(),
+    filter_isInternalGroup: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'isInternalGroup'").optional(),
+    filter_publicLinkEnabled: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'publicLinkEnabled'").optional(),
+    filter_publicLinkLimitEnabled: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'publicLinkLimitEnabled'").optional(),
+    filter_publicLink: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'publicLink'").optional(),
+    filter_app: z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'app'").optional(),
+    filter_builds: z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'builds'").optional(),
+    filter_id: z.union([z.array(z.string()), z.string()]).describe("filter by id(s)").optional(),
     sort: z.union([z.array(z.enum(["name", "-name", "createdDate", "-createdDate", "publicLinkEnabled", "-publicLinkEnabled", "publicLinkLimit", "-publicLinkLimit"])), z.string()]).describe("comma-separated list of sort expressions; resources will be sorted as specified").optional(),
-    "fields[betaGroups]": z.union([z.array(z.enum(["name", "createdDate", "isInternalGroup", "hasAccessToAllBuilds", "publicLinkEnabled", "publicLinkId", "publicLinkLimitEnabled", "publicLinkLimit", "publicLink", "feedbackEnabled", "iosBuildsAvailableForAppleSiliconMac", "iosBuildsAvailableForAppleVision", "app", "builds", "betaTesters", "betaRecruitmentCriteria", "betaRecruitmentCriterionCompatibleBuildCheck"])), z.string()]).describe("the fields to include for returned resources of type betaGroups").optional(),
-    "fields[apps]": z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
-    "fields[builds]": z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
-    "fields[betaTesters]": z.union([z.array(z.enum(["firstName", "lastName", "email", "inviteType", "state", "appDevices", "apps", "betaGroups", "builds"])), z.string()]).describe("the fields to include for returned resources of type betaTesters").optional(),
-    "fields[betaRecruitmentCriteria]": z.union([z.array(z.enum(["lastModifiedDate", "deviceFamilyOsVersionFilters"])), z.string()]).describe("the fields to include for returned resources of type betaRecruitmentCriteria").optional(),
+    fields_betaGroups: z.union([z.array(z.enum(["name", "createdDate", "isInternalGroup", "hasAccessToAllBuilds", "publicLinkEnabled", "publicLinkId", "publicLinkLimitEnabled", "publicLinkLimit", "publicLink", "feedbackEnabled", "iosBuildsAvailableForAppleSiliconMac", "iosBuildsAvailableForAppleVision", "app", "builds", "betaTesters", "betaRecruitmentCriteria", "betaRecruitmentCriterionCompatibleBuildCheck"])), z.string()]).describe("the fields to include for returned resources of type betaGroups").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
+    fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
+    fields_betaTesters: z.union([z.array(z.enum(["firstName", "lastName", "email", "inviteType", "state", "appDevices", "apps", "betaGroups", "builds"])), z.string()]).describe("the fields to include for returned resources of type betaTesters").optional(),
+    fields_betaRecruitmentCriteria: z.union([z.array(z.enum(["lastModifiedDate", "deviceFamilyOsVersionFilters"])), z.string()]).describe("the fields to include for returned resources of type betaRecruitmentCriteria").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["app", "builds", "betaTesters", "betaRecruitmentCriteria"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[betaTesters]": z.coerce.number().int().describe("maximum number of related betaTesters returned (when they are included)").optional(),
-    "limit[builds]": z.coerce.number().int().describe("maximum number of related builds returned (when they are included)").optional(),
+    limit_betaTesters: z.coerce.number().int().describe("maximum number of related betaTesters returned (when they are included)").optional(),
+    limit_builds: z.coerce.number().int().describe("maximum number of related builds returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -39,24 +39,24 @@ export const betaGroupsTools: Tool[] = [
       path: "/v1/betaGroups",
       pathParams: undefined,
       query: {
-      "filter[name]": args["filter[name]"],
-      "filter[isInternalGroup]": args["filter[isInternalGroup]"],
-      "filter[publicLinkEnabled]": args["filter[publicLinkEnabled]"],
-      "filter[publicLinkLimitEnabled]": args["filter[publicLinkLimitEnabled]"],
-      "filter[publicLink]": args["filter[publicLink]"],
-      "filter[app]": args["filter[app]"],
-      "filter[builds]": args["filter[builds]"],
-      "filter[id]": args["filter[id]"],
+      "filter[name]": args["filter_name"],
+      "filter[isInternalGroup]": args["filter_isInternalGroup"],
+      "filter[publicLinkEnabled]": args["filter_publicLinkEnabled"],
+      "filter[publicLinkLimitEnabled]": args["filter_publicLinkLimitEnabled"],
+      "filter[publicLink]": args["filter_publicLink"],
+      "filter[app]": args["filter_app"],
+      "filter[builds]": args["filter_builds"],
+      "filter[id]": args["filter_id"],
       "sort": args["sort"],
-      "fields[betaGroups]": args["fields[betaGroups]"],
-      "fields[apps]": args["fields[apps]"],
-      "fields[builds]": args["fields[builds]"],
-      "fields[betaTesters]": args["fields[betaTesters]"],
-      "fields[betaRecruitmentCriteria]": args["fields[betaRecruitmentCriteria]"],
+      "fields[betaGroups]": args["fields_betaGroups"],
+      "fields[apps]": args["fields_apps"],
+      "fields[builds]": args["fields_builds"],
+      "fields[betaTesters]": args["fields_betaTesters"],
+      "fields[betaRecruitmentCriteria]": args["fields_betaRecruitmentCriteria"],
       "limit": args["limit"],
       "include": args["include"],
-      "limit[betaTesters]": args["limit[betaTesters]"],
-      "limit[builds]": args["limit[builds]"],
+      "limit[betaTesters]": args["limit_betaTesters"],
+      "limit[builds]": args["limit_builds"],
     },
       body: undefined,
     });
@@ -84,14 +84,14 @@ export const betaGroupsTools: Tool[] = [
     name: "beta_groups_get_instance",
     description: "GET /v1/betaGroups/{id} (GET /v1/betaGroups/{id})",
     input: z.object({
-    "fields[betaGroups]": z.union([z.array(z.enum(["name", "createdDate", "isInternalGroup", "hasAccessToAllBuilds", "publicLinkEnabled", "publicLinkId", "publicLinkLimitEnabled", "publicLinkLimit", "publicLink", "feedbackEnabled", "iosBuildsAvailableForAppleSiliconMac", "iosBuildsAvailableForAppleVision", "app", "builds", "betaTesters", "betaRecruitmentCriteria", "betaRecruitmentCriterionCompatibleBuildCheck"])), z.string()]).describe("the fields to include for returned resources of type betaGroups").optional(),
-    "fields[apps]": z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
-    "fields[builds]": z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
-    "fields[betaTesters]": z.union([z.array(z.enum(["firstName", "lastName", "email", "inviteType", "state", "appDevices", "apps", "betaGroups", "builds"])), z.string()]).describe("the fields to include for returned resources of type betaTesters").optional(),
-    "fields[betaRecruitmentCriteria]": z.union([z.array(z.enum(["lastModifiedDate", "deviceFamilyOsVersionFilters"])), z.string()]).describe("the fields to include for returned resources of type betaRecruitmentCriteria").optional(),
+    fields_betaGroups: z.union([z.array(z.enum(["name", "createdDate", "isInternalGroup", "hasAccessToAllBuilds", "publicLinkEnabled", "publicLinkId", "publicLinkLimitEnabled", "publicLinkLimit", "publicLink", "feedbackEnabled", "iosBuildsAvailableForAppleSiliconMac", "iosBuildsAvailableForAppleVision", "app", "builds", "betaTesters", "betaRecruitmentCriteria", "betaRecruitmentCriterionCompatibleBuildCheck"])), z.string()]).describe("the fields to include for returned resources of type betaGroups").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
+    fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
+    fields_betaTesters: z.union([z.array(z.enum(["firstName", "lastName", "email", "inviteType", "state", "appDevices", "apps", "betaGroups", "builds"])), z.string()]).describe("the fields to include for returned resources of type betaTesters").optional(),
+    fields_betaRecruitmentCriteria: z.union([z.array(z.enum(["lastModifiedDate", "deviceFamilyOsVersionFilters"])), z.string()]).describe("the fields to include for returned resources of type betaRecruitmentCriteria").optional(),
     include: z.union([z.array(z.enum(["app", "builds", "betaTesters", "betaRecruitmentCriteria"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[betaTesters]": z.coerce.number().int().describe("maximum number of related betaTesters returned (when they are included)").optional(),
-    "limit[builds]": z.coerce.number().int().describe("maximum number of related builds returned (when they are included)").optional(),
+    limit_betaTesters: z.coerce.number().int().describe("maximum number of related betaTesters returned (when they are included)").optional(),
+    limit_builds: z.coerce.number().int().describe("maximum number of related builds returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -99,14 +99,14 @@ export const betaGroupsTools: Tool[] = [
       path: "/v1/betaGroups/{id}",
       pathParams: undefined,
       query: {
-      "fields[betaGroups]": args["fields[betaGroups]"],
-      "fields[apps]": args["fields[apps]"],
-      "fields[builds]": args["fields[builds]"],
-      "fields[betaTesters]": args["fields[betaTesters]"],
-      "fields[betaRecruitmentCriteria]": args["fields[betaRecruitmentCriteria]"],
+      "fields[betaGroups]": args["fields_betaGroups"],
+      "fields[apps]": args["fields_apps"],
+      "fields[builds]": args["fields_builds"],
+      "fields[betaTesters]": args["fields_betaTesters"],
+      "fields[betaRecruitmentCriteria]": args["fields_betaRecruitmentCriteria"],
       "include": args["include"],
-      "limit[betaTesters]": args["limit[betaTesters]"],
-      "limit[builds]": args["limit[builds]"],
+      "limit[betaTesters]": args["limit_betaTesters"],
+      "limit[builds]": args["limit_builds"],
     },
       body: undefined,
     });
@@ -164,7 +164,7 @@ export const betaGroupsTools: Tool[] = [
     name: "beta_groups_app_get_to_one_related",
     description: "GET /v1/betaGroups/{id}/app (GET /v1/betaGroups/{id}/app)",
     input: z.object({
-    "fields[apps]": z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -172,7 +172,7 @@ export const betaGroupsTools: Tool[] = [
       path: "/v1/betaGroups/{id}/app",
       pathParams: undefined,
       query: {
-      "fields[apps]": args["fields[apps]"],
+      "fields[apps]": args["fields_apps"],
     },
       body: undefined,
     });
@@ -198,7 +198,7 @@ export const betaGroupsTools: Tool[] = [
     name: "beta_groups_beta_recruitment_criteria_get_to_one_related",
     description: "GET /v1/betaGroups/{id}/betaRecruitmentCriteria (GET /v1/betaGroups/{id}/betaRecruitmentCriteria)",
     input: z.object({
-    "fields[betaRecruitmentCriteria]": z.union([z.array(z.enum(["lastModifiedDate", "deviceFamilyOsVersionFilters"])), z.string()]).describe("the fields to include for returned resources of type betaRecruitmentCriteria").optional(),
+    fields_betaRecruitmentCriteria: z.union([z.array(z.enum(["lastModifiedDate", "deviceFamilyOsVersionFilters"])), z.string()]).describe("the fields to include for returned resources of type betaRecruitmentCriteria").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -206,7 +206,7 @@ export const betaGroupsTools: Tool[] = [
       path: "/v1/betaGroups/{id}/betaRecruitmentCriteria",
       pathParams: undefined,
       query: {
-      "fields[betaRecruitmentCriteria]": args["fields[betaRecruitmentCriteria]"],
+      "fields[betaRecruitmentCriteria]": args["fields_betaRecruitmentCriteria"],
     },
       body: undefined,
     });
@@ -232,7 +232,7 @@ export const betaGroupsTools: Tool[] = [
     name: "beta_groups_beta_recruitment_criterion_compatible_build_check_get_to_one_related",
     description: "GET /v1/betaGroups/{id}/betaRecruitmentCriterionCompatibleBuildCheck (GET /v1/betaGroups/{id}/betaRecruitmentCriterionCompatibleBuildCheck)",
     input: z.object({
-    "fields[betaRecruitmentCriterionCompatibleBuildChecks]": z.union([z.array(z.enum(["hasCompatibleBuild"])), z.string()]).describe("the fields to include for returned resources of type betaRecruitmentCriterionCompatibleBuildChecks").optional(),
+    fields_betaRecruitmentCriterionCompatibleBuildChecks: z.union([z.array(z.enum(["hasCompatibleBuild"])), z.string()]).describe("the fields to include for returned resources of type betaRecruitmentCriterionCompatibleBuildChecks").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -240,7 +240,7 @@ export const betaGroupsTools: Tool[] = [
       path: "/v1/betaGroups/{id}/betaRecruitmentCriterionCompatibleBuildCheck",
       pathParams: undefined,
       query: {
-      "fields[betaRecruitmentCriterionCompatibleBuildChecks]": args["fields[betaRecruitmentCriterionCompatibleBuildChecks]"],
+      "fields[betaRecruitmentCriterionCompatibleBuildChecks]": args["fields_betaRecruitmentCriterionCompatibleBuildChecks"],
     },
       body: undefined,
     });
@@ -304,7 +304,7 @@ export const betaGroupsTools: Tool[] = [
     name: "beta_groups_beta_testers_get_to_many_related",
     description: "GET /v1/betaGroups/{id}/betaTesters (GET /v1/betaGroups/{id}/betaTesters)",
     input: z.object({
-    "fields[betaTesters]": z.union([z.array(z.enum(["firstName", "lastName", "email", "inviteType", "state", "appDevices", "apps", "betaGroups", "builds"])), z.string()]).describe("the fields to include for returned resources of type betaTesters").optional(),
+    fields_betaTesters: z.union([z.array(z.enum(["firstName", "lastName", "email", "inviteType", "state", "appDevices", "apps", "betaGroups", "builds"])), z.string()]).describe("the fields to include for returned resources of type betaTesters").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -313,7 +313,7 @@ export const betaGroupsTools: Tool[] = [
       path: "/v1/betaGroups/{id}/betaTesters",
       pathParams: undefined,
       query: {
-      "fields[betaTesters]": args["fields[betaTesters]"],
+      "fields[betaTesters]": args["fields_betaTesters"],
       "limit": args["limit"],
     },
       body: undefined,
@@ -378,7 +378,7 @@ export const betaGroupsTools: Tool[] = [
     name: "beta_groups_builds_get_to_many_related",
     description: "GET /v1/betaGroups/{id}/builds (GET /v1/betaGroups/{id}/builds)",
     input: z.object({
-    "fields[builds]": z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
+    fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -387,7 +387,7 @@ export const betaGroupsTools: Tool[] = [
       path: "/v1/betaGroups/{id}/builds",
       pathParams: undefined,
       query: {
-      "fields[builds]": args["fields[builds]"],
+      "fields[builds]": args["fields_builds"],
       "limit": args["limit"],
     },
       body: undefined,
@@ -401,7 +401,7 @@ export const betaGroupsTools: Tool[] = [
     input: z.object({
     period: z.enum(["P7D", "P30D", "P90D", "P365D"]).describe("the duration of the reporting period").optional(),
     groupBy: z.union([z.array(z.enum(["betaTesters"])), z.string()]).describe("the dimension by which to group the results").optional(),
-    "filter[betaTesters]": z.string().describe("filter by 'betaTesters' relationship dimension").optional(),
+    filter_betaTesters: z.string().describe("filter by 'betaTesters' relationship dimension").optional(),
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -412,7 +412,7 @@ export const betaGroupsTools: Tool[] = [
       query: {
       "period": args["period"],
       "groupBy": args["groupBy"],
-      "filter[betaTesters]": args["filter[betaTesters]"],
+      "filter[betaTesters]": args["filter_betaTesters"],
       "limit": args["limit"],
     },
       body: undefined,

@@ -31,7 +31,7 @@ export const gameCenterLeaderboardSetImagesTools: Tool[] = [
     name: "game_center_leaderboard_set_images_get_instance",
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboardSetImages/{id} (GET /v1/gameCenterLeaderboardSetImages/{id})",
     input: z.object({
-    "fields[gameCenterLeaderboardSetImages]": z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterLeaderboardSetLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetImages").optional(),
+    fields_gameCenterLeaderboardSetImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterLeaderboardSetLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetImages").optional(),
     include: z.union([z.array(z.enum(["gameCenterLeaderboardSetLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const gameCenterLeaderboardSetImagesTools: Tool[] = [
       path: "/v1/gameCenterLeaderboardSetImages/{id}",
       pathParams: undefined,
       query: {
-      "fields[gameCenterLeaderboardSetImages]": args["fields[gameCenterLeaderboardSetImages]"],
+      "fields[gameCenterLeaderboardSetImages]": args["fields_gameCenterLeaderboardSetImages"],
       "include": args["include"],
     },
       body: undefined,
@@ -101,7 +101,7 @@ export const gameCenterLeaderboardSetImagesTools: Tool[] = [
     name: "game_center_leaderboard_set_images_v2_get_instance",
     description: "GET /v2/gameCenterLeaderboardSetImages/{id} (GET /v2/gameCenterLeaderboardSetImages/{id})",
     input: z.object({
-    "fields[gameCenterLeaderboardSetImages]": z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetImages").optional(),
+    fields_gameCenterLeaderboardSetImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetImages").optional(),
     include: z.union([z.array(z.enum(["localization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -110,7 +110,7 @@ export const gameCenterLeaderboardSetImagesTools: Tool[] = [
       path: "/v2/gameCenterLeaderboardSetImages/{id}",
       pathParams: undefined,
       query: {
-      "fields[gameCenterLeaderboardSetImages]": args["fields[gameCenterLeaderboardSetImages]"],
+      "fields[gameCenterLeaderboardSetImages]": args["fields_gameCenterLeaderboardSetImages"],
       "include": args["include"],
     },
       body: undefined,

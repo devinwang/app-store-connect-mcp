@@ -31,7 +31,7 @@ export const appEventScreenshotsTools: Tool[] = [
     name: "app_event_screenshots_get_instance",
     description: "GET /v1/appEventScreenshots/{id} (GET /v1/appEventScreenshots/{id})",
     input: z.object({
-    "fields[appEventScreenshots]": z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "assetToken", "uploadOperations", "assetDeliveryState", "appEventAssetType", "appEventLocalization"])), z.string()]).describe("the fields to include for returned resources of type appEventScreenshots").optional(),
+    fields_appEventScreenshots: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "assetToken", "uploadOperations", "assetDeliveryState", "appEventAssetType", "appEventLocalization"])), z.string()]).describe("the fields to include for returned resources of type appEventScreenshots").optional(),
     include: z.union([z.array(z.enum(["appEventLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const appEventScreenshotsTools: Tool[] = [
       path: "/v1/appEventScreenshots/{id}",
       pathParams: undefined,
       query: {
-      "fields[appEventScreenshots]": args["fields[appEventScreenshots]"],
+      "fields[appEventScreenshots]": args["fields_appEventScreenshots"],
       "include": args["include"],
     },
       body: undefined,

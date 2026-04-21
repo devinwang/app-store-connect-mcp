@@ -31,10 +31,10 @@ export const gameCenterChallengesTools: Tool[] = [
     name: "game_center_challenges_get_instance",
     description: "GET /v1/gameCenterChallenges/{id} (GET /v1/gameCenterChallenges/{id})",
     input: z.object({
-    "fields[gameCenterChallenges]": z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "archived", "challengeType", "repeatable", "gameCenterDetail", "gameCenterGroup", "versions", "leaderboard", "leaderboardV2"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallenges").optional(),
-    "fields[gameCenterChallengeVersions]": z.union([z.array(z.enum(["version", "state", "challenge", "localizations", "releases", "defaultImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeVersions").optional(),
+    fields_gameCenterChallenges: z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "archived", "challengeType", "repeatable", "gameCenterDetail", "gameCenterGroup", "versions", "leaderboard", "leaderboardV2"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallenges").optional(),
+    fields_gameCenterChallengeVersions: z.union([z.array(z.enum(["version", "state", "challenge", "localizations", "releases", "defaultImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeVersions").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterGroup", "versions", "leaderboard", "leaderboardV2"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[versions]": z.coerce.number().int().describe("maximum number of related versions returned (when they are included)").optional(),
+    limit_versions: z.coerce.number().int().describe("maximum number of related versions returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -42,10 +42,10 @@ export const gameCenterChallengesTools: Tool[] = [
       path: "/v1/gameCenterChallenges/{id}",
       pathParams: undefined,
       query: {
-      "fields[gameCenterChallenges]": args["fields[gameCenterChallenges]"],
-      "fields[gameCenterChallengeVersions]": args["fields[gameCenterChallengeVersions]"],
+      "fields[gameCenterChallenges]": args["fields_gameCenterChallenges"],
+      "fields[gameCenterChallengeVersions]": args["fields_gameCenterChallengeVersions"],
       "include": args["include"],
-      "limit[versions]": args["limit[versions]"],
+      "limit[versions]": args["limit_versions"],
     },
       body: undefined,
     });
@@ -141,15 +141,15 @@ export const gameCenterChallengesTools: Tool[] = [
     name: "game_center_challenges_versions_get_to_many_related",
     description: "GET /v1/gameCenterChallenges/{id}/versions (GET /v1/gameCenterChallenges/{id}/versions)",
     input: z.object({
-    "fields[gameCenterChallengeVersions]": z.union([z.array(z.enum(["version", "state", "challenge", "localizations", "releases", "defaultImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeVersions").optional(),
-    "fields[gameCenterChallenges]": z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "archived", "challengeType", "repeatable", "gameCenterDetail", "gameCenterGroup", "versions", "leaderboard", "leaderboardV2"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallenges").optional(),
-    "fields[gameCenterChallengeLocalizations]": z.union([z.array(z.enum(["locale", "name", "description", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeLocalizations").optional(),
-    "fields[gameCenterChallengeVersionReleases]": z.union([z.array(z.enum(["version"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeVersionReleases").optional(),
-    "fields[gameCenterChallengeImages]": z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeImages").optional(),
+    fields_gameCenterChallengeVersions: z.union([z.array(z.enum(["version", "state", "challenge", "localizations", "releases", "defaultImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeVersions").optional(),
+    fields_gameCenterChallenges: z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "archived", "challengeType", "repeatable", "gameCenterDetail", "gameCenterGroup", "versions", "leaderboard", "leaderboardV2"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallenges").optional(),
+    fields_gameCenterChallengeLocalizations: z.union([z.array(z.enum(["locale", "name", "description", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeLocalizations").optional(),
+    fields_gameCenterChallengeVersionReleases: z.union([z.array(z.enum(["version"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeVersionReleases").optional(),
+    fields_gameCenterChallengeImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeImages").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["challenge", "localizations", "releases", "defaultImage"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[localizations]": z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
-    "limit[releases]": z.coerce.number().int().describe("maximum number of related releases returned (when they are included)").optional(),
+    limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
+    limit_releases: z.coerce.number().int().describe("maximum number of related releases returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -157,15 +157,15 @@ export const gameCenterChallengesTools: Tool[] = [
       path: "/v1/gameCenterChallenges/{id}/versions",
       pathParams: undefined,
       query: {
-      "fields[gameCenterChallengeVersions]": args["fields[gameCenterChallengeVersions]"],
-      "fields[gameCenterChallenges]": args["fields[gameCenterChallenges]"],
-      "fields[gameCenterChallengeLocalizations]": args["fields[gameCenterChallengeLocalizations]"],
-      "fields[gameCenterChallengeVersionReleases]": args["fields[gameCenterChallengeVersionReleases]"],
-      "fields[gameCenterChallengeImages]": args["fields[gameCenterChallengeImages]"],
+      "fields[gameCenterChallengeVersions]": args["fields_gameCenterChallengeVersions"],
+      "fields[gameCenterChallenges]": args["fields_gameCenterChallenges"],
+      "fields[gameCenterChallengeLocalizations]": args["fields_gameCenterChallengeLocalizations"],
+      "fields[gameCenterChallengeVersionReleases]": args["fields_gameCenterChallengeVersionReleases"],
+      "fields[gameCenterChallengeImages]": args["fields_gameCenterChallengeImages"],
       "limit": args["limit"],
       "include": args["include"],
-      "limit[localizations]": args["limit[localizations]"],
-      "limit[releases]": args["limit[releases]"],
+      "limit[localizations]": args["limit_localizations"],
+      "limit[releases]": args["limit_releases"],
     },
       body: undefined,
     });

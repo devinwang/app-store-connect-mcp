@@ -31,7 +31,7 @@ export const appClipAppStoreReviewDetailsTools: Tool[] = [
     name: "app_clip_app_store_review_details_get_instance",
     description: "GET /v1/appClipAppStoreReviewDetails/{id} (GET /v1/appClipAppStoreReviewDetails/{id})",
     input: z.object({
-    "fields[appClipAppStoreReviewDetails]": z.union([z.array(z.enum(["invocationUrls", "appClipDefaultExperience"])), z.string()]).describe("the fields to include for returned resources of type appClipAppStoreReviewDetails").optional(),
+    fields_appClipAppStoreReviewDetails: z.union([z.array(z.enum(["invocationUrls", "appClipDefaultExperience"])), z.string()]).describe("the fields to include for returned resources of type appClipAppStoreReviewDetails").optional(),
     include: z.union([z.array(z.enum(["appClipDefaultExperience"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const appClipAppStoreReviewDetailsTools: Tool[] = [
       path: "/v1/appClipAppStoreReviewDetails/{id}",
       pathParams: undefined,
       query: {
-      "fields[appClipAppStoreReviewDetails]": args["fields[appClipAppStoreReviewDetails]"],
+      "fields[appClipAppStoreReviewDetails]": args["fields_appClipAppStoreReviewDetails"],
       "include": args["include"],
     },
       body: undefined,

@@ -14,7 +14,7 @@ export const alternativeDistributionPackageDeltasTools: Tool[] = [
     name: "alternative_distribution_package_deltas_get_instance",
     description: "GET /v1/alternativeDistributionPackageDeltas/{id} (GET /v1/alternativeDistributionPackageDeltas/{id})",
     input: z.object({
-    "fields[alternativeDistributionPackageDeltas]": z.union([z.array(z.enum(["url", "urlExpirationDate", "alternativeDistributionKeyBlob", "fileChecksum"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackageDeltas").optional(),
+    fields_alternativeDistributionPackageDeltas: z.union([z.array(z.enum(["url", "urlExpirationDate", "alternativeDistributionKeyBlob", "fileChecksum"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionPackageDeltas").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -22,7 +22,7 @@ export const alternativeDistributionPackageDeltasTools: Tool[] = [
       path: "/v1/alternativeDistributionPackageDeltas/{id}",
       pathParams: undefined,
       query: {
-      "fields[alternativeDistributionPackageDeltas]": args["fields[alternativeDistributionPackageDeltas]"],
+      "fields[alternativeDistributionPackageDeltas]": args["fields_alternativeDistributionPackageDeltas"],
     },
       body: undefined,
     });

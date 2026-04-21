@@ -14,7 +14,7 @@ export const analyticsReportsTools: Tool[] = [
     name: "analytics_reports_get_instance",
     description: "GET /v1/analyticsReports/{id} (GET /v1/analyticsReports/{id})",
     input: z.object({
-    "fields[analyticsReports]": z.union([z.array(z.enum(["name", "category", "instances"])), z.string()]).describe("the fields to include for returned resources of type analyticsReports").optional(),
+    fields_analyticsReports: z.union([z.array(z.enum(["name", "category", "instances"])), z.string()]).describe("the fields to include for returned resources of type analyticsReports").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -22,7 +22,7 @@ export const analyticsReportsTools: Tool[] = [
       path: "/v1/analyticsReports/{id}",
       pathParams: undefined,
       query: {
-      "fields[analyticsReports]": args["fields[analyticsReports]"],
+      "fields[analyticsReports]": args["fields_analyticsReports"],
     },
       body: undefined,
     });
@@ -52,9 +52,9 @@ export const analyticsReportsTools: Tool[] = [
     name: "analytics_reports_instances_get_to_many_related",
     description: "GET /v1/analyticsReports/{id}/instances (GET /v1/analyticsReports/{id}/instances)",
     input: z.object({
-    "filter[granularity]": z.union([z.array(z.enum(["DAILY", "WEEKLY", "MONTHLY"])), z.string()]).describe("filter by attribute 'granularity'").optional(),
-    "filter[processingDate]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'processingDate'").optional(),
-    "fields[analyticsReportInstances]": z.union([z.array(z.enum(["granularity", "processingDate", "segments"])), z.string()]).describe("the fields to include for returned resources of type analyticsReportInstances").optional(),
+    filter_granularity: z.union([z.array(z.enum(["DAILY", "WEEKLY", "MONTHLY"])), z.string()]).describe("filter by attribute 'granularity'").optional(),
+    filter_processingDate: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'processingDate'").optional(),
+    fields_analyticsReportInstances: z.union([z.array(z.enum(["granularity", "processingDate", "segments"])), z.string()]).describe("the fields to include for returned resources of type analyticsReportInstances").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -63,9 +63,9 @@ export const analyticsReportsTools: Tool[] = [
       path: "/v1/analyticsReports/{id}/instances",
       pathParams: undefined,
       query: {
-      "filter[granularity]": args["filter[granularity]"],
-      "filter[processingDate]": args["filter[processingDate]"],
-      "fields[analyticsReportInstances]": args["fields[analyticsReportInstances]"],
+      "filter[granularity]": args["filter_granularity"],
+      "filter[processingDate]": args["filter_processingDate"],
+      "fields[analyticsReportInstances]": args["fields_analyticsReportInstances"],
       "limit": args["limit"],
     },
       body: undefined,

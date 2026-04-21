@@ -31,7 +31,7 @@ export const appEncryptionDeclarationDocumentsTools: Tool[] = [
     name: "app_encryption_declaration_documents_get_instance",
     description: "GET /v1/appEncryptionDeclarationDocuments/{id} (GET /v1/appEncryptionDeclarationDocuments/{id})",
     input: z.object({
-    "fields[appEncryptionDeclarationDocuments]": z.union([z.array(z.enum(["fileSize", "fileName", "assetToken", "downloadUrl", "sourceFileChecksum", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type appEncryptionDeclarationDocuments").optional(),
+    fields_appEncryptionDeclarationDocuments: z.union([z.array(z.enum(["fileSize", "fileName", "assetToken", "downloadUrl", "sourceFileChecksum", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type appEncryptionDeclarationDocuments").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -39,7 +39,7 @@ export const appEncryptionDeclarationDocumentsTools: Tool[] = [
       path: "/v1/appEncryptionDeclarationDocuments/{id}",
       pathParams: undefined,
       query: {
-      "fields[appEncryptionDeclarationDocuments]": args["fields[appEncryptionDeclarationDocuments]"],
+      "fields[appEncryptionDeclarationDocuments]": args["fields_appEncryptionDeclarationDocuments"],
     },
       body: undefined,
     });

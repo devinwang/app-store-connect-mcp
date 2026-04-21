@@ -14,7 +14,7 @@ export const subscriptionGracePeriodsTools: Tool[] = [
     name: "subscription_grace_periods_get_instance",
     description: "GET /v1/subscriptionGracePeriods/{id} (GET /v1/subscriptionGracePeriods/{id})",
     input: z.object({
-    "fields[subscriptionGracePeriods]": z.union([z.array(z.enum(["optIn", "sandboxOptIn", "duration", "renewalType"])), z.string()]).describe("the fields to include for returned resources of type subscriptionGracePeriods").optional(),
+    fields_subscriptionGracePeriods: z.union([z.array(z.enum(["optIn", "sandboxOptIn", "duration", "renewalType"])), z.string()]).describe("the fields to include for returned resources of type subscriptionGracePeriods").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -22,7 +22,7 @@ export const subscriptionGracePeriodsTools: Tool[] = [
       path: "/v1/subscriptionGracePeriods/{id}",
       pathParams: undefined,
       query: {
-      "fields[subscriptionGracePeriods]": args["fields[subscriptionGracePeriods]"],
+      "fields[subscriptionGracePeriods]": args["fields_subscriptionGracePeriods"],
     },
       body: undefined,
     });

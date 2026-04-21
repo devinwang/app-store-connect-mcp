@@ -31,10 +31,10 @@ export const winBackOffersTools: Tool[] = [
     name: "win_back_offers_get_instance",
     description: "GET /v1/winBackOffers/{id} (GET /v1/winBackOffers/{id})",
     input: z.object({
-    "fields[winBackOffers]": z.union([z.array(z.enum(["referenceName", "offerId", "duration", "offerMode", "periodCount", "customerEligibilityPaidSubscriptionDurationInMonths", "customerEligibilityTimeSinceLastSubscribedInMonths", "customerEligibilityWaitBetweenOffersInMonths", "startDate", "endDate", "priority", "promotionIntent", "prices"])), z.string()]).describe("the fields to include for returned resources of type winBackOffers").optional(),
-    "fields[winBackOfferPrices]": z.union([z.array(z.enum(["territory", "subscriptionPricePoint"])), z.string()]).describe("the fields to include for returned resources of type winBackOfferPrices").optional(),
+    fields_winBackOffers: z.union([z.array(z.enum(["referenceName", "offerId", "duration", "offerMode", "periodCount", "customerEligibilityPaidSubscriptionDurationInMonths", "customerEligibilityTimeSinceLastSubscribedInMonths", "customerEligibilityWaitBetweenOffersInMonths", "startDate", "endDate", "priority", "promotionIntent", "prices"])), z.string()]).describe("the fields to include for returned resources of type winBackOffers").optional(),
+    fields_winBackOfferPrices: z.union([z.array(z.enum(["territory", "subscriptionPricePoint"])), z.string()]).describe("the fields to include for returned resources of type winBackOfferPrices").optional(),
     include: z.union([z.array(z.enum(["prices"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[prices]": z.coerce.number().int().describe("maximum number of related prices returned (when they are included)").optional(),
+    limit_prices: z.coerce.number().int().describe("maximum number of related prices returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -42,10 +42,10 @@ export const winBackOffersTools: Tool[] = [
       path: "/v1/winBackOffers/{id}",
       pathParams: undefined,
       query: {
-      "fields[winBackOffers]": args["fields[winBackOffers]"],
-      "fields[winBackOfferPrices]": args["fields[winBackOfferPrices]"],
+      "fields[winBackOffers]": args["fields_winBackOffers"],
+      "fields[winBackOfferPrices]": args["fields_winBackOfferPrices"],
       "include": args["include"],
-      "limit[prices]": args["limit[prices]"],
+      "limit[prices]": args["limit_prices"],
     },
       body: undefined,
     });
@@ -107,10 +107,10 @@ export const winBackOffersTools: Tool[] = [
     name: "win_back_offers_prices_get_to_many_related",
     description: "GET /v1/winBackOffers/{id}/prices (GET /v1/winBackOffers/{id}/prices)",
     input: z.object({
-    "filter[territory]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'territory'").optional(),
-    "fields[winBackOfferPrices]": z.union([z.array(z.enum(["territory", "subscriptionPricePoint"])), z.string()]).describe("the fields to include for returned resources of type winBackOfferPrices").optional(),
-    "fields[territories]": z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
-    "fields[subscriptionPricePoints]": z.union([z.array(z.enum(["customerPrice", "proceeds", "proceedsYear2", "territory", "equalizations"])), z.string()]).describe("the fields to include for returned resources of type subscriptionPricePoints").optional(),
+    filter_territory: z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'territory'").optional(),
+    fields_winBackOfferPrices: z.union([z.array(z.enum(["territory", "subscriptionPricePoint"])), z.string()]).describe("the fields to include for returned resources of type winBackOfferPrices").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    fields_subscriptionPricePoints: z.union([z.array(z.enum(["customerPrice", "proceeds", "proceedsYear2", "territory", "equalizations"])), z.string()]).describe("the fields to include for returned resources of type subscriptionPricePoints").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["territory", "subscriptionPricePoint"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -120,10 +120,10 @@ export const winBackOffersTools: Tool[] = [
       path: "/v1/winBackOffers/{id}/prices",
       pathParams: undefined,
       query: {
-      "filter[territory]": args["filter[territory]"],
-      "fields[winBackOfferPrices]": args["fields[winBackOfferPrices]"],
-      "fields[territories]": args["fields[territories]"],
-      "fields[subscriptionPricePoints]": args["fields[subscriptionPricePoints]"],
+      "filter[territory]": args["filter_territory"],
+      "fields[winBackOfferPrices]": args["fields_winBackOfferPrices"],
+      "fields[territories]": args["fields_territories"],
+      "fields[subscriptionPricePoints]": args["fields_subscriptionPricePoints"],
       "limit": args["limit"],
       "include": args["include"],
     },

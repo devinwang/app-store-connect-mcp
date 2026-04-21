@@ -14,7 +14,7 @@ export const ciIssuesTools: Tool[] = [
     name: "ci_issues_get_instance",
     description: "GET /v1/ciIssues/{id} (GET /v1/ciIssues/{id})",
     input: z.object({
-    "fields[ciIssues]": z.union([z.array(z.enum(["issueType", "message", "fileSource", "category"])), z.string()]).describe("the fields to include for returned resources of type ciIssues").optional(),
+    fields_ciIssues: z.union([z.array(z.enum(["issueType", "message", "fileSource", "category"])), z.string()]).describe("the fields to include for returned resources of type ciIssues").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -22,7 +22,7 @@ export const ciIssuesTools: Tool[] = [
       path: "/v1/ciIssues/{id}",
       pathParams: undefined,
       query: {
-      "fields[ciIssues]": args["fields[ciIssues]"],
+      "fields[ciIssues]": args["fields_ciIssues"],
     },
       body: undefined,
     });

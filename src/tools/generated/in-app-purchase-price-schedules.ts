@@ -31,12 +31,12 @@ export const inAppPurchasePriceSchedulesTools: Tool[] = [
     name: "in_app_purchase_price_schedules_get_instance",
     description: "GET /v1/inAppPurchasePriceSchedules/{id} (GET /v1/inAppPurchasePriceSchedules/{id})",
     input: z.object({
-    "fields[inAppPurchasePriceSchedules]": z.union([z.array(z.enum(["baseTerritory", "manualPrices", "automaticPrices"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchasePriceSchedules").optional(),
-    "fields[territories]": z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
-    "fields[inAppPurchasePrices]": z.union([z.array(z.enum(["startDate", "endDate", "manual", "inAppPurchasePricePoint", "territory"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchasePrices").optional(),
+    fields_inAppPurchasePriceSchedules: z.union([z.array(z.enum(["baseTerritory", "manualPrices", "automaticPrices"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchasePriceSchedules").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    fields_inAppPurchasePrices: z.union([z.array(z.enum(["startDate", "endDate", "manual", "inAppPurchasePricePoint", "territory"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchasePrices").optional(),
     include: z.union([z.array(z.enum(["baseTerritory", "manualPrices", "automaticPrices"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[automaticPrices]": z.coerce.number().int().describe("maximum number of related automaticPrices returned (when they are included)").optional(),
-    "limit[manualPrices]": z.coerce.number().int().describe("maximum number of related manualPrices returned (when they are included)").optional(),
+    limit_automaticPrices: z.coerce.number().int().describe("maximum number of related automaticPrices returned (when they are included)").optional(),
+    limit_manualPrices: z.coerce.number().int().describe("maximum number of related manualPrices returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -44,12 +44,12 @@ export const inAppPurchasePriceSchedulesTools: Tool[] = [
       path: "/v1/inAppPurchasePriceSchedules/{id}",
       pathParams: undefined,
       query: {
-      "fields[inAppPurchasePriceSchedules]": args["fields[inAppPurchasePriceSchedules]"],
-      "fields[territories]": args["fields[territories]"],
-      "fields[inAppPurchasePrices]": args["fields[inAppPurchasePrices]"],
+      "fields[inAppPurchasePriceSchedules]": args["fields_inAppPurchasePriceSchedules"],
+      "fields[territories]": args["fields_territories"],
+      "fields[inAppPurchasePrices]": args["fields_inAppPurchasePrices"],
       "include": args["include"],
-      "limit[automaticPrices]": args["limit[automaticPrices]"],
-      "limit[manualPrices]": args["limit[manualPrices]"],
+      "limit[automaticPrices]": args["limit_automaticPrices"],
+      "limit[manualPrices]": args["limit_manualPrices"],
     },
       body: undefined,
     });
@@ -79,10 +79,10 @@ export const inAppPurchasePriceSchedulesTools: Tool[] = [
     name: "in_app_purchase_price_schedules_automatic_prices_get_to_many_related",
     description: "GET /v1/inAppPurchasePriceSchedules/{id}/automaticPrices (GET /v1/inAppPurchasePriceSchedules/{id}/automaticPrices)",
     input: z.object({
-    "filter[territory]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'territory'").optional(),
-    "fields[inAppPurchasePrices]": z.union([z.array(z.enum(["startDate", "endDate", "manual", "inAppPurchasePricePoint", "territory"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchasePrices").optional(),
-    "fields[inAppPurchasePricePoints]": z.union([z.array(z.enum(["customerPrice", "proceeds", "territory", "equalizations"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchasePricePoints").optional(),
-    "fields[territories]": z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    filter_territory: z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'territory'").optional(),
+    fields_inAppPurchasePrices: z.union([z.array(z.enum(["startDate", "endDate", "manual", "inAppPurchasePricePoint", "territory"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchasePrices").optional(),
+    fields_inAppPurchasePricePoints: z.union([z.array(z.enum(["customerPrice", "proceeds", "territory", "equalizations"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchasePricePoints").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["inAppPurchasePricePoint", "territory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -92,10 +92,10 @@ export const inAppPurchasePriceSchedulesTools: Tool[] = [
       path: "/v1/inAppPurchasePriceSchedules/{id}/automaticPrices",
       pathParams: undefined,
       query: {
-      "filter[territory]": args["filter[territory]"],
-      "fields[inAppPurchasePrices]": args["fields[inAppPurchasePrices]"],
-      "fields[inAppPurchasePricePoints]": args["fields[inAppPurchasePricePoints]"],
-      "fields[territories]": args["fields[territories]"],
+      "filter[territory]": args["filter_territory"],
+      "fields[inAppPurchasePrices]": args["fields_inAppPurchasePrices"],
+      "fields[inAppPurchasePricePoints]": args["fields_inAppPurchasePricePoints"],
+      "fields[territories]": args["fields_territories"],
       "limit": args["limit"],
       "include": args["include"],
     },
@@ -123,7 +123,7 @@ export const inAppPurchasePriceSchedulesTools: Tool[] = [
     name: "in_app_purchase_price_schedules_base_territory_get_to_one_related",
     description: "GET /v1/inAppPurchasePriceSchedules/{id}/baseTerritory (GET /v1/inAppPurchasePriceSchedules/{id}/baseTerritory)",
     input: z.object({
-    "fields[territories]": z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -131,7 +131,7 @@ export const inAppPurchasePriceSchedulesTools: Tool[] = [
       path: "/v1/inAppPurchasePriceSchedules/{id}/baseTerritory",
       pathParams: undefined,
       query: {
-      "fields[territories]": args["fields[territories]"],
+      "fields[territories]": args["fields_territories"],
     },
       body: undefined,
     });
@@ -161,10 +161,10 @@ export const inAppPurchasePriceSchedulesTools: Tool[] = [
     name: "in_app_purchase_price_schedules_manual_prices_get_to_many_related",
     description: "GET /v1/inAppPurchasePriceSchedules/{id}/manualPrices (GET /v1/inAppPurchasePriceSchedules/{id}/manualPrices)",
     input: z.object({
-    "filter[territory]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'territory'").optional(),
-    "fields[inAppPurchasePrices]": z.union([z.array(z.enum(["startDate", "endDate", "manual", "inAppPurchasePricePoint", "territory"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchasePrices").optional(),
-    "fields[inAppPurchasePricePoints]": z.union([z.array(z.enum(["customerPrice", "proceeds", "territory", "equalizations"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchasePricePoints").optional(),
-    "fields[territories]": z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    filter_territory: z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'territory'").optional(),
+    fields_inAppPurchasePrices: z.union([z.array(z.enum(["startDate", "endDate", "manual", "inAppPurchasePricePoint", "territory"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchasePrices").optional(),
+    fields_inAppPurchasePricePoints: z.union([z.array(z.enum(["customerPrice", "proceeds", "territory", "equalizations"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchasePricePoints").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["inAppPurchasePricePoint", "territory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -174,10 +174,10 @@ export const inAppPurchasePriceSchedulesTools: Tool[] = [
       path: "/v1/inAppPurchasePriceSchedules/{id}/manualPrices",
       pathParams: undefined,
       query: {
-      "filter[territory]": args["filter[territory]"],
-      "fields[inAppPurchasePrices]": args["fields[inAppPurchasePrices]"],
-      "fields[inAppPurchasePricePoints]": args["fields[inAppPurchasePricePoints]"],
-      "fields[territories]": args["fields[territories]"],
+      "filter[territory]": args["filter_territory"],
+      "fields[inAppPurchasePrices]": args["fields_inAppPurchasePrices"],
+      "fields[inAppPurchasePricePoints]": args["fields_inAppPurchasePricePoints"],
+      "fields[territories]": args["fields_territories"],
       "limit": args["limit"],
       "include": args["include"],
     },

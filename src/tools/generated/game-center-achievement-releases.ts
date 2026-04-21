@@ -31,7 +31,7 @@ export const gameCenterAchievementReleasesTools: Tool[] = [
     name: "game_center_achievement_releases_get_instance",
     description: "[DEPRECATED] GET /v1/gameCenterAchievementReleases/{id} (GET /v1/gameCenterAchievementReleases/{id})",
     input: z.object({
-    "fields[gameCenterAchievementReleases]": z.union([z.array(z.enum(["live", "gameCenterDetail", "gameCenterAchievement"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementReleases").optional(),
+    fields_gameCenterAchievementReleases: z.union([z.array(z.enum(["live", "gameCenterDetail", "gameCenterAchievement"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementReleases").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterAchievement"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const gameCenterAchievementReleasesTools: Tool[] = [
       path: "/v1/gameCenterAchievementReleases/{id}",
       pathParams: undefined,
       query: {
-      "fields[gameCenterAchievementReleases]": args["fields[gameCenterAchievementReleases]"],
+      "fields[gameCenterAchievementReleases]": args["fields_gameCenterAchievementReleases"],
       "include": args["include"],
     },
       body: undefined,

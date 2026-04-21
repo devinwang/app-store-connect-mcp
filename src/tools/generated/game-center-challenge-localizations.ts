@@ -31,8 +31,8 @@ export const gameCenterChallengeLocalizationsTools: Tool[] = [
     name: "game_center_challenge_localizations_get_instance",
     description: "GET /v1/gameCenterChallengeLocalizations/{id} (GET /v1/gameCenterChallengeLocalizations/{id})",
     input: z.object({
-    "fields[gameCenterChallengeLocalizations]": z.union([z.array(z.enum(["locale", "name", "description", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeLocalizations").optional(),
-    "fields[gameCenterChallengeImages]": z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeImages").optional(),
+    fields_gameCenterChallengeLocalizations: z.union([z.array(z.enum(["locale", "name", "description", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeLocalizations").optional(),
+    fields_gameCenterChallengeImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeImages").optional(),
     include: z.union([z.array(z.enum(["version", "image"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -41,8 +41,8 @@ export const gameCenterChallengeLocalizationsTools: Tool[] = [
       path: "/v1/gameCenterChallengeLocalizations/{id}",
       pathParams: undefined,
       query: {
-      "fields[gameCenterChallengeLocalizations]": args["fields[gameCenterChallengeLocalizations]"],
-      "fields[gameCenterChallengeImages]": args["fields[gameCenterChallengeImages]"],
+      "fields[gameCenterChallengeLocalizations]": args["fields_gameCenterChallengeLocalizations"],
+      "fields[gameCenterChallengeImages]": args["fields_gameCenterChallengeImages"],
       "include": args["include"],
     },
       body: undefined,
@@ -101,7 +101,7 @@ export const gameCenterChallengeLocalizationsTools: Tool[] = [
     name: "game_center_challenge_localizations_image_get_to_one_related",
     description: "GET /v1/gameCenterChallengeLocalizations/{id}/image (GET /v1/gameCenterChallengeLocalizations/{id}/image)",
     input: z.object({
-    "fields[gameCenterChallengeImages]": z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeImages").optional(),
+    fields_gameCenterChallengeImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeImages").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -109,7 +109,7 @@ export const gameCenterChallengeLocalizationsTools: Tool[] = [
       path: "/v1/gameCenterChallengeLocalizations/{id}/image",
       pathParams: undefined,
       query: {
-      "fields[gameCenterChallengeImages]": args["fields[gameCenterChallengeImages]"],
+      "fields[gameCenterChallengeImages]": args["fields_gameCenterChallengeImages"],
     },
       body: undefined,
     });

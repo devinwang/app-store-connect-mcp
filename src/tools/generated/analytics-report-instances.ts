@@ -14,7 +14,7 @@ export const analyticsReportInstancesTools: Tool[] = [
     name: "analytics_report_instances_get_instance",
     description: "GET /v1/analyticsReportInstances/{id} (GET /v1/analyticsReportInstances/{id})",
     input: z.object({
-    "fields[analyticsReportInstances]": z.union([z.array(z.enum(["granularity", "processingDate", "segments"])), z.string()]).describe("the fields to include for returned resources of type analyticsReportInstances").optional(),
+    fields_analyticsReportInstances: z.union([z.array(z.enum(["granularity", "processingDate", "segments"])), z.string()]).describe("the fields to include for returned resources of type analyticsReportInstances").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -22,7 +22,7 @@ export const analyticsReportInstancesTools: Tool[] = [
       path: "/v1/analyticsReportInstances/{id}",
       pathParams: undefined,
       query: {
-      "fields[analyticsReportInstances]": args["fields[analyticsReportInstances]"],
+      "fields[analyticsReportInstances]": args["fields_analyticsReportInstances"],
     },
       body: undefined,
     });
@@ -52,7 +52,7 @@ export const analyticsReportInstancesTools: Tool[] = [
     name: "analytics_report_instances_segments_get_to_many_related",
     description: "GET /v1/analyticsReportInstances/{id}/segments (GET /v1/analyticsReportInstances/{id}/segments)",
     input: z.object({
-    "fields[analyticsReportSegments]": z.union([z.array(z.enum(["checksum", "sizeInBytes", "url"])), z.string()]).describe("the fields to include for returned resources of type analyticsReportSegments").optional(),
+    fields_analyticsReportSegments: z.union([z.array(z.enum(["checksum", "sizeInBytes", "url"])), z.string()]).describe("the fields to include for returned resources of type analyticsReportSegments").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -61,7 +61,7 @@ export const analyticsReportInstancesTools: Tool[] = [
       path: "/v1/analyticsReportInstances/{id}/segments",
       pathParams: undefined,
       query: {
-      "fields[analyticsReportSegments]": args["fields[analyticsReportSegments]"],
+      "fields[analyticsReportSegments]": args["fields_analyticsReportSegments"],
       "limit": args["limit"],
     },
       body: undefined,

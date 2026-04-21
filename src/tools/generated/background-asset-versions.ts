@@ -31,7 +31,7 @@ export const backgroundAssetVersionsTools: Tool[] = [
     name: "background_asset_versions_get_instance",
     description: "GET /v1/backgroundAssetVersions/{id} (GET /v1/backgroundAssetVersions/{id})",
     input: z.object({
-    "fields[backgroundAssetVersions]": z.union([z.array(z.enum(["createdDate", "platforms", "state", "stateDetails", "version", "backgroundAsset", "internalBetaRelease", "externalBetaRelease", "appStoreRelease", "assetFile", "manifestFile", "backgroundAssetUploadFiles"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetVersions").optional(),
+    fields_backgroundAssetVersions: z.union([z.array(z.enum(["createdDate", "platforms", "state", "stateDetails", "version", "backgroundAsset", "internalBetaRelease", "externalBetaRelease", "appStoreRelease", "assetFile", "manifestFile", "backgroundAssetUploadFiles"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetVersions").optional(),
     include: z.union([z.array(z.enum(["backgroundAsset", "internalBetaRelease", "externalBetaRelease", "appStoreRelease", "assetFile", "manifestFile"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const backgroundAssetVersionsTools: Tool[] = [
       path: "/v1/backgroundAssetVersions/{id}",
       pathParams: undefined,
       query: {
-      "fields[backgroundAssetVersions]": args["fields[backgroundAssetVersions]"],
+      "fields[backgroundAssetVersions]": args["fields_backgroundAssetVersions"],
       "include": args["include"],
     },
       body: undefined,
@@ -71,7 +71,7 @@ export const backgroundAssetVersionsTools: Tool[] = [
     name: "background_asset_versions_background_asset_upload_files_get_to_many_related",
     description: "GET /v1/backgroundAssetVersions/{id}/backgroundAssetUploadFiles (GET /v1/backgroundAssetVersions/{id}/backgroundAssetUploadFiles)",
     input: z.object({
-    "fields[backgroundAssetUploadFiles]": z.union([z.array(z.enum(["assetDeliveryState", "assetToken", "assetType", "fileName", "fileSize", "sourceFileChecksum", "sourceFileChecksums", "uploadOperations"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetUploadFiles").optional(),
+    fields_backgroundAssetUploadFiles: z.union([z.array(z.enum(["assetDeliveryState", "assetToken", "assetType", "fileName", "fileSize", "sourceFileChecksum", "sourceFileChecksums", "uploadOperations"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetUploadFiles").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -80,7 +80,7 @@ export const backgroundAssetVersionsTools: Tool[] = [
       path: "/v1/backgroundAssetVersions/{id}/backgroundAssetUploadFiles",
       pathParams: undefined,
       query: {
-      "fields[backgroundAssetUploadFiles]": args["fields[backgroundAssetUploadFiles]"],
+      "fields[backgroundAssetUploadFiles]": args["fields_backgroundAssetUploadFiles"],
       "limit": args["limit"],
     },
       body: undefined,

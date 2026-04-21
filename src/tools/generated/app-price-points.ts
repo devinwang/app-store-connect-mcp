@@ -14,7 +14,7 @@ export const appPricePointsTools: Tool[] = [
     name: "app_price_points_v3_get_instance",
     description: "GET /v3/appPricePoints/{id} (GET /v3/appPricePoints/{id})",
     input: z.object({
-    "fields[appPricePoints]": z.union([z.array(z.enum(["customerPrice", "proceeds", "app", "equalizations", "territory"])), z.string()]).describe("the fields to include for returned resources of type appPricePoints").optional(),
+    fields_appPricePoints: z.union([z.array(z.enum(["customerPrice", "proceeds", "app", "equalizations", "territory"])), z.string()]).describe("the fields to include for returned resources of type appPricePoints").optional(),
     include: z.union([z.array(z.enum(["app", "territory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -23,7 +23,7 @@ export const appPricePointsTools: Tool[] = [
       path: "/v3/appPricePoints/{id}",
       pathParams: undefined,
       query: {
-      "fields[appPricePoints]": args["fields[appPricePoints]"],
+      "fields[appPricePoints]": args["fields_appPricePoints"],
       "include": args["include"],
     },
       body: undefined,
@@ -54,10 +54,10 @@ export const appPricePointsTools: Tool[] = [
     name: "app_price_points_v3_equalizations_get_to_many_related",
     description: "GET /v3/appPricePoints/{id}/equalizations (GET /v3/appPricePoints/{id}/equalizations)",
     input: z.object({
-    "filter[territory]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'territory'").optional(),
-    "fields[appPricePoints]": z.union([z.array(z.enum(["customerPrice", "proceeds", "app", "equalizations", "territory"])), z.string()]).describe("the fields to include for returned resources of type appPricePoints").optional(),
-    "fields[apps]": z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
-    "fields[territories]": z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    filter_territory: z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'territory'").optional(),
+    fields_appPricePoints: z.union([z.array(z.enum(["customerPrice", "proceeds", "app", "equalizations", "territory"])), z.string()]).describe("the fields to include for returned resources of type appPricePoints").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["app", "territory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -67,10 +67,10 @@ export const appPricePointsTools: Tool[] = [
       path: "/v3/appPricePoints/{id}/equalizations",
       pathParams: undefined,
       query: {
-      "filter[territory]": args["filter[territory]"],
-      "fields[appPricePoints]": args["fields[appPricePoints]"],
-      "fields[apps]": args["fields[apps]"],
-      "fields[territories]": args["fields[territories]"],
+      "filter[territory]": args["filter_territory"],
+      "fields[appPricePoints]": args["fields_appPricePoints"],
+      "fields[apps]": args["fields_apps"],
+      "fields[territories]": args["fields_territories"],
       "limit": args["limit"],
       "include": args["include"],
     },

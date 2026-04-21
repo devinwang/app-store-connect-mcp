@@ -14,7 +14,7 @@ export const marketplaceWebhooksTools: Tool[] = [
     name: "marketplace_webhooks_get_collection",
     description: "[DEPRECATED] GET /v1/marketplaceWebhooks (GET /v1/marketplaceWebhooks)",
     input: z.object({
-    "fields[marketplaceWebhooks]": z.union([z.array(z.enum(["endpointUrl"])), z.string()]).describe("the fields to include for returned resources of type marketplaceWebhooks").optional(),
+    fields_marketplaceWebhooks: z.union([z.array(z.enum(["endpointUrl"])), z.string()]).describe("the fields to include for returned resources of type marketplaceWebhooks").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -23,7 +23,7 @@ export const marketplaceWebhooksTools: Tool[] = [
       path: "/v1/marketplaceWebhooks",
       pathParams: undefined,
       query: {
-      "fields[marketplaceWebhooks]": args["fields[marketplaceWebhooks]"],
+      "fields[marketplaceWebhooks]": args["fields_marketplaceWebhooks"],
       "limit": args["limit"],
     },
       body: undefined,

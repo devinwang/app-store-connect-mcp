@@ -14,7 +14,7 @@ export const betaCrashLogsTools: Tool[] = [
     name: "beta_crash_logs_get_instance",
     description: "GET /v1/betaCrashLogs/{id} (GET /v1/betaCrashLogs/{id})",
     input: z.object({
-    "fields[betaCrashLogs]": z.union([z.array(z.enum(["logText"])), z.string()]).describe("the fields to include for returned resources of type betaCrashLogs").optional(),
+    fields_betaCrashLogs: z.union([z.array(z.enum(["logText"])), z.string()]).describe("the fields to include for returned resources of type betaCrashLogs").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -22,7 +22,7 @@ export const betaCrashLogsTools: Tool[] = [
       path: "/v1/betaCrashLogs/{id}",
       pathParams: undefined,
       query: {
-      "fields[betaCrashLogs]": args["fields[betaCrashLogs]"],
+      "fields[betaCrashLogs]": args["fields_betaCrashLogs"],
     },
       body: undefined,
     });

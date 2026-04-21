@@ -14,12 +14,12 @@ export const appInfosTools: Tool[] = [
     name: "app_infos_get_instance",
     description: "GET /v1/appInfos/{id} (GET /v1/appInfos/{id})",
     input: z.object({
-    "fields[appInfos]": z.union([z.array(z.enum(["appStoreState", "state", "appStoreAgeRating", "australiaAgeRating", "brazilAgeRating", "brazilAgeRatingV2", "franceAgeRating", "koreaAgeRating", "kidsAgeBand", "app", "ageRatingDeclaration", "appInfoLocalizations", "primaryCategory", "primarySubcategoryOne", "primarySubcategoryTwo", "secondaryCategory", "secondarySubcategoryOne", "secondarySubcategoryTwo", "territoryAgeRatings"])), z.string()]).describe("the fields to include for returned resources of type appInfos").optional(),
-    "fields[ageRatingDeclarations]": z.union([z.array(z.enum(["advertising", "alcoholTobaccoOrDrugUseOrReferences", "contests", "gambling", "gamblingSimulated", "gunsOrOtherWeapons", "healthOrWellnessTopics", "kidsAgeBand", "lootBox", "medicalOrTreatmentInformation", "messagingAndChat", "parentalControls", "profanityOrCrudeHumor", "ageAssurance", "sexualContentGraphicAndNudity", "sexualContentOrNudity", "horrorOrFearThemes", "matureOrSuggestiveThemes", "unrestrictedWebAccess", "userGeneratedContent", "violenceCartoonOrFantasy", "violenceRealisticProlongedGraphicOrSadistic", "violenceRealistic", "ageRatingOverride", "ageRatingOverrideV2", "koreaAgeRatingOverride", "developerAgeRatingInfoUrl"])), z.string()]).describe("the fields to include for returned resources of type ageRatingDeclarations").optional(),
-    "fields[appInfoLocalizations]": z.union([z.array(z.enum(["locale", "name", "subtitle", "privacyPolicyUrl", "privacyChoicesUrl", "privacyPolicyText", "appInfo"])), z.string()]).describe("the fields to include for returned resources of type appInfoLocalizations").optional(),
-    "fields[appCategories]": z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
+    fields_appInfos: z.union([z.array(z.enum(["appStoreState", "state", "appStoreAgeRating", "australiaAgeRating", "brazilAgeRating", "brazilAgeRatingV2", "franceAgeRating", "koreaAgeRating", "kidsAgeBand", "app", "ageRatingDeclaration", "appInfoLocalizations", "primaryCategory", "primarySubcategoryOne", "primarySubcategoryTwo", "secondaryCategory", "secondarySubcategoryOne", "secondarySubcategoryTwo", "territoryAgeRatings"])), z.string()]).describe("the fields to include for returned resources of type appInfos").optional(),
+    fields_ageRatingDeclarations: z.union([z.array(z.enum(["advertising", "alcoholTobaccoOrDrugUseOrReferences", "contests", "gambling", "gamblingSimulated", "gunsOrOtherWeapons", "healthOrWellnessTopics", "kidsAgeBand", "lootBox", "medicalOrTreatmentInformation", "messagingAndChat", "parentalControls", "profanityOrCrudeHumor", "ageAssurance", "sexualContentGraphicAndNudity", "sexualContentOrNudity", "horrorOrFearThemes", "matureOrSuggestiveThemes", "unrestrictedWebAccess", "userGeneratedContent", "violenceCartoonOrFantasy", "violenceRealisticProlongedGraphicOrSadistic", "violenceRealistic", "ageRatingOverride", "ageRatingOverrideV2", "koreaAgeRatingOverride", "developerAgeRatingInfoUrl"])), z.string()]).describe("the fields to include for returned resources of type ageRatingDeclarations").optional(),
+    fields_appInfoLocalizations: z.union([z.array(z.enum(["locale", "name", "subtitle", "privacyPolicyUrl", "privacyChoicesUrl", "privacyPolicyText", "appInfo"])), z.string()]).describe("the fields to include for returned resources of type appInfoLocalizations").optional(),
+    fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     include: z.union([z.array(z.enum(["app", "ageRatingDeclaration", "appInfoLocalizations", "primaryCategory", "primarySubcategoryOne", "primarySubcategoryTwo", "secondaryCategory", "secondarySubcategoryOne", "secondarySubcategoryTwo"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[appInfoLocalizations]": z.coerce.number().int().describe("maximum number of related appInfoLocalizations returned (when they are included)").optional(),
+    limit_appInfoLocalizations: z.coerce.number().int().describe("maximum number of related appInfoLocalizations returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -27,12 +27,12 @@ export const appInfosTools: Tool[] = [
       path: "/v1/appInfos/{id}",
       pathParams: undefined,
       query: {
-      "fields[appInfos]": args["fields[appInfos]"],
-      "fields[ageRatingDeclarations]": args["fields[ageRatingDeclarations]"],
-      "fields[appInfoLocalizations]": args["fields[appInfoLocalizations]"],
-      "fields[appCategories]": args["fields[appCategories]"],
+      "fields[appInfos]": args["fields_appInfos"],
+      "fields[ageRatingDeclarations]": args["fields_ageRatingDeclarations"],
+      "fields[appInfoLocalizations]": args["fields_appInfoLocalizations"],
+      "fields[appCategories]": args["fields_appCategories"],
       "include": args["include"],
-      "limit[appInfoLocalizations]": args["limit[appInfoLocalizations]"],
+      "limit[appInfoLocalizations]": args["limit_appInfoLocalizations"],
     },
       body: undefined,
     });
@@ -75,7 +75,7 @@ export const appInfosTools: Tool[] = [
     name: "app_infos_age_rating_declaration_get_to_one_related",
     description: "GET /v1/appInfos/{id}/ageRatingDeclaration (GET /v1/appInfos/{id}/ageRatingDeclaration)",
     input: z.object({
-    "fields[ageRatingDeclarations]": z.union([z.array(z.enum(["advertising", "alcoholTobaccoOrDrugUseOrReferences", "contests", "gambling", "gamblingSimulated", "gunsOrOtherWeapons", "healthOrWellnessTopics", "kidsAgeBand", "lootBox", "medicalOrTreatmentInformation", "messagingAndChat", "parentalControls", "profanityOrCrudeHumor", "ageAssurance", "sexualContentGraphicAndNudity", "sexualContentOrNudity", "horrorOrFearThemes", "matureOrSuggestiveThemes", "unrestrictedWebAccess", "userGeneratedContent", "violenceCartoonOrFantasy", "violenceRealisticProlongedGraphicOrSadistic", "violenceRealistic", "ageRatingOverride", "ageRatingOverrideV2", "koreaAgeRatingOverride", "developerAgeRatingInfoUrl"])), z.string()]).describe("the fields to include for returned resources of type ageRatingDeclarations").optional(),
+    fields_ageRatingDeclarations: z.union([z.array(z.enum(["advertising", "alcoholTobaccoOrDrugUseOrReferences", "contests", "gambling", "gamblingSimulated", "gunsOrOtherWeapons", "healthOrWellnessTopics", "kidsAgeBand", "lootBox", "medicalOrTreatmentInformation", "messagingAndChat", "parentalControls", "profanityOrCrudeHumor", "ageAssurance", "sexualContentGraphicAndNudity", "sexualContentOrNudity", "horrorOrFearThemes", "matureOrSuggestiveThemes", "unrestrictedWebAccess", "userGeneratedContent", "violenceCartoonOrFantasy", "violenceRealisticProlongedGraphicOrSadistic", "violenceRealistic", "ageRatingOverride", "ageRatingOverrideV2", "koreaAgeRatingOverride", "developerAgeRatingInfoUrl"])), z.string()]).describe("the fields to include for returned resources of type ageRatingDeclarations").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -83,7 +83,7 @@ export const appInfosTools: Tool[] = [
       path: "/v1/appInfos/{id}/ageRatingDeclaration",
       pathParams: undefined,
       query: {
-      "fields[ageRatingDeclarations]": args["fields[ageRatingDeclarations]"],
+      "fields[ageRatingDeclarations]": args["fields_ageRatingDeclarations"],
     },
       body: undefined,
     });
@@ -113,9 +113,9 @@ export const appInfosTools: Tool[] = [
     name: "app_infos_app_info_localizations_get_to_many_related",
     description: "GET /v1/appInfos/{id}/appInfoLocalizations (GET /v1/appInfos/{id}/appInfoLocalizations)",
     input: z.object({
-    "filter[locale]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'locale'").optional(),
-    "fields[appInfoLocalizations]": z.union([z.array(z.enum(["locale", "name", "subtitle", "privacyPolicyUrl", "privacyChoicesUrl", "privacyPolicyText", "appInfo"])), z.string()]).describe("the fields to include for returned resources of type appInfoLocalizations").optional(),
-    "fields[appInfos]": z.union([z.array(z.enum(["appStoreState", "state", "appStoreAgeRating", "australiaAgeRating", "brazilAgeRating", "brazilAgeRatingV2", "franceAgeRating", "koreaAgeRating", "kidsAgeBand", "app", "ageRatingDeclaration", "appInfoLocalizations", "primaryCategory", "primarySubcategoryOne", "primarySubcategoryTwo", "secondaryCategory", "secondarySubcategoryOne", "secondarySubcategoryTwo", "territoryAgeRatings"])), z.string()]).describe("the fields to include for returned resources of type appInfos").optional(),
+    filter_locale: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'locale'").optional(),
+    fields_appInfoLocalizations: z.union([z.array(z.enum(["locale", "name", "subtitle", "privacyPolicyUrl", "privacyChoicesUrl", "privacyPolicyText", "appInfo"])), z.string()]).describe("the fields to include for returned resources of type appInfoLocalizations").optional(),
+    fields_appInfos: z.union([z.array(z.enum(["appStoreState", "state", "appStoreAgeRating", "australiaAgeRating", "brazilAgeRating", "brazilAgeRatingV2", "franceAgeRating", "koreaAgeRating", "kidsAgeBand", "app", "ageRatingDeclaration", "appInfoLocalizations", "primaryCategory", "primarySubcategoryOne", "primarySubcategoryTwo", "secondaryCategory", "secondarySubcategoryOne", "secondarySubcategoryTwo", "territoryAgeRatings"])), z.string()]).describe("the fields to include for returned resources of type appInfos").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appInfo"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -125,9 +125,9 @@ export const appInfosTools: Tool[] = [
       path: "/v1/appInfos/{id}/appInfoLocalizations",
       pathParams: undefined,
       query: {
-      "filter[locale]": args["filter[locale]"],
-      "fields[appInfoLocalizations]": args["fields[appInfoLocalizations]"],
-      "fields[appInfos]": args["fields[appInfos]"],
+      "filter[locale]": args["filter_locale"],
+      "fields[appInfoLocalizations]": args["fields_appInfoLocalizations"],
+      "fields[appInfos]": args["fields_appInfos"],
       "limit": args["limit"],
       "include": args["include"],
     },
@@ -155,9 +155,9 @@ export const appInfosTools: Tool[] = [
     name: "app_infos_primary_category_get_to_one_related",
     description: "GET /v1/appInfos/{id}/primaryCategory (GET /v1/appInfos/{id}/primaryCategory)",
     input: z.object({
-    "fields[appCategories]": z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
+    fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     include: z.union([z.array(z.enum(["subcategories", "parent"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[subcategories]": z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
+    limit_subcategories: z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -165,9 +165,9 @@ export const appInfosTools: Tool[] = [
       path: "/v1/appInfos/{id}/primaryCategory",
       pathParams: undefined,
       query: {
-      "fields[appCategories]": args["fields[appCategories]"],
+      "fields[appCategories]": args["fields_appCategories"],
       "include": args["include"],
-      "limit[subcategories]": args["limit[subcategories]"],
+      "limit[subcategories]": args["limit_subcategories"],
     },
       body: undefined,
     });
@@ -193,9 +193,9 @@ export const appInfosTools: Tool[] = [
     name: "app_infos_primary_subcategory_one_get_to_one_related",
     description: "GET /v1/appInfos/{id}/primarySubcategoryOne (GET /v1/appInfos/{id}/primarySubcategoryOne)",
     input: z.object({
-    "fields[appCategories]": z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
+    fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     include: z.union([z.array(z.enum(["subcategories", "parent"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[subcategories]": z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
+    limit_subcategories: z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -203,9 +203,9 @@ export const appInfosTools: Tool[] = [
       path: "/v1/appInfos/{id}/primarySubcategoryOne",
       pathParams: undefined,
       query: {
-      "fields[appCategories]": args["fields[appCategories]"],
+      "fields[appCategories]": args["fields_appCategories"],
       "include": args["include"],
-      "limit[subcategories]": args["limit[subcategories]"],
+      "limit[subcategories]": args["limit_subcategories"],
     },
       body: undefined,
     });
@@ -231,9 +231,9 @@ export const appInfosTools: Tool[] = [
     name: "app_infos_primary_subcategory_two_get_to_one_related",
     description: "GET /v1/appInfos/{id}/primarySubcategoryTwo (GET /v1/appInfos/{id}/primarySubcategoryTwo)",
     input: z.object({
-    "fields[appCategories]": z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
+    fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     include: z.union([z.array(z.enum(["subcategories", "parent"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[subcategories]": z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
+    limit_subcategories: z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -241,9 +241,9 @@ export const appInfosTools: Tool[] = [
       path: "/v1/appInfos/{id}/primarySubcategoryTwo",
       pathParams: undefined,
       query: {
-      "fields[appCategories]": args["fields[appCategories]"],
+      "fields[appCategories]": args["fields_appCategories"],
       "include": args["include"],
-      "limit[subcategories]": args["limit[subcategories]"],
+      "limit[subcategories]": args["limit_subcategories"],
     },
       body: undefined,
     });
@@ -269,9 +269,9 @@ export const appInfosTools: Tool[] = [
     name: "app_infos_secondary_category_get_to_one_related",
     description: "GET /v1/appInfos/{id}/secondaryCategory (GET /v1/appInfos/{id}/secondaryCategory)",
     input: z.object({
-    "fields[appCategories]": z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
+    fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     include: z.union([z.array(z.enum(["subcategories", "parent"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[subcategories]": z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
+    limit_subcategories: z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -279,9 +279,9 @@ export const appInfosTools: Tool[] = [
       path: "/v1/appInfos/{id}/secondaryCategory",
       pathParams: undefined,
       query: {
-      "fields[appCategories]": args["fields[appCategories]"],
+      "fields[appCategories]": args["fields_appCategories"],
       "include": args["include"],
-      "limit[subcategories]": args["limit[subcategories]"],
+      "limit[subcategories]": args["limit_subcategories"],
     },
       body: undefined,
     });
@@ -307,9 +307,9 @@ export const appInfosTools: Tool[] = [
     name: "app_infos_secondary_subcategory_one_get_to_one_related",
     description: "GET /v1/appInfos/{id}/secondarySubcategoryOne (GET /v1/appInfos/{id}/secondarySubcategoryOne)",
     input: z.object({
-    "fields[appCategories]": z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
+    fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     include: z.union([z.array(z.enum(["subcategories", "parent"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[subcategories]": z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
+    limit_subcategories: z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -317,9 +317,9 @@ export const appInfosTools: Tool[] = [
       path: "/v1/appInfos/{id}/secondarySubcategoryOne",
       pathParams: undefined,
       query: {
-      "fields[appCategories]": args["fields[appCategories]"],
+      "fields[appCategories]": args["fields_appCategories"],
       "include": args["include"],
-      "limit[subcategories]": args["limit[subcategories]"],
+      "limit[subcategories]": args["limit_subcategories"],
     },
       body: undefined,
     });
@@ -345,9 +345,9 @@ export const appInfosTools: Tool[] = [
     name: "app_infos_secondary_subcategory_two_get_to_one_related",
     description: "GET /v1/appInfos/{id}/secondarySubcategoryTwo (GET /v1/appInfos/{id}/secondarySubcategoryTwo)",
     input: z.object({
-    "fields[appCategories]": z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
+    fields_appCategories: z.union([z.array(z.enum(["platforms", "subcategories", "parent"])), z.string()]).describe("the fields to include for returned resources of type appCategories").optional(),
     include: z.union([z.array(z.enum(["subcategories", "parent"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[subcategories]": z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
+    limit_subcategories: z.coerce.number().int().describe("maximum number of related subcategories returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -355,9 +355,9 @@ export const appInfosTools: Tool[] = [
       path: "/v1/appInfos/{id}/secondarySubcategoryTwo",
       pathParams: undefined,
       query: {
-      "fields[appCategories]": args["fields[appCategories]"],
+      "fields[appCategories]": args["fields_appCategories"],
       "include": args["include"],
-      "limit[subcategories]": args["limit[subcategories]"],
+      "limit[subcategories]": args["limit_subcategories"],
     },
       body: undefined,
     });
@@ -387,8 +387,8 @@ export const appInfosTools: Tool[] = [
     name: "app_infos_territory_age_ratings_get_to_many_related",
     description: "GET /v1/appInfos/{id}/territoryAgeRatings (GET /v1/appInfos/{id}/territoryAgeRatings)",
     input: z.object({
-    "fields[territoryAgeRatings]": z.union([z.array(z.enum(["appStoreAgeRating", "territory"])), z.string()]).describe("the fields to include for returned resources of type territoryAgeRatings").optional(),
-    "fields[territories]": z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    fields_territoryAgeRatings: z.union([z.array(z.enum(["appStoreAgeRating", "territory"])), z.string()]).describe("the fields to include for returned resources of type territoryAgeRatings").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["territory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -398,8 +398,8 @@ export const appInfosTools: Tool[] = [
       path: "/v1/appInfos/{id}/territoryAgeRatings",
       pathParams: undefined,
       query: {
-      "fields[territoryAgeRatings]": args["fields[territoryAgeRatings]"],
-      "fields[territories]": args["fields[territories]"],
+      "fields[territoryAgeRatings]": args["fields_territoryAgeRatings"],
+      "fields[territories]": args["fields_territories"],
       "limit": args["limit"],
       "include": args["include"],
     },

@@ -14,7 +14,7 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
     name: "game_center_matchmaking_queues_get_collection",
     description: "GET /v1/gameCenterMatchmakingQueues (GET /v1/gameCenterMatchmakingQueues)",
     input: z.object({
-    "fields[gameCenterMatchmakingQueues]": z.union([z.array(z.enum(["referenceName", "classicMatchmakingBundleIds", "ruleSet", "experimentRuleSet"])), z.string()]).describe("the fields to include for returned resources of type gameCenterMatchmakingQueues").optional(),
+    fields_gameCenterMatchmakingQueues: z.union([z.array(z.enum(["referenceName", "classicMatchmakingBundleIds", "ruleSet", "experimentRuleSet"])), z.string()]).describe("the fields to include for returned resources of type gameCenterMatchmakingQueues").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["ruleSet", "experimentRuleSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -24,7 +24,7 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
       path: "/v1/gameCenterMatchmakingQueues",
       pathParams: undefined,
       query: {
-      "fields[gameCenterMatchmakingQueues]": args["fields[gameCenterMatchmakingQueues]"],
+      "fields[gameCenterMatchmakingQueues]": args["fields_gameCenterMatchmakingQueues"],
       "limit": args["limit"],
       "include": args["include"],
     },
@@ -54,7 +54,7 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
     name: "game_center_matchmaking_queues_get_instance",
     description: "GET /v1/gameCenterMatchmakingQueues/{id} (GET /v1/gameCenterMatchmakingQueues/{id})",
     input: z.object({
-    "fields[gameCenterMatchmakingQueues]": z.union([z.array(z.enum(["referenceName", "classicMatchmakingBundleIds", "ruleSet", "experimentRuleSet"])), z.string()]).describe("the fields to include for returned resources of type gameCenterMatchmakingQueues").optional(),
+    fields_gameCenterMatchmakingQueues: z.union([z.array(z.enum(["referenceName", "classicMatchmakingBundleIds", "ruleSet", "experimentRuleSet"])), z.string()]).describe("the fields to include for returned resources of type gameCenterMatchmakingQueues").optional(),
     include: z.union([z.array(z.enum(["ruleSet", "experimentRuleSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -63,7 +63,7 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
       path: "/v1/gameCenterMatchmakingQueues/{id}",
       pathParams: undefined,
       query: {
-      "fields[gameCenterMatchmakingQueues]": args["fields[gameCenterMatchmakingQueues]"],
+      "fields[gameCenterMatchmakingQueues]": args["fields_gameCenterMatchmakingQueues"],
       "include": args["include"],
     },
       body: undefined,
@@ -132,8 +132,8 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
     input: z.object({
     granularity: z.enum(["P1D", "PT1H", "PT15M"]).describe("the granularity of the per-group dataset").optional(),
     groupBy: z.union([z.array(z.enum(["result", "gameCenterDetail"])), z.string()]).describe("the dimension by which to group the results").optional(),
-    "filter[result]": z.enum(["MATCHED", "CANCELED", "EXPIRED"]).describe("filter by 'result' attribute dimension").optional(),
-    "filter[gameCenterDetail]": z.string().describe("filter by 'gameCenterDetail' relationship dimension").optional(),
+    filter_result: z.enum(["MATCHED", "CANCELED", "EXPIRED"]).describe("filter by 'result' attribute dimension").optional(),
+    filter_gameCenterDetail: z.string().describe("filter by 'gameCenterDetail' relationship dimension").optional(),
     sort: z.union([z.array(z.enum(["count", "-count", "averageSecondsInQueue", "-averageSecondsInQueue", "p50SecondsInQueue", "-p50SecondsInQueue", "p95SecondsInQueue", "-p95SecondsInQueue"])), z.string()]).describe("comma-separated list of sort expressions; metrics will be sorted as specified").optional(),
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
   }).strict(),
@@ -145,8 +145,8 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
       query: {
       "granularity": args["granularity"],
       "groupBy": args["groupBy"],
-      "filter[result]": args["filter[result]"],
-      "filter[gameCenterDetail]": args["filter[gameCenterDetail]"],
+      "filter[result]": args["filter_result"],
+      "filter[gameCenterDetail]": args["filter_gameCenterDetail"],
       "sort": args["sort"],
       "limit": args["limit"],
     },
@@ -184,8 +184,8 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
     input: z.object({
     granularity: z.enum(["P1D", "PT1H", "PT15M"]).describe("the granularity of the per-group dataset").optional(),
     groupBy: z.union([z.array(z.enum(["result", "gameCenterDetail"])), z.string()]).describe("the dimension by which to group the results").optional(),
-    "filter[result]": z.enum(["MATCHED", "CANCELED", "EXPIRED"]).describe("filter by 'result' attribute dimension").optional(),
-    "filter[gameCenterDetail]": z.string().describe("filter by 'gameCenterDetail' relationship dimension").optional(),
+    filter_result: z.enum(["MATCHED", "CANCELED", "EXPIRED"]).describe("filter by 'result' attribute dimension").optional(),
+    filter_gameCenterDetail: z.string().describe("filter by 'gameCenterDetail' relationship dimension").optional(),
     sort: z.union([z.array(z.enum(["count", "-count", "averageSecondsInQueue", "-averageSecondsInQueue", "p50SecondsInQueue", "-p50SecondsInQueue", "p95SecondsInQueue", "-p95SecondsInQueue"])), z.string()]).describe("comma-separated list of sort expressions; metrics will be sorted as specified").optional(),
     limit: z.coerce.number().int().describe("maximum number of groups to return per page").optional(),
   }).strict(),
@@ -197,8 +197,8 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
       query: {
       "granularity": args["granularity"],
       "groupBy": args["groupBy"],
-      "filter[result]": args["filter[result]"],
-      "filter[gameCenterDetail]": args["filter[gameCenterDetail]"],
+      "filter[result]": args["filter_result"],
+      "filter[gameCenterDetail]": args["filter_gameCenterDetail"],
       "sort": args["sort"],
       "limit": args["limit"],
     },

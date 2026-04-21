@@ -14,8 +14,8 @@ export const alternativeDistributionKeysTools: Tool[] = [
     name: "alternative_distribution_keys_get_collection",
     description: "GET /v1/alternativeDistributionKeys (GET /v1/alternativeDistributionKeys)",
     input: z.object({
-    "exists[app]": z.coerce.boolean().describe("filter by existence or non-existence of related 'app'").optional(),
-    "fields[alternativeDistributionKeys]": z.union([z.array(z.enum(["publicKey"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionKeys").optional(),
+    exists_app: z.coerce.boolean().describe("filter by existence or non-existence of related 'app'").optional(),
+    fields_alternativeDistributionKeys: z.union([z.array(z.enum(["publicKey"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionKeys").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -24,8 +24,8 @@ export const alternativeDistributionKeysTools: Tool[] = [
       path: "/v1/alternativeDistributionKeys",
       pathParams: undefined,
       query: {
-      "exists[app]": args["exists[app]"],
-      "fields[alternativeDistributionKeys]": args["fields[alternativeDistributionKeys]"],
+      "exists[app]": args["exists_app"],
+      "fields[alternativeDistributionKeys]": args["fields_alternativeDistributionKeys"],
       "limit": args["limit"],
     },
       body: undefined,
@@ -54,7 +54,7 @@ export const alternativeDistributionKeysTools: Tool[] = [
     name: "alternative_distribution_keys_get_instance",
     description: "GET /v1/alternativeDistributionKeys/{id} (GET /v1/alternativeDistributionKeys/{id})",
     input: z.object({
-    "fields[alternativeDistributionKeys]": z.union([z.array(z.enum(["publicKey"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionKeys").optional(),
+    fields_alternativeDistributionKeys: z.union([z.array(z.enum(["publicKey"])), z.string()]).describe("the fields to include for returned resources of type alternativeDistributionKeys").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -62,7 +62,7 @@ export const alternativeDistributionKeysTools: Tool[] = [
       path: "/v1/alternativeDistributionKeys/{id}",
       pathParams: undefined,
       query: {
-      "fields[alternativeDistributionKeys]": args["fields[alternativeDistributionKeys]"],
+      "fields[alternativeDistributionKeys]": args["fields_alternativeDistributionKeys"],
     },
       body: undefined,
     });

@@ -31,7 +31,7 @@ export const appClipAdvancedExperienceImagesTools: Tool[] = [
     name: "app_clip_advanced_experience_images_get_instance",
     description: "GET /v1/appClipAdvancedExperienceImages/{id} (GET /v1/appClipAdvancedExperienceImages/{id})",
     input: z.object({
-    "fields[appClipAdvancedExperienceImages]": z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type appClipAdvancedExperienceImages").optional(),
+    fields_appClipAdvancedExperienceImages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type appClipAdvancedExperienceImages").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -39,7 +39,7 @@ export const appClipAdvancedExperienceImagesTools: Tool[] = [
       path: "/v1/appClipAdvancedExperienceImages/{id}",
       pathParams: undefined,
       query: {
-      "fields[appClipAdvancedExperienceImages]": args["fields[appClipAdvancedExperienceImages]"],
+      "fields[appClipAdvancedExperienceImages]": args["fields_appClipAdvancedExperienceImages"],
     },
       body: undefined,
     });

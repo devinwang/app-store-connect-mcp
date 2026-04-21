@@ -31,7 +31,7 @@ export const inAppPurchaseLocalizationsTools: Tool[] = [
     name: "in_app_purchase_localizations_get_instance",
     description: "GET /v1/inAppPurchaseLocalizations/{id} (GET /v1/inAppPurchaseLocalizations/{id})",
     input: z.object({
-    "fields[inAppPurchaseLocalizations]": z.union([z.array(z.enum(["name", "locale", "description", "state", "inAppPurchaseV2"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchaseLocalizations").optional(),
+    fields_inAppPurchaseLocalizations: z.union([z.array(z.enum(["name", "locale", "description", "state", "inAppPurchaseV2"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchaseLocalizations").optional(),
     include: z.union([z.array(z.enum(["inAppPurchaseV2"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const inAppPurchaseLocalizationsTools: Tool[] = [
       path: "/v1/inAppPurchaseLocalizations/{id}",
       pathParams: undefined,
       query: {
-      "fields[inAppPurchaseLocalizations]": args["fields[inAppPurchaseLocalizations]"],
+      "fields[inAppPurchaseLocalizations]": args["fields_inAppPurchaseLocalizations"],
       "include": args["include"],
     },
       body: undefined,

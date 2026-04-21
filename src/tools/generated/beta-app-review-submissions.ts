@@ -14,10 +14,10 @@ export const betaAppReviewSubmissionsTools: Tool[] = [
     name: "beta_app_review_submissions_get_collection",
     description: "GET /v1/betaAppReviewSubmissions (GET /v1/betaAppReviewSubmissions)",
     input: z.object({
-    "filter[betaReviewState]": z.union([z.array(z.enum(["WAITING_FOR_REVIEW", "IN_REVIEW", "REJECTED", "APPROVED"])), z.string()]).describe("filter by attribute 'betaReviewState'").optional(),
-    "filter[build]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'build'").optional(),
-    "fields[betaAppReviewSubmissions]": z.union([z.array(z.enum(["betaReviewState", "submittedDate", "build"])), z.string()]).describe("the fields to include for returned resources of type betaAppReviewSubmissions").optional(),
-    "fields[builds]": z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
+    filter_betaReviewState: z.union([z.array(z.enum(["WAITING_FOR_REVIEW", "IN_REVIEW", "REJECTED", "APPROVED"])), z.string()]).describe("filter by attribute 'betaReviewState'").optional(),
+    filter_build: z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'build'").optional(),
+    fields_betaAppReviewSubmissions: z.union([z.array(z.enum(["betaReviewState", "submittedDate", "build"])), z.string()]).describe("the fields to include for returned resources of type betaAppReviewSubmissions").optional(),
+    fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["build"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -27,10 +27,10 @@ export const betaAppReviewSubmissionsTools: Tool[] = [
       path: "/v1/betaAppReviewSubmissions",
       pathParams: undefined,
       query: {
-      "filter[betaReviewState]": args["filter[betaReviewState]"],
-      "filter[build]": args["filter[build]"],
-      "fields[betaAppReviewSubmissions]": args["fields[betaAppReviewSubmissions]"],
-      "fields[builds]": args["fields[builds]"],
+      "filter[betaReviewState]": args["filter_betaReviewState"],
+      "filter[build]": args["filter_build"],
+      "fields[betaAppReviewSubmissions]": args["fields_betaAppReviewSubmissions"],
+      "fields[builds]": args["fields_builds"],
       "limit": args["limit"],
       "include": args["include"],
     },
@@ -60,8 +60,8 @@ export const betaAppReviewSubmissionsTools: Tool[] = [
     name: "beta_app_review_submissions_get_instance",
     description: "GET /v1/betaAppReviewSubmissions/{id} (GET /v1/betaAppReviewSubmissions/{id})",
     input: z.object({
-    "fields[betaAppReviewSubmissions]": z.union([z.array(z.enum(["betaReviewState", "submittedDate", "build"])), z.string()]).describe("the fields to include for returned resources of type betaAppReviewSubmissions").optional(),
-    "fields[builds]": z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
+    fields_betaAppReviewSubmissions: z.union([z.array(z.enum(["betaReviewState", "submittedDate", "build"])), z.string()]).describe("the fields to include for returned resources of type betaAppReviewSubmissions").optional(),
+    fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
     include: z.union([z.array(z.enum(["build"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -70,8 +70,8 @@ export const betaAppReviewSubmissionsTools: Tool[] = [
       path: "/v1/betaAppReviewSubmissions/{id}",
       pathParams: undefined,
       query: {
-      "fields[betaAppReviewSubmissions]": args["fields[betaAppReviewSubmissions]"],
-      "fields[builds]": args["fields[builds]"],
+      "fields[betaAppReviewSubmissions]": args["fields_betaAppReviewSubmissions"],
+      "fields[builds]": args["fields_builds"],
       "include": args["include"],
     },
       body: undefined,
@@ -98,7 +98,7 @@ export const betaAppReviewSubmissionsTools: Tool[] = [
     name: "beta_app_review_submissions_build_get_to_one_related",
     description: "GET /v1/betaAppReviewSubmissions/{id}/build (GET /v1/betaAppReviewSubmissions/{id}/build)",
     input: z.object({
-    "fields[builds]": z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
+    fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -106,7 +106,7 @@ export const betaAppReviewSubmissionsTools: Tool[] = [
       path: "/v1/betaAppReviewSubmissions/{id}/build",
       pathParams: undefined,
       query: {
-      "fields[builds]": args["fields[builds]"],
+      "fields[builds]": args["fields_builds"],
     },
       body: undefined,
     });

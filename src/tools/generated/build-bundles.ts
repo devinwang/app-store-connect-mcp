@@ -29,7 +29,7 @@ export const buildBundlesTools: Tool[] = [
     name: "build_bundles_app_clip_domain_cache_status_get_to_one_related",
     description: "GET /v1/buildBundles/{id}/appClipDomainCacheStatus (GET /v1/buildBundles/{id}/appClipDomainCacheStatus)",
     input: z.object({
-    "fields[appClipDomainStatuses]": z.union([z.array(z.enum(["domains", "lastUpdatedDate"])), z.string()]).describe("the fields to include for returned resources of type appClipDomainStatuses").optional(),
+    fields_appClipDomainStatuses: z.union([z.array(z.enum(["domains", "lastUpdatedDate"])), z.string()]).describe("the fields to include for returned resources of type appClipDomainStatuses").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -37,7 +37,7 @@ export const buildBundlesTools: Tool[] = [
       path: "/v1/buildBundles/{id}/appClipDomainCacheStatus",
       pathParams: undefined,
       query: {
-      "fields[appClipDomainStatuses]": args["fields[appClipDomainStatuses]"],
+      "fields[appClipDomainStatuses]": args["fields_appClipDomainStatuses"],
     },
       body: undefined,
     });
@@ -63,7 +63,7 @@ export const buildBundlesTools: Tool[] = [
     name: "build_bundles_app_clip_domain_debug_status_get_to_one_related",
     description: "GET /v1/buildBundles/{id}/appClipDomainDebugStatus (GET /v1/buildBundles/{id}/appClipDomainDebugStatus)",
     input: z.object({
-    "fields[appClipDomainStatuses]": z.union([z.array(z.enum(["domains", "lastUpdatedDate"])), z.string()]).describe("the fields to include for returned resources of type appClipDomainStatuses").optional(),
+    fields_appClipDomainStatuses: z.union([z.array(z.enum(["domains", "lastUpdatedDate"])), z.string()]).describe("the fields to include for returned resources of type appClipDomainStatuses").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -71,7 +71,7 @@ export const buildBundlesTools: Tool[] = [
       path: "/v1/buildBundles/{id}/appClipDomainDebugStatus",
       pathParams: undefined,
       query: {
-      "fields[appClipDomainStatuses]": args["fields[appClipDomainStatuses]"],
+      "fields[appClipDomainStatuses]": args["fields_appClipDomainStatuses"],
     },
       body: undefined,
     });
@@ -101,11 +101,11 @@ export const buildBundlesTools: Tool[] = [
     name: "build_bundles_beta_app_clip_invocations_get_to_many_related",
     description: "GET /v1/buildBundles/{id}/betaAppClipInvocations (GET /v1/buildBundles/{id}/betaAppClipInvocations)",
     input: z.object({
-    "fields[betaAppClipInvocations]": z.union([z.array(z.enum(["url", "betaAppClipInvocationLocalizations"])), z.string()]).describe("the fields to include for returned resources of type betaAppClipInvocations").optional(),
-    "fields[betaAppClipInvocationLocalizations]": z.union([z.array(z.enum(["title", "locale"])), z.string()]).describe("the fields to include for returned resources of type betaAppClipInvocationLocalizations").optional(),
+    fields_betaAppClipInvocations: z.union([z.array(z.enum(["url", "betaAppClipInvocationLocalizations"])), z.string()]).describe("the fields to include for returned resources of type betaAppClipInvocations").optional(),
+    fields_betaAppClipInvocationLocalizations: z.union([z.array(z.enum(["title", "locale"])), z.string()]).describe("the fields to include for returned resources of type betaAppClipInvocationLocalizations").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["betaAppClipInvocationLocalizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[betaAppClipInvocationLocalizations]": z.coerce.number().int().describe("maximum number of related betaAppClipInvocationLocalizations returned (when they are included)").optional(),
+    limit_betaAppClipInvocationLocalizations: z.coerce.number().int().describe("maximum number of related betaAppClipInvocationLocalizations returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -113,11 +113,11 @@ export const buildBundlesTools: Tool[] = [
       path: "/v1/buildBundles/{id}/betaAppClipInvocations",
       pathParams: undefined,
       query: {
-      "fields[betaAppClipInvocations]": args["fields[betaAppClipInvocations]"],
-      "fields[betaAppClipInvocationLocalizations]": args["fields[betaAppClipInvocationLocalizations]"],
+      "fields[betaAppClipInvocations]": args["fields_betaAppClipInvocations"],
+      "fields[betaAppClipInvocationLocalizations]": args["fields_betaAppClipInvocationLocalizations"],
       "limit": args["limit"],
       "include": args["include"],
-      "limit[betaAppClipInvocationLocalizations]": args["limit[betaAppClipInvocationLocalizations]"],
+      "limit[betaAppClipInvocationLocalizations]": args["limit_betaAppClipInvocationLocalizations"],
     },
       body: undefined,
     });
@@ -147,7 +147,7 @@ export const buildBundlesTools: Tool[] = [
     name: "build_bundles_build_bundle_file_sizes_get_to_many_related",
     description: "GET /v1/buildBundles/{id}/buildBundleFileSizes (GET /v1/buildBundles/{id}/buildBundleFileSizes)",
     input: z.object({
-    "fields[buildBundleFileSizes]": z.union([z.array(z.enum(["deviceModel", "osVersion", "downloadBytes", "installBytes"])), z.string()]).describe("the fields to include for returned resources of type buildBundleFileSizes").optional(),
+    fields_buildBundleFileSizes: z.union([z.array(z.enum(["deviceModel", "osVersion", "downloadBytes", "installBytes"])), z.string()]).describe("the fields to include for returned resources of type buildBundleFileSizes").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -156,7 +156,7 @@ export const buildBundlesTools: Tool[] = [
       path: "/v1/buildBundles/{id}/buildBundleFileSizes",
       pathParams: undefined,
       query: {
-      "fields[buildBundleFileSizes]": args["fields[buildBundleFileSizes]"],
+      "fields[buildBundleFileSizes]": args["fields_buildBundleFileSizes"],
       "limit": args["limit"],
     },
       body: undefined,

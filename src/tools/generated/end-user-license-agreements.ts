@@ -31,10 +31,10 @@ export const endUserLicenseAgreementsTools: Tool[] = [
     name: "end_user_license_agreements_get_instance",
     description: "GET /v1/endUserLicenseAgreements/{id} (GET /v1/endUserLicenseAgreements/{id})",
     input: z.object({
-    "fields[endUserLicenseAgreements]": z.union([z.array(z.enum(["agreementText", "app", "territories"])), z.string()]).describe("the fields to include for returned resources of type endUserLicenseAgreements").optional(),
-    "fields[territories]": z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    fields_endUserLicenseAgreements: z.union([z.array(z.enum(["agreementText", "app", "territories"])), z.string()]).describe("the fields to include for returned resources of type endUserLicenseAgreements").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     include: z.union([z.array(z.enum(["app", "territories"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[territories]": z.coerce.number().int().describe("maximum number of related territories returned (when they are included)").optional(),
+    limit_territories: z.coerce.number().int().describe("maximum number of related territories returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -42,10 +42,10 @@ export const endUserLicenseAgreementsTools: Tool[] = [
       path: "/v1/endUserLicenseAgreements/{id}",
       pathParams: undefined,
       query: {
-      "fields[endUserLicenseAgreements]": args["fields[endUserLicenseAgreements]"],
-      "fields[territories]": args["fields[territories]"],
+      "fields[endUserLicenseAgreements]": args["fields_endUserLicenseAgreements"],
+      "fields[territories]": args["fields_territories"],
       "include": args["include"],
-      "limit[territories]": args["limit[territories]"],
+      "limit[territories]": args["limit_territories"],
     },
       body: undefined,
     });
@@ -107,7 +107,7 @@ export const endUserLicenseAgreementsTools: Tool[] = [
     name: "end_user_license_agreements_territories_get_to_many_related",
     description: "GET /v1/endUserLicenseAgreements/{id}/territories (GET /v1/endUserLicenseAgreements/{id}/territories)",
     input: z.object({
-    "fields[territories]": z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -116,7 +116,7 @@ export const endUserLicenseAgreementsTools: Tool[] = [
       path: "/v1/endUserLicenseAgreements/{id}/territories",
       pathParams: undefined,
       query: {
-      "fields[territories]": args["fields[territories]"],
+      "fields[territories]": args["fields_territories"],
       "limit": args["limit"],
     },
       body: undefined,

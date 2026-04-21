@@ -85,6 +85,29 @@ function toSnakeCase(id: string): string {
 }
 
 /**
+ * Apple's JSON:API param names use brackets and dots (e.g. `filter[name]`,
+ * `fields[apps]`, `limit[appStoreVersions]`, `filter[appStoreVersions.appStoreState]`).
+ * Anthropic's tool-schema property-name regex `^[a-zA-Z0-9_.-]{1,64}$`
+ * allows dots but NOT brackets, so unchanged keys fail the API call with
+ * 400 `Property keys should match pattern …`.
+ *
+ * We therefore map to a bracket-free safe form for schema keys, and the
+ * generated handler remaps the safe keys back to Apple's original when
+ * building the outgoing query string.
+ *
+ *   filter[name]                                 → filter_name
+ *   fields[apps]                                 → fields_apps
+ *   limit[appStoreVersions]                      → limit_appStoreVersions
+ *   filter[appStoreVersions.appStoreState]       → filter_appStoreVersions_appStoreState
+ */
+function toSafeKey(name: string): string {
+  return name
+    .replace(/\[/g, "_")
+    .replace(/\]/g, "")
+    .replace(/\./g, "_");
+}
+
+/**
  * Tag → kebab-case filename stem.
  */
 function tagToFilename(tag: string): string {
@@ -202,14 +225,25 @@ function zodForParameter(p: Parameter): string {
 function buildZodObject(op: Operation): string {
   const fields: string[] = [];
   const params = op.parameters ?? [];
+  const usedKeys = new Set<string>();
   for (const p of params) {
     if (p.in !== "path" && p.in !== "query") continue;
     const zodFrag = zodForParameter(p);
-    // Key must be quoted if it contains non-identifier chars (brackets, dots).
-    const safe = /^[A-Za-z_][A-Za-z0-9_]*$/.test(p.name)
-      ? p.name
-      : `"${esc(p.name)}"`;
-    fields.push(`    ${safe}: ${zodFrag},`);
+    // Query keys with brackets/dots get transformed to a schema-safe form.
+    // Path params never have brackets, so `toSafeKey` is a no-op for them.
+    let safeKey = toSafeKey(p.name);
+    // Pathological de-duplication in case two different Apple param names
+    // collapse to the same safe form (should never happen in practice).
+    if (usedKeys.has(safeKey)) {
+      let i = 2;
+      while (usedKeys.has(`${safeKey}_${i}`)) i++;
+      safeKey = `${safeKey}_${i}`;
+    }
+    usedKeys.add(safeKey);
+    const keyToken = /^[A-Za-z_][A-Za-z0-9_]*$/.test(safeKey)
+      ? safeKey
+      : `"${esc(safeKey)}"`;
+    fields.push(`    ${keyToken}: ${zodFrag},`);
   }
 
   const body = op.requestBody?.content?.["application/json"];
@@ -259,9 +293,14 @@ function buildHandler(op: Operation, method: string, urlPath: string): string {
         .join(", ")} }`
     : "undefined";
 
+  // Map `args["filter_name"]` back to `query["filter[name]"]` etc., so the
+  // outgoing request uses Apple's original JSON:API parameter names.
   const queryObj = queryParamNames.length
     ? `{\n${queryParamNames
-        .map((n) => `      ${JSON.stringify(n)}: args[${JSON.stringify(n)}],`)
+        .map(
+          (n) =>
+            `      ${JSON.stringify(n)}: args[${JSON.stringify(toSafeKey(n))}],`,
+        )
         .join("\n")}\n    }`
     : "undefined";
 

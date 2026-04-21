@@ -31,10 +31,10 @@ export const gameCenterLeaderboardSetVersionsTools: Tool[] = [
     name: "game_center_leaderboard_set_versions_v2_get_instance",
     description: "GET /v2/gameCenterLeaderboardSetVersions/{id} (GET /v2/gameCenterLeaderboardSetVersions/{id})",
     input: z.object({
-    "fields[gameCenterLeaderboardSetVersions]": z.union([z.array(z.enum(["version", "state", "leaderboardSet", "localizations"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetVersions").optional(),
-    "fields[gameCenterLeaderboardSetLocalizations]": z.union([z.array(z.enum(["locale", "name", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations").optional(),
+    fields_gameCenterLeaderboardSetVersions: z.union([z.array(z.enum(["version", "state", "leaderboardSet", "localizations"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetVersions").optional(),
+    fields_gameCenterLeaderboardSetLocalizations: z.union([z.array(z.enum(["locale", "name", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations").optional(),
     include: z.union([z.array(z.enum(["leaderboardSet", "localizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[localizations]": z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
+    limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -42,10 +42,10 @@ export const gameCenterLeaderboardSetVersionsTools: Tool[] = [
       path: "/v2/gameCenterLeaderboardSetVersions/{id}",
       pathParams: undefined,
       query: {
-      "fields[gameCenterLeaderboardSetVersions]": args["fields[gameCenterLeaderboardSetVersions]"],
-      "fields[gameCenterLeaderboardSetLocalizations]": args["fields[gameCenterLeaderboardSetLocalizations]"],
+      "fields[gameCenterLeaderboardSetVersions]": args["fields_gameCenterLeaderboardSetVersions"],
+      "fields[gameCenterLeaderboardSetLocalizations]": args["fields_gameCenterLeaderboardSetLocalizations"],
       "include": args["include"],
-      "limit[localizations]": args["limit[localizations]"],
+      "limit[localizations]": args["limit_localizations"],
     },
       body: undefined,
     });
@@ -75,9 +75,9 @@ export const gameCenterLeaderboardSetVersionsTools: Tool[] = [
     name: "game_center_leaderboard_set_versions_v2_localizations_get_to_many_related",
     description: "GET /v2/gameCenterLeaderboardSetVersions/{id}/localizations (GET /v2/gameCenterLeaderboardSetVersions/{id}/localizations)",
     input: z.object({
-    "fields[gameCenterLeaderboardSetLocalizations]": z.union([z.array(z.enum(["locale", "name", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations").optional(),
-    "fields[gameCenterLeaderboardSetVersions]": z.union([z.array(z.enum(["version", "state", "leaderboardSet", "localizations"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetVersions").optional(),
-    "fields[gameCenterLeaderboardSetImages]": z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetImages").optional(),
+    fields_gameCenterLeaderboardSetLocalizations: z.union([z.array(z.enum(["locale", "name", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations").optional(),
+    fields_gameCenterLeaderboardSetVersions: z.union([z.array(z.enum(["version", "state", "leaderboardSet", "localizations"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetVersions").optional(),
+    fields_gameCenterLeaderboardSetImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetImages").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["version", "image"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -87,9 +87,9 @@ export const gameCenterLeaderboardSetVersionsTools: Tool[] = [
       path: "/v2/gameCenterLeaderboardSetVersions/{id}/localizations",
       pathParams: undefined,
       query: {
-      "fields[gameCenterLeaderboardSetLocalizations]": args["fields[gameCenterLeaderboardSetLocalizations]"],
-      "fields[gameCenterLeaderboardSetVersions]": args["fields[gameCenterLeaderboardSetVersions]"],
-      "fields[gameCenterLeaderboardSetImages]": args["fields[gameCenterLeaderboardSetImages]"],
+      "fields[gameCenterLeaderboardSetLocalizations]": args["fields_gameCenterLeaderboardSetLocalizations"],
+      "fields[gameCenterLeaderboardSetVersions]": args["fields_gameCenterLeaderboardSetVersions"],
+      "fields[gameCenterLeaderboardSetImages]": args["fields_gameCenterLeaderboardSetImages"],
       "limit": args["limit"],
       "include": args["include"],
     },

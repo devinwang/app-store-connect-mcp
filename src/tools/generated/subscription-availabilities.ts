@@ -31,10 +31,10 @@ export const subscriptionAvailabilitiesTools: Tool[] = [
     name: "subscription_availabilities_get_instance",
     description: "GET /v1/subscriptionAvailabilities/{id} (GET /v1/subscriptionAvailabilities/{id})",
     input: z.object({
-    "fields[subscriptionAvailabilities]": z.union([z.array(z.enum(["availableInNewTerritories", "availableTerritories"])), z.string()]).describe("the fields to include for returned resources of type subscriptionAvailabilities").optional(),
-    "fields[territories]": z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    fields_subscriptionAvailabilities: z.union([z.array(z.enum(["availableInNewTerritories", "availableTerritories"])), z.string()]).describe("the fields to include for returned resources of type subscriptionAvailabilities").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     include: z.union([z.array(z.enum(["availableTerritories"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[availableTerritories]": z.coerce.number().int().describe("maximum number of related availableTerritories returned (when they are included)").optional(),
+    limit_availableTerritories: z.coerce.number().int().describe("maximum number of related availableTerritories returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -42,10 +42,10 @@ export const subscriptionAvailabilitiesTools: Tool[] = [
       path: "/v1/subscriptionAvailabilities/{id}",
       pathParams: undefined,
       query: {
-      "fields[subscriptionAvailabilities]": args["fields[subscriptionAvailabilities]"],
-      "fields[territories]": args["fields[territories]"],
+      "fields[subscriptionAvailabilities]": args["fields_subscriptionAvailabilities"],
+      "fields[territories]": args["fields_territories"],
       "include": args["include"],
-      "limit[availableTerritories]": args["limit[availableTerritories]"],
+      "limit[availableTerritories]": args["limit_availableTerritories"],
     },
       body: undefined,
     });
@@ -75,7 +75,7 @@ export const subscriptionAvailabilitiesTools: Tool[] = [
     name: "subscription_availabilities_available_territories_get_to_many_related",
     description: "GET /v1/subscriptionAvailabilities/{id}/availableTerritories (GET /v1/subscriptionAvailabilities/{id}/availableTerritories)",
     input: z.object({
-    "fields[territories]": z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -84,7 +84,7 @@ export const subscriptionAvailabilitiesTools: Tool[] = [
       path: "/v1/subscriptionAvailabilities/{id}/availableTerritories",
       pathParams: undefined,
       query: {
-      "fields[territories]": args["fields[territories]"],
+      "fields[territories]": args["fields_territories"],
       "limit": args["limit"],
     },
       body: undefined,

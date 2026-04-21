@@ -31,11 +31,11 @@ export const appStoreVersionExperimentsTools: Tool[] = [
     name: "app_store_version_experiments_v2_get_instance",
     description: "GET /v2/appStoreVersionExperiments/{id} (GET /v2/appStoreVersionExperiments/{id})",
     input: z.object({
-    "fields[appStoreVersionExperiments]": z.union([z.array(z.enum(["name", "platform", "trafficProportion", "state", "reviewRequired", "startDate", "endDate", "app", "latestControlVersion", "controlVersions", "appStoreVersionExperimentTreatments"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperiments").optional(),
-    "fields[appStoreVersionExperimentTreatments]": z.union([z.array(z.enum(["name", "appIcon", "appIconName", "promotedDate", "appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatments").optional(),
+    fields_appStoreVersionExperiments: z.union([z.array(z.enum(["name", "platform", "trafficProportion", "state", "reviewRequired", "startDate", "endDate", "app", "latestControlVersion", "controlVersions", "appStoreVersionExperimentTreatments"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperiments").optional(),
+    fields_appStoreVersionExperimentTreatments: z.union([z.array(z.enum(["name", "appIcon", "appIconName", "promotedDate", "appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatments").optional(),
     include: z.union([z.array(z.enum(["app", "latestControlVersion", "controlVersions", "appStoreVersionExperimentTreatments"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[appStoreVersionExperimentTreatments]": z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentTreatments returned (when they are included)").optional(),
-    "limit[controlVersions]": z.coerce.number().int().describe("maximum number of related controlVersions returned (when they are included)").optional(),
+    limit_appStoreVersionExperimentTreatments: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentTreatments returned (when they are included)").optional(),
+    limit_controlVersions: z.coerce.number().int().describe("maximum number of related controlVersions returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -43,11 +43,11 @@ export const appStoreVersionExperimentsTools: Tool[] = [
       path: "/v2/appStoreVersionExperiments/{id}",
       pathParams: undefined,
       query: {
-      "fields[appStoreVersionExperiments]": args["fields[appStoreVersionExperiments]"],
-      "fields[appStoreVersionExperimentTreatments]": args["fields[appStoreVersionExperimentTreatments]"],
+      "fields[appStoreVersionExperiments]": args["fields_appStoreVersionExperiments"],
+      "fields[appStoreVersionExperimentTreatments]": args["fields_appStoreVersionExperimentTreatments"],
       "include": args["include"],
-      "limit[appStoreVersionExperimentTreatments]": args["limit[appStoreVersionExperimentTreatments]"],
-      "limit[controlVersions]": args["limit[controlVersions]"],
+      "limit[appStoreVersionExperimentTreatments]": args["limit_appStoreVersionExperimentTreatments"],
+      "limit[controlVersions]": args["limit_controlVersions"],
     },
       body: undefined,
     });
@@ -107,10 +107,10 @@ export const appStoreVersionExperimentsTools: Tool[] = [
     name: "app_store_version_experiments_get_instance",
     description: "[DEPRECATED] GET /v1/appStoreVersionExperiments/{id} (GET /v1/appStoreVersionExperiments/{id})",
     input: z.object({
-    "fields[appStoreVersionExperiments]": z.union([z.array(z.enum(["name", "trafficProportion", "state", "reviewRequired", "startDate", "endDate", "appStoreVersion", "appStoreVersionExperimentTreatments"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperiments").optional(),
-    "fields[appStoreVersionExperimentTreatments]": z.union([z.array(z.enum(["name", "appIcon", "appIconName", "promotedDate", "appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatments").optional(),
+    fields_appStoreVersionExperiments: z.union([z.array(z.enum(["name", "trafficProportion", "state", "reviewRequired", "startDate", "endDate", "appStoreVersion", "appStoreVersionExperimentTreatments"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperiments").optional(),
+    fields_appStoreVersionExperimentTreatments: z.union([z.array(z.enum(["name", "appIcon", "appIconName", "promotedDate", "appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatments").optional(),
     include: z.union([z.array(z.enum(["appStoreVersion", "appStoreVersionExperimentTreatments"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[appStoreVersionExperimentTreatments]": z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentTreatments returned (when they are included)").optional(),
+    limit_appStoreVersionExperimentTreatments: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentTreatments returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -118,10 +118,10 @@ export const appStoreVersionExperimentsTools: Tool[] = [
       path: "/v1/appStoreVersionExperiments/{id}",
       pathParams: undefined,
       query: {
-      "fields[appStoreVersionExperiments]": args["fields[appStoreVersionExperiments]"],
-      "fields[appStoreVersionExperimentTreatments]": args["fields[appStoreVersionExperimentTreatments]"],
+      "fields[appStoreVersionExperiments]": args["fields_appStoreVersionExperiments"],
+      "fields[appStoreVersionExperimentTreatments]": args["fields_appStoreVersionExperimentTreatments"],
       "include": args["include"],
-      "limit[appStoreVersionExperimentTreatments]": args["limit[appStoreVersionExperimentTreatments]"],
+      "limit[appStoreVersionExperimentTreatments]": args["limit_appStoreVersionExperimentTreatments"],
     },
       body: undefined,
     });
@@ -183,12 +183,12 @@ export const appStoreVersionExperimentsTools: Tool[] = [
     name: "app_store_version_experiments_v2_app_store_version_experiment_treatments_get_to_many_related",
     description: "GET /v2/appStoreVersionExperiments/{id}/appStoreVersionExperimentTreatments (GET /v2/appStoreVersionExperiments/{id}/appStoreVersionExperimentTreatments)",
     input: z.object({
-    "fields[appStoreVersionExperimentTreatments]": z.union([z.array(z.enum(["name", "appIcon", "appIconName", "promotedDate", "appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatments").optional(),
-    "fields[appStoreVersionExperiments]": z.union([z.array(z.enum(["name", "trafficProportion", "state", "reviewRequired", "startDate", "endDate", "appStoreVersion", "appStoreVersionExperimentTreatments", "platform", "app", "latestControlVersion", "controlVersions"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperiments").optional(),
-    "fields[appStoreVersionExperimentTreatmentLocalizations]": z.union([z.array(z.enum(["locale", "appStoreVersionExperimentTreatment", "appScreenshotSets", "appPreviewSets"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations").optional(),
+    fields_appStoreVersionExperimentTreatments: z.union([z.array(z.enum(["name", "appIcon", "appIconName", "promotedDate", "appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatments").optional(),
+    fields_appStoreVersionExperiments: z.union([z.array(z.enum(["name", "trafficProportion", "state", "reviewRequired", "startDate", "endDate", "appStoreVersion", "appStoreVersionExperimentTreatments", "platform", "app", "latestControlVersion", "controlVersions"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperiments").optional(),
+    fields_appStoreVersionExperimentTreatmentLocalizations: z.union([z.array(z.enum(["locale", "appStoreVersionExperimentTreatment", "appScreenshotSets", "appPreviewSets"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[appStoreVersionExperimentTreatmentLocalizations]": z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included)").optional(),
+    limit_appStoreVersionExperimentTreatmentLocalizations: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -196,12 +196,12 @@ export const appStoreVersionExperimentsTools: Tool[] = [
       path: "/v2/appStoreVersionExperiments/{id}/appStoreVersionExperimentTreatments",
       pathParams: undefined,
       query: {
-      "fields[appStoreVersionExperimentTreatments]": args["fields[appStoreVersionExperimentTreatments]"],
-      "fields[appStoreVersionExperiments]": args["fields[appStoreVersionExperiments]"],
-      "fields[appStoreVersionExperimentTreatmentLocalizations]": args["fields[appStoreVersionExperimentTreatmentLocalizations]"],
+      "fields[appStoreVersionExperimentTreatments]": args["fields_appStoreVersionExperimentTreatments"],
+      "fields[appStoreVersionExperiments]": args["fields_appStoreVersionExperiments"],
+      "fields[appStoreVersionExperimentTreatmentLocalizations]": args["fields_appStoreVersionExperimentTreatmentLocalizations"],
       "limit": args["limit"],
       "include": args["include"],
-      "limit[appStoreVersionExperimentTreatmentLocalizations]": args["limit[appStoreVersionExperimentTreatmentLocalizations]"],
+      "limit[appStoreVersionExperimentTreatmentLocalizations]": args["limit_appStoreVersionExperimentTreatmentLocalizations"],
     },
       body: undefined,
     });
@@ -231,12 +231,12 @@ export const appStoreVersionExperimentsTools: Tool[] = [
     name: "app_store_version_experiments_app_store_version_experiment_treatments_get_to_many_related",
     description: "[DEPRECATED] GET /v1/appStoreVersionExperiments/{id}/appStoreVersionExperimentTreatments (GET /v1/appStoreVersionExperiments/{id}/appStoreVersionExperimentTreatments)",
     input: z.object({
-    "fields[appStoreVersionExperimentTreatments]": z.union([z.array(z.enum(["name", "appIcon", "appIconName", "promotedDate", "appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatments").optional(),
-    "fields[appStoreVersionExperiments]": z.union([z.array(z.enum(["name", "trafficProportion", "state", "reviewRequired", "startDate", "endDate", "appStoreVersion", "appStoreVersionExperimentTreatments", "platform", "app", "latestControlVersion", "controlVersions"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperiments").optional(),
-    "fields[appStoreVersionExperimentTreatmentLocalizations]": z.union([z.array(z.enum(["locale", "appStoreVersionExperimentTreatment", "appScreenshotSets", "appPreviewSets"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations").optional(),
+    fields_appStoreVersionExperimentTreatments: z.union([z.array(z.enum(["name", "appIcon", "appIconName", "promotedDate", "appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatments").optional(),
+    fields_appStoreVersionExperiments: z.union([z.array(z.enum(["name", "trafficProportion", "state", "reviewRequired", "startDate", "endDate", "appStoreVersion", "appStoreVersionExperimentTreatments", "platform", "app", "latestControlVersion", "controlVersions"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperiments").optional(),
+    fields_appStoreVersionExperimentTreatmentLocalizations: z.union([z.array(z.enum(["locale", "appStoreVersionExperimentTreatment", "appScreenshotSets", "appPreviewSets"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appStoreVersionExperiment", "appStoreVersionExperimentV2", "appStoreVersionExperimentTreatmentLocalizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[appStoreVersionExperimentTreatmentLocalizations]": z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included)").optional(),
+    limit_appStoreVersionExperimentTreatmentLocalizations: z.coerce.number().int().describe("maximum number of related appStoreVersionExperimentTreatmentLocalizations returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -244,12 +244,12 @@ export const appStoreVersionExperimentsTools: Tool[] = [
       path: "/v1/appStoreVersionExperiments/{id}/appStoreVersionExperimentTreatments",
       pathParams: undefined,
       query: {
-      "fields[appStoreVersionExperimentTreatments]": args["fields[appStoreVersionExperimentTreatments]"],
-      "fields[appStoreVersionExperiments]": args["fields[appStoreVersionExperiments]"],
-      "fields[appStoreVersionExperimentTreatmentLocalizations]": args["fields[appStoreVersionExperimentTreatmentLocalizations]"],
+      "fields[appStoreVersionExperimentTreatments]": args["fields_appStoreVersionExperimentTreatments"],
+      "fields[appStoreVersionExperiments]": args["fields_appStoreVersionExperiments"],
+      "fields[appStoreVersionExperimentTreatmentLocalizations]": args["fields_appStoreVersionExperimentTreatmentLocalizations"],
       "limit": args["limit"],
       "include": args["include"],
-      "limit[appStoreVersionExperimentTreatmentLocalizations]": args["limit[appStoreVersionExperimentTreatmentLocalizations]"],
+      "limit[appStoreVersionExperimentTreatmentLocalizations]": args["limit_appStoreVersionExperimentTreatmentLocalizations"],
     },
       body: undefined,
     });

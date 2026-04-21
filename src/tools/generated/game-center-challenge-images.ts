@@ -31,7 +31,7 @@ export const gameCenterChallengeImagesTools: Tool[] = [
     name: "game_center_challenge_images_get_instance",
     description: "GET /v1/gameCenterChallengeImages/{id} (GET /v1/gameCenterChallengeImages/{id})",
     input: z.object({
-    "fields[gameCenterChallengeImages]": z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeImages").optional(),
+    fields_gameCenterChallengeImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeImages").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -39,7 +39,7 @@ export const gameCenterChallengeImagesTools: Tool[] = [
       path: "/v1/gameCenterChallengeImages/{id}",
       pathParams: undefined,
       query: {
-      "fields[gameCenterChallengeImages]": args["fields[gameCenterChallengeImages]"],
+      "fields[gameCenterChallengeImages]": args["fields_gameCenterChallengeImages"],
     },
       body: undefined,
     });

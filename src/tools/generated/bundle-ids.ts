@@ -14,20 +14,20 @@ export const bundleIdsTools: Tool[] = [
     name: "bundle_ids_get_collection",
     description: "GET /v1/bundleIds (GET /v1/bundleIds)",
     input: z.object({
-    "filter[name]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'name'").optional(),
-    "filter[platform]": z.union([z.array(z.enum(["IOS", "MAC_OS", "UNIVERSAL"])), z.string()]).describe("filter by attribute 'platform'").optional(),
-    "filter[identifier]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'identifier'").optional(),
-    "filter[seedId]": z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'seedId'").optional(),
-    "filter[id]": z.union([z.array(z.string()), z.string()]).describe("filter by id(s)").optional(),
+    filter_name: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'name'").optional(),
+    filter_platform: z.union([z.array(z.enum(["IOS", "MAC_OS", "UNIVERSAL"])), z.string()]).describe("filter by attribute 'platform'").optional(),
+    filter_identifier: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'identifier'").optional(),
+    filter_seedId: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'seedId'").optional(),
+    filter_id: z.union([z.array(z.string()), z.string()]).describe("filter by id(s)").optional(),
     sort: z.union([z.array(z.enum(["name", "-name", "platform", "-platform", "identifier", "-identifier", "seedId", "-seedId", "id", "-id"])), z.string()]).describe("comma-separated list of sort expressions; resources will be sorted as specified").optional(),
-    "fields[bundleIds]": z.union([z.array(z.enum(["name", "platform", "identifier", "seedId", "profiles", "bundleIdCapabilities", "app"])), z.string()]).describe("the fields to include for returned resources of type bundleIds").optional(),
-    "fields[profiles]": z.union([z.array(z.enum(["name", "platform", "profileType", "profileState", "profileContent", "uuid", "createdDate", "expirationDate", "bundleId", "devices", "certificates"])), z.string()]).describe("the fields to include for returned resources of type profiles").optional(),
-    "fields[bundleIdCapabilities]": z.union([z.array(z.enum(["capabilityType", "settings"])), z.string()]).describe("the fields to include for returned resources of type bundleIdCapabilities").optional(),
-    "fields[apps]": z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
+    fields_bundleIds: z.union([z.array(z.enum(["name", "platform", "identifier", "seedId", "profiles", "bundleIdCapabilities", "app"])), z.string()]).describe("the fields to include for returned resources of type bundleIds").optional(),
+    fields_profiles: z.union([z.array(z.enum(["name", "platform", "profileType", "profileState", "profileContent", "uuid", "createdDate", "expirationDate", "bundleId", "devices", "certificates"])), z.string()]).describe("the fields to include for returned resources of type profiles").optional(),
+    fields_bundleIdCapabilities: z.union([z.array(z.enum(["capabilityType", "settings"])), z.string()]).describe("the fields to include for returned resources of type bundleIdCapabilities").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["profiles", "bundleIdCapabilities", "app"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[bundleIdCapabilities]": z.coerce.number().int().describe("maximum number of related bundleIdCapabilities returned (when they are included)").optional(),
-    "limit[profiles]": z.coerce.number().int().describe("maximum number of related profiles returned (when they are included)").optional(),
+    limit_bundleIdCapabilities: z.coerce.number().int().describe("maximum number of related bundleIdCapabilities returned (when they are included)").optional(),
+    limit_profiles: z.coerce.number().int().describe("maximum number of related profiles returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -35,20 +35,20 @@ export const bundleIdsTools: Tool[] = [
       path: "/v1/bundleIds",
       pathParams: undefined,
       query: {
-      "filter[name]": args["filter[name]"],
-      "filter[platform]": args["filter[platform]"],
-      "filter[identifier]": args["filter[identifier]"],
-      "filter[seedId]": args["filter[seedId]"],
-      "filter[id]": args["filter[id]"],
+      "filter[name]": args["filter_name"],
+      "filter[platform]": args["filter_platform"],
+      "filter[identifier]": args["filter_identifier"],
+      "filter[seedId]": args["filter_seedId"],
+      "filter[id]": args["filter_id"],
       "sort": args["sort"],
-      "fields[bundleIds]": args["fields[bundleIds]"],
-      "fields[profiles]": args["fields[profiles]"],
-      "fields[bundleIdCapabilities]": args["fields[bundleIdCapabilities]"],
-      "fields[apps]": args["fields[apps]"],
+      "fields[bundleIds]": args["fields_bundleIds"],
+      "fields[profiles]": args["fields_profiles"],
+      "fields[bundleIdCapabilities]": args["fields_bundleIdCapabilities"],
+      "fields[apps]": args["fields_apps"],
       "limit": args["limit"],
       "include": args["include"],
-      "limit[bundleIdCapabilities]": args["limit[bundleIdCapabilities]"],
-      "limit[profiles]": args["limit[profiles]"],
+      "limit[bundleIdCapabilities]": args["limit_bundleIdCapabilities"],
+      "limit[profiles]": args["limit_profiles"],
     },
       body: undefined,
     });
@@ -76,13 +76,13 @@ export const bundleIdsTools: Tool[] = [
     name: "bundle_ids_get_instance",
     description: "GET /v1/bundleIds/{id} (GET /v1/bundleIds/{id})",
     input: z.object({
-    "fields[bundleIds]": z.union([z.array(z.enum(["name", "platform", "identifier", "seedId", "profiles", "bundleIdCapabilities", "app"])), z.string()]).describe("the fields to include for returned resources of type bundleIds").optional(),
-    "fields[profiles]": z.union([z.array(z.enum(["name", "platform", "profileType", "profileState", "profileContent", "uuid", "createdDate", "expirationDate", "bundleId", "devices", "certificates"])), z.string()]).describe("the fields to include for returned resources of type profiles").optional(),
-    "fields[bundleIdCapabilities]": z.union([z.array(z.enum(["capabilityType", "settings"])), z.string()]).describe("the fields to include for returned resources of type bundleIdCapabilities").optional(),
-    "fields[apps]": z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
+    fields_bundleIds: z.union([z.array(z.enum(["name", "platform", "identifier", "seedId", "profiles", "bundleIdCapabilities", "app"])), z.string()]).describe("the fields to include for returned resources of type bundleIds").optional(),
+    fields_profiles: z.union([z.array(z.enum(["name", "platform", "profileType", "profileState", "profileContent", "uuid", "createdDate", "expirationDate", "bundleId", "devices", "certificates"])), z.string()]).describe("the fields to include for returned resources of type profiles").optional(),
+    fields_bundleIdCapabilities: z.union([z.array(z.enum(["capabilityType", "settings"])), z.string()]).describe("the fields to include for returned resources of type bundleIdCapabilities").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
     include: z.union([z.array(z.enum(["profiles", "bundleIdCapabilities", "app"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[bundleIdCapabilities]": z.coerce.number().int().describe("maximum number of related bundleIdCapabilities returned (when they are included)").optional(),
-    "limit[profiles]": z.coerce.number().int().describe("maximum number of related profiles returned (when they are included)").optional(),
+    limit_bundleIdCapabilities: z.coerce.number().int().describe("maximum number of related bundleIdCapabilities returned (when they are included)").optional(),
+    limit_profiles: z.coerce.number().int().describe("maximum number of related profiles returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -90,13 +90,13 @@ export const bundleIdsTools: Tool[] = [
       path: "/v1/bundleIds/{id}",
       pathParams: undefined,
       query: {
-      "fields[bundleIds]": args["fields[bundleIds]"],
-      "fields[profiles]": args["fields[profiles]"],
-      "fields[bundleIdCapabilities]": args["fields[bundleIdCapabilities]"],
-      "fields[apps]": args["fields[apps]"],
+      "fields[bundleIds]": args["fields_bundleIds"],
+      "fields[profiles]": args["fields_profiles"],
+      "fields[bundleIdCapabilities]": args["fields_bundleIdCapabilities"],
+      "fields[apps]": args["fields_apps"],
       "include": args["include"],
-      "limit[bundleIdCapabilities]": args["limit[bundleIdCapabilities]"],
-      "limit[profiles]": args["limit[profiles]"],
+      "limit[bundleIdCapabilities]": args["limit_bundleIdCapabilities"],
+      "limit[profiles]": args["limit_profiles"],
     },
       body: undefined,
     });
@@ -154,7 +154,7 @@ export const bundleIdsTools: Tool[] = [
     name: "bundle_ids_app_get_to_one_related",
     description: "GET /v1/bundleIds/{id}/app (GET /v1/bundleIds/{id}/app)",
     input: z.object({
-    "fields[apps]": z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -162,7 +162,7 @@ export const bundleIdsTools: Tool[] = [
       path: "/v1/bundleIds/{id}/app",
       pathParams: undefined,
       query: {
-      "fields[apps]": args["fields[apps]"],
+      "fields[apps]": args["fields_apps"],
     },
       body: undefined,
     });
@@ -192,7 +192,7 @@ export const bundleIdsTools: Tool[] = [
     name: "bundle_ids_bundle_id_capabilities_get_to_many_related",
     description: "GET /v1/bundleIds/{id}/bundleIdCapabilities (GET /v1/bundleIds/{id}/bundleIdCapabilities)",
     input: z.object({
-    "fields[bundleIdCapabilities]": z.union([z.array(z.enum(["capabilityType", "settings"])), z.string()]).describe("the fields to include for returned resources of type bundleIdCapabilities").optional(),
+    fields_bundleIdCapabilities: z.union([z.array(z.enum(["capabilityType", "settings"])), z.string()]).describe("the fields to include for returned resources of type bundleIdCapabilities").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -201,7 +201,7 @@ export const bundleIdsTools: Tool[] = [
       path: "/v1/bundleIds/{id}/bundleIdCapabilities",
       pathParams: undefined,
       query: {
-      "fields[bundleIdCapabilities]": args["fields[bundleIdCapabilities]"],
+      "fields[bundleIdCapabilities]": args["fields_bundleIdCapabilities"],
       "limit": args["limit"],
     },
       body: undefined,
@@ -232,7 +232,7 @@ export const bundleIdsTools: Tool[] = [
     name: "bundle_ids_profiles_get_to_many_related",
     description: "GET /v1/bundleIds/{id}/profiles (GET /v1/bundleIds/{id}/profiles)",
     input: z.object({
-    "fields[profiles]": z.union([z.array(z.enum(["name", "platform", "profileType", "profileState", "profileContent", "uuid", "createdDate", "expirationDate", "bundleId", "devices", "certificates"])), z.string()]).describe("the fields to include for returned resources of type profiles").optional(),
+    fields_profiles: z.union([z.array(z.enum(["name", "platform", "profileType", "profileState", "profileContent", "uuid", "createdDate", "expirationDate", "bundleId", "devices", "certificates"])), z.string()]).describe("the fields to include for returned resources of type profiles").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -241,7 +241,7 @@ export const bundleIdsTools: Tool[] = [
       path: "/v1/bundleIds/{id}/profiles",
       pathParams: undefined,
       query: {
-      "fields[profiles]": args["fields[profiles]"],
+      "fields[profiles]": args["fields_profiles"],
       "limit": args["limit"],
     },
       body: undefined,

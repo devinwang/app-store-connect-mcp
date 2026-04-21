@@ -31,7 +31,7 @@ export const appClipHeaderImagesTools: Tool[] = [
     name: "app_clip_header_images_get_instance",
     description: "GET /v1/appClipHeaderImages/{id} (GET /v1/appClipHeaderImages/{id})",
     input: z.object({
-    "fields[appClipHeaderImages]": z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "uploadOperations", "assetDeliveryState", "appClipDefaultExperienceLocalization"])), z.string()]).describe("the fields to include for returned resources of type appClipHeaderImages").optional(),
+    fields_appClipHeaderImages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "uploadOperations", "assetDeliveryState", "appClipDefaultExperienceLocalization"])), z.string()]).describe("the fields to include for returned resources of type appClipHeaderImages").optional(),
     include: z.union([z.array(z.enum(["appClipDefaultExperienceLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const appClipHeaderImagesTools: Tool[] = [
       path: "/v1/appClipHeaderImages/{id}",
       pathParams: undefined,
       query: {
-      "fields[appClipHeaderImages]": args["fields[appClipHeaderImages]"],
+      "fields[appClipHeaderImages]": args["fields_appClipHeaderImages"],
       "include": args["include"],
     },
       body: undefined,

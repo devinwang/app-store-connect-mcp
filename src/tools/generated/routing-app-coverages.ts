@@ -31,7 +31,7 @@ export const routingAppCoveragesTools: Tool[] = [
     name: "routing_app_coverages_get_instance",
     description: "GET /v1/routingAppCoverages/{id} (GET /v1/routingAppCoverages/{id})",
     input: z.object({
-    "fields[routingAppCoverages]": z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "uploadOperations", "assetDeliveryState", "appStoreVersion"])), z.string()]).describe("the fields to include for returned resources of type routingAppCoverages").optional(),
+    fields_routingAppCoverages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "uploadOperations", "assetDeliveryState", "appStoreVersion"])), z.string()]).describe("the fields to include for returned resources of type routingAppCoverages").optional(),
     include: z.union([z.array(z.enum(["appStoreVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const routingAppCoveragesTools: Tool[] = [
       path: "/v1/routingAppCoverages/{id}",
       pathParams: undefined,
       query: {
-      "fields[routingAppCoverages]": args["fields[routingAppCoverages]"],
+      "fields[routingAppCoverages]": args["fields_routingAppCoverages"],
       "include": args["include"],
     },
       body: undefined,

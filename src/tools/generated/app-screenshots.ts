@@ -31,7 +31,7 @@ export const appScreenshotsTools: Tool[] = [
     name: "app_screenshots_get_instance",
     description: "GET /v1/appScreenshots/{id} (GET /v1/appScreenshots/{id})",
     input: z.object({
-    "fields[appScreenshots]": z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "assetToken", "assetType", "uploadOperations", "assetDeliveryState", "appScreenshotSet"])), z.string()]).describe("the fields to include for returned resources of type appScreenshots").optional(),
+    fields_appScreenshots: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "assetToken", "assetType", "uploadOperations", "assetDeliveryState", "appScreenshotSet"])), z.string()]).describe("the fields to include for returned resources of type appScreenshots").optional(),
     include: z.union([z.array(z.enum(["appScreenshotSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -40,7 +40,7 @@ export const appScreenshotsTools: Tool[] = [
       path: "/v1/appScreenshots/{id}",
       pathParams: undefined,
       query: {
-      "fields[appScreenshots]": args["fields[appScreenshots]"],
+      "fields[appScreenshots]": args["fields_appScreenshots"],
       "include": args["include"],
     },
       body: undefined,

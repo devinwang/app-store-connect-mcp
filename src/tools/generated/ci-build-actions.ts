@@ -14,8 +14,8 @@ export const ciBuildActionsTools: Tool[] = [
     name: "ci_build_actions_get_instance",
     description: "GET /v1/ciBuildActions/{id} (GET /v1/ciBuildActions/{id})",
     input: z.object({
-    "fields[ciBuildActions]": z.union([z.array(z.enum(["name", "actionType", "startedDate", "finishedDate", "issueCounts", "executionProgress", "completionStatus", "isRequiredToPass", "buildRun", "artifacts", "issues", "testResults"])), z.string()]).describe("the fields to include for returned resources of type ciBuildActions").optional(),
-    "fields[ciBuildRuns]": z.union([z.array(z.enum(["number", "createdDate", "startedDate", "finishedDate", "sourceCommit", "destinationCommit", "isPullRequestBuild", "issueCounts", "executionProgress", "completionStatus", "startReason", "cancelReason", "builds", "workflow", "product", "sourceBranchOrTag", "destinationBranch", "actions", "pullRequest"])), z.string()]).describe("the fields to include for returned resources of type ciBuildRuns").optional(),
+    fields_ciBuildActions: z.union([z.array(z.enum(["name", "actionType", "startedDate", "finishedDate", "issueCounts", "executionProgress", "completionStatus", "isRequiredToPass", "buildRun", "artifacts", "issues", "testResults"])), z.string()]).describe("the fields to include for returned resources of type ciBuildActions").optional(),
+    fields_ciBuildRuns: z.union([z.array(z.enum(["number", "createdDate", "startedDate", "finishedDate", "sourceCommit", "destinationCommit", "isPullRequestBuild", "issueCounts", "executionProgress", "completionStatus", "startReason", "cancelReason", "builds", "workflow", "product", "sourceBranchOrTag", "destinationBranch", "actions", "pullRequest"])), z.string()]).describe("the fields to include for returned resources of type ciBuildRuns").optional(),
     include: z.union([z.array(z.enum(["buildRun"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -24,8 +24,8 @@ export const ciBuildActionsTools: Tool[] = [
       path: "/v1/ciBuildActions/{id}",
       pathParams: undefined,
       query: {
-      "fields[ciBuildActions]": args["fields[ciBuildActions]"],
-      "fields[ciBuildRuns]": args["fields[ciBuildRuns]"],
+      "fields[ciBuildActions]": args["fields_ciBuildActions"],
+      "fields[ciBuildRuns]": args["fields_ciBuildRuns"],
       "include": args["include"],
     },
       body: undefined,
@@ -56,7 +56,7 @@ export const ciBuildActionsTools: Tool[] = [
     name: "ci_build_actions_artifacts_get_to_many_related",
     description: "GET /v1/ciBuildActions/{id}/artifacts (GET /v1/ciBuildActions/{id}/artifacts)",
     input: z.object({
-    "fields[ciArtifacts]": z.union([z.array(z.enum(["fileType", "fileName", "fileSize", "downloadUrl"])), z.string()]).describe("the fields to include for returned resources of type ciArtifacts").optional(),
+    fields_ciArtifacts: z.union([z.array(z.enum(["fileType", "fileName", "fileSize", "downloadUrl"])), z.string()]).describe("the fields to include for returned resources of type ciArtifacts").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -65,7 +65,7 @@ export const ciBuildActionsTools: Tool[] = [
       path: "/v1/ciBuildActions/{id}/artifacts",
       pathParams: undefined,
       query: {
-      "fields[ciArtifacts]": args["fields[ciArtifacts]"],
+      "fields[ciArtifacts]": args["fields_ciArtifacts"],
       "limit": args["limit"],
     },
       body: undefined,
@@ -92,14 +92,14 @@ export const ciBuildActionsTools: Tool[] = [
     name: "ci_build_actions_build_run_get_to_one_related",
     description: "GET /v1/ciBuildActions/{id}/buildRun (GET /v1/ciBuildActions/{id}/buildRun)",
     input: z.object({
-    "fields[ciBuildRuns]": z.union([z.array(z.enum(["number", "createdDate", "startedDate", "finishedDate", "sourceCommit", "destinationCommit", "isPullRequestBuild", "issueCounts", "executionProgress", "completionStatus", "startReason", "cancelReason", "builds", "workflow", "product", "sourceBranchOrTag", "destinationBranch", "actions", "pullRequest"])), z.string()]).describe("the fields to include for returned resources of type ciBuildRuns").optional(),
-    "fields[builds]": z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
-    "fields[ciWorkflows]": z.union([z.array(z.enum(["name", "description", "branchStartCondition", "tagStartCondition", "pullRequestStartCondition", "scheduledStartCondition", "manualBranchStartCondition", "manualTagStartCondition", "manualPullRequestStartCondition", "actions", "isEnabled", "isLockedForEditing", "clean", "containerFilePath", "lastModifiedDate", "product", "repository", "xcodeVersion", "macOsVersion", "buildRuns"])), z.string()]).describe("the fields to include for returned resources of type ciWorkflows").optional(),
-    "fields[ciProducts]": z.union([z.array(z.enum(["name", "createdDate", "productType", "app", "bundleId", "workflows", "primaryRepositories", "additionalRepositories", "buildRuns"])), z.string()]).describe("the fields to include for returned resources of type ciProducts").optional(),
-    "fields[scmGitReferences]": z.union([z.array(z.enum(["name", "canonicalName", "isDeleted", "kind", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmGitReferences").optional(),
-    "fields[scmPullRequests]": z.union([z.array(z.enum(["title", "number", "webUrl", "sourceRepositoryOwner", "sourceRepositoryName", "sourceBranchName", "destinationRepositoryOwner", "destinationRepositoryName", "destinationBranchName", "isClosed", "isCrossRepository", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmPullRequests").optional(),
+    fields_ciBuildRuns: z.union([z.array(z.enum(["number", "createdDate", "startedDate", "finishedDate", "sourceCommit", "destinationCommit", "isPullRequestBuild", "issueCounts", "executionProgress", "completionStatus", "startReason", "cancelReason", "builds", "workflow", "product", "sourceBranchOrTag", "destinationBranch", "actions", "pullRequest"])), z.string()]).describe("the fields to include for returned resources of type ciBuildRuns").optional(),
+    fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
+    fields_ciWorkflows: z.union([z.array(z.enum(["name", "description", "branchStartCondition", "tagStartCondition", "pullRequestStartCondition", "scheduledStartCondition", "manualBranchStartCondition", "manualTagStartCondition", "manualPullRequestStartCondition", "actions", "isEnabled", "isLockedForEditing", "clean", "containerFilePath", "lastModifiedDate", "product", "repository", "xcodeVersion", "macOsVersion", "buildRuns"])), z.string()]).describe("the fields to include for returned resources of type ciWorkflows").optional(),
+    fields_ciProducts: z.union([z.array(z.enum(["name", "createdDate", "productType", "app", "bundleId", "workflows", "primaryRepositories", "additionalRepositories", "buildRuns"])), z.string()]).describe("the fields to include for returned resources of type ciProducts").optional(),
+    fields_scmGitReferences: z.union([z.array(z.enum(["name", "canonicalName", "isDeleted", "kind", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmGitReferences").optional(),
+    fields_scmPullRequests: z.union([z.array(z.enum(["title", "number", "webUrl", "sourceRepositoryOwner", "sourceRepositoryName", "sourceBranchName", "destinationRepositoryOwner", "destinationRepositoryName", "destinationBranchName", "isClosed", "isCrossRepository", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmPullRequests").optional(),
     include: z.union([z.array(z.enum(["builds", "workflow", "product", "sourceBranchOrTag", "destinationBranch", "pullRequest"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[builds]": z.coerce.number().int().describe("maximum number of related builds returned (when they are included)").optional(),
+    limit_builds: z.coerce.number().int().describe("maximum number of related builds returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -107,14 +107,14 @@ export const ciBuildActionsTools: Tool[] = [
       path: "/v1/ciBuildActions/{id}/buildRun",
       pathParams: undefined,
       query: {
-      "fields[ciBuildRuns]": args["fields[ciBuildRuns]"],
-      "fields[builds]": args["fields[builds]"],
-      "fields[ciWorkflows]": args["fields[ciWorkflows]"],
-      "fields[ciProducts]": args["fields[ciProducts]"],
-      "fields[scmGitReferences]": args["fields[scmGitReferences]"],
-      "fields[scmPullRequests]": args["fields[scmPullRequests]"],
+      "fields[ciBuildRuns]": args["fields_ciBuildRuns"],
+      "fields[builds]": args["fields_builds"],
+      "fields[ciWorkflows]": args["fields_ciWorkflows"],
+      "fields[ciProducts]": args["fields_ciProducts"],
+      "fields[scmGitReferences]": args["fields_scmGitReferences"],
+      "fields[scmPullRequests]": args["fields_scmPullRequests"],
       "include": args["include"],
-      "limit[builds]": args["limit[builds]"],
+      "limit[builds]": args["limit_builds"],
     },
       body: undefined,
     });
@@ -144,7 +144,7 @@ export const ciBuildActionsTools: Tool[] = [
     name: "ci_build_actions_issues_get_to_many_related",
     description: "GET /v1/ciBuildActions/{id}/issues (GET /v1/ciBuildActions/{id}/issues)",
     input: z.object({
-    "fields[ciIssues]": z.union([z.array(z.enum(["issueType", "message", "fileSource", "category"])), z.string()]).describe("the fields to include for returned resources of type ciIssues").optional(),
+    fields_ciIssues: z.union([z.array(z.enum(["issueType", "message", "fileSource", "category"])), z.string()]).describe("the fields to include for returned resources of type ciIssues").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -153,7 +153,7 @@ export const ciBuildActionsTools: Tool[] = [
       path: "/v1/ciBuildActions/{id}/issues",
       pathParams: undefined,
       query: {
-      "fields[ciIssues]": args["fields[ciIssues]"],
+      "fields[ciIssues]": args["fields_ciIssues"],
       "limit": args["limit"],
     },
       body: undefined,
@@ -184,7 +184,7 @@ export const ciBuildActionsTools: Tool[] = [
     name: "ci_build_actions_test_results_get_to_many_related",
     description: "GET /v1/ciBuildActions/{id}/testResults (GET /v1/ciBuildActions/{id}/testResults)",
     input: z.object({
-    "fields[ciTestResults]": z.union([z.array(z.enum(["className", "name", "status", "fileSource", "message", "destinationTestResults"])), z.string()]).describe("the fields to include for returned resources of type ciTestResults").optional(),
+    fields_ciTestResults: z.union([z.array(z.enum(["className", "name", "status", "fileSource", "message", "destinationTestResults"])), z.string()]).describe("the fields to include for returned resources of type ciTestResults").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
   }).strict(),
     handler: async (args: Any) => {
@@ -193,7 +193,7 @@ export const ciBuildActionsTools: Tool[] = [
       path: "/v1/ciBuildActions/{id}/testResults",
       pathParams: undefined,
       query: {
-      "fields[ciTestResults]": args["fields[ciTestResults]"],
+      "fields[ciTestResults]": args["fields_ciTestResults"],
       "limit": args["limit"],
     },
       body: undefined,

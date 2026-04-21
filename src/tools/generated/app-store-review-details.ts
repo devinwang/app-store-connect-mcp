@@ -31,10 +31,10 @@ export const appStoreReviewDetailsTools: Tool[] = [
     name: "app_store_review_details_get_instance",
     description: "GET /v1/appStoreReviewDetails/{id} (GET /v1/appStoreReviewDetails/{id})",
     input: z.object({
-    "fields[appStoreReviewDetails]": z.union([z.array(z.enum(["contactFirstName", "contactLastName", "contactPhone", "contactEmail", "demoAccountName", "demoAccountPassword", "demoAccountRequired", "notes", "appStoreVersion", "appStoreReviewAttachments"])), z.string()]).describe("the fields to include for returned resources of type appStoreReviewDetails").optional(),
-    "fields[appStoreReviewAttachments]": z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "uploadOperations", "assetDeliveryState", "appStoreReviewDetail"])), z.string()]).describe("the fields to include for returned resources of type appStoreReviewAttachments").optional(),
+    fields_appStoreReviewDetails: z.union([z.array(z.enum(["contactFirstName", "contactLastName", "contactPhone", "contactEmail", "demoAccountName", "demoAccountPassword", "demoAccountRequired", "notes", "appStoreVersion", "appStoreReviewAttachments"])), z.string()]).describe("the fields to include for returned resources of type appStoreReviewDetails").optional(),
+    fields_appStoreReviewAttachments: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "uploadOperations", "assetDeliveryState", "appStoreReviewDetail"])), z.string()]).describe("the fields to include for returned resources of type appStoreReviewAttachments").optional(),
     include: z.union([z.array(z.enum(["appStoreVersion", "appStoreReviewAttachments"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
-    "limit[appStoreReviewAttachments]": z.coerce.number().int().describe("maximum number of related appStoreReviewAttachments returned (when they are included)").optional(),
+    limit_appStoreReviewAttachments: z.coerce.number().int().describe("maximum number of related appStoreReviewAttachments returned (when they are included)").optional(),
   }).strict(),
     handler: async (args: Any) => {
     const res = await ascRequest({
@@ -42,10 +42,10 @@ export const appStoreReviewDetailsTools: Tool[] = [
       path: "/v1/appStoreReviewDetails/{id}",
       pathParams: undefined,
       query: {
-      "fields[appStoreReviewDetails]": args["fields[appStoreReviewDetails]"],
-      "fields[appStoreReviewAttachments]": args["fields[appStoreReviewAttachments]"],
+      "fields[appStoreReviewDetails]": args["fields_appStoreReviewDetails"],
+      "fields[appStoreReviewAttachments]": args["fields_appStoreReviewAttachments"],
       "include": args["include"],
-      "limit[appStoreReviewAttachments]": args["limit[appStoreReviewAttachments]"],
+      "limit[appStoreReviewAttachments]": args["limit_appStoreReviewAttachments"],
     },
       body: undefined,
     });
@@ -92,8 +92,8 @@ export const appStoreReviewDetailsTools: Tool[] = [
     name: "app_store_review_details_app_store_review_attachments_get_to_many_related",
     description: "GET /v1/appStoreReviewDetails/{id}/appStoreReviewAttachments (GET /v1/appStoreReviewDetails/{id}/appStoreReviewAttachments)",
     input: z.object({
-    "fields[appStoreReviewAttachments]": z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "uploadOperations", "assetDeliveryState", "appStoreReviewDetail"])), z.string()]).describe("the fields to include for returned resources of type appStoreReviewAttachments").optional(),
-    "fields[appStoreReviewDetails]": z.union([z.array(z.enum(["contactFirstName", "contactLastName", "contactPhone", "contactEmail", "demoAccountName", "demoAccountPassword", "demoAccountRequired", "notes", "appStoreVersion", "appStoreReviewAttachments"])), z.string()]).describe("the fields to include for returned resources of type appStoreReviewDetails").optional(),
+    fields_appStoreReviewAttachments: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "uploadOperations", "assetDeliveryState", "appStoreReviewDetail"])), z.string()]).describe("the fields to include for returned resources of type appStoreReviewAttachments").optional(),
+    fields_appStoreReviewDetails: z.union([z.array(z.enum(["contactFirstName", "contactLastName", "contactPhone", "contactEmail", "demoAccountName", "demoAccountPassword", "demoAccountRequired", "notes", "appStoreVersion", "appStoreReviewAttachments"])), z.string()]).describe("the fields to include for returned resources of type appStoreReviewDetails").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appStoreReviewDetail"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -103,8 +103,8 @@ export const appStoreReviewDetailsTools: Tool[] = [
       path: "/v1/appStoreReviewDetails/{id}/appStoreReviewAttachments",
       pathParams: undefined,
       query: {
-      "fields[appStoreReviewAttachments]": args["fields[appStoreReviewAttachments]"],
-      "fields[appStoreReviewDetails]": args["fields[appStoreReviewDetails]"],
+      "fields[appStoreReviewAttachments]": args["fields_appStoreReviewAttachments"],
+      "fields[appStoreReviewDetails]": args["fields_appStoreReviewDetails"],
       "limit": args["limit"],
       "include": args["include"],
     },

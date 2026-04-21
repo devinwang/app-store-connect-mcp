@@ -23,26 +23,24 @@ jobs:
       - run: npm run typecheck
       - run: npm run build
       - name: Extract release notes for this version
-        id: notes
         run: |
           tag="${GITHUB_REF#refs/tags/}"
           version="${tag#v}"
-          # Pull the section for this version from CHANGELOG.md.
-          # Starts at "## [<version>]" and runs until the next "## [".
-          notes=$(awk -v ver="$version" '
+          # Pull the section for this version from CHANGELOG.md into a file.
+          # We write to a file (not a workflow output) so the content never
+          # passes through shell interpolation — release notes contain
+          # backticks, brackets, parentheses, and other shell metachars.
+          awk -v ver="$version" '
             BEGIN { capturing=0 }
             $0 ~ "^## \\[" ver "\\]" { capturing=1; print; next }
             capturing && $0 ~ "^## \\[" { capturing=0 }
             capturing { print }
-          ' CHANGELOG.md)
-          if [ -z "$notes" ]; then
-            notes="Release $tag"
+          ' CHANGELOG.md > /tmp/release-notes.md
+          if [ ! -s /tmp/release-notes.md ]; then
+            echo "Release $tag" > /tmp/release-notes.md
           fi
-          {
-            echo "notes<<EOF"
-            echo "$notes"
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
+          echo "=== Release notes preview ==="
+          head -50 /tmp/release-notes.md
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -50,5 +48,5 @@ jobs:
           tag="${GITHUB_REF#refs/tags/}"
           gh release create "$tag" \
             --title "$tag" \
-            --notes "${{ steps.notes.outputs.notes }}" \
+            --notes-file /tmp/release-notes.md \
             --verify-tag

@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: "npm"
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run build
+      - name: Extract release notes for this version
+        id: notes
+        run: |
+          tag="${GITHUB_REF#refs/tags/}"
+          version="${tag#v}"
+          # Pull the section for this version from CHANGELOG.md.
+          # Starts at "## [<version>]" and runs until the next "## [".
+          notes=$(awk -v ver="$version" '
+            BEGIN { capturing=0 }
+            $0 ~ "^## \\[" ver "\\]" { capturing=1; print; next }
+            capturing && $0 ~ "^## \\[" { capturing=0 }
+            capturing { print }
+          ' CHANGELOG.md)
+          if [ -z "$notes" ]; then
+            notes="Release $tag"
+          fi
+          {
+            echo "notes<<EOF"
+            echo "$notes"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag="${GITHUB_REF#refs/tags/}"
+          gh release create "$tag" \
+            --title "$tag" \
+            --notes "${{ steps.notes.outputs.notes }}" \
+            --verify-tag

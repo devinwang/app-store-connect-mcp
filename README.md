@@ -1,12 +1,17 @@
 # app-store-connect-mcp
 
 > **The complete Model Context Protocol (MCP) server for Apple's App Store Connect API.**
-> 1200+ tools. 100% coverage of every non-deprecated operation in Apple's official OpenAPI spec. Works with Claude, Cursor, VS Code Copilot, Codex CLI, Gemini CLI, Windsurf, or any MCP client.
+> **1221 tools. 100% coverage** of every non-deprecated operation in Apple's official OpenAPI spec — TestFlight, Xcode Cloud, Game Center, App Clips, in-app purchases, subscriptions, review submissions, analytics, provisioning, and everything else Apple exposes. Works with Claude, Cursor, VS Code Copilot, Codex CLI, Gemini CLI, Windsurf, or any MCP client.
 
+[![CI](https://github.com/devinwang/app-store-connect-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/devinwang/app-store-connect-mcp/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-green.svg)](package.json)
+[![Tools: 1221](https://img.shields.io/badge/tools-1221-informational.svg)](#feature-matrix)
 [![Spec: 4.3](https://img.shields.io/badge/App%20Store%20Connect%20API-4.3-000000.svg)](https://developer.apple.com/documentation/appstoreconnectapi)
 [![MCP](https://img.shields.io/badge/MCP-compatible-9B59B6.svg)](https://modelcontextprotocol.io/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6.svg)](tsconfig.json)
+
+**See also:** [`google-play-developer-mcp`](https://github.com/devinwang/google-play-developer-mcp) — the same philosophy for the Google Play Console.
 
 ---
 

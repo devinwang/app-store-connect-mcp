@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.4] — 2026-04-26
+
+The 0.1.3 publish was also rejected by npm — the same author who published `appstore-connect-mcp` had also reserved `appstore-connect-mcp-server`, and our `app-store-connect-mcp-server` was flagged as too similar.
+
+### Changed
+
+- **npm package name**: `app-store-connect-mcp-server` → **`apple-app-store-connect-mcp`**. The `apple-` prefix adds enough distinctiveness from `appstore-connect-mcp{,-server}` to clear the npm typosquatting filter, while keeping the verbatim `app-store-connect-mcp` substring for SEO.
+- README install commands and npm badges updated.
+- CLI command name (`bin`) stays `app-store-connect-mcp`.
+
 ## [0.1.3] — 2026-04-26
 
 First version actually published to npm. 0.1.2's tag-triggered publish was rejected by npm with a 403:

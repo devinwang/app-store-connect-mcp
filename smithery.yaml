@@ -1,0 +1,51 @@
+# Smithery configuration — https://smithery.ai/docs
+#
+# This server is a local stdio MCP launched via `npx -y` against the
+# published npm package. Auth (App Store Connect API key) is registered
+# inside the session via the `accounts_add` tool call, so there are no
+# env vars or user_config to prompt for.
+
+name: apple-app-store-connect-mcp
+displayName: Apple App Store Connect MCP
+description: |
+  The complete MCP server for Apple's App Store Connect API — 1221 tools,
+  100% coverage of every non-deprecated operation. TestFlight, Xcode Cloud,
+  Game Center, App Clips, in-app purchases, subscriptions, analytics,
+  review submissions, provisioning.
+
+repository:
+  type: git
+  url: https://github.com/devinwang/app-store-connect-mcp
+
+homepage: https://github.com/devinwang/app-store-connect-mcp#readme
+documentation: https://github.com/devinwang/app-store-connect-mcp#readme
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties: {}
+    required: []
+  commandFunction: |-
+    (config) => ({
+      command: 'npx',
+      args: ['-y', 'apple-app-store-connect-mcp']
+    })
+
+tags:
+  - apple
+  - app-store-connect
+  - testflight
+  - xcode-cloud
+  - game-center
+  - app-clips
+  - in-app-purchases
+  - subscriptions
+  - ios
+  - mcp
+  - mcp-server
+
+metadata:
+  author: Devin Wang
+  license: MIT
+  node_version: ">=18"

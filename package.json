@@ -1,6 +1,6 @@
 {
-  "name": "app-store-connect-mcp",
-  "version": "0.1.2",
+  "name": "app-store-connect-mcp-server",
+  "version": "0.1.3",
   "description": "Complete Model Context Protocol (MCP) server for Apple's App Store Connect API — 1221 tools, 100% coverage. TestFlight, Xcode Cloud, Game Center, App Clips, in-app purchases, subscriptions, analytics, review submissions, provisioning. Works with Claude, Cursor, VS Code, Codex, Gemini CLI, Windsurf, or any MCP client.",
   "keywords": [
     "mcp",

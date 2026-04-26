@@ -3,8 +3,8 @@
 > **The complete Model Context Protocol (MCP) server for Apple's App Store Connect API.**
 > **1221 tools. 100% coverage** of every non-deprecated operation in Apple's official OpenAPI spec — TestFlight, Xcode Cloud, Game Center, App Clips, in-app purchases, subscriptions, review submissions, analytics, provisioning, and everything else Apple exposes. Works with Claude, Cursor, VS Code Copilot, Codex CLI, Gemini CLI, Windsurf, or any MCP client.
 
-[![npm version](https://img.shields.io/npm/v/app-store-connect-mcp.svg?color=cb3837&logo=npm)](https://www.npmjs.com/package/app-store-connect-mcp)
-[![npm downloads](https://img.shields.io/npm/dm/app-store-connect-mcp.svg)](https://www.npmjs.com/package/app-store-connect-mcp)
+[![npm version](https://img.shields.io/npm/v/app-store-connect-mcp-server.svg?color=cb3837&logo=npm)](https://www.npmjs.com/package/app-store-connect-mcp-server)
+[![npm downloads](https://img.shields.io/npm/dm/app-store-connect-mcp-server.svg)](https://www.npmjs.com/package/app-store-connect-mcp-server)
 [![CI](https://github.com/devinwang/app-store-connect-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/devinwang/app-store-connect-mcp/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-green.svg)](package.json)
@@ -98,17 +98,19 @@ Run `auth_status`, then `apps_get_collection` to verify end-to-end.
 
 ## Quick start
 
-Install directly from GitHub (npm publish coming soon):
+Install from npm:
 
 ```bash
-npm install -g github:devinwang/app-store-connect-mcp
+npm install -g app-store-connect-mcp-server
 ```
 
 Or run without installing:
 
 ```bash
-npx github:devinwang/app-store-connect-mcp
+npx -y app-store-connect-mcp-server
 ```
+
+> **About the package name.** The package on npm is `app-store-connect-mcp-server`. After install, the command on your `$PATH` is `app-store-connect-mcp` (the bin name) — that's what your MCP client config below points at.
 
 Then add to your MCP client config (example, Claude Code):
 

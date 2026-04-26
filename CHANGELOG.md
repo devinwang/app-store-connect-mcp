@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.2] — 2026-04-26
+
+First version published to npm. Pre-publish polish only — no behaviour change.
+
+### Build
+
+- `postbuild` step now `chmod +x dist/index.js` so the `bin` entry stays executable on clean builds (relying on a one-off manual `chmod` was fragile).
+- CI/Release workflow: tag push (`v*`) now publishes to npm with [provenance](https://docs.npmjs.com/generating-provenance-statements) (sigstore) attached, gated on a tag-vs-`package.json` version match check, and cuts a matching GitHub Release with the CHANGELOG section as notes.
+- `main` is now branch-protected: PR + CI required, no force push, no delete, linear history.
+
+### Metadata
+
+- Tightened `description` so the high-value search terms (App Store Connect, MCP, TestFlight, Xcode Cloud, Game Center, App Clips) fit inside the first 150 characters npm shows in search results.
+- `keywords`: added `mcp-server`, `vscode`, `gemini-cli`, `windsurf`, `agentic`, `ai-assistant`, `automation`. Removed `asc` (too obscure) and `llm` (too generic).
+- README: added `npm version` and `npm downloads` badges.
+
 ## [0.1.1] — 2026-04-21
 
 Bug fixes. Two codegen defects shipped in 0.1.0 that made tool schemas

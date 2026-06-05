@@ -340,11 +340,13 @@ app_screenshots_create_instance
       relationships:
         appScreenshotSet:
           data: { type: appScreenshotSets, id: <SET_ID> }
-# → response includes `data.attributes.uploadOperations`
+# → response includes the new `data.id` (asset is now AWAITING_UPLOAD)
 
 asset_upload_file
   filePath: /abs/path/to/screenshot.png
-  uploadOperations: [...]
+  assetType: appScreenshots     # preferred: tool fetches uploadOperations
+  assetId: <SCREENSHOT_ID>      #           server-side (signature stays server-side)
+# (legacy: pass `uploadOperations: [...]` from the create response instead)
 
 app_screenshots_update_instance
   id: <SCREENSHOT_ID>

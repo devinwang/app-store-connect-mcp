@@ -46,31 +46,79 @@ export const overrideTools: Tool[] = [
   defineTool({
     name: "asset_upload_file",
     description:
-      "Upload a local binary file to App Store Connect, following the 3-step asset protocol. Feed the `uploadOperations` array that the relevant 'create' endpoint returned (app screenshots, previews, review attachments, IAP review screenshots, app clip header images, game center images, etc.), and a path to the source file. This performs step 2 (PUTting the chunks). Then call the resource's 'update' endpoint with `{ uploaded: true }` to finalise (step 3).",
+      "Upload a local binary file to App Store Connect, following the 3-step asset protocol (screenshots, previews, review attachments, IAP review screenshots, app clip header images, game center images, etc.). This is step 2 (PUTting the chunks); afterwards call the resource's 'update' endpoint with `{ uploaded: true }` to finalise (step 3). PREFERRED usage: pass `assetType` + `assetId` (the just-created asset) and the tool fetches the pre-signed `uploadOperations` server-side — the S3 upload signature never transits MCP output, so it can't be corrupted by secret redaction. Passing `uploadOperations` directly still works but is fragile: a signature relayed through MCP output may have been redacted.",
     input: z
       .object({
         filePath: z
           .string()
           .describe("Absolute path to the file on the local disk."),
+        assetType: z
+          .string()
+          .optional()
+          .describe(
+            "PREFERRED (with assetId). The asset resource collection to fetch fresh uploadOperations from, e.g. 'appScreenshots', 'appPreviews', 'appStoreReviewAttachments', 'inAppPurchaseAppStoreReviewScreenshots', 'appClipHeaderImages', 'gameCenterAchievementImages'. The tool GETs /v1/{assetType}/{assetId}?fields[{assetType}]=uploadOperations itself.",
+          ),
+        assetId: z
+          .string()
+          .optional()
+          .describe(
+            "PREFERRED (with assetType). Id of the freshly-created AWAITING_UPLOAD asset, e.g. the id returned by app_screenshots_create_instance. Call this BEFORE committing { uploaded: true }.",
+          ),
         uploadOperations: z
           .array(uploadOperationSchema)
-          .min(1)
+          .optional()
           .describe(
-            "The `uploadOperations` array returned by the resource's 'create' endpoint.",
+            "LEGACY fallback. The `uploadOperations` array returned by the resource's 'create' call. Prefer assetType + assetId, which avoids relaying the (redaction-prone) S3 signature through MCP output.",
           ),
       })
-      .strict(),
-    handler: async ({ filePath, uploadOperations }) => {
+      .strict()
+      .refine(
+        (v) =>
+          (Boolean(v.assetType) && Boolean(v.assetId)) ||
+          (Array.isArray(v.uploadOperations) && v.uploadOperations.length > 0),
+        {
+          message:
+            "Provide either assetType + assetId (preferred) or a non-empty uploadOperations array.",
+        },
+      ),
+    handler: async ({ filePath, assetType, assetId, uploadOperations }) => {
       if (!fs.existsSync(filePath)) {
         throw new Error(`File not found: ${filePath}`);
       }
+
+      // Preferred path: fetch the pre-signed operations server-side so the S3
+      // signature never round-trips through MCP output (where redaction would
+      // corrupt it). uploadOperations are only populated while the asset is in
+      // AWAITING_UPLOAD — i.e. after `create` and before `{ uploaded: true }`.
+      type Op = z.infer<typeof uploadOperationSchema>;
+      let ops: Op[] = uploadOperations ?? [];
+      if (assetType && assetId) {
+        const res = await ascRequest<{
+          data?: { attributes?: { uploadOperations?: Op[] } };
+        }>({
+          method: "GET",
+          path: "/v1/{assetType}/{assetId}",
+          pathParams: { assetType, assetId },
+          query: { fields: { [assetType]: "uploadOperations" } },
+        });
+        ops = res.body?.data?.attributes?.uploadOperations ?? [];
+        if (ops.length === 0) {
+          throw new Error(
+            `No uploadOperations on /v1/${assetType}/${assetId}: the asset is not AWAITING_UPLOAD (already uploaded?), or the id/type is wrong. Create the asset, then call asset_upload_file before committing { uploaded: true }.`,
+          );
+        }
+      }
+      if (ops.length === 0) {
+        throw new Error("No uploadOperations to execute.");
+      }
+
       const file = fs.readFileSync(filePath);
       const results: Array<{
         partNumber: number | null;
         status: number;
         etag: string | null;
       }> = [];
-      for (const op of uploadOperations) {
+      for (const op of ops) {
         const chunk = file.subarray(op.offset, op.offset + op.length);
         const headers: Record<string, string> = {
           "content-length": String(chunk.length),

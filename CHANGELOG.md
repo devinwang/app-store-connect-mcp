@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] — 2026-06-05
+
+Fixes a regression that broke **all binary asset uploads** (screenshots, previews, review attachments, App Clip header images, Game Center images, routing app coverages) and hardens the upload flow against it recurring.
+
+### Fixed
+
+- **Asset uploads failed with HTTP 403 due to over-broad secret redaction.** The output redactor's generic `\b[a-f0-9]{40,}\b` "long hex" catch-all matched the `X-Amz-Signature` inside the pre-signed S3 `uploadOperations[].url` returned by every asset `create` call, rewriting it to `[REDACTED HEX]`. Because `asset_upload_file` PUTs to that exact URL, the corrupted signature made every upload 403. The long-hex pattern has been **removed** — it protected nothing (the S3 signature is a short-lived, single-asset, write-only token, not a credential) while silently breaking the documented 3-step upload protocol. The real secrets (the ASC JWT and the `.p8` private key) remain covered by the JWT / PEM / Bearer patterns plus the `redactDeep` field-name rules, and never appear in API response bodies in the first place.
+
+### Added
+
+- **`asset_upload_file` can fetch upload operations server-side.** Pass `assetType` (e.g. `appScreenshots`) + `assetId` (the freshly-created asset) instead of `uploadOperations`; the tool issues `GET /v1/{assetType}/{assetId}?fields[{assetType}]=uploadOperations` itself. The pre-signed signature is used entirely inside the server process and never transits MCP output, so uploads are immune to redaction regardless of the fix above. This is now the **preferred** invocation.
+
+### Changed
+
+- `asset_upload_file` input: `uploadOperations` is now **optional**. Provide either `assetType` + `assetId` (preferred) or a non-empty `uploadOperations` array (legacy fallback).
+- The output redactor no longer redacts bare 40+ character hex strings (which also caught git commit SHAs and S3 signatures). It now redacts only the specific JWT / PEM / Bearer credential shapes.
+- README screenshot-upload example updated to the `assetType` + `assetId` flow.
+
 ## [0.1.4] — 2026-04-26
 
 The 0.1.3 publish was also rejected by npm — the same author who published `appstore-connect-mcp` had also reserved `appstore-connect-mcp-server`, and our `app-store-connect-mcp-server` was flagged as too similar.

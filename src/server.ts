@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import {
   CallToolRequestSchema,
@@ -5,11 +6,27 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 import { allTools, toolByName } from "./tools/index.js";
 
+/**
+ * Read the version from package.json rather than hard-coding it — a literal
+ * here silently drifts from the published version on every release. The path
+ * resolves to the package root from both `src/` and the compiled `dist/`.
+ */
+function packageVersion(): string {
+  try {
+    const pkg = JSON.parse(
+      readFileSync(new URL("../package.json", import.meta.url), "utf8"),
+    ) as { version?: string };
+    return pkg.version ?? "0.0.0";
+  } catch {
+    return "0.0.0";
+  }
+}
+
 export function createServer(): Server {
   const server = new Server(
     {
       name: "app-store-connect-mcp",
-      version: "0.1.1",
+      version: packageVersion(),
     },
     {
       capabilities: {

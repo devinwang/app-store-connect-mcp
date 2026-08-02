@@ -2,6 +2,8 @@
  * Produces the Authorization header for outgoing ASC API calls.
  *
  * Resolution order:
+ *   0. `ASC_ACCOUNT`, if set, pins this process to one registered account and
+ *      overrides the global `currentAccount`. See `pinnedAccountName`.
  *   1. An account registered via `accounts_add` (preferred).
  *   2. Fallback: env vars `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_PRIVATE_KEY_PATH`.
  *      Only for compatibility with `zelentsov-dev/asc-mcp`. Emits a
@@ -9,7 +11,11 @@
  */
 
 import fs from "node:fs";
-import { getCurrentAccount, type Account } from "./account-store.js";
+import {
+  getCurrentAccount,
+  pinnedAccountName,
+  type Account,
+} from "./account-store.js";
 import { getToken } from "./token-cache.js";
 
 let envWarned = false;
@@ -67,6 +73,8 @@ export async function authorizationHeader(): Promise<string> {
  */
 export async function authStatus(): Promise<{
   source: "accounts" | "env";
+  account: string | null;
+  pinnedTo: string | null;
   keyId: string;
   issuerId: string;
   keyFileExists: boolean;
@@ -74,11 +82,14 @@ export async function authStatus(): Promise<{
   expiresAt: number | null;
   error?: string;
 }> {
+  const pinnedTo = pinnedAccountName();
   const registered = getCurrentAccount();
   const account = registered ?? envAccount();
   if (!account) {
     return {
       source: "accounts",
+      account: null,
+      pinnedTo,
       keyId: "",
       issuerId: "",
       keyFileExists: false,
@@ -92,6 +103,8 @@ export async function authStatus(): Promise<{
   if (!keyFileExists) {
     return {
       source,
+      account: account.name === "__env__" ? null : account.name,
+      pinnedTo,
       keyId: account.keyId,
       issuerId: account.issuerId,
       keyFileExists: false,
@@ -108,6 +121,8 @@ export async function authStatus(): Promise<{
     const st = cacheStatus();
     return {
       source,
+      account: account.name === "__env__" ? null : account.name,
+      pinnedTo,
       keyId: account.keyId,
       issuerId: account.issuerId,
       keyFileExists: true,
@@ -117,6 +132,8 @@ export async function authStatus(): Promise<{
   } catch (err) {
     return {
       source,
+      account: account.name === "__env__" ? null : account.name,
+      pinnedTo,
       keyId: account.keyId,
       issuerId: account.issuerId,
       keyFileExists: true,

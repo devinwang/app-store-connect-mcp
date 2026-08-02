@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- **`ASC_ACCOUNT` pins a server process to one registered account.** `currentAccount` in
+  `accounts.json` is a single global value shared by every MCP client on the machine, so an
+  `accounts_switch` in one project silently retargets all the others — an assistant working in
+  project A could reach account B's apps. Setting `ASC_ACCOUNT=<name>` in a client's server config
+  resolves every call to that account regardless of `currentAccount`. A pinned server refuses
+  `accounts_switch` to a different account and refuses `accounts_remove` of the pinned one, and an
+  unknown `ASC_ACCOUNT` is a hard error rather than a silent fallback. Give each project its own
+  pin and no project depends on the shared global.
+
+### Changed
+
+- `auth_status` and `accounts_current` now report `account` (the resolved account name) and
+  `pinnedTo`, so which account a session is on is always visible. `accounts_current` returns
+  `{ account, pinnedTo }` where it previously returned the account object directly.
+
 ## [0.2.0] — 2026-06-05
 
 Fixes a regression that broke **all binary asset uploads** (screenshots, previews, review attachments, App Clip header images, Game Center images, routing app coverages) and hardens the upload flow against it recurring.

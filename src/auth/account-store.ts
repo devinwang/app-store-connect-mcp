@@ -9,10 +9,10 @@
  *
  * `accounts.json` shape:
  *   {
- *     "currentAccount": "kairis" | null,
+ *     "currentAccount": "acme-app" | null,
  *     "accounts": {
- *       "kairis": {
- *         "name": "kairis",
+ *       "acme-app": {
+ *         "name": "acme-app",
  *         "keyId": "AB12CD34EF",
  *         "issuerId": "69a6de70-...",
  *         "keyFile": "/Users/you/.config/app-store-connect-mcp/AuthKey_<KEYID>.p8",
@@ -87,8 +87,30 @@ export function saveAccounts(store: AccountsFile): void {
   }
 }
 
+/**
+ * A process pinned to one account via `ASC_ACCOUNT`. `currentAccount` in
+ * `accounts.json` is a single global value shared by every MCP client on the
+ * machine, so a `accounts_switch` in one project silently retargets every
+ * other one. Pinning makes the choice per-process: set `ASC_ACCOUNT` in the
+ * client's server config and that client can only ever reach that account.
+ */
+export function pinnedAccountName(): string | null {
+  const pin = process.env.ASC_ACCOUNT?.trim();
+  return pin ? pin : null;
+}
+
 export function getCurrentAccount(): Account | null {
   const store = loadAccounts();
+  const pin = pinnedAccountName();
+  if (pin) {
+    const acc = store.accounts[pin];
+    if (!acc) {
+      throw new Error(
+        `ASC_ACCOUNT is pinned to '${pin}', but no such account is registered. Run \`accounts_add\` with name '${pin}', or correct ASC_ACCOUNT in your MCP client config.`,
+      );
+    }
+    return acc;
+  }
   if (!store.currentAccount) return null;
   return store.accounts[store.currentAccount] ?? null;
 }
@@ -116,6 +138,12 @@ export function addAccount(account: Account): void {
 }
 
 export function removeAccount(name: string): void {
+  const pin = pinnedAccountName();
+  if (pin === name) {
+    throw new Error(
+      `Account '${name}' is the pinned account (ASC_ACCOUNT) for this server and cannot be removed from here.`,
+    );
+  }
   const store = loadAccounts();
   delete store.accounts[name];
   if (store.currentAccount === name) {
@@ -126,6 +154,12 @@ export function removeAccount(name: string): void {
 }
 
 export function switchAccount(name: string): void {
+  const pin = pinnedAccountName();
+  if (pin && pin !== name) {
+    throw new Error(
+      `This server is pinned to account '${pin}' via ASC_ACCOUNT and cannot switch to '${name}'. Change ASC_ACCOUNT in the MCP client config if you really mean to retarget it.`,
+    );
+  }
   const store = loadAccounts();
   if (!store.accounts[name]) {
     throw new Error(

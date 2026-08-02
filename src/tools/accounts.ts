@@ -8,6 +8,7 @@ import { defineTool, type Tool } from "../utils/tool.js";
 import {
   addAccount,
   getCurrentAccount,
+  pinnedAccountName,
   loadAccounts,
   removeAccount,
   switchAccount,
@@ -22,7 +23,7 @@ const accountSchema = z
       .string()
       .min(1)
       .describe(
-        "Short identifier used to switch accounts (e.g. 'kairis', 'client-acme').",
+        "Short identifier used to switch accounts (e.g. 'acme-app', 'client-b').",
       ),
     keyId: z
       .string()
@@ -62,9 +63,12 @@ export const accountTools: Tool[] = [
   defineTool({
     name: "accounts_current",
     description:
-      "Show which account is currently active. All subsequent API calls use this account's credentials.",
+      "Show which account is currently active. All subsequent API calls use this account's credentials. If `pinnedTo` is set, this server was pinned to that account via ASC_ACCOUNT and cannot be switched.",
     input: z.object({}).strict(),
-    handler: async () => getCurrentAccount(),
+    handler: async () => ({
+      account: getCurrentAccount(),
+      pinnedTo: pinnedAccountName(),
+    }),
   }),
 
   defineTool({

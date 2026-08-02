@@ -51,7 +51,7 @@ Every community MCP covers a slice. None covers everything.
 | Review Submissions v2 | ✅ | Often still on the legacy `appStoreVersionSubmissions` |
 | Alternative distribution (EU DMA) | ✅ | ❌ |
 | App data usages (privacy) | ✅ | ❌ |
-| Multi-account (switch between dev accounts) | ✅ local registry | Usually one |
+| Multi-account (switch between dev accounts) | ✅ local registry + per-project `ASC_ACCOUNT` pin | Usually one |
 | Credential safety | No `.p8` content in repo, no keys in the process cache, strict `.gitignore` | Varies |
 | Spec-driven — auto-regenerate on new spec | ✅ `npm run codegen` | ❌ |
 
@@ -185,6 +185,39 @@ accounts_list
 
 All subsequent calls target the currently-switched account.
 
+### 5. Pinning one account per project (`ASC_ACCOUNT`)
+
+`currentAccount` is a **single global value** in `accounts.json`, shared by every MCP client on
+the machine. If you work on more than one App Store Connect account, that is a footgun: an
+`accounts_switch` in one project silently retargets every other project, and an assistant in
+project A can end up writing to account B's apps.
+
+Pin the account per server process instead. Set `ASC_ACCOUNT` in the MCP client config:
+
+```json
+{
+  "mcpServers": {
+    "app-store-connect": {
+      "command": "app-store-connect-mcp",
+      "env": { "ASC_ACCOUNT": "acme-app" }
+    }
+  }
+}
+```
+
+With a pin in effect:
+
+- Every call resolves to that account, whatever `currentAccount` happens to be.
+- `accounts_switch` to any **other** account fails loudly instead of silently retargeting.
+- `accounts_remove` refuses to delete the pinned account.
+- `auth_status` and `accounts_current` report `pinnedTo`, so it is always visible which account
+  a session is on.
+
+If `ASC_ACCOUNT` names an account that isn't registered, calls fail with an explicit error rather
+than falling back to some other account.
+
+Give each project its own pin — then no project depends on the shared global at all.
+
 ### Environment-variable compatibility mode
 
 For compatibility with older setups (e.g. `zelentsov-dev/asc-mcp`), the server also accepts:
@@ -229,6 +262,20 @@ Or edit `~/.claude.json`:
   "mcpServers": {
     "app-store-connect": {
       "command": "app-store-connect-mcp"
+    }
+  }
+}
+```
+
+If you work on more than one App Store Connect account, put the server in each project's
+`.mcp.json` instead and pin it — see [Pinning one account per project](#5-pinning-one-account-per-project-asc_account):
+
+```json
+{
+  "mcpServers": {
+    "app-store-connect": {
+      "command": "app-store-connect-mcp",
+      "env": { "ASC_ACCOUNT": "acme-app" }
     }
   }
 }

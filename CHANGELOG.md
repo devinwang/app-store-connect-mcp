@@ -5,7 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.3.0] — 2026-08-03
+
+Note: 0.2.0 was tagged but never reached npm — its release run failed to publish,
+so the asset-upload fixes below it ship to registry users for the first time here.
 
 ### Added
 
@@ -23,6 +26,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `auth_status` and `accounts_current` now report `account` (the resolved account name) and
   `pinnedTo`, so which account a session is on is always visible. `accounts_current` returns
   `{ account, pinnedTo }` where it previously returned the account object directly.
+- `serverInfo.version` is read from `package.json` instead of a hard-coded literal, which had
+  drifted two releases behind and reported "0.1.1" to every client.
+- **Releases publish via npm trusted publishing (OIDC) instead of an `NPM_TOKEN` secret.** Four of
+  the five releases before this one failed to publish: a long-lived token expires silently, and npm
+  answers an unauthorized publish with a `404 Not Found - PUT`, which reads like a missing package
+  rather than an auth failure. OIDC has nothing to expire.
 
 ## [0.2.0] — 2026-06-05
 

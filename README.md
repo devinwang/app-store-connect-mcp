@@ -12,6 +12,7 @@
 [![Spec: 4.3](https://img.shields.io/badge/App%20Store%20Connect%20API-4.3-000000.svg)](https://developer.apple.com/documentation/appstoreconnectapi)
 [![MCP](https://img.shields.io/badge/MCP-compatible-9B59B6.svg)](https://modelcontextprotocol.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6.svg)](tsconfig.json)
+[![SafeSkill 88/100](https://img.shields.io/badge/SafeSkill-88%2F100_Passes%20with%20Notes-yellow)](https://safeskill.dev/scan/devinwang-app-store-connect-mcp)
 
 **See also:** [`google-play-developer-mcp`](https://github.com/devinwang/google-play-developer-mcp) — the same philosophy for the Google Play Console.
 

@@ -89,7 +89,7 @@ export const appStoreVersionExperimentTreatmentsTools: Tool[] = [
   },
   }),
   defineTool({
-    name: "app_store_version_experiment_treatments_app_store_version_experiment_treatment_localizations_get_to_many_relationship",
+    name: "app_store_version_experiment_treatments_localizations_get_to_many_relationship",
     description: "GET /v1/appStoreVersionExperimentTreatments/{id}/relationships/appStoreVersionExperimentTreatmentLocalizations (GET /v1/appStoreVersionExperimentTreatments/{id}/relationships/appStoreVersionExperimentTreatmentLocalizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
@@ -109,7 +109,7 @@ export const appStoreVersionExperimentTreatmentsTools: Tool[] = [
   },
   }),
   defineTool({
-    name: "app_store_version_experiment_treatments_app_store_version_experiment_treatment_localizations_get_to_many_related",
+    name: "app_store_version_experiment_treatments_localizations_get_to_many_related",
     description: "GET /v1/appStoreVersionExperimentTreatments/{id}/appStoreVersionExperimentTreatmentLocalizations (GET /v1/appStoreVersionExperimentTreatments/{id}/appStoreVersionExperimentTreatmentLocalizations)",
     input: z.object({
     filter_locale: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'locale'").optional(),

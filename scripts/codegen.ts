@@ -21,6 +21,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -100,6 +101,112 @@ function toSnakeCase(id: string): string {
     .replace(/([a-z0-9])([A-Z])/g, "$1_$2")
     .replace(/_+/g, "_")
     .toLowerCase();
+}
+
+/**
+ * An MCP client addresses a tool as `mcp__<server>__<tool>`, and Anthropic's
+ * API caps that whole string at 128 characters. The server alias is chosen by
+ * whoever writes the client config — plausibly the package name itself — so we
+ * reserve 35 characters for `mcp__<alias>__`, enough for an alias as long as
+ * `apple-app-store-connect-mcp`, and keep our own names at or below
+ * MAX_TOOL_NAME_LENGTH.
+ *
+ * Two of Apple's operationIds break 128 even with the short alias the README
+ * suggests, e.g.
+ * `appStoreVersionExperimentTreatments_appStoreVersionExperimentTreatmentLocalizations_getToManyRelationship`,
+ * which reaches 141 characters once prefixed with `mcp__app-store-connect__`.
+ * One over-long name makes EVERY request from that client fail with
+ * `400 tools.N.custom.name: String should have at most 128 characters` —
+ * the whole tool array is rejected, not just the offending entry.
+ */
+const MAX_TOOL_NAME_LENGTH = 93;
+
+/** Split a camelCase / PascalCase identifier into its words. */
+function splitWords(segment: string): string[] {
+  return segment
+    .replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2")
+    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
+    .split(/[\s_]+/)
+    .filter(Boolean);
+}
+
+/** Naive singular form, enough to match `Treatments` against `Treatment`. */
+function singular(word: string): string {
+  return word.replace(/ies$/i, "y").replace(/s$/i, "");
+}
+
+/**
+ * Apple builds relationship operationIds by repeating the parent resource
+ * inside the relationship segment:
+ *
+ *   appStoreVersionExperimentTreatments_appStoreVersionExperimentTreatmentLocalizations_getToManyRelationship
+ *                                       └──────── repeats the first segment ────────┘
+ *
+ * Drop that repetition from every segment after the first, so the name keeps
+ * saying what it did without saying it twice:
+ *
+ *   appStoreVersionExperimentTreatments_localizations_getToManyRelationship
+ */
+function collapseRepeatedResourceWords(opId: string): string {
+  const segments = opId.split("_");
+  if (segments.length < 2) return opId;
+
+  const head = splitWords(segments[0]).map((w) => singular(w).toLowerCase());
+
+  const collapsed = segments.map((segment, i) => {
+    if (i === 0) return segment;
+    const words = splitWords(segment);
+    let shared = 0;
+    while (
+      shared < words.length - 1 &&
+      shared < head.length &&
+      singular(words[shared]).toLowerCase() === head[shared]
+    ) {
+      shared++;
+    }
+    if (shared === 0) return segment;
+    const kept = words.slice(shared);
+    const first = kept[0].charAt(0).toLowerCase() + kept[0].slice(1);
+    return first + kept.slice(1).join("");
+  });
+
+  return collapsed.join("_");
+}
+
+/**
+ * operationId → MCP tool name, guaranteed to fit MAX_TOOL_NAME_LENGTH.
+ *
+ * The collapse only kicks in for names that would otherwise be too long, so
+ * regenerating against a refreshed spec leaves every other tool name untouched.
+ * Truncation is the last resort: it keeps whole words and appends a short
+ * digest of the operationId so two truncated names can never collide.
+ */
+function toToolName(opId: string): string {
+  const direct = toSnakeCase(opId);
+  if (direct.length <= MAX_TOOL_NAME_LENGTH) return direct;
+
+  const collapsed = toSnakeCase(collapseRepeatedResourceWords(opId));
+  if (collapsed.length <= MAX_TOOL_NAME_LENGTH) {
+    process.stderr.write(
+      `[codegen] NOTE: shortened '${direct}' (${direct.length}) → '${collapsed}' (${collapsed.length})\n`,
+    );
+    return collapsed;
+  }
+
+  const digest = createHash("sha1").update(opId).digest("hex").slice(0, 6);
+  const budget = MAX_TOOL_NAME_LENGTH - digest.length - 1;
+  const words = collapsed.split("_");
+  let truncated = "";
+  for (const word of words) {
+    const next = truncated ? `${truncated}_${word}` : word;
+    if (next.length > budget) break;
+    truncated = next;
+  }
+  const name = `${truncated}_${digest}`;
+  process.stderr.write(
+    `[codegen] WARN: truncated '${collapsed}' (${collapsed.length}) → '${name}'\n`,
+  );
+  return name;
 }
 
 /**
@@ -374,7 +481,7 @@ async function main(): Promise<void> {
         skipped++;
         continue;
       }
-      const name = toSnakeCase(opId);
+      const name = toToolName(opId);
       if (nameSeen.has(name)) {
         skipped++;
         process.stderr.write(
@@ -409,6 +516,17 @@ async function main(): Promise<void> {
       (byTag[tag] ||= []).push(tool);
       emittedTools++;
     }
+  }
+
+  // A single over-long name makes the API reject the entire tool array, so
+  // fail the build here rather than at the client's first request.
+  const oversized = [...nameSeen.keys()].filter(
+    (n) => n.length > MAX_TOOL_NAME_LENGTH,
+  );
+  if (oversized.length > 0) {
+    throw new Error(
+      `tool names exceed ${MAX_TOOL_NAME_LENGTH} characters: ${oversized.join(", ")}`,
+    );
   }
 
   // Emit one file per tag.

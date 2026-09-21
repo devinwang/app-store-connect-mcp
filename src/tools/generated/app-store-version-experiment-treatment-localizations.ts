@@ -75,7 +75,7 @@ export const appStoreVersionExperimentTreatmentLocalizationsTools: Tool[] = [
   },
   }),
   defineTool({
-    name: "app_store_version_experiment_treatment_localizations_app_preview_sets_get_to_many_relationship",
+    name: "app_store_version_experiment_treatment_localizations_preview_sets_get_to_many_relationship",
     description: "GET /v1/appStoreVersionExperimentTreatmentLocalizations/{id}/relationships/appPreviewSets (GET /v1/appStoreVersionExperimentTreatmentLocalizations/{id}/relationships/appPreviewSets)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
@@ -135,7 +135,7 @@ export const appStoreVersionExperimentTreatmentLocalizationsTools: Tool[] = [
   },
   }),
   defineTool({
-    name: "app_store_version_experiment_treatment_localizations_app_screenshot_sets_get_to_many_relationship",
+    name: "app_store_version_experiment_treatment_localizations_screenshot_sets_get_to_many_relationship",
     description: "GET /v1/appStoreVersionExperimentTreatmentLocalizations/{id}/relationships/appScreenshotSets (GET /v1/appStoreVersionExperimentTreatmentLocalizations/{id}/relationships/appScreenshotSets)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),

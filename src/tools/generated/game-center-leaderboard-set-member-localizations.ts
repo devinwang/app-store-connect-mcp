@@ -94,7 +94,7 @@ export const gameCenterLeaderboardSetMemberLocalizationsTools: Tool[] = [
   },
   }),
   defineTool({
-    name: "game_center_leaderboard_set_member_localizations_game_center_leaderboard_get_to_one_relationship",
+    name: "game_center_leaderboard_set_member_localizations_leaderboard_get_to_one_relationship",
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboardSetMemberLocalizations/{id}/relationships/gameCenterLeaderboard (GET /v1/gameCenterLeaderboardSetMemberLocalizations/{id}/relationships/gameCenterLeaderboard)",
     input: z.object({
     id: z.string().describe("the id of the requested resource"),
@@ -153,7 +153,7 @@ export const gameCenterLeaderboardSetMemberLocalizationsTools: Tool[] = [
   },
   }),
   defineTool({
-    name: "game_center_leaderboard_set_member_localizations_game_center_leaderboard_set_get_to_one_relationship",
+    name: "game_center_leaderboard_set_member_localizations_set_get_to_one_relationship",
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboardSetMemberLocalizations/{id}/relationships/gameCenterLeaderboardSet (GET /v1/gameCenterLeaderboardSetMemberLocalizations/{id}/relationships/gameCenterLeaderboardSet)",
     input: z.object({
     id: z.string().describe("the id of the requested resource"),
@@ -170,7 +170,7 @@ export const gameCenterLeaderboardSetMemberLocalizationsTools: Tool[] = [
   },
   }),
   defineTool({
-    name: "game_center_leaderboard_set_member_localizations_game_center_leaderboard_set_get_to_one_related",
+    name: "game_center_leaderboard_set_member_localizations_set_get_to_one_related",
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboardSetMemberLocalizations/{id}/gameCenterLeaderboardSet (GET /v1/gameCenterLeaderboardSetMemberLocalizations/{id}/gameCenterLeaderboardSet)",
     input: z.object({
     fields_gameCenterLeaderboardSets: z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "gameCenterDetail", "gameCenterGroup", "groupLeaderboardSet", "localizations", "gameCenterLeaderboards", "releases"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSets").optional(),

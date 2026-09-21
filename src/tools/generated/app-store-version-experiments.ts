@@ -169,7 +169,7 @@ export const appStoreVersionExperimentsTools: Tool[] = [
   },
   }),
   defineTool({
-    name: "app_store_version_experiments_v2_app_store_version_experiment_treatments_get_to_many_relationship",
+    name: "app_store_version_experiments_v2_treatments_get_to_many_relationship",
     description: "GET /v2/appStoreVersionExperiments/{id}/relationships/appStoreVersionExperimentTreatments (GET /v2/appStoreVersionExperiments/{id}/relationships/appStoreVersionExperimentTreatments)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
@@ -219,7 +219,7 @@ export const appStoreVersionExperimentsTools: Tool[] = [
   },
   }),
   defineTool({
-    name: "app_store_version_experiments_app_store_version_experiment_treatments_get_to_many_relationship",
+    name: "app_store_version_experiments_treatments_get_to_many_relationship",
     description: "[DEPRECATED] GET /v1/appStoreVersionExperiments/{id}/relationships/appStoreVersionExperimentTreatments (GET /v1/appStoreVersionExperiments/{id}/relationships/appStoreVersionExperimentTreatments)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),

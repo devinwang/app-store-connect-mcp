@@ -72,7 +72,7 @@ export const appCustomProductPageVersionsTools: Tool[] = [
   },
   }),
   defineTool({
-    name: "app_custom_product_page_versions_app_custom_product_page_localizations_get_to_many_relationship",
+    name: "app_custom_product_page_versions_localizations_get_to_many_relationship",
     description: "GET /v1/appCustomProductPageVersions/{id}/relationships/appCustomProductPageLocalizations (GET /v1/appCustomProductPageVersions/{id}/relationships/appCustomProductPageLocalizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),

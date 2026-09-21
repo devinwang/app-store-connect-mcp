@@ -17,6 +17,16 @@ Tool names are Apple's `operationId` values converted from camelCase to snake_ca
 - `appStoreVersions_createInstance`    → `app_store_versions_create_instance`
 - `customerReviewResponsesV1_createInstance` → `customer_review_responses_v1_create_instance`
 
+A handful of Apple's relationship `operationId` values repeat the parent resource inside the
+relationship segment, which would produce a name too long for the 128-character limit a client's
+`mcp__<server>__<tool>` address must satisfy. Those names drop the repetition:
+
+- `appStoreVersionExperimentTreatments_appStoreVersionExperimentTreatmentLocalizations_getToManyRelated`
+  → `app_store_version_experiment_treatments_localizations_get_to_many_related`
+
+Generated names are capped at 93 characters; see the 0.4.0 entry in the changelog for the 13
+tools this affected.
+
 For each resource, the usual pattern is:
 
 | Action | `operationId` suffix | Example |

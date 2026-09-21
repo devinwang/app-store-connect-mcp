@@ -5,6 +5,51 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] — 2026-09-21
+
+### Fixed
+
+- **Two tool names exceeded the 128-character limit an MCP client's tool name must satisfy,
+  which broke every request that client made.** A client addresses a tool as
+  `mcp__<server>__<tool>`, so the `mcp__app-store-connect__` prefix pushed
+  `app_store_version_experiment_treatments_app_store_version_experiment_treatment_localizations_get_to_many_relationship`
+  to 141 characters. The API rejects the whole tool array, not the offending entry, so the
+  symptom was `400 tools.N.custom.name: String should have at most 128 characters` on every
+  single request — the session could not make any call at all, including ones that had nothing
+  to do with App Store Connect.
+
+  Codegen now caps generated names at 93 characters, reserving 35 for `mcp__<alias>__` so even
+  an alias as long as `apple-app-store-connect-mcp` fits. Names over the cap drop the parent
+  resource that Apple repeats inside the relationship segment
+  (`appStoreVersionExperimentTreatments_appStoreVersionExperimentTreatmentLocalizations_…`
+  → `appStoreVersionExperimentTreatments_localizations_…`), and codegen now fails outright if any
+  name still exceeds the cap. Names within the cap are untouched, so a spec refresh does not
+  churn tool names.
+
+- **`npm run codegen` and `npm run spec:download` could not run on Node ≥ 20.6.** Both used
+  tsx's `--loader` flag, removed in favour of `--import`.
+
+### Changed
+
+- **13 relationship tools were renamed** by the cap above. All 1221 tools remain; only these
+  names changed:
+
+| Old | New |
+|---|---|
+| `app_clip_default_experiences_app_clip_default_experience_localizations_get_to_many_relationship` | `app_clip_default_experiences_localizations_get_to_many_relationship` |
+| `app_custom_product_page_versions_app_custom_product_page_localizations_get_to_many_relationship` | `app_custom_product_page_versions_localizations_get_to_many_relationship` |
+| `app_store_version_experiment_treatment_localizations_app_preview_sets_get_to_many_relationship` | `app_store_version_experiment_treatment_localizations_preview_sets_get_to_many_relationship` |
+| `app_store_version_experiment_treatment_localizations_app_screenshot_sets_get_to_many_relationship` | `app_store_version_experiment_treatment_localizations_screenshot_sets_get_to_many_relationship` |
+| `app_store_version_experiment_treatments_app_store_version_experiment_treatment_localizations_get_to_many_relationship` | `app_store_version_experiment_treatments_localizations_get_to_many_relationship` |
+| `app_store_version_experiment_treatments_app_store_version_experiment_treatment_localizations_get_to_many_related` | `app_store_version_experiment_treatments_localizations_get_to_many_related` |
+| `app_store_version_experiments_v2_app_store_version_experiment_treatments_get_to_many_relationship` | `app_store_version_experiments_v2_treatments_get_to_many_relationship` |
+| `app_store_version_experiments_app_store_version_experiment_treatments_get_to_many_relationship` | `app_store_version_experiments_treatments_get_to_many_relationship` |
+| `game_center_leaderboard_set_localizations_game_center_leaderboard_set_image_get_to_one_relationship` | `game_center_leaderboard_set_localizations_image_get_to_one_relationship` |
+| `game_center_leaderboard_set_localizations_game_center_leaderboard_set_image_get_to_one_related` | `game_center_leaderboard_set_localizations_image_get_to_one_related` |
+| `game_center_leaderboard_set_member_localizations_game_center_leaderboard_get_to_one_relationship` | `game_center_leaderboard_set_member_localizations_leaderboard_get_to_one_relationship` |
+| `game_center_leaderboard_set_member_localizations_game_center_leaderboard_set_get_to_one_relationship` | `game_center_leaderboard_set_member_localizations_set_get_to_one_relationship` |
+| `game_center_leaderboard_set_member_localizations_game_center_leaderboard_set_get_to_one_related` | `game_center_leaderboard_set_member_localizations_set_get_to_one_related` |
+
 ## [0.3.0] — 2026-08-03
 
 Note: 0.2.0 was tagged but never reached npm — its release run failed to publish,

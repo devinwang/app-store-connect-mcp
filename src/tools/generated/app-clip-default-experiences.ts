@@ -134,7 +134,7 @@ export const appClipDefaultExperiencesTools: Tool[] = [
   },
   }),
   defineTool({
-    name: "app_clip_default_experiences_app_clip_default_experience_localizations_get_to_many_relationship",
+    name: "app_clip_default_experiences_localizations_get_to_many_relationship",
     description: "GET /v1/appClipDefaultExperiences/{id}/relationships/appClipDefaultExperienceLocalizations (GET /v1/appClipDefaultExperiences/{id}/relationships/appClipDefaultExperienceLocalizations)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),

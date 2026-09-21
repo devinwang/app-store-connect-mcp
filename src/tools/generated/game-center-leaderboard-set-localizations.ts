@@ -163,7 +163,7 @@ export const gameCenterLeaderboardSetLocalizationsTools: Tool[] = [
   },
   }),
   defineTool({
-    name: "game_center_leaderboard_set_localizations_game_center_leaderboard_set_image_get_to_one_relationship",
+    name: "game_center_leaderboard_set_localizations_image_get_to_one_relationship",
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboardSetLocalizations/{id}/relationships/gameCenterLeaderboardSetImage (GET /v1/gameCenterLeaderboardSetLocalizations/{id}/relationships/gameCenterLeaderboardSetImage)",
     input: z.object({
     id: z.string().describe("the id of the requested resource"),
@@ -180,7 +180,7 @@ export const gameCenterLeaderboardSetLocalizationsTools: Tool[] = [
   },
   }),
   defineTool({
-    name: "game_center_leaderboard_set_localizations_game_center_leaderboard_set_image_get_to_one_related",
+    name: "game_center_leaderboard_set_localizations_image_get_to_one_related",
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboardSetLocalizations/{id}/gameCenterLeaderboardSetImage (GET /v1/gameCenterLeaderboardSetLocalizations/{id}/gameCenterLeaderboardSetImage)",
     input: z.object({
     fields_gameCenterLeaderboardSetImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterLeaderboardSetLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetImages").optional(),

@@ -31,7 +31,7 @@ export const winBackOffersTools: Tool[] = [
     name: "win_back_offers_get_instance",
     description: "GET /v1/winBackOffers/{id} (GET /v1/winBackOffers/{id})",
     input: z.object({
-    fields_winBackOffers: z.union([z.array(z.enum(["referenceName", "offerId", "duration", "offerMode", "periodCount", "customerEligibilityPaidSubscriptionDurationInMonths", "customerEligibilityTimeSinceLastSubscribedInMonths", "customerEligibilityWaitBetweenOffersInMonths", "startDate", "endDate", "priority", "promotionIntent", "prices"])), z.string()]).describe("the fields to include for returned resources of type winBackOffers").optional(),
+    fields_winBackOffers: z.union([z.array(z.enum(["referenceName", "offerId", "duration", "offerMode", "periodCount", "customerEligibilityPaidSubscriptionDurationInMonths", "customerEligibilityTimeSinceLastSubscribedInMonths", "customerEligibilityWaitBetweenOffersInMonths", "startDate", "endDate", "priority", "promotionIntent", "targetSubscriptionPlanType", "prices"])), z.string()]).describe("the fields to include for returned resources of type winBackOffers").optional(),
     fields_winBackOfferPrices: z.union([z.array(z.enum(["territory", "subscriptionPricePoint"])), z.string()]).describe("the fields to include for returned resources of type winBackOfferPrices").optional(),
     include: z.union([z.array(z.enum(["prices"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_prices: z.coerce.number().int().describe("maximum number of related prices returned (when they are included)").optional(),
@@ -115,7 +115,7 @@ export const winBackOffersTools: Tool[] = [
     filter_territory: z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'territory'").optional(),
     fields_winBackOfferPrices: z.union([z.array(z.enum(["territory", "subscriptionPricePoint"])), z.string()]).describe("the fields to include for returned resources of type winBackOfferPrices").optional(),
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
-    fields_subscriptionPricePoints: z.union([z.array(z.enum(["customerPrice", "proceeds", "proceedsYear2", "territory", "equalizations"])), z.string()]).describe("the fields to include for returned resources of type subscriptionPricePoints").optional(),
+    fields_subscriptionPricePoints: z.union([z.array(z.enum(["customerPrice", "proceeds", "proceedsYear2", "territory", "equalizations", "adjustedEqualizations"])), z.string()]).describe("the fields to include for returned resources of type subscriptionPricePoints").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["territory", "subscriptionPricePoint"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),

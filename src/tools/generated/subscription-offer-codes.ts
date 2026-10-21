@@ -31,7 +31,8 @@ export const subscriptionOfferCodesTools: Tool[] = [
     name: "subscription_offer_codes_get_instance",
     description: "GET /v1/subscriptionOfferCodes/{id} (GET /v1/subscriptionOfferCodes/{id})",
     input: z.object({
-    fields_subscriptionOfferCodes: z.union([z.array(z.enum(["name", "customerEligibilities", "offerEligibility", "duration", "offerMode", "numberOfPeriods", "totalNumberOfCodes", "productionCodeCount", "sandboxCodeCount", "active", "autoRenewEnabled", "subscription", "oneTimeUseCodes", "customCodes", "prices"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodes").optional(),
+    fields_subscriptionOfferCodes: z.union([z.array(z.enum(["name", "customerEligibilities", "offerEligibility", "duration", "offerMode", "numberOfPeriods", "totalNumberOfCodes", "productionCodeCount", "sandboxCodeCount", "active", "autoRenewEnabled", "targetSubscriptionPlanType", "subscription", "oneTimeUseCodes", "customCodes", "prices"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodes").optional(),
+    fields_subscriptions: z.union([z.array(z.enum(["name", "productId", "familySharable", "state", "subscriptionPeriod", "reviewNote", "groupLevel", "multiSeatStatus", "marketSettings", "subscriptionLocalizations", "appStoreReviewScreenshot", "group", "introductoryOffers", "promotionalOffers", "offerCodes", "prices", "pricePoints", "promotedPurchase", "subscriptionAvailability", "winBackOffers", "images", "planAvailabilities", "versions"])), z.string()]).describe("the fields to include for returned resources of type subscriptions").optional(),
     fields_subscriptionOfferCodeOneTimeUseCodes: z.union([z.array(z.enum(["numberOfCodes", "createdDate", "expirationDate", "active", "environment", "offerCode", "values"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodeOneTimeUseCodes").optional(),
     fields_subscriptionOfferCodeCustomCodes: z.union([z.array(z.enum(["customCode", "numberOfCodes", "createdDate", "expirationDate", "active", "offerCode"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodeCustomCodes").optional(),
     fields_subscriptionOfferCodePrices: z.union([z.array(z.enum(["territory", "subscriptionPricePoint"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodePrices").optional(),
@@ -48,6 +49,7 @@ export const subscriptionOfferCodesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[subscriptionOfferCodes]": args["fields_subscriptionOfferCodes"],
+      "fields[subscriptions]": args["fields_subscriptions"],
       "fields[subscriptionOfferCodeOneTimeUseCodes]": args["fields_subscriptionOfferCodeOneTimeUseCodes"],
       "fields[subscriptionOfferCodeCustomCodes]": args["fields_subscriptionOfferCodeCustomCodes"],
       "fields[subscriptionOfferCodePrices]": args["fields_subscriptionOfferCodePrices"],
@@ -104,7 +106,7 @@ export const subscriptionOfferCodesTools: Tool[] = [
     description: "GET /v1/subscriptionOfferCodes/{id}/customCodes (GET /v1/subscriptionOfferCodes/{id}/customCodes)",
     input: z.object({
     fields_subscriptionOfferCodeCustomCodes: z.union([z.array(z.enum(["customCode", "numberOfCodes", "createdDate", "expirationDate", "active", "offerCode"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodeCustomCodes").optional(),
-    fields_subscriptionOfferCodes: z.union([z.array(z.enum(["name", "customerEligibilities", "offerEligibility", "duration", "offerMode", "numberOfPeriods", "totalNumberOfCodes", "productionCodeCount", "sandboxCodeCount", "active", "autoRenewEnabled", "subscription", "oneTimeUseCodes", "customCodes", "prices"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodes").optional(),
+    fields_subscriptionOfferCodes: z.union([z.array(z.enum(["name", "customerEligibilities", "offerEligibility", "duration", "offerMode", "numberOfPeriods", "totalNumberOfCodes", "productionCodeCount", "sandboxCodeCount", "active", "autoRenewEnabled", "targetSubscriptionPlanType", "subscription", "oneTimeUseCodes", "customCodes", "prices"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodes").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["offerCode"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
@@ -150,7 +152,7 @@ export const subscriptionOfferCodesTools: Tool[] = [
     description: "GET /v1/subscriptionOfferCodes/{id}/oneTimeUseCodes (GET /v1/subscriptionOfferCodes/{id}/oneTimeUseCodes)",
     input: z.object({
     fields_subscriptionOfferCodeOneTimeUseCodes: z.union([z.array(z.enum(["numberOfCodes", "createdDate", "expirationDate", "active", "environment", "offerCode", "values"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodeOneTimeUseCodes").optional(),
-    fields_subscriptionOfferCodes: z.union([z.array(z.enum(["name", "customerEligibilities", "offerEligibility", "duration", "offerMode", "numberOfPeriods", "totalNumberOfCodes", "productionCodeCount", "sandboxCodeCount", "active", "autoRenewEnabled", "subscription", "oneTimeUseCodes", "customCodes", "prices"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodes").optional(),
+    fields_subscriptionOfferCodes: z.union([z.array(z.enum(["name", "customerEligibilities", "offerEligibility", "duration", "offerMode", "numberOfPeriods", "totalNumberOfCodes", "productionCodeCount", "sandboxCodeCount", "active", "autoRenewEnabled", "targetSubscriptionPlanType", "subscription", "oneTimeUseCodes", "customCodes", "prices"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodes").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["offerCode"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
@@ -198,7 +200,7 @@ export const subscriptionOfferCodesTools: Tool[] = [
     filter_territory: z.union([z.array(z.string()), z.string()]).describe("filter by id(s) of related 'territory'").optional(),
     fields_subscriptionOfferCodePrices: z.union([z.array(z.enum(["territory", "subscriptionPricePoint"])), z.string()]).describe("the fields to include for returned resources of type subscriptionOfferCodePrices").optional(),
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
-    fields_subscriptionPricePoints: z.union([z.array(z.enum(["customerPrice", "proceeds", "proceedsYear2", "territory", "equalizations"])), z.string()]).describe("the fields to include for returned resources of type subscriptionPricePoints").optional(),
+    fields_subscriptionPricePoints: z.union([z.array(z.enum(["customerPrice", "proceeds", "proceedsYear2", "territory", "equalizations", "adjustedEqualizations"])), z.string()]).describe("the fields to include for returned resources of type subscriptionPricePoints").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["territory", "subscriptionPricePoint"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),

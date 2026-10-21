@@ -32,8 +32,10 @@ export const gameCenterActivityVersionsTools: Tool[] = [
     description: "GET /v1/gameCenterActivityVersions/{id} (GET /v1/gameCenterActivityVersions/{id})",
     input: z.object({
     fields_gameCenterActivityVersions: z.union([z.array(z.enum(["version", "state", "fallbackUrl", "activity", "localizations", "defaultImage", "releases"])), z.string()]).describe("the fields to include for returned resources of type gameCenterActivityVersions").optional(),
+    fields_gameCenterActivities: z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "playStyle", "minimumPlayersCount", "maximumPlayersCount", "supportsPartyCode", "archived", "properties", "gameCenterDetail", "gameCenterGroup", "achievements", "achievementsV2", "leaderboards", "leaderboardsV2", "versions"])), z.string()]).describe("the fields to include for returned resources of type gameCenterActivities").optional(),
     fields_gameCenterActivityLocalizations: z.union([z.array(z.enum(["locale", "name", "description", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterActivityLocalizations").optional(),
     fields_gameCenterActivityImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterActivityImages").optional(),
+    fields_gameCenterActivityVersionReleases: z.union([z.array(z.enum(["version"])), z.string()]).describe("the fields to include for returned resources of type gameCenterActivityVersionReleases").optional(),
     include: z.union([z.array(z.enum(["activity", "localizations", "defaultImage", "releases"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
     limit_releases: z.coerce.number().int().describe("maximum number of related releases returned (when they are included)").optional(),
@@ -46,8 +48,10 @@ export const gameCenterActivityVersionsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterActivityVersions]": args["fields_gameCenterActivityVersions"],
+      "fields[gameCenterActivities]": args["fields_gameCenterActivities"],
       "fields[gameCenterActivityLocalizations]": args["fields_gameCenterActivityLocalizations"],
       "fields[gameCenterActivityImages]": args["fields_gameCenterActivityImages"],
+      "fields[gameCenterActivityVersionReleases]": args["fields_gameCenterActivityVersionReleases"],
       "include": args["include"],
       "limit[localizations]": args["limit_localizations"],
       "limit[releases]": args["limit_releases"],

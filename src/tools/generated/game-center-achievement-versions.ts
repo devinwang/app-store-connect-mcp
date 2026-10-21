@@ -32,6 +32,7 @@ export const gameCenterAchievementVersionsTools: Tool[] = [
     description: "GET /v2/gameCenterAchievementVersions/{id} (GET /v2/gameCenterAchievementVersions/{id})",
     input: z.object({
     fields_gameCenterAchievementVersions: z.union([z.array(z.enum(["version", "state", "achievement", "localizations"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementVersions").optional(),
+    fields_gameCenterAchievements: z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "points", "showBeforeEarned", "repeatable", "archived", "activityProperties", "gameCenterDetail", "gameCenterGroup", "activity", "versions"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievements").optional(),
     fields_gameCenterAchievementLocalizations: z.union([z.array(z.enum(["locale", "name", "beforeEarnedDescription", "afterEarnedDescription", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementLocalizations").optional(),
     include: z.union([z.array(z.enum(["achievement", "localizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
@@ -44,6 +45,7 @@ export const gameCenterAchievementVersionsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievementVersions]": args["fields_gameCenterAchievementVersions"],
+      "fields[gameCenterAchievements]": args["fields_gameCenterAchievements"],
       "fields[gameCenterAchievementLocalizations]": args["fields_gameCenterAchievementLocalizations"],
       "include": args["include"],
       "limit[localizations]": args["limit_localizations"],

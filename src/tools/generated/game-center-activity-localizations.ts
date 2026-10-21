@@ -32,6 +32,7 @@ export const gameCenterActivityLocalizationsTools: Tool[] = [
     description: "GET /v1/gameCenterActivityLocalizations/{id} (GET /v1/gameCenterActivityLocalizations/{id})",
     input: z.object({
     fields_gameCenterActivityLocalizations: z.union([z.array(z.enum(["locale", "name", "description", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterActivityLocalizations").optional(),
+    fields_gameCenterActivityVersions: z.union([z.array(z.enum(["version", "state", "fallbackUrl", "activity", "localizations", "defaultImage", "releases"])), z.string()]).describe("the fields to include for returned resources of type gameCenterActivityVersions").optional(),
     fields_gameCenterActivityImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterActivityImages").optional(),
     include: z.union([z.array(z.enum(["version", "image"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
@@ -43,6 +44,7 @@ export const gameCenterActivityLocalizationsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterActivityLocalizations]": args["fields_gameCenterActivityLocalizations"],
+      "fields[gameCenterActivityVersions]": args["fields_gameCenterActivityVersions"],
       "fields[gameCenterActivityImages]": args["fields_gameCenterActivityImages"],
       "include": args["include"],
     },

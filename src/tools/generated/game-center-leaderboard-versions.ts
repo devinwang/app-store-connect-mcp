@@ -32,6 +32,7 @@ export const gameCenterLeaderboardVersionsTools: Tool[] = [
     description: "GET /v2/gameCenterLeaderboardVersions/{id} (GET /v2/gameCenterLeaderboardVersions/{id})",
     input: z.object({
     fields_gameCenterLeaderboardVersions: z.union([z.array(z.enum(["version", "state", "leaderboard", "localizations"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardVersions").optional(),
+    fields_gameCenterLeaderboards: z.union([z.array(z.enum(["defaultFormatter", "referenceName", "vendorIdentifier", "submissionType", "scoreSortType", "scoreRangeStart", "scoreRangeEnd", "recurrenceStartDate", "recurrenceDuration", "recurrenceRule", "archived", "activityProperties", "visibility", "gameCenterDetail", "gameCenterGroup", "gameCenterLeaderboardSets", "gameCenterScoreModerations", "activity", "challenge", "versions"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboards").optional(),
     fields_gameCenterLeaderboardLocalizations: z.union([z.array(z.enum(["locale", "name", "formatterOverride", "formatterSuffix", "formatterSuffixSingular", "description", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardLocalizations").optional(),
     include: z.union([z.array(z.enum(["leaderboard", "localizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
@@ -44,6 +45,7 @@ export const gameCenterLeaderboardVersionsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardVersions]": args["fields_gameCenterLeaderboardVersions"],
+      "fields[gameCenterLeaderboards]": args["fields_gameCenterLeaderboards"],
       "fields[gameCenterLeaderboardLocalizations]": args["fields_gameCenterLeaderboardLocalizations"],
       "include": args["include"],
       "limit[localizations]": args["limit_localizations"],

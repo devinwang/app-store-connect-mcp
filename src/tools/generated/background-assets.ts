@@ -32,6 +32,8 @@ export const backgroundAssetsTools: Tool[] = [
     description: "GET /v1/backgroundAssets/{id} (GET /v1/backgroundAssets/{id})",
     input: z.object({
     fields_backgroundAssets: z.union([z.array(z.enum(["archived", "assetPackIdentifier", "createdDate", "usedBytes", "app", "versions", "appStoreVersion", "internalBetaVersion", "externalBetaVersion"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssets").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "performanceOverviews", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "assetLibrary", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
+    fields_backgroundAssetVersions: z.union([z.array(z.enum(["createdDate", "platforms", "state", "stateDetails", "version", "locale", "backgroundAsset", "internalBetaRelease", "externalBetaRelease", "appStoreRelease", "assetFile", "manifestFile", "backgroundAssetUploadFiles"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetVersions").optional(),
     include: z.union([z.array(z.enum(["app", "appStoreVersion", "internalBetaVersion", "externalBetaVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -42,6 +44,8 @@ export const backgroundAssetsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[backgroundAssets]": args["fields_backgroundAssets"],
+      "fields[apps]": args["fields_apps"],
+      "fields[backgroundAssetVersions]": args["fields_backgroundAssetVersions"],
       "include": args["include"],
     },
       body: undefined,
@@ -91,6 +95,7 @@ export const backgroundAssetsTools: Tool[] = [
     name: "background_assets_versions_get_to_many_related",
     description: "GET /v1/backgroundAssets/{id}/versions (GET /v1/backgroundAssets/{id}/versions)",
     input: z.object({
+    filter_locale: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'locale'").optional(),
     filter_platforms: z.union([z.array(z.enum(["IOS", "MAC_OS", "TV_OS", "VISION_OS"])), z.string()]).describe("filter by attribute 'platforms'").optional(),
     filter_state: z.union([z.array(z.enum(["AWAITING_UPLOAD", "PROCESSING", "FAILED", "COMPLETE"])), z.string()]).describe("filter by attribute 'state'").optional(),
     filter_version: z.union([z.array(z.string()), z.string()]).describe("filter by attribute 'version'").optional(),
@@ -98,7 +103,7 @@ export const backgroundAssetsTools: Tool[] = [
     filter_externalBetaRelease_state: z.union([z.array(z.enum(["READY_FOR_BETA_SUBMISSION", "WAITING_FOR_REVIEW", "IN_REVIEW", "REJECTED", "PROCESSING_FOR_TESTING", "READY_FOR_TESTING", "SUPERSEDED"])), z.string()]).describe("filter by attribute 'externalBetaRelease.state'").optional(),
     filter_appStoreRelease_state: z.union([z.array(z.enum(["PREPARE_FOR_SUBMISSION", "READY_FOR_REVIEW", "WAITING_FOR_REVIEW", "IN_REVIEW", "ACCEPTED", "REJECTED", "PROCESSING_FOR_DISTRIBUTION", "READY_FOR_DISTRIBUTION", "SUPERSEDED"])), z.string()]).describe("filter by attribute 'appStoreRelease.state'").optional(),
     sort: z.union([z.array(z.enum(["version", "-version"])), z.string()]).describe("comma-separated list of sort expressions; resources will be sorted as specified").optional(),
-    fields_backgroundAssetVersions: z.union([z.array(z.enum(["createdDate", "platforms", "state", "stateDetails", "version", "backgroundAsset", "internalBetaRelease", "externalBetaRelease", "appStoreRelease", "assetFile", "manifestFile", "backgroundAssetUploadFiles"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetVersions").optional(),
+    fields_backgroundAssetVersions: z.union([z.array(z.enum(["createdDate", "platforms", "state", "stateDetails", "version", "locale", "backgroundAsset", "internalBetaRelease", "externalBetaRelease", "appStoreRelease", "assetFile", "manifestFile", "backgroundAssetUploadFiles"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetVersions").optional(),
     fields_backgroundAssets: z.union([z.array(z.enum(["archived", "assetPackIdentifier", "createdDate", "usedBytes", "app", "versions", "appStoreVersion", "internalBetaVersion", "externalBetaVersion"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssets").optional(),
     fields_backgroundAssetVersionInternalBetaReleases: z.union([z.array(z.enum(["state", "backgroundAssetVersion"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetVersionInternalBetaReleases").optional(),
     fields_backgroundAssetVersionExternalBetaReleases: z.union([z.array(z.enum(["state", "backgroundAssetVersion"])), z.string()]).describe("the fields to include for returned resources of type backgroundAssetVersionExternalBetaReleases").optional(),
@@ -114,6 +119,7 @@ export const backgroundAssetsTools: Tool[] = [
       path: "/v1/backgroundAssets/{id}/versions",
       pathParams: { id: String(args["id"]) },
       query: {
+      "filter[locale]": args["filter_locale"],
       "filter[platforms]": args["filter_platforms"],
       "filter[state]": args["filter_state"],
       "filter[version]": args["filter_version"],

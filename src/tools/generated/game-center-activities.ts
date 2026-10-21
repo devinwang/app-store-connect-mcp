@@ -32,6 +32,10 @@ export const gameCenterActivitiesTools: Tool[] = [
     description: "GET /v1/gameCenterActivities/{id} (GET /v1/gameCenterActivities/{id})",
     input: z.object({
     fields_gameCenterActivities: z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "playStyle", "minimumPlayersCount", "maximumPlayersCount", "supportsPartyCode", "archived", "properties", "gameCenterDetail", "gameCenterGroup", "achievements", "achievementsV2", "leaderboards", "leaderboardsV2", "versions"])), z.string()]).describe("the fields to include for returned resources of type gameCenterActivities").optional(),
+    fields_gameCenterDetails: z.union([z.array(z.enum(["arcadeEnabled", "challengeEnabled", "app", "gameCenterAppVersions", "gameCenterGroup", "gameCenterLeaderboards", "gameCenterLeaderboardsV2", "gameCenterLeaderboardSets", "gameCenterLeaderboardSetsV2", "gameCenterAchievements", "gameCenterAchievementsV2", "gameCenterActivities", "gameCenterChallenges", "defaultLeaderboard", "defaultLeaderboardV2", "defaultGroupLeaderboard", "defaultGroupLeaderboardV2", "achievementReleases", "activityReleases", "challengeReleases", "leaderboardReleases", "leaderboardSetReleases", "blockedPlayers", "challengesMinimumPlatformVersions"])), z.string()]).describe("the fields to include for returned resources of type gameCenterDetails").optional(),
+    fields_gameCenterGroups: z.union([z.array(z.enum(["referenceName", "gameCenterDetails", "gameCenterLeaderboards", "gameCenterLeaderboardsV2", "gameCenterLeaderboardSets", "gameCenterLeaderboardSetsV2", "gameCenterAchievements", "gameCenterAchievementsV2", "gameCenterActivities", "gameCenterChallenges"])), z.string()]).describe("the fields to include for returned resources of type gameCenterGroups").optional(),
+    fields_gameCenterAchievements: z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "points", "showBeforeEarned", "repeatable", "archived", "activityProperties", "gameCenterDetail", "gameCenterGroup", "groupAchievement", "localizations", "releases", "activity", "versions"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievements").optional(),
+    fields_gameCenterLeaderboards: z.union([z.array(z.enum(["defaultFormatter", "referenceName", "vendorIdentifier", "submissionType", "scoreSortType", "scoreRangeStart", "scoreRangeEnd", "recurrenceStartDate", "recurrenceDuration", "recurrenceRule", "archived", "activityProperties", "visibility", "gameCenterDetail", "gameCenterGroup", "groupLeaderboard", "gameCenterLeaderboardSets", "localizations", "releases", "activity", "challenge", "gameCenterScoreModerations", "versions"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboards").optional(),
     fields_gameCenterActivityVersions: z.union([z.array(z.enum(["version", "state", "fallbackUrl", "activity", "localizations", "defaultImage", "releases"])), z.string()]).describe("the fields to include for returned resources of type gameCenterActivityVersions").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterGroup", "achievements", "achievementsV2", "leaderboards", "leaderboardsV2", "versions"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_achievements: z.coerce.number().int().describe("maximum number of related achievements returned (when they are included)").optional(),
@@ -48,6 +52,10 @@ export const gameCenterActivitiesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterActivities]": args["fields_gameCenterActivities"],
+      "fields[gameCenterDetails]": args["fields_gameCenterDetails"],
+      "fields[gameCenterGroups]": args["fields_gameCenterGroups"],
+      "fields[gameCenterAchievements]": args["fields_gameCenterAchievements"],
+      "fields[gameCenterLeaderboards]": args["fields_gameCenterLeaderboards"],
       "fields[gameCenterActivityVersions]": args["fields_gameCenterActivityVersions"],
       "include": args["include"],
       "limit[achievements]": args["limit_achievements"],

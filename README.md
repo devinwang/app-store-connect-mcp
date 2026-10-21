@@ -1,14 +1,14 @@
 # app-store-connect-mcp
 
 > **The complete Model Context Protocol (MCP) server for Apple's App Store Connect API.**
-> **1221 tools. 100% coverage** of every non-deprecated operation in Apple's official OpenAPI spec — TestFlight, Xcode Cloud, Game Center, App Clips, in-app purchases, subscriptions, review submissions, analytics, provisioning, and everything else Apple exposes. Works with Claude, Cursor, VS Code Copilot, Codex CLI, Gemini CLI, Windsurf, or any MCP client.
+> **1316 tools. 100% coverage** of every non-deprecated operation in Apple's official OpenAPI spec — TestFlight, Xcode Cloud, Game Center, App Clips, in-app purchases, subscriptions, review submissions, analytics, provisioning, and everything else Apple exposes. Works with Claude, Cursor, VS Code Copilot, Codex CLI, Gemini CLI, Windsurf, or any MCP client.
 
 [![npm version](https://img.shields.io/npm/v/apple-app-store-connect-mcp.svg?color=cb3837&logo=npm)](https://www.npmjs.com/package/apple-app-store-connect-mcp)
 [![npm downloads](https://img.shields.io/npm/dm/apple-app-store-connect-mcp.svg)](https://www.npmjs.com/package/apple-app-store-connect-mcp)
 [![CI](https://github.com/devinwang/app-store-connect-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/devinwang/app-store-connect-mcp/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-green.svg)](package.json)
-[![Tools: 1221](https://img.shields.io/badge/tools-1221-informational.svg)](#feature-matrix)
+[![Tools: 1316](https://img.shields.io/badge/tools-1316-informational.svg)](#feature-matrix)
 [![Spec: 4.3](https://img.shields.io/badge/App%20Store%20Connect%20API-4.3-000000.svg)](https://developer.apple.com/documentation/appstoreconnectapi)
 [![MCP](https://img.shields.io/badge/MCP-compatible-9B59B6.svg)](https://modelcontextprotocol.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6.svg)](tsconfig.json)
@@ -36,7 +36,7 @@
 
 ## Why this exists
 
-App Store Connect is huge. Apple's own OpenAPI spec currently lists **1208 operations** across 192 resource groups — TestFlight, Xcode Cloud, Game Center, App Clips, in-app purchases, subscriptions, offer codes, review submissions, alternative distribution (EU DMA), analytics, metrics, privacy manifests, provisioning, users… the list goes on.
+App Store Connect is huge. Apple's own OpenAPI spec currently lists **1303 operations** across 203 resource groups — TestFlight, Xcode Cloud, Game Center, App Clips, in-app purchases, subscriptions, offer codes, review submissions, alternative distribution (EU DMA), analytics, metrics, privacy manifests, provisioning, users… the list goes on.
 
 Every community MCP covers a slice. None covers everything.
 
@@ -44,7 +44,7 @@ Every community MCP covers a slice. None covers everything.
 
 | Property | This server | Typical community MCP |
 |---|---|---|
-| App Store Connect API coverage | ✅ 1200+ tools (100% of spec v4.3) | Partial (usually 50–150 tools) |
+| App Store Connect API coverage | ✅ 1300+ tools (100% of spec v4.5.1) | Partial (usually 50–150 tools) |
 | Xcode Cloud | ✅ all `ciProducts` / `ciWorkflows` / `ciBuildRuns` / `ciBuildActions` / `ciArtifacts` / `ciIssues` / `ciTestResults` | ❌ |
 | Game Center | ✅ achievements, leaderboards, groups, matchmaking, vocabularies | ❌ |
 | App Clips | ✅ default + advanced experiences, review details, header images | ❌ |
@@ -61,11 +61,11 @@ If you drive App Store Connect with an AI assistant — submission automation, T
 
 ## Feature matrix
 
-**1221 tools total (as of spec v4.3):**
+**1316 tools total (as of spec v4.5.1):**
 
 - **6** `accounts_*` — local multi-account registry (add / list / switch / remove / update / current)
 - **2** `auth_*` — `auth_status` (readiness) and `auth_revoke_cache`
-- **1208** auto-generated from the official App Store Connect OpenAPI spec, one per operation, covering every resource group:
+- **1303** auto-generated from the official App Store Connect OpenAPI spec, one per operation, covering every resource group:
   - Apps / App Infos / App Store Versions / App Store Version Localizations / Phased Releases / Version Submissions
   - Review Submissions (v2) + Review Submission Items + App Store Review Attachments + App Store Review Details
   - TestFlight: Beta Groups, Beta Testers, Beta App Review Details/Submissions, Beta App Localizations, Beta Build Localizations, Beta License Agreements, Beta Feedback Screenshot/Crash Submissions, Beta Invitees, Builds, Build Bundles, Build Bundle File Sizes
@@ -85,6 +85,7 @@ If you drive App Store Connect with an AI assistant — submission automation, T
   - Sales & Finance: Sales Reports, Finance Reports
   - Reviews: Customer Reviews, Customer Review Responses
   - Routing App Coverages, App Categories, App Events + Localizations, Android ↔ iOS App Mapping, External Purchase Collectors…
+  - Spec 4.5 additions: App Asset Libraries (images, videos, placements), In-App Purchase / Subscription / Subscription Group Versions with V2 localizations and images, Subscription Plan Availabilities, Game Center Score Moderations and Blocked Players, App Performance Overviews
 - **5** hand-written helpers for flows that don't map cleanly to a single operation:
   - `asset_upload_file` — step 2 of the 3-step asset upload protocol (screenshots, previews, review attachments, IAP review screenshots, App Clip header images, Game Center images, routing app coverages)
   - `sales_reports_download` — downloads and un-gzips sales reports, returns parsed TSV
@@ -474,7 +475,7 @@ subscription_prices_create_instance
 
 This server replaces `github.com/zelentsov-dev/asc-mcp`. Key differences:
 
-- **Scope.** That server implements ~90 tools; this one implements all 1208 spec operations plus helpers.
+- **Scope.** That server implements ~90 tools; this one implements all 1303 spec operations plus helpers.
 - **Tool names.** `zelentsov-dev/asc-mcp` uses simplified names like `apps_search`, `reviews_list`, `app_versions_submit_for_review`. This server uses Apple's official `operationId` snake-cased — `apps_get_collection`, `customer_reviews_get_collection`, `review_submissions_create_instance`. There's no auto-translation: update any prompts or scripts that assumed the old names.
 - **Credential compat.** The same env vars (`ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_PRIVATE_KEY_PATH`) still work, so you don't need to move the `.p8` to migrate. You'll get a one-time stderr warning recommending you register via `accounts_add` for multi-account support.
 - **`company_*` → `accounts_*`.** Rename mental model: a "company" in the old server is an "account" here.
@@ -527,7 +528,7 @@ Apple logs every API call against your key id. If you ever suspect misuse, open 
 
 ## Design notes
 
-- **Spec-driven.** 1208 of the 1221 tools are auto-generated from Apple's official OpenAPI spec (`spec/app-store-connect-openapi.json`). When Apple ships a new version, `npm run spec:download && npm run codegen && npm run build` is all it takes to update.
+- **Spec-driven.** 1303 of the 1316 tools are auto-generated from Apple's official OpenAPI spec (`spec/app-store-connect-openapi.json`). When Apple ships a new version, `npm run spec:download && npm run codegen && npm run build` is all it takes to update.
 - **1:1 operationId naming.** Tool names are Apple's `operationId` values converted to `snake_case`. This means the MCP names match the official REST reference, so when an LLM reads Apple's docs it can pick the right tool without translation.
 - **Pragmatic input validation.** Path params are typed zod strings (required), query params are typed zod fields (optional) with the exact bracketed names Apple uses (`filter[name]`, `fields[apps]`, `limit[appStoreVersions]`). Request bodies are `z.record(z.unknown())` with a description pointing at the OpenAPI component schema — ASC validates them server-side and our error translator surfaces mistakes clearly. Generating full zod trees for every JSON:API envelope would balloon the server by 10× and add negligible value.
 - **Error translation.** `401` becomes "JWT rejected — rotate or check clock skew", `403` becomes "key isn't authorized for this endpoint", `422` surfaces the exact `source.pointer` from the ASC response, `429` explains the per-team quota, `5xx` points at https://developer.apple.com/system-status/.

@@ -32,6 +32,7 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboardLocalizations/{id} (GET /v1/gameCenterLeaderboardLocalizations/{id})",
     input: z.object({
     fields_gameCenterLeaderboardLocalizations: z.union([z.array(z.enum(["locale", "name", "formatterOverride", "formatterSuffix", "formatterSuffixSingular", "description", "gameCenterLeaderboard", "gameCenterLeaderboardImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardLocalizations").optional(),
+    fields_gameCenterLeaderboards: z.union([z.array(z.enum(["defaultFormatter", "referenceName", "vendorIdentifier", "submissionType", "scoreSortType", "scoreRangeStart", "scoreRangeEnd", "recurrenceStartDate", "recurrenceDuration", "recurrenceRule", "archived", "activityProperties", "visibility", "gameCenterDetail", "gameCenterGroup", "groupLeaderboard", "gameCenterLeaderboardSets", "localizations", "releases", "activity", "challenge"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboards").optional(),
     fields_gameCenterLeaderboardImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterLeaderboardLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
     include: z.union([z.array(z.enum(["gameCenterLeaderboard", "gameCenterLeaderboardImage"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
@@ -43,6 +44,7 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardLocalizations]": args["fields_gameCenterLeaderboardLocalizations"],
+      "fields[gameCenterLeaderboards]": args["fields_gameCenterLeaderboards"],
       "fields[gameCenterLeaderboardImages]": args["fields_gameCenterLeaderboardImages"],
       "include": args["include"],
     },
@@ -108,6 +110,7 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
     description: "GET /v2/gameCenterLeaderboardLocalizations/{id} (GET /v2/gameCenterLeaderboardLocalizations/{id})",
     input: z.object({
     fields_gameCenterLeaderboardLocalizations: z.union([z.array(z.enum(["locale", "name", "formatterOverride", "formatterSuffix", "formatterSuffixSingular", "description", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardLocalizations").optional(),
+    fields_gameCenterLeaderboardVersions: z.union([z.array(z.enum(["version", "state", "leaderboard", "localizations"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardVersions").optional(),
     fields_gameCenterLeaderboardImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardImages").optional(),
     include: z.union([z.array(z.enum(["version", "image"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
@@ -119,6 +122,7 @@ export const gameCenterLeaderboardLocalizationsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardLocalizations]": args["fields_gameCenterLeaderboardLocalizations"],
+      "fields[gameCenterLeaderboardVersions]": args["fields_gameCenterLeaderboardVersions"],
       "fields[gameCenterLeaderboardImages]": args["fields_gameCenterLeaderboardImages"],
       "include": args["include"],
     },

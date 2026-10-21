@@ -32,6 +32,7 @@ export const routingAppCoveragesTools: Tool[] = [
     description: "GET /v1/routingAppCoverages/{id} (GET /v1/routingAppCoverages/{id})",
     input: z.object({
     fields_routingAppCoverages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "uploadOperations", "assetDeliveryState", "appStoreVersion"])), z.string()]).describe("the fields to include for returned resources of type routingAppCoverages").optional(),
+    fields_appStoreVersions: z.union([z.array(z.enum(["platform", "versionString", "appStoreState", "appVersionState", "copyright", "reviewType", "releaseType", "earliestReleaseDate", "usesIdfa", "downloadable", "createdDate", "app", "appStoreVersionLocalizations", "build", "appStoreVersionPhasedRelease", "gameCenterAppVersion", "routingAppCoverage", "appStoreReviewDetail", "appStoreVersionSubmission", "appClipDefaultExperience", "appStoreVersionExperiments", "appStoreVersionExperimentsV2", "customerReviews", "alternativeDistributionPackage"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersions").optional(),
     include: z.union([z.array(z.enum(["appStoreVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -42,6 +43,7 @@ export const routingAppCoveragesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[routingAppCoverages]": args["fields_routingAppCoverages"],
+      "fields[appStoreVersions]": args["fields_appStoreVersions"],
       "include": args["include"],
     },
       body: undefined,

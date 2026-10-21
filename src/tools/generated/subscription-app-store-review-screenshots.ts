@@ -32,6 +32,7 @@ export const subscriptionAppStoreReviewScreenshotsTools: Tool[] = [
     description: "GET /v1/subscriptionAppStoreReviewScreenshots/{id} (GET /v1/subscriptionAppStoreReviewScreenshots/{id})",
     input: z.object({
     fields_subscriptionAppStoreReviewScreenshots: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "assetToken", "assetType", "uploadOperations", "assetDeliveryState", "subscription"])), z.string()]).describe("the fields to include for returned resources of type subscriptionAppStoreReviewScreenshots").optional(),
+    fields_subscriptions: z.union([z.array(z.enum(["name", "productId", "familySharable", "state", "subscriptionPeriod", "reviewNote", "groupLevel", "multiSeatStatus", "marketSettings", "subscriptionLocalizations", "appStoreReviewScreenshot", "group", "introductoryOffers", "promotionalOffers", "offerCodes", "prices", "pricePoints", "promotedPurchase", "subscriptionAvailability", "winBackOffers", "images", "planAvailabilities", "versions"])), z.string()]).describe("the fields to include for returned resources of type subscriptions").optional(),
     include: z.union([z.array(z.enum(["subscription"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -42,6 +43,7 @@ export const subscriptionAppStoreReviewScreenshotsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[subscriptionAppStoreReviewScreenshots]": args["fields_subscriptionAppStoreReviewScreenshots"],
+      "fields[subscriptions]": args["fields_subscriptions"],
       "include": args["include"],
     },
       body: undefined,

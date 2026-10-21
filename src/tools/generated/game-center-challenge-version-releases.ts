@@ -32,6 +32,7 @@ export const gameCenterChallengeVersionReleasesTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterChallengeVersionReleases/{id} (GET /v1/gameCenterChallengeVersionReleases/{id})",
     input: z.object({
     fields_gameCenterChallengeVersionReleases: z.union([z.array(z.enum(["version"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeVersionReleases").optional(),
+    fields_gameCenterChallengeVersions: z.union([z.array(z.enum(["version", "state", "challenge", "localizations", "releases", "defaultImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeVersions").optional(),
     include: z.union([z.array(z.enum(["version"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -42,6 +43,7 @@ export const gameCenterChallengeVersionReleasesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterChallengeVersionReleases]": args["fields_gameCenterChallengeVersionReleases"],
+      "fields[gameCenterChallengeVersions]": args["fields_gameCenterChallengeVersions"],
       "include": args["include"],
     },
       body: undefined,

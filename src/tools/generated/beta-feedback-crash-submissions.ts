@@ -15,6 +15,8 @@ export const betaFeedbackCrashSubmissionsTools: Tool[] = [
     description: "GET /v1/betaFeedbackCrashSubmissions/{id} (GET /v1/betaFeedbackCrashSubmissions/{id})",
     input: z.object({
     fields_betaFeedbackCrashSubmissions: z.union([z.array(z.enum(["createdDate", "comment", "email", "deviceModel", "osVersion", "locale", "timeZone", "architecture", "connectionType", "pairedAppleWatch", "appUptimeInMilliseconds", "diskBytesAvailable", "diskBytesTotal", "batteryPercentage", "screenWidthInPoints", "screenHeightInPoints", "appPlatform", "devicePlatform", "deviceFamily", "buildBundleId", "crashLog", "build", "tester"])), z.string()]).describe("the fields to include for returned resources of type betaFeedbackCrashSubmissions").optional(),
+    fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
+    fields_betaTesters: z.union([z.array(z.enum(["firstName", "lastName", "email", "inviteType", "state", "appDevices", "apps", "betaGroups", "builds"])), z.string()]).describe("the fields to include for returned resources of type betaTesters").optional(),
     include: z.union([z.array(z.enum(["build", "tester"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -25,6 +27,8 @@ export const betaFeedbackCrashSubmissionsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[betaFeedbackCrashSubmissions]": args["fields_betaFeedbackCrashSubmissions"],
+      "fields[builds]": args["fields_builds"],
+      "fields[betaTesters]": args["fields_betaTesters"],
       "include": args["include"],
     },
       body: undefined,

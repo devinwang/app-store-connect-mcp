@@ -32,6 +32,8 @@ export const promotedPurchasesTools: Tool[] = [
     description: "GET /v1/promotedPurchases/{id} (GET /v1/promotedPurchases/{id})",
     input: z.object({
     fields_promotedPurchases: z.union([z.array(z.enum(["visibleForAllUsers", "enabled", "state", "inAppPurchaseV2", "subscription"])), z.string()]).describe("the fields to include for returned resources of type promotedPurchases").optional(),
+    fields_inAppPurchases: z.union([z.array(z.enum(["name", "productId", "inAppPurchaseType", "state", "reviewNote", "familySharable", "contentHosting", "inAppPurchaseLocalizations", "pricePoints", "content", "appStoreReviewScreenshot", "promotedPurchase", "iapPriceSchedule", "inAppPurchaseAvailability", "images", "offerCodes", "versions"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchases").optional(),
+    fields_subscriptions: z.union([z.array(z.enum(["name", "productId", "familySharable", "state", "subscriptionPeriod", "reviewNote", "groupLevel", "multiSeatStatus", "marketSettings", "subscriptionLocalizations", "appStoreReviewScreenshot", "group", "introductoryOffers", "promotionalOffers", "offerCodes", "prices", "pricePoints", "promotedPurchase", "subscriptionAvailability", "winBackOffers", "images", "planAvailabilities", "versions"])), z.string()]).describe("the fields to include for returned resources of type subscriptions").optional(),
     include: z.union([z.array(z.enum(["inAppPurchaseV2", "subscription"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -42,6 +44,8 @@ export const promotedPurchasesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[promotedPurchases]": args["fields_promotedPurchases"],
+      "fields[inAppPurchases]": args["fields_inAppPurchases"],
+      "fields[subscriptions]": args["fields_subscriptions"],
       "include": args["include"],
     },
       body: undefined,

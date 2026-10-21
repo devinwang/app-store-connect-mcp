@@ -32,6 +32,7 @@ export const betaAppClipInvocationsTools: Tool[] = [
     description: "GET /v1/betaAppClipInvocations/{id} (GET /v1/betaAppClipInvocations/{id})",
     input: z.object({
     fields_betaAppClipInvocations: z.union([z.array(z.enum(["url", "betaAppClipInvocationLocalizations"])), z.string()]).describe("the fields to include for returned resources of type betaAppClipInvocations").optional(),
+    fields_betaAppClipInvocationLocalizations: z.union([z.array(z.enum(["title", "locale"])), z.string()]).describe("the fields to include for returned resources of type betaAppClipInvocationLocalizations").optional(),
     include: z.union([z.array(z.enum(["betaAppClipInvocationLocalizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_betaAppClipInvocationLocalizations: z.coerce.number().int().describe("maximum number of related betaAppClipInvocationLocalizations returned (when they are included)").optional(),
     id: z.string().describe("the id of the requested resource"),
@@ -43,6 +44,7 @@ export const betaAppClipInvocationsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[betaAppClipInvocations]": args["fields_betaAppClipInvocations"],
+      "fields[betaAppClipInvocationLocalizations]": args["fields_betaAppClipInvocationLocalizations"],
       "include": args["include"],
       "limit[betaAppClipInvocationLocalizations]": args["limit_betaAppClipInvocationLocalizations"],
     },

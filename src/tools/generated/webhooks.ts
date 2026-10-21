@@ -32,6 +32,7 @@ export const webhooksTools: Tool[] = [
     description: "GET /v1/webhooks/{id} (GET /v1/webhooks/{id})",
     input: z.object({
     fields_webhooks: z.union([z.array(z.enum(["enabled", "eventTypes", "name", "url", "app", "deliveries"])), z.string()]).describe("the fields to include for returned resources of type webhooks").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "performanceOverviews", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "assetLibrary", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
     include: z.union([z.array(z.enum(["app"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -42,6 +43,7 @@ export const webhooksTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[webhooks]": args["fields_webhooks"],
+      "fields[apps]": args["fields_apps"],
       "include": args["include"],
     },
       body: undefined,

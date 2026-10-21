@@ -32,6 +32,9 @@ export const appPreviewSetsTools: Tool[] = [
     description: "GET /v1/appPreviewSets/{id} (GET /v1/appPreviewSets/{id})",
     input: z.object({
     fields_appPreviewSets: z.union([z.array(z.enum(["previewType", "appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appPreviews"])), z.string()]).describe("the fields to include for returned resources of type appPreviewSets").optional(),
+    fields_appStoreVersionLocalizations: z.union([z.array(z.enum(["description", "locale", "keywords", "marketingUrl", "promotionalText", "supportUrl", "whatsNew", "appStoreVersion", "appScreenshotSets", "appPreviewSets", "searchKeywords", "placements"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionLocalizations").optional(),
+    fields_appCustomProductPageLocalizations: z.union([z.array(z.enum(["locale", "promotionalText", "appCustomProductPageVersion", "appScreenshotSets", "appPreviewSets", "searchKeywords", "placements"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPageLocalizations").optional(),
+    fields_appStoreVersionExperimentTreatmentLocalizations: z.union([z.array(z.enum(["locale", "appStoreVersionExperimentTreatment", "appScreenshotSets", "appPreviewSets", "placements"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations").optional(),
     fields_appPreviews: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "previewFrameTimeCode", "mimeType", "videoUrl", "previewFrameImage", "previewImage", "uploadOperations", "assetDeliveryState", "videoDeliveryState", "appPreviewSet"])), z.string()]).describe("the fields to include for returned resources of type appPreviews").optional(),
     include: z.union([z.array(z.enum(["appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appPreviews"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appPreviews: z.coerce.number().int().describe("maximum number of related appPreviews returned (when they are included)").optional(),
@@ -44,6 +47,9 @@ export const appPreviewSetsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[appPreviewSets]": args["fields_appPreviewSets"],
+      "fields[appStoreVersionLocalizations]": args["fields_appStoreVersionLocalizations"],
+      "fields[appCustomProductPageLocalizations]": args["fields_appCustomProductPageLocalizations"],
+      "fields[appStoreVersionExperimentTreatmentLocalizations]": args["fields_appStoreVersionExperimentTreatmentLocalizations"],
       "fields[appPreviews]": args["fields_appPreviews"],
       "include": args["include"],
       "limit[appPreviews]": args["limit_appPreviews"],

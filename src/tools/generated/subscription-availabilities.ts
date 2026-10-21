@@ -12,7 +12,7 @@ type Any = any;
 export const subscriptionAvailabilitiesTools: Tool[] = [
   defineTool({
     name: "subscription_availabilities_create_instance",
-    description: "POST /v1/subscriptionAvailabilities (POST /v1/subscriptionAvailabilities) Body shape: see OpenAPI components.schemas.SubscriptionAvailabilityCreateRequest for the full JSON:API envelope.",
+    description: "[DEPRECATED] POST /v1/subscriptionAvailabilities (POST /v1/subscriptionAvailabilities) Body shape: see OpenAPI components.schemas.SubscriptionAvailabilityCreateRequest for the full JSON:API envelope.",
     input: z.object({
     body: z.record(z.unknown()).describe("JSON body. Shape: components.schemas.SubscriptionAvailabilityCreateRequest."),
   }).strict(),
@@ -29,7 +29,7 @@ export const subscriptionAvailabilitiesTools: Tool[] = [
   }),
   defineTool({
     name: "subscription_availabilities_get_instance",
-    description: "GET /v1/subscriptionAvailabilities/{id} (GET /v1/subscriptionAvailabilities/{id})",
+    description: "[DEPRECATED] GET /v1/subscriptionAvailabilities/{id} (GET /v1/subscriptionAvailabilities/{id})",
     input: z.object({
     fields_subscriptionAvailabilities: z.union([z.array(z.enum(["availableInNewTerritories", "availableTerritories"])), z.string()]).describe("the fields to include for returned resources of type subscriptionAvailabilities").optional(),
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
@@ -55,7 +55,7 @@ export const subscriptionAvailabilitiesTools: Tool[] = [
   }),
   defineTool({
     name: "subscription_availabilities_available_territories_get_to_many_relationship",
-    description: "GET /v1/subscriptionAvailabilities/{id}/relationships/availableTerritories (GET /v1/subscriptionAvailabilities/{id}/relationships/availableTerritories)",
+    description: "[DEPRECATED] GET /v1/subscriptionAvailabilities/{id}/relationships/availableTerritories (GET /v1/subscriptionAvailabilities/{id}/relationships/availableTerritories)",
     input: z.object({
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     id: z.string().describe("the id of the requested resource"),
@@ -75,7 +75,7 @@ export const subscriptionAvailabilitiesTools: Tool[] = [
   }),
   defineTool({
     name: "subscription_availabilities_available_territories_get_to_many_related",
-    description: "GET /v1/subscriptionAvailabilities/{id}/availableTerritories (GET /v1/subscriptionAvailabilities/{id}/availableTerritories)",
+    description: "[DEPRECATED] GET /v1/subscriptionAvailabilities/{id}/availableTerritories (GET /v1/subscriptionAvailabilities/{id}/availableTerritories)",
     input: z.object({
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),

@@ -32,6 +32,7 @@ export const gameCenterLeaderboardSetVersionsTools: Tool[] = [
     description: "GET /v2/gameCenterLeaderboardSetVersions/{id} (GET /v2/gameCenterLeaderboardSetVersions/{id})",
     input: z.object({
     fields_gameCenterLeaderboardSetVersions: z.union([z.array(z.enum(["version", "state", "leaderboardSet", "localizations"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetVersions").optional(),
+    fields_gameCenterLeaderboardSets: z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "gameCenterDetail", "gameCenterGroup", "gameCenterLeaderboards", "versions"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSets").optional(),
     fields_gameCenterLeaderboardSetLocalizations: z.union([z.array(z.enum(["locale", "name", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetLocalizations").optional(),
     include: z.union([z.array(z.enum(["leaderboardSet", "localizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
@@ -44,6 +45,7 @@ export const gameCenterLeaderboardSetVersionsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardSetVersions]": args["fields_gameCenterLeaderboardSetVersions"],
+      "fields[gameCenterLeaderboardSets]": args["fields_gameCenterLeaderboardSets"],
       "fields[gameCenterLeaderboardSetLocalizations]": args["fields_gameCenterLeaderboardSetLocalizations"],
       "include": args["include"],
       "limit[localizations]": args["limit_localizations"],

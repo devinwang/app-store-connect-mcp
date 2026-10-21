@@ -32,6 +32,7 @@ export const appClipDefaultExperienceLocalizationsTools: Tool[] = [
     description: "GET /v1/appClipDefaultExperienceLocalizations/{id} (GET /v1/appClipDefaultExperienceLocalizations/{id})",
     input: z.object({
     fields_appClipDefaultExperienceLocalizations: z.union([z.array(z.enum(["locale", "subtitle", "appClipDefaultExperience", "appClipHeaderImage"])), z.string()]).describe("the fields to include for returned resources of type appClipDefaultExperienceLocalizations").optional(),
+    fields_appClipDefaultExperiences: z.union([z.array(z.enum(["action", "appClip", "releaseWithAppStoreVersion", "appClipDefaultExperienceLocalizations", "appClipAppStoreReviewDetail"])), z.string()]).describe("the fields to include for returned resources of type appClipDefaultExperiences").optional(),
     fields_appClipHeaderImages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "uploadOperations", "assetDeliveryState", "appClipDefaultExperienceLocalization"])), z.string()]).describe("the fields to include for returned resources of type appClipHeaderImages").optional(),
     include: z.union([z.array(z.enum(["appClipDefaultExperience", "appClipHeaderImage"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
@@ -43,6 +44,7 @@ export const appClipDefaultExperienceLocalizationsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[appClipDefaultExperienceLocalizations]": args["fields_appClipDefaultExperienceLocalizations"],
+      "fields[appClipDefaultExperiences]": args["fields_appClipDefaultExperiences"],
       "fields[appClipHeaderImages]": args["fields_appClipHeaderImages"],
       "include": args["include"],
     },

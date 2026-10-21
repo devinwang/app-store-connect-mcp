@@ -32,6 +32,7 @@ export const gameCenterAchievementImagesTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterAchievementImages/{id} (GET /v1/gameCenterAchievementImages/{id})",
     input: z.object({
     fields_gameCenterAchievementImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "gameCenterAchievementLocalization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementImages").optional(),
+    fields_gameCenterAchievementLocalizations: z.union([z.array(z.enum(["locale", "name", "beforeEarnedDescription", "afterEarnedDescription", "gameCenterAchievement", "gameCenterAchievementImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementLocalizations").optional(),
     include: z.union([z.array(z.enum(["gameCenterAchievementLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -42,6 +43,7 @@ export const gameCenterAchievementImagesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievementImages]": args["fields_gameCenterAchievementImages"],
+      "fields[gameCenterAchievementLocalizations]": args["fields_gameCenterAchievementLocalizations"],
       "include": args["include"],
     },
       body: undefined,
@@ -106,6 +108,7 @@ export const gameCenterAchievementImagesTools: Tool[] = [
     description: "GET /v2/gameCenterAchievementImages/{id} (GET /v2/gameCenterAchievementImages/{id})",
     input: z.object({
     fields_gameCenterAchievementImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementImages").optional(),
+    fields_gameCenterAchievementLocalizations: z.union([z.array(z.enum(["locale", "name", "beforeEarnedDescription", "afterEarnedDescription", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementLocalizations").optional(),
     include: z.union([z.array(z.enum(["localization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -116,6 +119,7 @@ export const gameCenterAchievementImagesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievementImages]": args["fields_gameCenterAchievementImages"],
+      "fields[gameCenterAchievementLocalizations]": args["fields_gameCenterAchievementLocalizations"],
       "include": args["include"],
     },
       body: undefined,

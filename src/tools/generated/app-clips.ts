@@ -15,6 +15,7 @@ export const appClipsTools: Tool[] = [
     description: "GET /v1/appClips/{id} (GET /v1/appClips/{id})",
     input: z.object({
     fields_appClips: z.union([z.array(z.enum(["bundleId", "app", "appClipDefaultExperiences", "appClipAdvancedExperiences"])), z.string()]).describe("the fields to include for returned resources of type appClips").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "performanceOverviews", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "assetLibrary", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
     fields_appClipDefaultExperiences: z.union([z.array(z.enum(["action", "appClip", "releaseWithAppStoreVersion", "appClipDefaultExperienceLocalizations", "appClipAppStoreReviewDetail"])), z.string()]).describe("the fields to include for returned resources of type appClipDefaultExperiences").optional(),
     include: z.union([z.array(z.enum(["app", "appClipDefaultExperiences"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appClipDefaultExperiences: z.coerce.number().int().describe("maximum number of related appClipDefaultExperiences returned (when they are included)").optional(),
@@ -27,6 +28,7 @@ export const appClipsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[appClips]": args["fields_appClips"],
+      "fields[apps]": args["fields_apps"],
       "fields[appClipDefaultExperiences]": args["fields_appClipDefaultExperiences"],
       "include": args["include"],
       "limit[appClipDefaultExperiences]": args["limit_appClipDefaultExperiences"],

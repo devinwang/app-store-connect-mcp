@@ -15,6 +15,7 @@ export const inAppPurchaseContentsTools: Tool[] = [
     description: "GET /v1/inAppPurchaseContents/{id} (GET /v1/inAppPurchaseContents/{id})",
     input: z.object({
     fields_inAppPurchaseContents: z.union([z.array(z.enum(["fileName", "fileSize", "url", "lastModifiedDate", "inAppPurchaseV2"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchaseContents").optional(),
+    fields_inAppPurchases: z.union([z.array(z.enum(["name", "productId", "inAppPurchaseType", "state", "reviewNote", "familySharable", "contentHosting", "inAppPurchaseLocalizations", "pricePoints", "content", "appStoreReviewScreenshot", "promotedPurchase", "iapPriceSchedule", "inAppPurchaseAvailability", "images", "offerCodes", "versions"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchases").optional(),
     include: z.union([z.array(z.enum(["inAppPurchaseV2"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -25,6 +26,7 @@ export const inAppPurchaseContentsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[inAppPurchaseContents]": args["fields_inAppPurchaseContents"],
+      "fields[inAppPurchases]": args["fields_inAppPurchases"],
       "include": args["include"],
     },
       body: undefined,

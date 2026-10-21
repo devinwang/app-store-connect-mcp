@@ -32,6 +32,8 @@ export const gameCenterLeaderboardSetReleasesTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboardSetReleases/{id} (GET /v1/gameCenterLeaderboardSetReleases/{id})",
     input: z.object({
     fields_gameCenterLeaderboardSetReleases: z.union([z.array(z.enum(["live", "gameCenterDetail", "gameCenterLeaderboardSet"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSetReleases").optional(),
+    fields_gameCenterDetails: z.union([z.array(z.enum(["arcadeEnabled", "challengeEnabled", "app", "gameCenterAppVersions", "gameCenterGroup", "gameCenterLeaderboards", "gameCenterLeaderboardsV2", "gameCenterLeaderboardSets", "gameCenterLeaderboardSetsV2", "gameCenterAchievements", "gameCenterAchievementsV2", "gameCenterActivities", "gameCenterChallenges", "defaultLeaderboard", "defaultLeaderboardV2", "defaultGroupLeaderboard", "defaultGroupLeaderboardV2", "achievementReleases", "activityReleases", "challengeReleases", "leaderboardReleases", "leaderboardSetReleases", "blockedPlayers", "challengesMinimumPlatformVersions"])), z.string()]).describe("the fields to include for returned resources of type gameCenterDetails").optional(),
+    fields_gameCenterLeaderboardSets: z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "gameCenterDetail", "gameCenterGroup", "groupLeaderboardSet", "localizations", "gameCenterLeaderboards", "releases"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardSets").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterLeaderboardSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -42,6 +44,8 @@ export const gameCenterLeaderboardSetReleasesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardSetReleases]": args["fields_gameCenterLeaderboardSetReleases"],
+      "fields[gameCenterDetails]": args["fields_gameCenterDetails"],
+      "fields[gameCenterLeaderboardSets]": args["fields_gameCenterLeaderboardSets"],
       "include": args["include"],
     },
       body: undefined,

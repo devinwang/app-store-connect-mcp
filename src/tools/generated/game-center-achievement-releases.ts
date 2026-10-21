@@ -32,6 +32,8 @@ export const gameCenterAchievementReleasesTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterAchievementReleases/{id} (GET /v1/gameCenterAchievementReleases/{id})",
     input: z.object({
     fields_gameCenterAchievementReleases: z.union([z.array(z.enum(["live", "gameCenterDetail", "gameCenterAchievement"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementReleases").optional(),
+    fields_gameCenterDetails: z.union([z.array(z.enum(["arcadeEnabled", "challengeEnabled", "app", "gameCenterAppVersions", "gameCenterGroup", "gameCenterLeaderboards", "gameCenterLeaderboardsV2", "gameCenterLeaderboardSets", "gameCenterLeaderboardSetsV2", "gameCenterAchievements", "gameCenterAchievementsV2", "gameCenterActivities", "gameCenterChallenges", "defaultLeaderboard", "defaultLeaderboardV2", "defaultGroupLeaderboard", "defaultGroupLeaderboardV2", "achievementReleases", "activityReleases", "challengeReleases", "leaderboardReleases", "leaderboardSetReleases", "blockedPlayers", "challengesMinimumPlatformVersions"])), z.string()]).describe("the fields to include for returned resources of type gameCenterDetails").optional(),
+    fields_gameCenterAchievements: z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "points", "showBeforeEarned", "repeatable", "archived", "activityProperties", "gameCenterDetail", "gameCenterGroup", "groupAchievement", "localizations", "releases", "activity"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievements").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterAchievement"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -42,6 +44,8 @@ export const gameCenterAchievementReleasesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievementReleases]": args["fields_gameCenterAchievementReleases"],
+      "fields[gameCenterDetails]": args["fields_gameCenterDetails"],
+      "fields[gameCenterAchievements]": args["fields_gameCenterAchievements"],
       "include": args["include"],
     },
       body: undefined,

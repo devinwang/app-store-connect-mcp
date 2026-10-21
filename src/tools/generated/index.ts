@@ -15,6 +15,12 @@ import { analyticsReportRequestsTools } from "./analytics-report-requests.js";
 import { analyticsReportSegmentsTools } from "./analytics-report-segments.js";
 import { analyticsReportsTools } from "./analytics-reports.js";
 import { androidToIosAppMappingDetailsTools } from "./android-to-ios-app-mapping-details.js";
+import { appAssetLibrariesTools } from "./app-asset-libraries.js";
+import { appAssetLibraryImagesTools } from "./app-asset-library-images.js";
+import { appAssetLibraryPlacementOrderingRequestsTools } from "./app-asset-library-placement-ordering-requests.js";
+import { appAssetLibraryPlacementsTools } from "./app-asset-library-placements.js";
+import { appAssetLibraryRefDataTools } from "./app-asset-library-ref-data.js";
+import { appAssetLibraryVideosTools } from "./app-asset-library-videos.js";
 import { appAvailabilitiesTools } from "./app-availabilities.js";
 import { appCategoriesTools } from "./app-categories.js";
 import { appClipAdvancedExperienceImagesTools } from "./app-clip-advanced-experience-images.js";
@@ -114,6 +120,7 @@ import { gameCenterChallengeLocalizationsTools } from "./game-center-challenge-l
 import { gameCenterChallengeVersionReleasesTools } from "./game-center-challenge-version-releases.js";
 import { gameCenterChallengeVersionsTools } from "./game-center-challenge-versions.js";
 import { gameCenterChallengesTools } from "./game-center-challenges.js";
+import { gameCenterDetailPlayersTools } from "./game-center-detail-players.js";
 import { gameCenterDetailsTools } from "./game-center-details.js";
 import { gameCenterGroupsTools } from "./game-center-groups.js";
 import { gameCenterLeaderboardEntrySubmissionsTools } from "./game-center-leaderboard-entry-submissions.js";
@@ -134,6 +141,7 @@ import { gameCenterMatchmakingRuleSetsTools } from "./game-center-matchmaking-ru
 import { gameCenterMatchmakingRulesTools } from "./game-center-matchmaking-rules.js";
 import { gameCenterMatchmakingTeamsTools } from "./game-center-matchmaking-teams.js";
 import { gameCenterPlayerAchievementSubmissionsTools } from "./game-center-player-achievement-submissions.js";
+import { gameCenterScoreModerationsTools } from "./game-center-score-moderations.js";
 import { inAppPurchaseAppStoreReviewScreenshotsTools } from "./in-app-purchase-app-store-review-screenshots.js";
 import { inAppPurchaseAvailabilitiesTools } from "./in-app-purchase-availabilities.js";
 import { inAppPurchaseContentsTools } from "./in-app-purchase-contents.js";
@@ -144,6 +152,7 @@ import { inAppPurchaseOfferCodeOneTimeUseCodesTools } from "./in-app-purchase-of
 import { inAppPurchaseOfferCodesTools } from "./in-app-purchase-offer-codes.js";
 import { inAppPurchasePriceSchedulesTools } from "./in-app-purchase-price-schedules.js";
 import { inAppPurchaseSubmissionsTools } from "./in-app-purchase-submissions.js";
+import { inAppPurchaseVersionsTools } from "./in-app-purchase-versions.js";
 import { inAppPurchasesTools } from "./in-app-purchases.js";
 import { marketplaceSearchDetailsTools } from "./marketplace-search-details.js";
 import { marketplaceWebhooksTools } from "./marketplace-webhooks.js";
@@ -168,6 +177,7 @@ import { subscriptionAvailabilitiesTools } from "./subscription-availabilities.j
 import { subscriptionGracePeriodsTools } from "./subscription-grace-periods.js";
 import { subscriptionGroupLocalizationsTools } from "./subscription-group-localizations.js";
 import { subscriptionGroupSubmissionsTools } from "./subscription-group-submissions.js";
+import { subscriptionGroupVersionsTools } from "./subscription-group-versions.js";
 import { subscriptionGroupsTools } from "./subscription-groups.js";
 import { subscriptionImagesTools } from "./subscription-images.js";
 import { subscriptionIntroductoryOffersTools } from "./subscription-introductory-offers.js";
@@ -175,10 +185,12 @@ import { subscriptionLocalizationsTools } from "./subscription-localizations.js"
 import { subscriptionOfferCodeCustomCodesTools } from "./subscription-offer-code-custom-codes.js";
 import { subscriptionOfferCodeOneTimeUseCodesTools } from "./subscription-offer-code-one-time-use-codes.js";
 import { subscriptionOfferCodesTools } from "./subscription-offer-codes.js";
+import { subscriptionPlanAvailabilitiesTools } from "./subscription-plan-availabilities.js";
 import { subscriptionPricePointsTools } from "./subscription-price-points.js";
 import { subscriptionPricesTools } from "./subscription-prices.js";
 import { subscriptionPromotionalOffersTools } from "./subscription-promotional-offers.js";
 import { subscriptionSubmissionsTools } from "./subscription-submissions.js";
+import { subscriptionVersionsTools } from "./subscription-versions.js";
 import { subscriptionsTools } from "./subscriptions.js";
 import { territoriesTools } from "./territories.js";
 import { territoryAvailabilitiesTools } from "./territory-availabilities.js";
@@ -208,6 +220,12 @@ export const generatedTools: Tool[] = [
   ...analyticsReportSegmentsTools,
   ...analyticsReportsTools,
   ...androidToIosAppMappingDetailsTools,
+  ...appAssetLibrariesTools,
+  ...appAssetLibraryImagesTools,
+  ...appAssetLibraryPlacementOrderingRequestsTools,
+  ...appAssetLibraryPlacementsTools,
+  ...appAssetLibraryRefDataTools,
+  ...appAssetLibraryVideosTools,
   ...appAvailabilitiesTools,
   ...appCategoriesTools,
   ...appClipAdvancedExperienceImagesTools,
@@ -307,6 +325,7 @@ export const generatedTools: Tool[] = [
   ...gameCenterChallengeVersionReleasesTools,
   ...gameCenterChallengeVersionsTools,
   ...gameCenterChallengesTools,
+  ...gameCenterDetailPlayersTools,
   ...gameCenterDetailsTools,
   ...gameCenterGroupsTools,
   ...gameCenterLeaderboardEntrySubmissionsTools,
@@ -327,6 +346,7 @@ export const generatedTools: Tool[] = [
   ...gameCenterMatchmakingRulesTools,
   ...gameCenterMatchmakingTeamsTools,
   ...gameCenterPlayerAchievementSubmissionsTools,
+  ...gameCenterScoreModerationsTools,
   ...inAppPurchaseAppStoreReviewScreenshotsTools,
   ...inAppPurchaseAvailabilitiesTools,
   ...inAppPurchaseContentsTools,
@@ -337,6 +357,7 @@ export const generatedTools: Tool[] = [
   ...inAppPurchaseOfferCodesTools,
   ...inAppPurchasePriceSchedulesTools,
   ...inAppPurchaseSubmissionsTools,
+  ...inAppPurchaseVersionsTools,
   ...inAppPurchasesTools,
   ...marketplaceSearchDetailsTools,
   ...marketplaceWebhooksTools,
@@ -361,6 +382,7 @@ export const generatedTools: Tool[] = [
   ...subscriptionGracePeriodsTools,
   ...subscriptionGroupLocalizationsTools,
   ...subscriptionGroupSubmissionsTools,
+  ...subscriptionGroupVersionsTools,
   ...subscriptionGroupsTools,
   ...subscriptionImagesTools,
   ...subscriptionIntroductoryOffersTools,
@@ -368,10 +390,12 @@ export const generatedTools: Tool[] = [
   ...subscriptionOfferCodeCustomCodesTools,
   ...subscriptionOfferCodeOneTimeUseCodesTools,
   ...subscriptionOfferCodesTools,
+  ...subscriptionPlanAvailabilitiesTools,
   ...subscriptionPricePointsTools,
   ...subscriptionPricesTools,
   ...subscriptionPromotionalOffersTools,
   ...subscriptionSubmissionsTools,
+  ...subscriptionVersionsTools,
   ...subscriptionsTools,
   ...territoriesTools,
   ...territoryAvailabilitiesTools,

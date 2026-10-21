@@ -32,6 +32,7 @@ export const appPreviewsTools: Tool[] = [
     description: "GET /v1/appPreviews/{id} (GET /v1/appPreviews/{id})",
     input: z.object({
     fields_appPreviews: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "previewFrameTimeCode", "mimeType", "videoUrl", "previewFrameImage", "previewImage", "uploadOperations", "assetDeliveryState", "videoDeliveryState", "appPreviewSet"])), z.string()]).describe("the fields to include for returned resources of type appPreviews").optional(),
+    fields_appPreviewSets: z.union([z.array(z.enum(["previewType", "appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appPreviews"])), z.string()]).describe("the fields to include for returned resources of type appPreviewSets").optional(),
     include: z.union([z.array(z.enum(["appPreviewSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -42,6 +43,7 @@ export const appPreviewsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[appPreviews]": args["fields_appPreviews"],
+      "fields[appPreviewSets]": args["fields_appPreviewSets"],
       "include": args["include"],
     },
       body: undefined,

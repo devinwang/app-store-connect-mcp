@@ -32,6 +32,9 @@ export const appClipAdvancedExperiencesTools: Tool[] = [
     description: "GET /v1/appClipAdvancedExperiences/{id} (GET /v1/appClipAdvancedExperiences/{id})",
     input: z.object({
     fields_appClipAdvancedExperiences: z.union([z.array(z.enum(["link", "version", "status", "action", "isPoweredBy", "place", "placeStatus", "businessCategory", "defaultLanguage", "appClip", "headerImage", "localizations"])), z.string()]).describe("the fields to include for returned resources of type appClipAdvancedExperiences").optional(),
+    fields_appClips: z.union([z.array(z.enum(["bundleId", "app", "appClipDefaultExperiences", "appClipAdvancedExperiences"])), z.string()]).describe("the fields to include for returned resources of type appClips").optional(),
+    fields_appClipAdvancedExperienceImages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type appClipAdvancedExperienceImages").optional(),
+    fields_appClipAdvancedExperienceLocalizations: z.union([z.array(z.enum(["language", "title", "subtitle"])), z.string()]).describe("the fields to include for returned resources of type appClipAdvancedExperienceLocalizations").optional(),
     include: z.union([z.array(z.enum(["appClip", "headerImage", "localizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
     id: z.string().describe("the id of the requested resource"),
@@ -43,6 +46,9 @@ export const appClipAdvancedExperiencesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[appClipAdvancedExperiences]": args["fields_appClipAdvancedExperiences"],
+      "fields[appClips]": args["fields_appClips"],
+      "fields[appClipAdvancedExperienceImages]": args["fields_appClipAdvancedExperienceImages"],
+      "fields[appClipAdvancedExperienceLocalizations]": args["fields_appClipAdvancedExperienceLocalizations"],
       "include": args["include"],
       "limit[localizations]": args["limit_localizations"],
     },

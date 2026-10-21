@@ -5,12 +5,12 @@
 | Field | Value |
 |---|---|
 | File | `app-store-connect-openapi.json` |
-| Spec version | 4.3 |
-| Downloaded | 2026-04-21 |
-| Total operations | 1208 |
-| Unique operationIds | 1208 |
-| Deprecated operations | 153 |
-| Tags (resource groups) | 192 |
+| Spec version | 4.5.1 |
+| Downloaded | 2026-10-21 |
+| Total operations | 1303 |
+| Unique operationIds | 1303 |
+| Deprecated operations | 159 |
+| Tags (resource groups) | 203 |
 | Server base URL | `https://api.appstoreconnect.apple.com/` |
 
 ## How to refresh

@@ -15,6 +15,7 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
     description: "GET /v1/gameCenterMatchmakingQueues (GET /v1/gameCenterMatchmakingQueues)",
     input: z.object({
     fields_gameCenterMatchmakingQueues: z.union([z.array(z.enum(["referenceName", "classicMatchmakingBundleIds", "ruleSet", "experimentRuleSet"])), z.string()]).describe("the fields to include for returned resources of type gameCenterMatchmakingQueues").optional(),
+    fields_gameCenterMatchmakingRuleSets: z.union([z.array(z.enum(["referenceName", "ruleLanguageVersion", "minPlayers", "maxPlayers", "teams", "rules", "matchmakingQueues"])), z.string()]).describe("the fields to include for returned resources of type gameCenterMatchmakingRuleSets").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["ruleSet", "experimentRuleSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
   }).strict(),
@@ -25,6 +26,7 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
       pathParams: undefined,
       query: {
       "fields[gameCenterMatchmakingQueues]": args["fields_gameCenterMatchmakingQueues"],
+      "fields[gameCenterMatchmakingRuleSets]": args["fields_gameCenterMatchmakingRuleSets"],
       "limit": args["limit"],
       "include": args["include"],
     },
@@ -55,6 +57,7 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
     description: "GET /v1/gameCenterMatchmakingQueues/{id} (GET /v1/gameCenterMatchmakingQueues/{id})",
     input: z.object({
     fields_gameCenterMatchmakingQueues: z.union([z.array(z.enum(["referenceName", "classicMatchmakingBundleIds", "ruleSet", "experimentRuleSet"])), z.string()]).describe("the fields to include for returned resources of type gameCenterMatchmakingQueues").optional(),
+    fields_gameCenterMatchmakingRuleSets: z.union([z.array(z.enum(["referenceName", "ruleLanguageVersion", "minPlayers", "maxPlayers", "teams", "rules", "matchmakingQueues"])), z.string()]).describe("the fields to include for returned resources of type gameCenterMatchmakingRuleSets").optional(),
     include: z.union([z.array(z.enum(["ruleSet", "experimentRuleSet"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -65,6 +68,7 @@ export const gameCenterMatchmakingQueuesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterMatchmakingQueues]": args["fields_gameCenterMatchmakingQueues"],
+      "fields[gameCenterMatchmakingRuleSets]": args["fields_gameCenterMatchmakingRuleSets"],
       "include": args["include"],
     },
       body: undefined,

@@ -32,6 +32,7 @@ export const inAppPurchaseOfferCodeCustomCodesTools: Tool[] = [
     description: "GET /v1/inAppPurchaseOfferCodeCustomCodes/{id} (GET /v1/inAppPurchaseOfferCodeCustomCodes/{id})",
     input: z.object({
     fields_inAppPurchaseOfferCodeCustomCodes: z.union([z.array(z.enum(["customCode", "numberOfCodes", "createdDate", "expirationDate", "active", "createdByActor", "deactivatedByActor"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchaseOfferCodeCustomCodes").optional(),
+    fields_actors: z.union([z.array(z.enum(["actorType", "userFirstName", "userLastName", "userEmail", "apiKeyId"])), z.string()]).describe("the fields to include for returned resources of type actors").optional(),
     include: z.union([z.array(z.enum(["createdByActor", "deactivatedByActor"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -42,6 +43,7 @@ export const inAppPurchaseOfferCodeCustomCodesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[inAppPurchaseOfferCodeCustomCodes]": args["fields_inAppPurchaseOfferCodeCustomCodes"],
+      "fields[actors]": args["fields_actors"],
       "include": args["include"],
     },
       body: undefined,

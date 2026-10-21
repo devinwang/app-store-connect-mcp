@@ -32,6 +32,7 @@ export const appCustomProductPagesTools: Tool[] = [
     description: "GET /v1/appCustomProductPages/{id} (GET /v1/appCustomProductPages/{id})",
     input: z.object({
     fields_appCustomProductPages: z.union([z.array(z.enum(["name", "url", "visible", "app", "appCustomProductPageVersions"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPages").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "performanceOverviews", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "assetLibrary", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
     fields_appCustomProductPageVersions: z.union([z.array(z.enum(["version", "state", "deepLink", "appCustomProductPage", "appCustomProductPageLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPageVersions").optional(),
     include: z.union([z.array(z.enum(["app", "appCustomProductPageVersions"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appCustomProductPageVersions: z.coerce.number().int().describe("maximum number of related appCustomProductPageVersions returned (when they are included)").optional(),
@@ -44,6 +45,7 @@ export const appCustomProductPagesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[appCustomProductPages]": args["fields_appCustomProductPages"],
+      "fields[apps]": args["fields_apps"],
       "fields[appCustomProductPageVersions]": args["fields_appCustomProductPageVersions"],
       "include": args["include"],
       "limit[appCustomProductPageVersions]": args["limit_appCustomProductPageVersions"],
@@ -115,7 +117,7 @@ export const appCustomProductPagesTools: Tool[] = [
     filter_state: z.union([z.array(z.enum(["PREPARE_FOR_SUBMISSION", "READY_FOR_REVIEW", "WAITING_FOR_REVIEW", "IN_REVIEW", "ACCEPTED", "APPROVED", "REPLACED_WITH_NEW_VERSION", "REJECTED"])), z.string()]).describe("filter by attribute 'state'").optional(),
     fields_appCustomProductPageVersions: z.union([z.array(z.enum(["version", "state", "deepLink", "appCustomProductPage", "appCustomProductPageLocalizations"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPageVersions").optional(),
     fields_appCustomProductPages: z.union([z.array(z.enum(["name", "url", "visible", "app", "appCustomProductPageVersions"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPages").optional(),
-    fields_appCustomProductPageLocalizations: z.union([z.array(z.enum(["locale", "promotionalText", "appCustomProductPageVersion", "appScreenshotSets", "appPreviewSets", "searchKeywords"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPageLocalizations").optional(),
+    fields_appCustomProductPageLocalizations: z.union([z.array(z.enum(["locale", "promotionalText", "appCustomProductPageVersion", "appScreenshotSets", "appPreviewSets", "searchKeywords", "placements"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPageLocalizations").optional(),
     limit: z.coerce.number().int().describe("maximum resources per page").optional(),
     include: z.union([z.array(z.enum(["appCustomProductPage", "appCustomProductPageLocalizations"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appCustomProductPageLocalizations: z.coerce.number().int().describe("maximum number of related appCustomProductPageLocalizations returned (when they are included)").optional(),

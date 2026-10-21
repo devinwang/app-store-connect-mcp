@@ -2,11 +2,11 @@
 
 For the authoritative list with descriptions and input schemas, install the server and use your MCP client's tool list command (Claude Code: `/mcp`, Claude Desktop: chat sidebar, Cursor: MCP panel).
 
-This server exposes **1221 tools**:
+This server exposes **1316 tools**:
 
 - **6** `accounts_*` — local credential registry
 - **2** `auth_*` — introspection
-- **1208** auto-generated from Apple's OpenAPI spec, one per operation
+- **1303** auto-generated from Apple's OpenAPI spec, one per operation
 - **5** hand-written helpers (`asset_upload_file`, `sales_reports_download`, `finance_reports_download`, `analytics_report_instance_wait`, `ci_build_run_wait`)
 
 ## Naming convention
@@ -44,7 +44,7 @@ For each resource, the usual pattern is:
 
 ## Resource groups
 
-See `spec/coverage-report.txt` in the repo for the full list of 191 tags + tool counts per tag.
+See `spec/coverage-report.txt` in the repo for the full list of 203 tags + tool counts per tag.
 
 ## Finding a tool
 

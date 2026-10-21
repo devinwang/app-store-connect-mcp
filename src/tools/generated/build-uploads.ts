@@ -32,6 +32,8 @@ export const buildUploadsTools: Tool[] = [
     description: "GET /v1/buildUploads/{id} (GET /v1/buildUploads/{id})",
     input: z.object({
     fields_buildUploads: z.union([z.array(z.enum(["cfBundleShortVersionString", "cfBundleVersion", "createdDate", "state", "platform", "uploadedDate", "build", "assetFile", "assetDescriptionFile", "assetSpiFile", "buildUploadFiles"])), z.string()]).describe("the fields to include for returned resources of type buildUploads").optional(),
+    fields_builds: z.union([z.array(z.enum(["version", "uploadedDate", "expirationDate", "expired", "minOsVersion", "lsMinimumSystemVersion", "computedMinMacOsVersion", "computedMinVisionOsVersion", "iconAssetToken", "processingState", "buildAudienceType", "usesNonExemptEncryption", "preReleaseVersion", "individualTesters", "betaGroups", "betaBuildLocalizations", "appEncryptionDeclaration", "betaAppReviewSubmission", "app", "buildBetaDetail", "appStoreVersion", "icons", "buildBundles", "buildUpload", "perfPowerMetrics", "diagnosticSignatures"])), z.string()]).describe("the fields to include for returned resources of type builds").optional(),
+    fields_buildUploadFiles: z.union([z.array(z.enum(["assetDeliveryState", "assetToken", "assetType", "fileName", "fileSize", "sourceFileChecksums", "uploadOperations", "uti"])), z.string()]).describe("the fields to include for returned resources of type buildUploadFiles").optional(),
     include: z.union([z.array(z.enum(["build", "assetFile", "assetDescriptionFile", "assetSpiFile"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -42,6 +44,8 @@ export const buildUploadsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[buildUploads]": args["fields_buildUploads"],
+      "fields[builds]": args["fields_builds"],
+      "fields[buildUploadFiles]": args["fields_buildUploadFiles"],
       "include": args["include"],
     },
       body: undefined,

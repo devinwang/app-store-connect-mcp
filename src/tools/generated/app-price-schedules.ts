@@ -32,6 +32,7 @@ export const appPriceSchedulesTools: Tool[] = [
     description: "GET /v1/appPriceSchedules/{id} (GET /v1/appPriceSchedules/{id})",
     input: z.object({
     fields_appPriceSchedules: z.union([z.array(z.enum(["app", "baseTerritory", "manualPrices", "automaticPrices"])), z.string()]).describe("the fields to include for returned resources of type appPriceSchedules").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "performanceOverviews", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "assetLibrary", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     fields_appPrices: z.union([z.array(z.enum(["manual", "startDate", "endDate", "appPricePoint", "territory"])), z.string()]).describe("the fields to include for returned resources of type appPrices").optional(),
     include: z.union([z.array(z.enum(["app", "baseTerritory", "manualPrices", "automaticPrices"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
@@ -46,6 +47,7 @@ export const appPriceSchedulesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[appPriceSchedules]": args["fields_appPriceSchedules"],
+      "fields[apps]": args["fields_apps"],
       "fields[territories]": args["fields_territories"],
       "fields[appPrices]": args["fields_appPrices"],
       "include": args["include"],

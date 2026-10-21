@@ -32,6 +32,7 @@ export const endUserLicenseAgreementsTools: Tool[] = [
     description: "GET /v1/endUserLicenseAgreements/{id} (GET /v1/endUserLicenseAgreements/{id})",
     input: z.object({
     fields_endUserLicenseAgreements: z.union([z.array(z.enum(["agreementText", "app", "territories"])), z.string()]).describe("the fields to include for returned resources of type endUserLicenseAgreements").optional(),
+    fields_apps: z.union([z.array(z.enum(["accessibilityUrl", "name", "bundleId", "sku", "primaryLocale", "isOrEverWasMadeForKids", "subscriptionStatusUrl", "subscriptionStatusUrlVersion", "subscriptionStatusUrlForSandbox", "subscriptionStatusUrlVersionForSandbox", "contentRightsDeclaration", "streamlinedPurchasingEnabled", "accessibilityDeclarations", "appEncryptionDeclarations", "appStoreIcon", "ciProduct", "betaTesters", "betaGroups", "appStoreVersions", "appTags", "preReleaseVersions", "betaAppLocalizations", "builds", "betaLicenseAgreement", "betaAppReviewDetail", "appInfos", "appClips", "appPricePoints", "endUserLicenseAgreement", "appPriceSchedule", "appAvailabilityV2", "inAppPurchases", "subscriptionGroups", "gameCenterEnabledVersions", "performanceOverviews", "perfPowerMetrics", "appCustomProductPages", "inAppPurchasesV2", "promotedPurchases", "appEvents", "reviewSubmissions", "subscriptionGracePeriod", "customerReviews", "customerReviewSummarizations", "gameCenterDetail", "appStoreVersionExperimentsV2", "alternativeDistributionKey", "analyticsReportRequests", "marketplaceSearchDetail", "buildUploads", "backgroundAssets", "assetLibrary", "betaFeedbackScreenshotSubmissions", "betaFeedbackCrashSubmissions", "searchKeywords", "webhooks", "androidToIosAppMappingDetails"])), z.string()]).describe("the fields to include for returned resources of type apps").optional(),
     fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
     include: z.union([z.array(z.enum(["app", "territories"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_territories: z.coerce.number().int().describe("maximum number of related territories returned (when they are included)").optional(),
@@ -44,6 +45,7 @@ export const endUserLicenseAgreementsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[endUserLicenseAgreements]": args["fields_endUserLicenseAgreements"],
+      "fields[apps]": args["fields_apps"],
       "fields[territories]": args["fields_territories"],
       "include": args["include"],
       "limit[territories]": args["limit_territories"],

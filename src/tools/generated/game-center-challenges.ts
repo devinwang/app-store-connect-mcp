@@ -32,7 +32,10 @@ export const gameCenterChallengesTools: Tool[] = [
     description: "GET /v1/gameCenterChallenges/{id} (GET /v1/gameCenterChallenges/{id})",
     input: z.object({
     fields_gameCenterChallenges: z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "archived", "challengeType", "repeatable", "gameCenterDetail", "gameCenterGroup", "versions", "leaderboard", "leaderboardV2"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallenges").optional(),
+    fields_gameCenterDetails: z.union([z.array(z.enum(["arcadeEnabled", "challengeEnabled", "app", "gameCenterAppVersions", "gameCenterGroup", "gameCenterLeaderboards", "gameCenterLeaderboardsV2", "gameCenterLeaderboardSets", "gameCenterLeaderboardSetsV2", "gameCenterAchievements", "gameCenterAchievementsV2", "gameCenterActivities", "gameCenterChallenges", "defaultLeaderboard", "defaultLeaderboardV2", "defaultGroupLeaderboard", "defaultGroupLeaderboardV2", "achievementReleases", "activityReleases", "challengeReleases", "leaderboardReleases", "leaderboardSetReleases", "blockedPlayers", "challengesMinimumPlatformVersions"])), z.string()]).describe("the fields to include for returned resources of type gameCenterDetails").optional(),
+    fields_gameCenterGroups: z.union([z.array(z.enum(["referenceName", "gameCenterDetails", "gameCenterLeaderboards", "gameCenterLeaderboardsV2", "gameCenterLeaderboardSets", "gameCenterLeaderboardSetsV2", "gameCenterAchievements", "gameCenterAchievementsV2", "gameCenterActivities", "gameCenterChallenges"])), z.string()]).describe("the fields to include for returned resources of type gameCenterGroups").optional(),
     fields_gameCenterChallengeVersions: z.union([z.array(z.enum(["version", "state", "challenge", "localizations", "releases", "defaultImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeVersions").optional(),
+    fields_gameCenterLeaderboards: z.union([z.array(z.enum(["defaultFormatter", "referenceName", "vendorIdentifier", "submissionType", "scoreSortType", "scoreRangeStart", "scoreRangeEnd", "recurrenceStartDate", "recurrenceDuration", "recurrenceRule", "archived", "activityProperties", "visibility", "gameCenterDetail", "gameCenterGroup", "groupLeaderboard", "gameCenterLeaderboardSets", "localizations", "releases", "activity", "challenge", "gameCenterScoreModerations", "versions"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboards").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterGroup", "versions", "leaderboard", "leaderboardV2"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_versions: z.coerce.number().int().describe("maximum number of related versions returned (when they are included)").optional(),
     id: z.string().describe("the id of the requested resource"),
@@ -44,7 +47,10 @@ export const gameCenterChallengesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterChallenges]": args["fields_gameCenterChallenges"],
+      "fields[gameCenterDetails]": args["fields_gameCenterDetails"],
+      "fields[gameCenterGroups]": args["fields_gameCenterGroups"],
       "fields[gameCenterChallengeVersions]": args["fields_gameCenterChallengeVersions"],
+      "fields[gameCenterLeaderboards]": args["fields_gameCenterLeaderboards"],
       "include": args["include"],
       "limit[versions]": args["limit_versions"],
     },

@@ -14,9 +14,10 @@ export const customerReviewsTools: Tool[] = [
     name: "customer_reviews_get_instance",
     description: "GET /v1/customerReviews/{id} (GET /v1/customerReviews/{id})",
     input: z.object({
-    fields_customerReviews: z.union([z.array(z.enum(["rating", "title", "body", "reviewerNickname", "createdDate", "territory", "response"])), z.string()]).describe("the fields to include for returned resources of type customerReviews").optional(),
+    fields_customerReviews: z.union([z.array(z.enum(["rating", "title", "body", "reviewerNickname", "createdDate", "territory", "response", "reviewTerritory"])), z.string()]).describe("the fields to include for returned resources of type customerReviews").optional(),
     fields_customerReviewResponses: z.union([z.array(z.enum(["responseBody", "lastModifiedDate", "state", "review"])), z.string()]).describe("the fields to include for returned resources of type customerReviewResponses").optional(),
-    include: z.union([z.array(z.enum(["response"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
+    fields_territories: z.union([z.array(z.enum(["currency"])), z.string()]).describe("the fields to include for returned resources of type territories").optional(),
+    include: z.union([z.array(z.enum(["response", "reviewTerritory"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
     handler: async (args: Any) => {
@@ -27,6 +28,7 @@ export const customerReviewsTools: Tool[] = [
       query: {
       "fields[customerReviews]": args["fields_customerReviews"],
       "fields[customerReviewResponses]": args["fields_customerReviewResponses"],
+      "fields[territories]": args["fields_territories"],
       "include": args["include"],
     },
       body: undefined,
@@ -56,7 +58,7 @@ export const customerReviewsTools: Tool[] = [
     description: "GET /v1/customerReviews/{id}/response (GET /v1/customerReviews/{id}/response)",
     input: z.object({
     fields_customerReviewResponses: z.union([z.array(z.enum(["responseBody", "lastModifiedDate", "state", "review"])), z.string()]).describe("the fields to include for returned resources of type customerReviewResponses").optional(),
-    fields_customerReviews: z.union([z.array(z.enum(["rating", "title", "body", "reviewerNickname", "createdDate", "territory", "response"])), z.string()]).describe("the fields to include for returned resources of type customerReviews").optional(),
+    fields_customerReviews: z.union([z.array(z.enum(["rating", "title", "body", "reviewerNickname", "createdDate", "territory", "response", "reviewTerritory"])), z.string()]).describe("the fields to include for returned resources of type customerReviews").optional(),
     include: z.union([z.array(z.enum(["review"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),

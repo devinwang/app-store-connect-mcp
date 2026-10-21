@@ -32,6 +32,9 @@ export const appScreenshotSetsTools: Tool[] = [
     description: "GET /v1/appScreenshotSets/{id} (GET /v1/appScreenshotSets/{id})",
     input: z.object({
     fields_appScreenshotSets: z.union([z.array(z.enum(["screenshotDisplayType", "appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appScreenshots"])), z.string()]).describe("the fields to include for returned resources of type appScreenshotSets").optional(),
+    fields_appStoreVersionLocalizations: z.union([z.array(z.enum(["description", "locale", "keywords", "marketingUrl", "promotionalText", "supportUrl", "whatsNew", "appStoreVersion", "appScreenshotSets", "appPreviewSets", "searchKeywords", "placements"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionLocalizations").optional(),
+    fields_appCustomProductPageLocalizations: z.union([z.array(z.enum(["locale", "promotionalText", "appCustomProductPageVersion", "appScreenshotSets", "appPreviewSets", "searchKeywords", "placements"])), z.string()]).describe("the fields to include for returned resources of type appCustomProductPageLocalizations").optional(),
+    fields_appStoreVersionExperimentTreatmentLocalizations: z.union([z.array(z.enum(["locale", "appStoreVersionExperimentTreatment", "appScreenshotSets", "appPreviewSets", "placements"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersionExperimentTreatmentLocalizations").optional(),
     fields_appScreenshots: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "assetToken", "assetType", "uploadOperations", "assetDeliveryState", "appScreenshotSet"])), z.string()]).describe("the fields to include for returned resources of type appScreenshots").optional(),
     include: z.union([z.array(z.enum(["appStoreVersionLocalization", "appCustomProductPageLocalization", "appStoreVersionExperimentTreatmentLocalization", "appScreenshots"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appScreenshots: z.coerce.number().int().describe("maximum number of related appScreenshots returned (when they are included)").optional(),
@@ -44,6 +47,9 @@ export const appScreenshotSetsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[appScreenshotSets]": args["fields_appScreenshotSets"],
+      "fields[appStoreVersionLocalizations]": args["fields_appStoreVersionLocalizations"],
+      "fields[appCustomProductPageLocalizations]": args["fields_appCustomProductPageLocalizations"],
+      "fields[appStoreVersionExperimentTreatmentLocalizations]": args["fields_appStoreVersionExperimentTreatmentLocalizations"],
       "fields[appScreenshots]": args["fields_appScreenshots"],
       "include": args["include"],
       "limit[appScreenshots]": args["limit_appScreenshots"],

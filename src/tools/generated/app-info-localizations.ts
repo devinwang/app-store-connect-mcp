@@ -32,6 +32,7 @@ export const appInfoLocalizationsTools: Tool[] = [
     description: "GET /v1/appInfoLocalizations/{id} (GET /v1/appInfoLocalizations/{id})",
     input: z.object({
     fields_appInfoLocalizations: z.union([z.array(z.enum(["locale", "name", "subtitle", "privacyPolicyUrl", "privacyChoicesUrl", "privacyPolicyText", "appInfo"])), z.string()]).describe("the fields to include for returned resources of type appInfoLocalizations").optional(),
+    fields_appInfos: z.union([z.array(z.enum(["appStoreState", "state", "appStoreAgeRating", "australiaAgeRating", "brazilAgeRating", "brazilAgeRatingV2", "franceAgeRating", "koreaAgeRating", "app", "ageRatingDeclaration", "appInfoLocalizations", "primaryCategory", "primarySubcategoryOne", "primarySubcategoryTwo", "secondaryCategory", "secondarySubcategoryOne", "secondarySubcategoryTwo", "territoryAgeRatings"])), z.string()]).describe("the fields to include for returned resources of type appInfos").optional(),
     include: z.union([z.array(z.enum(["appInfo"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -42,6 +43,7 @@ export const appInfoLocalizationsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[appInfoLocalizations]": args["fields_appInfoLocalizations"],
+      "fields[appInfos]": args["fields_appInfos"],
       "include": args["include"],
     },
       body: undefined,

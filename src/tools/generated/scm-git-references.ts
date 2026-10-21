@@ -15,6 +15,7 @@ export const scmGitReferencesTools: Tool[] = [
     description: "GET /v1/scmGitReferences/{id} (GET /v1/scmGitReferences/{id})",
     input: z.object({
     fields_scmGitReferences: z.union([z.array(z.enum(["name", "canonicalName", "isDeleted", "kind", "repository"])), z.string()]).describe("the fields to include for returned resources of type scmGitReferences").optional(),
+    fields_scmRepositories: z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
     include: z.union([z.array(z.enum(["repository"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -25,6 +26,7 @@ export const scmGitReferencesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[scmGitReferences]": args["fields_scmGitReferences"],
+      "fields[scmRepositories]": args["fields_scmRepositories"],
       "include": args["include"],
     },
       body: undefined,

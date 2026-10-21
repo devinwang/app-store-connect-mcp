@@ -32,6 +32,8 @@ export const gameCenterLeaderboardReleasesTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterLeaderboardReleases/{id} (GET /v1/gameCenterLeaderboardReleases/{id})",
     input: z.object({
     fields_gameCenterLeaderboardReleases: z.union([z.array(z.enum(["live", "gameCenterDetail", "gameCenterLeaderboard"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboardReleases").optional(),
+    fields_gameCenterDetails: z.union([z.array(z.enum(["arcadeEnabled", "challengeEnabled", "app", "gameCenterAppVersions", "gameCenterGroup", "gameCenterLeaderboards", "gameCenterLeaderboardsV2", "gameCenterLeaderboardSets", "gameCenterLeaderboardSetsV2", "gameCenterAchievements", "gameCenterAchievementsV2", "gameCenterActivities", "gameCenterChallenges", "defaultLeaderboard", "defaultLeaderboardV2", "defaultGroupLeaderboard", "defaultGroupLeaderboardV2", "achievementReleases", "activityReleases", "challengeReleases", "leaderboardReleases", "leaderboardSetReleases", "blockedPlayers", "challengesMinimumPlatformVersions"])), z.string()]).describe("the fields to include for returned resources of type gameCenterDetails").optional(),
+    fields_gameCenterLeaderboards: z.union([z.array(z.enum(["defaultFormatter", "referenceName", "vendorIdentifier", "submissionType", "scoreSortType", "scoreRangeStart", "scoreRangeEnd", "recurrenceStartDate", "recurrenceDuration", "recurrenceRule", "archived", "activityProperties", "visibility", "gameCenterDetail", "gameCenterGroup", "groupLeaderboard", "gameCenterLeaderboardSets", "localizations", "releases", "activity", "challenge"])), z.string()]).describe("the fields to include for returned resources of type gameCenterLeaderboards").optional(),
     include: z.union([z.array(z.enum(["gameCenterDetail", "gameCenterLeaderboard"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -42,6 +44,8 @@ export const gameCenterLeaderboardReleasesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterLeaderboardReleases]": args["fields_gameCenterLeaderboardReleases"],
+      "fields[gameCenterDetails]": args["fields_gameCenterDetails"],
+      "fields[gameCenterLeaderboards]": args["fields_gameCenterLeaderboards"],
       "include": args["include"],
     },
       body: undefined,

@@ -32,6 +32,7 @@ export const inAppPurchaseOfferCodeOneTimeUseCodesTools: Tool[] = [
     description: "GET /v1/inAppPurchaseOfferCodeOneTimeUseCodes/{id} (GET /v1/inAppPurchaseOfferCodeOneTimeUseCodes/{id})",
     input: z.object({
     fields_inAppPurchaseOfferCodeOneTimeUseCodes: z.union([z.array(z.enum(["numberOfCodes", "createdDate", "expirationDate", "active", "environment", "values", "createdByActor", "deactivatedByActor"])), z.string()]).describe("the fields to include for returned resources of type inAppPurchaseOfferCodeOneTimeUseCodes").optional(),
+    fields_actors: z.union([z.array(z.enum(["actorType", "userFirstName", "userLastName", "userEmail", "apiKeyId"])), z.string()]).describe("the fields to include for returned resources of type actors").optional(),
     include: z.union([z.array(z.enum(["createdByActor", "deactivatedByActor"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -42,6 +43,7 @@ export const inAppPurchaseOfferCodeOneTimeUseCodesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[inAppPurchaseOfferCodeOneTimeUseCodes]": args["fields_inAppPurchaseOfferCodeOneTimeUseCodes"],
+      "fields[actors]": args["fields_actors"],
       "include": args["include"],
     },
       body: undefined,

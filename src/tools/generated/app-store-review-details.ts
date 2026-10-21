@@ -32,6 +32,7 @@ export const appStoreReviewDetailsTools: Tool[] = [
     description: "GET /v1/appStoreReviewDetails/{id} (GET /v1/appStoreReviewDetails/{id})",
     input: z.object({
     fields_appStoreReviewDetails: z.union([z.array(z.enum(["contactFirstName", "contactLastName", "contactPhone", "contactEmail", "demoAccountName", "demoAccountPassword", "demoAccountRequired", "notes", "appStoreVersion", "appStoreReviewAttachments"])), z.string()]).describe("the fields to include for returned resources of type appStoreReviewDetails").optional(),
+    fields_appStoreVersions: z.union([z.array(z.enum(["platform", "versionString", "appStoreState", "appVersionState", "copyright", "reviewType", "releaseType", "earliestReleaseDate", "usesIdfa", "downloadable", "createdDate", "app", "appStoreVersionLocalizations", "build", "appStoreVersionPhasedRelease", "gameCenterAppVersion", "routingAppCoverage", "appStoreReviewDetail", "appStoreVersionSubmission", "appClipDefaultExperience", "appStoreVersionExperiments", "appStoreVersionExperimentsV2", "customerReviews", "alternativeDistributionPackage"])), z.string()]).describe("the fields to include for returned resources of type appStoreVersions").optional(),
     fields_appStoreReviewAttachments: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "uploadOperations", "assetDeliveryState", "appStoreReviewDetail"])), z.string()]).describe("the fields to include for returned resources of type appStoreReviewAttachments").optional(),
     include: z.union([z.array(z.enum(["appStoreVersion", "appStoreReviewAttachments"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_appStoreReviewAttachments: z.coerce.number().int().describe("maximum number of related appStoreReviewAttachments returned (when they are included)").optional(),
@@ -44,6 +45,7 @@ export const appStoreReviewDetailsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[appStoreReviewDetails]": args["fields_appStoreReviewDetails"],
+      "fields[appStoreVersions]": args["fields_appStoreVersions"],
       "fields[appStoreReviewAttachments]": args["fields_appStoreReviewAttachments"],
       "include": args["include"],
       "limit[appStoreReviewAttachments]": args["limit_appStoreReviewAttachments"],

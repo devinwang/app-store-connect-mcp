@@ -32,6 +32,7 @@ export const appClipHeaderImagesTools: Tool[] = [
     description: "GET /v1/appClipHeaderImages/{id} (GET /v1/appClipHeaderImages/{id})",
     input: z.object({
     fields_appClipHeaderImages: z.union([z.array(z.enum(["fileSize", "fileName", "sourceFileChecksum", "imageAsset", "uploadOperations", "assetDeliveryState", "appClipDefaultExperienceLocalization"])), z.string()]).describe("the fields to include for returned resources of type appClipHeaderImages").optional(),
+    fields_appClipDefaultExperienceLocalizations: z.union([z.array(z.enum(["locale", "subtitle", "appClipDefaultExperience", "appClipHeaderImage"])), z.string()]).describe("the fields to include for returned resources of type appClipDefaultExperienceLocalizations").optional(),
     include: z.union([z.array(z.enum(["appClipDefaultExperienceLocalization"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -42,6 +43,7 @@ export const appClipHeaderImagesTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[appClipHeaderImages]": args["fields_appClipHeaderImages"],
+      "fields[appClipDefaultExperienceLocalizations]": args["fields_appClipDefaultExperienceLocalizations"],
       "include": args["include"],
     },
       body: undefined,

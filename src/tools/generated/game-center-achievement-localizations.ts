@@ -32,6 +32,7 @@ export const gameCenterAchievementLocalizationsTools: Tool[] = [
     description: "GET /v2/gameCenterAchievementLocalizations/{id} (GET /v2/gameCenterAchievementLocalizations/{id})",
     input: z.object({
     fields_gameCenterAchievementLocalizations: z.union([z.array(z.enum(["locale", "name", "beforeEarnedDescription", "afterEarnedDescription", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementLocalizations").optional(),
+    fields_gameCenterAchievementVersions: z.union([z.array(z.enum(["version", "state", "achievement", "localizations"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementVersions").optional(),
     fields_gameCenterAchievementImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState", "localization"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementImages").optional(),
     include: z.union([z.array(z.enum(["version", "image"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
@@ -43,6 +44,7 @@ export const gameCenterAchievementLocalizationsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterAchievementLocalizations]": args["fields_gameCenterAchievementLocalizations"],
+      "fields[gameCenterAchievementVersions]": args["fields_gameCenterAchievementVersions"],
       "fields[gameCenterAchievementImages]": args["fields_gameCenterAchievementImages"],
       "include": args["include"],
     },
@@ -227,7 +229,7 @@ export const gameCenterAchievementLocalizationsTools: Tool[] = [
     description: "[DEPRECATED] GET /v1/gameCenterAchievementLocalizations/{id}/gameCenterAchievement (GET /v1/gameCenterAchievementLocalizations/{id}/gameCenterAchievement)",
     input: z.object({
     fields_gameCenterAchievements: z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "points", "showBeforeEarned", "repeatable", "archived", "activityProperties", "gameCenterDetail", "gameCenterGroup", "groupAchievement", "localizations", "releases", "activity"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievements").optional(),
-    fields_gameCenterDetails: z.union([z.array(z.enum(["arcadeEnabled", "challengeEnabled", "app", "gameCenterAppVersions", "gameCenterGroup", "gameCenterLeaderboards", "gameCenterLeaderboardsV2", "gameCenterLeaderboardSets", "gameCenterLeaderboardSetsV2", "gameCenterAchievements", "gameCenterAchievementsV2", "gameCenterActivities", "gameCenterChallenges", "defaultLeaderboard", "defaultLeaderboardV2", "defaultGroupLeaderboard", "defaultGroupLeaderboardV2", "achievementReleases", "activityReleases", "challengeReleases", "leaderboardReleases", "leaderboardSetReleases", "challengesMinimumPlatformVersions"])), z.string()]).describe("the fields to include for returned resources of type gameCenterDetails").optional(),
+    fields_gameCenterDetails: z.union([z.array(z.enum(["arcadeEnabled", "challengeEnabled", "app", "gameCenterAppVersions", "gameCenterGroup", "gameCenterLeaderboards", "gameCenterLeaderboardsV2", "gameCenterLeaderboardSets", "gameCenterLeaderboardSetsV2", "gameCenterAchievements", "gameCenterAchievementsV2", "gameCenterActivities", "gameCenterChallenges", "defaultLeaderboard", "defaultLeaderboardV2", "defaultGroupLeaderboard", "defaultGroupLeaderboardV2", "achievementReleases", "activityReleases", "challengeReleases", "leaderboardReleases", "leaderboardSetReleases", "blockedPlayers", "challengesMinimumPlatformVersions"])), z.string()]).describe("the fields to include for returned resources of type gameCenterDetails").optional(),
     fields_gameCenterGroups: z.union([z.array(z.enum(["referenceName", "gameCenterDetails", "gameCenterLeaderboards", "gameCenterLeaderboardsV2", "gameCenterLeaderboardSets", "gameCenterLeaderboardSetsV2", "gameCenterAchievements", "gameCenterAchievementsV2", "gameCenterActivities", "gameCenterChallenges"])), z.string()]).describe("the fields to include for returned resources of type gameCenterGroups").optional(),
     fields_gameCenterAchievementLocalizations: z.union([z.array(z.enum(["locale", "name", "beforeEarnedDescription", "afterEarnedDescription", "gameCenterAchievement", "gameCenterAchievementImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementLocalizations").optional(),
     fields_gameCenterAchievementReleases: z.union([z.array(z.enum(["live", "gameCenterDetail", "gameCenterAchievement"])), z.string()]).describe("the fields to include for returned resources of type gameCenterAchievementReleases").optional(),

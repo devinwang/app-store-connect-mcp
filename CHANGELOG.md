@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] — 2026-10-21
+
+### Added
+
+- **95 new tools from App Store Connect API 4.5.1** (spec refreshed from 4.3; 1208 → 1303 generated operations, 1221 → 1316 tools in total). No existing tool was removed or renamed.
+  - **App Asset Libraries** — libraries, images, videos, placements, placement ordering requests, and the placement relationships on custom product page, app event, version, and experiment treatment localizations.
+  - **Versioned in-app purchases and subscriptions** — `inAppPurchaseVersions`, `subscriptionVersions`, `subscriptionGroupVersions`, and the V2 localization and image resources that hang off them.
+  - **Subscription Plan Availabilities** — create, get, update, and their available-territories relationship.
+  - **Game Center** — score moderation updates, player updates, and blocked-player relationships.
+  - **Insights** — `apps_performance_overviews` and `subscription_price_points_adjusted_equalizations`.
+
+### Deprecated upstream
+
+- Six subscription availability operations are now flagged deprecated by Apple (`subscriptionAvailabilities_*` and the `subscriptions_subscriptionAvailability_*` relationships). They remain exposed with the `[DEPRECATED]` prefix.
+
+### Metadata
+
+- Added `mcpName` to `package.json` and a `server.json` for the official MCP Registry.
+
 ## [0.4.0] — 2026-09-21
 
 ### Fixed

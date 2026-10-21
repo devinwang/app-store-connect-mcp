@@ -32,7 +32,9 @@ export const gameCenterChallengeVersionsTools: Tool[] = [
     description: "GET /v1/gameCenterChallengeVersions/{id} (GET /v1/gameCenterChallengeVersions/{id})",
     input: z.object({
     fields_gameCenterChallengeVersions: z.union([z.array(z.enum(["version", "state", "challenge", "localizations", "releases", "defaultImage"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeVersions").optional(),
+    fields_gameCenterChallenges: z.union([z.array(z.enum(["referenceName", "vendorIdentifier", "archived", "challengeType", "repeatable", "gameCenterDetail", "gameCenterGroup", "versions", "leaderboard", "leaderboardV2"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallenges").optional(),
     fields_gameCenterChallengeLocalizations: z.union([z.array(z.enum(["locale", "name", "description", "version", "image"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeLocalizations").optional(),
+    fields_gameCenterChallengeVersionReleases: z.union([z.array(z.enum(["version"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeVersionReleases").optional(),
     fields_gameCenterChallengeImages: z.union([z.array(z.enum(["fileSize", "fileName", "imageAsset", "uploadOperations", "assetDeliveryState"])), z.string()]).describe("the fields to include for returned resources of type gameCenterChallengeImages").optional(),
     include: z.union([z.array(z.enum(["challenge", "localizations", "releases", "defaultImage"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     limit_localizations: z.coerce.number().int().describe("maximum number of related localizations returned (when they are included)").optional(),
@@ -46,7 +48,9 @@ export const gameCenterChallengeVersionsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[gameCenterChallengeVersions]": args["fields_gameCenterChallengeVersions"],
+      "fields[gameCenterChallenges]": args["fields_gameCenterChallenges"],
       "fields[gameCenterChallengeLocalizations]": args["fields_gameCenterChallengeLocalizations"],
+      "fields[gameCenterChallengeVersionReleases]": args["fields_gameCenterChallengeVersionReleases"],
       "fields[gameCenterChallengeImages]": args["fields_gameCenterChallengeImages"],
       "include": args["include"],
       "limit[localizations]": args["limit_localizations"],

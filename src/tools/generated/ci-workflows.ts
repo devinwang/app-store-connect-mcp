@@ -32,7 +32,10 @@ export const ciWorkflowsTools: Tool[] = [
     description: "GET /v1/ciWorkflows/{id} (GET /v1/ciWorkflows/{id})",
     input: z.object({
     fields_ciWorkflows: z.union([z.array(z.enum(["name", "description", "branchStartCondition", "tagStartCondition", "pullRequestStartCondition", "scheduledStartCondition", "manualBranchStartCondition", "manualTagStartCondition", "manualPullRequestStartCondition", "actions", "isEnabled", "isLockedForEditing", "clean", "containerFilePath", "lastModifiedDate", "product", "repository", "xcodeVersion", "macOsVersion", "buildRuns"])), z.string()]).describe("the fields to include for returned resources of type ciWorkflows").optional(),
+    fields_ciProducts: z.union([z.array(z.enum(["name", "createdDate", "productType", "app", "bundleId", "workflows", "primaryRepositories", "additionalRepositories", "buildRuns"])), z.string()]).describe("the fields to include for returned resources of type ciProducts").optional(),
     fields_scmRepositories: z.union([z.array(z.enum(["lastAccessedDate", "httpCloneUrl", "sshCloneUrl", "ownerName", "repositoryName", "scmProvider", "defaultBranch", "gitReferences", "pullRequests"])), z.string()]).describe("the fields to include for returned resources of type scmRepositories").optional(),
+    fields_ciXcodeVersions: z.union([z.array(z.enum(["version", "name", "testDestinations", "macOsVersions"])), z.string()]).describe("the fields to include for returned resources of type ciXcodeVersions").optional(),
+    fields_ciMacOsVersions: z.union([z.array(z.enum(["version", "name", "xcodeVersions"])), z.string()]).describe("the fields to include for returned resources of type ciMacOsVersions").optional(),
     include: z.union([z.array(z.enum(["product", "repository", "xcodeVersion", "macOsVersion"])), z.string()]).describe("comma-separated list of relationships to include").optional(),
     id: z.string().describe("the id of the requested resource"),
   }).strict(),
@@ -43,7 +46,10 @@ export const ciWorkflowsTools: Tool[] = [
       pathParams: { id: String(args["id"]) },
       query: {
       "fields[ciWorkflows]": args["fields_ciWorkflows"],
+      "fields[ciProducts]": args["fields_ciProducts"],
       "fields[scmRepositories]": args["fields_scmRepositories"],
+      "fields[ciXcodeVersions]": args["fields_ciXcodeVersions"],
+      "fields[ciMacOsVersions]": args["fields_ciMacOsVersions"],
       "include": args["include"],
     },
       body: undefined,
